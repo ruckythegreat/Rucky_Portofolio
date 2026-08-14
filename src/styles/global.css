@@ -33,7 +33,7 @@ body {
   width: 100%; height: 100%;
 }
 
-.color1 { z-index: 4; background-color: rgb(255, 201, 148); }
+.color1 { z-index: 4; background-color: #ffc994; }
 .color2 { z-index: 3; background-color: #FF7873; }
 .color3 { z-index: 2; background-color: #E22F80; }
 .color4 { z-index: 1; background-color: #8140DC; }
