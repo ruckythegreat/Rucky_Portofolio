@@ -1,77 +1,49 @@
 @import "tailwindcss";
 
-/* === BASE & RESET === */
 body {
   font-family: Inter, Roboto, 'Helvetica Neue', sans-serif;
   margin: 0;
+  background-color: #0a0e14;
 }
 
-#content {
-  opacity: 1;
-}
+#content { opacity: 1; }
 
-/* === 1. TEKS LOADING (Paling Atas) === */
 #loader {
   position: fixed;
   inset: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(42, 39, 53);
-  color: white; 
-  z-index: 10000; 
+  background: #0a0e14;
+  color: white;
+  z-index: 10000;
 }
 
-/* === 2. WRAPPER PANEL WARNA === */
 .loading-wrapper {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
   z-index: 9999;
   pointer-events: none;
 }
 
 .panel {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
 }
 
+.color1 { z-index: 4; background-color: rgb(255, 201, 148); }
+.color2 { z-index: 3; background-color: #FF7873; }
+.color3 { z-index: 2; background-color: #E22F80; }
+.color4 { z-index: 1; background-color: #8140DC; }
 
-.color1 {
-  z-index: 4;
-  background-color: #FFCA95;
-}
-.color2 {
-  z-index: 3;
-  background-color: #FF7873;
-}
-.color3 {
-  z-index: 2;
-  background-color: #E22F80;
-}
-.color4 {
-  z-index: 1;
-  background-color: #8140DC;
-}
-
-/* === UTILITY LAINNYA === */
-.scrollable-area {
-  height: 200vh;
-}
+.scrollable-area { height: 200vh; }
 
 .main-tool-bar {
   height: 80px;
-  background: linear-gradient(
-    144.02deg,
-    var(--color-blue, #3b82f6) 4.56%,
-    var(--color-pink, #3b82f6) 72.98%
-  );
-  color: #ffffff;
+  background: linear-gradient(144.02deg, var(--color-blue, #3b82f6) 4.56%, var(--color-pink, #3b82f6) 72.98%);
+  color: #fff;
   font-weight: 600;
   text-align: center;
   display: flex;
@@ -81,5 +53,106 @@ body {
   width: 100%;
   left: 0;
   top: 0;
-  z-index: 100; 
+  z-index: 100;
 }
+
+/* ============================================================ */
+/* TOPO BACKGROUND — depth via black, warna path TIDAK disentuh */
+/* ============================================================ */
+
+.topo-wrapper {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+  background: #0a0e14;
+}
+
+/* SVG topo — tidak ada filter, tidak ada 3D transform mahal */
+.topo {
+  position: absolute;
+  width: 120%;
+  height: 220%;
+  top: -70%;
+  right: -35%;
+  will-change: transform;
+  /* vignette: fokus tajam di satu titik, fade landai ke gelap di sekitarnya */
+mask-image: radial-gradient(circle at 75% 60%,
+  rgba(0,0,0,1) 0%,
+  rgba(0,0,0,0.85) 18%,
+  rgba(0,0,0,0.4) 35%,
+  transparent 60%
+);
+-webkit-mask-image: radial-gradient(circle at 75% 60%,
+  rgba(0,0,0,1) 0%,
+  rgba(0,0,0,0.85) 18%,
+  rgba(0,0,0,0.4) 35%,
+  transparent 60%
+);
+}
+.topo path {
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  /* warna asli path dipakai apa adanya, tidak ada override */
+}
+
+/* --- LAYER DEPTH: bikin kesan "menghilang ke kegelapan" --- */
+
+/* 1. vignette lembut menutup 4 sisi, memberi framing seperti referensi */
+.topo-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 75% 60%, transparent 0%, transparent 35%, rgba(10,14,20,0.55) 70%, rgba(10,14,20,0.92) 100%);
+}
+
+/* 2. gradient sudut kiri-atas & bawah — depth tambahan, bikin gak flat */
+.topo-corner-fade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(10,14,20,0.9) 0%, transparent 30%),
+    linear-gradient(315deg, rgba(10,14,20,0.85) 0%, transparent 35%);
+}
+
+/* 3. noise — statis, tidak dianimasikan, murah di-render sekali */
+.topo-noise {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  filter: url(#noise);
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+}
+
+/* 4. grid halus, kesan blueprint teknis */
+.topo-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image:
+    linear-gradient(to right, white 1px, transparent 1px),
+    linear-gradient(to bottom, white 1px, transparent 1px);
+  background-size: 120px 120px;
+}
+
+/* 5. scanline — sapuan sangat halus, elemen asli biar bisa di-GSAP */
+.topo-scanline {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.025) 48%, transparent 55%);
+  background-size: 100% 400%;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
