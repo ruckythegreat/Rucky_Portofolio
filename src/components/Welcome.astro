@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
 ---
+
+<section class="relative h-screen pl-20" id="WelcomePage">
 <div class="absolute inset-0 flex items-center justify-center">
 
 <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
@@ -27,7 +29,6 @@ import "../styles/global.css";
   <main class="relative w-full h-screen flex flex-col justify-center p-16 bg-cover bg-center">
     <div class="absolute inset-0 z-0"></div>
 
-
 <div class="absolute z-10 top-0 right-20">
       <p class="text-lg mt-4 text-gray-400 translate-y-8">
         V.1-Entry⌈0/10⌋</p>
@@ -47,14 +48,14 @@ import "../styles/global.css";
           <img
   src="/CloseUpRucky.JPG"
   alt="Rucky"
-  class="w-100 h-170 absolute left-70 top-30 mix-blend-plus-lighter"
+  class="w-120 h-190 absolute left-70 top-30 mix-blend-plus-lighter"
 />
 
   </main>
   
   <div class="scrollable-area h-screen"></div>
 </div>
-
+</section>
 <script>
 import gsap from "gsap";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
