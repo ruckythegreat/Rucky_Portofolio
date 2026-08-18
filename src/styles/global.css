@@ -20,8 +20,12 @@
 body {
 font-family: 'HarmonyOS Sans', sans-serif;
   margin: 0;
-  background-color: #1f2028;
+  background-color: #000000;
   overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 #content { opacity: 1; }

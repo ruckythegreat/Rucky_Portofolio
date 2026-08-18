@@ -2,123 +2,288 @@
 import "../styles/global.css";
 ---
 
-<section class="relative w-screen h-screen overflow-hidden" id="WelcomePage">
-  
-  <!-- Canvas Stage Konten -->
-  <div class="absolute left-[80px] top-1/2 -translate-y-1/2 z-10">
-    <div id="welcome-stage" class="w-[1920px] h-[1080px] relative origin-left shrink-0">
-      
-      <!-- 1. Background SVG (Dimensi & Posisi diatur dinamis via JS agar SELALU 100% Full Screen) -->
-      <div 
+<section
+  id="WelcomePage"
+  class="relative h-screen w-full overflow-hidden"
+>
+  <!-- VIEWPORT AREA (Full Screen) -->
+  <div
+    id="welcome-viewport"
+    class="absolute inset-0 overflow-hidden"
+  >
+
+    <!-- ======================================================= -->
+    <!-- FIXED 1920x1080 CANVAS                                  -->
+    <!-- ======================================================= -->
+    <div
+      id="welcome-stage"
+      class="absolute left-1/2 top-1/2 h-[1080px] w-[1920px] origin-center z-10"
+    >
+      <!-- ===================================================== -->
+      <!-- SVG BACKGROUND (Kembali ke dalam stage agar blend aktif) -->
+      <!-- ===================================================== -->
+      <div
         id="svg-bg"
-        class="absolute z-0 overflow-hidden pointer-events-none"
-        style="mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%);"
+        class="pointer-events-none absolute z-0 overflow-hidden"
+        style="
+          mask-image: linear-gradient(
+            to bottom,
+            rgba(0,0,0,1) 55%,
+            rgba(0,0,0,0) 100%
+          );
+          -webkit-mask-image: linear-gradient(
+            to bottom,
+            rgba(0,0,0,1) 55%,
+            rgba(0,0,0,0) 100%
+          );
+        "
       >
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="0 0 1920 1080" 
-          preserveAspectRatio="xMidYMid slice" 
-          class="w-full h-full block"
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1920 1080"
+          preserveAspectRatio="xMidYMid slice"
+          class="block h-full w-full"
         >
-          <!-- Background Rect -->
-          <rect x="-20%" y="-20%" width="140%" height="140%" fill="#11111d"/>
-          
+          <!-- Background base -->
+          <rect
+            x="-20%"
+            y="-20%"
+            width="140%"
+            height="140%"
+            fill="#11111d"
+          />
+
           <defs>
-            <filter id="blobFilter" x="-200%" y="-200%" width="500%" height="500%">
-              <feGaussianBlur stdDeviation="97"/>
+            <filter
+              id="blobFilter"
+              x="-200%"
+              y="-200%"
+              width="500%"
+              height="500%"
+            >
+              <feGaussianBlur stdDeviation="97" />
             </filter>
-            
-            <filter id="grain" x="-20%" y="-20%" width="140%" height="140%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.658" numOctaves="3" stitchTiles="stitch" seed="7599"/>
-              <feColorMatrix type="saturate" values="0"/>
+
+            <filter
+              id="grain"
+              x="-20%"
+              y="-20%"
+              width="140%"
+              height="140%"
+            >
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0.658"
+                numOctaves="3"
+                stitchTiles="stitch"
+                seed="7599"
+              />
+              <feColorMatrix
+                type="saturate"
+                values="0"
+              />
             </filter>
           </defs>
-          
-          <!-- Vector Paths -->
-          <path d="M -127.9,-705.3 L -34.5,-576.8 L 60.3,-449.3 L 156.5,-322.9 L 254.1,-197.5 L 353.1,-73.3 L 453.4,50.0 L 555.0,172.3 L 657.8,293.7 L 761.7,414.3 L 866.4,534.1 L 972.0,653.4 L 1078.1,772.2 L 1184.8,890.7 L 1291.6,1009.0 L 1398.6,1127.2 L 1505.4,1245.5 L 1611.9,1364.0 L 1718.0,1482.9 L 1823.4,1602.3 L 1928.0,1722.3" stroke="#e22f80" stroke-width="199.4" fill="none" opacity="0.732" stroke-linecap="round" filter="url(#blobFilter)"/>
-          <path d="M -568.6,-418.2 L -428.6,-369.3 L -289.8,-318.0 L -152.5,-264.0 L -16.7,-206.9 L 117.5,-146.6 L 250.0,-83.1 L 380.8,-16.1 L 509.8,54.3 L 637.1,128.0 L 762.8,204.8 L 887.0,284.7 L 1009.8,367.3 L 1131.3,452.3 L 1251.8,539.3 L 1371.5,628.1 L 1490.5,718.0 L 1609.1,808.7 L 1727.6,899.7 L 1846.2,990.5 L 1965.1,1080.6" stroke="#e22f80" stroke-width="132.0" fill="none" opacity="0.658" stroke-linecap="round" filter="url(#blobFilter)"/>
-          <path d="M 362.6,-1013.5 L 422.3,-873.9 L 432.6,-697.2 L 426.1,-507.9 L 442.4,-335.7 L 511.5,-203.3 L 641.6,-116.9 L 815.5,-63.5 L 997.7,-16.3 L 1149.3,53.9 L 1244.3,166.8 L 1279.9,324.4 L 1278.2,510.1 L 1276.9,695.6 L 1313.2,852.8 L 1408.9,965.0 L 1561.2,1034.7 L 1743.6,1081.8 L 1917.1,1135.5 L 2046.4,1222.5 L 2114.8,1355.4" stroke="#e22f80" stroke-width="295.3" fill="none" opacity="0.566" stroke-linecap="round" filter="url(#blobFilter)"/>
-          <path d="M -620.8,-885.7 L -432.3,-850.3 L -286.7,-737.9 L -180.3,-555.3 L -97.5,-330.3 L -16.1,-103.0 L 86.9,85.8 L 227.8,206.6 L 411.9,249.9 L 631.8,229.0 L 869.5,176.2 L 1101.9,133.1 L 1307.1,138.4 L 1471.7,216.7 L 1593.9,371.0 L 1684.6,582.0 L 1763.6,813.5 L 1854.7,1023.7 L 1977.7,1176.6 L 2143.1,1253.4 L 2349.1,1257.6" stroke="#8140dc" stroke-width="109.8" fill="none" opacity="0.576" stroke-linecap="round" filter="url(#blobFilter)"/>
-          
-          <!-- Rect Grain -->
-          <rect x="-20%" y="-20%" width="140%" height="140%" filter="url(#grain)" opacity="0.168"/>
+
+          <!-- Pink -->
+          <path
+            d="M -127.9,-705.3 L -34.5,-576.8 L 60.3,-449.3 L 156.5,-322.9 L 254.1,-197.5 L 353.1,-73.3 L 453.4,50.0 L 555.0,172.3 L 657.8,293.7 L 761.7,414.3 L 866.4,534.1 L 972.0,653.4 L 1078.1,772.2 L 1184.8,890.7 L 1291.6,1009.0 L 1398.6,1127.2 L 1505.4,1245.5 L 1611.9,1364.0 L 1718.0,1482.9 L 1823.4,1602.3 L 1928.0,1722.3"
+            stroke="#e22f80"
+            stroke-width="199.4"
+            fill="none"
+            opacity="0.732"
+            stroke-linecap="round"
+            filter="url(#blobFilter)"
+          />
+
+          <path
+            d="M -568.6,-418.2 L -428.6,-369.3 L -289.8,-318.0 L -152.5,-264.0 L -16.7,-206.9 L 117.5,-146.6 L 250.0,-83.1 L 380.8,-16.1 L 509.8,54.3 L 637.1,128.0 L 762.8,204.8 L 887.0,284.7 L 1009.8,367.3 L 1131.3,452.3 L 1251.8,539.3 L 1371.5,628.1 L 1490.5,718.0 L 1609.1,808.7 L 1727.6,899.7 L 1846.2,990.5 L 1965.1,1080.6"
+            stroke="#e22f80"
+            stroke-width="132"
+            fill="none"
+            opacity="0.658"
+            stroke-linecap="round"
+            filter="url(#blobFilter)"
+          />
+
+          <!-- Purple -->
+          <path
+            d="M 362.6,-1013.5 L 422.3,-873.9 L 432.6,-697.2 L 426.1,-507.9 L 442.4,-335.7 L 511.5,-203.3 L 641.6,-116.9 L 815.5,-63.5 L 997.7,-16.3 L 1149.3,53.9 L 1244.3,166.8 L 1279.9,324.4 L 1278.2,510.1 L 1276.9,695.6 L 1313.2,852.8 L 1408.9,965.0 L 1561.2,1034.7 L 1743.6,1081.8 L 1917.1,1135.5 L 2046.4,1222.5 L 2114.8,1355.4"
+            stroke="#e22f80"
+            stroke-width="295.3"
+            fill="none"
+            opacity="0.566"
+            stroke-linecap="round"
+            filter="url(#blobFilter)"
+          />
+
+          <path
+            d="M -620.8,-885.7 L -432.3,-850.3 L -286.7,-737.9 L -180.3,-555.3 L -97.5,-330.3 L -16.1,-103.0 L 86.9,85.8 L 227.8,206.6 L 411.9,249.9 L 631.8,229.0 L 869.5,176.2 L 1101.9,133.1 L 1307.1,138.4 L 1471.7,216.7 L 1593.9,371.0 L 1684.6,582.0 L 1763.6,813.5 L 1854.7,1023.7 L 1977.7,1176.6 L 2143.1,1253.4 L 2349.1,1257.6"
+            stroke="#8140dc"
+            stroke-width="109.8"
+            fill="none"
+            opacity="0.576"
+            stroke-linecap="round"
+            filter="url(#blobFilter)"
+          />
+
+          <!-- Grain -->
+          <rect
+            x="-20%"
+            y="-20%"
+            width="140%"
+            height="140%"
+            filter="url(#grain)"
+            opacity="0.168"
+          />
         </svg>
       </div>
 
-      <!-- Tag Versi -->
-      <div class="absolute z-10 top-[40px] right-[80px]">
-        <p class="text-lg text-gray-400">V.1-Entry⌈0/10⌋</p>
-      </div>
-
-      <!-- Gambar Close Up -->
-      <img
-        src="/CloseUpRucky.JPG"
-        alt="Rucky"
-        class="w-[500px] h-[960px] absolute left-[200px] top-[120px] object-cover mix-blend-plus-lighter z-10"
-        style="mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);"
-      />
-
-      <!-- Hero Content -->
-      <div class="absolute z-10 left-[740px] top-[380px] flex flex-col items-start text-left">
-        <h1 class="hero-title text-8xl font-bold text-white opacity-0 translate-y-12">
-          HELOOO EVERYONE
-        </h1>
-        <h1 class="hero-title text-6xl font-bold opacity-0 translate-y-12 mt-2" style="color:#ffc994">
-          I'm Rucky
-        </h1>
-        <p class="hero-desc text-lg mt-4 opacity-0 text-gray-400 translate-y-8">
-          A personal portfolio website, built for fun
+      <!-- VERSION -->
+      <div class="absolute right-[80px] top-[40px] z-10">
+        <p class="text-lg text-gray-400">
+          V.1-Entry⌈0/10⌋
         </p>
       </div>
 
-    </div>
-  </div>
+      <!-- CHARACTER -->
+      <img
+        src="/CloseUpRucky.JPG"
+        alt="Rucky"
+        class="
+          absolute
+          left-[200px]
+          top-[120px]
+          z-10
+          h-[960px]
+          w-[500px]
+          object-cover
+          mix-blend-plus-lighter
+        "
+        style="
+          mask-image: linear-gradient(
+            to bottom,
+            rgba(0,0,0,1) 60%,
+            rgba(0,0,0,0) 100%
+          );
+          -webkit-mask-image: linear-gradient(
+            to bottom,
+            rgba(0,0,0,1) 60%,
+            rgba(0,0,0,0) 100%
+          );
+        "
+      />
 
+      <!-- HERO CONTENT -->
+      <div
+        class="
+          absolute
+          left-[740px]
+          top-[380px]
+          z-10
+          flex
+          flex-col
+          items-center
+          text-left
+        "
+      >
+        <h1
+          class="
+            hero-title
+            translate-y-12
+            text-8xl
+            font-bold
+            text-white
+            opacity-0
+          "
+        >
+          HELOOO EVERYONE
+        </h1>
+
+        <h1
+          class="
+            hero-title
+            mt-2
+            translate-y-12
+            text-6xl
+            font-bold
+            opacity-0
+          "
+          style="color:#ffc994"
+        >
+          I'm Rucky
+        </h1>
+
+        <p
+          class="
+            hero-desc
+            mt-4
+            translate-y-8
+            text-lg
+            text-gray-400
+            opacity-0
+          "
+        >
+          A personal portfolio website, built for fun
+        </p>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<!-- Script Auto Scale Stage & Dynamic SVG Stretch -->
 <script>
   import gsap from "gsap";
-  import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 
-  gsap.registerPlugin(MotionPathPlugin);
+  const BASE_WIDTH = 1920;
+  const BASE_HEIGHT = 1080;
 
-  function autoScaleStage() {
-    const stage = document.getElementById('welcome-stage');
-    const svgBg = document.getElementById('svg-bg');
-    if (!stage) return;
+function autoScaleStage() {
+  const stage = document.getElementById("welcome-stage");
+  const svgBg = document.getElementById("svg-bg");
+  if (!stage) return;
 
-    const baseWidth = 1920;
-    const baseHeight = 1080;
-    const navbarWidth = 80;
+  const sidebarWidth = 80;
 
-    const availableWidth = window.innerWidth - navbarWidth;
-    const availableHeight = window.innerHeight;
+  const availableWidth = Math.max(
+    window.innerWidth - sidebarWidth,
+    320
+  );
+  const availableHeight = Math.max(
+    window.innerHeight,
+    320
+  );
 
-    const scaleX = availableWidth / baseWidth;
-    const scaleY = availableHeight / baseHeight;
+  const scaleX = availableWidth / BASE_WIDTH;
+  const scaleY = availableHeight / BASE_HEIGHT;
 
-    const scale = Math.min(scaleX, scaleY);
+  const scale = Math.min(scaleX, scaleY);
 
-    // 1. Scale stage seperti biasa
-    stage.style.transform = `scale(${scale})`;
+  const centerX = sidebarWidth + availableWidth / 2;
+  const centerY = availableHeight / 2;
 
-    // 2. Hitung & lebarkan wadah SVG secara presisi agar menutup 100% area kanan tanpa terpotong
-    if (svgBg) {
-      const targetWidth = availableWidth / scale;
-      const targetHeight = availableHeight / scale;
+  stage.style.left = `${centerX}px`;
+  stage.style.top = `${centerY}px`;
+  stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
 
-      svgBg.style.width = `${targetWidth}px`;
-      svgBg.style.height = `${targetHeight}px`;
-      svgBg.style.top = `${(baseHeight - targetHeight) / 2}px`;
-      svgBg.style.left = `0px`;
-    }
+  // Hitung background SVG agar menutupi 100% viewport dari x=0 hingga x=innerWidth
+  if (svgBg) {
+    const fullWidth = window.innerWidth / scale;
+    const fullHeight = window.innerHeight / scale;
+
+    svgBg.style.width = `${fullWidth}px`;
+    svgBg.style.height = `${fullHeight}px`;
+
+    // Offset posisi agar tepi kiri SVG tepat berada di x = 0 layar
+    svgBg.style.left = `${BASE_WIDTH / 2 - centerX / scale}px`;
+    svgBg.style.top = `${BASE_HEIGHT / 2 - centerY / scale}px`;
   }
+}
 
-  window.addEventListener('resize', autoScaleStage);
-  document.addEventListener('DOMContentLoaded', () => {
-    autoScaleStage();
+  autoScaleStage();
+  window.addEventListener("resize", autoScaleStage);
 
+  window.addEventListener("load", () => {
     gsap.to(".hero-title", {
       opacity: 1,
       y: 0,

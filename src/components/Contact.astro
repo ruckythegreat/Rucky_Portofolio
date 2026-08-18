@@ -1,80 +1,99 @@
 ---
 import "../styles/global.css";
 ---
-<section class="min-h-screen bg-white py-24">
 
-    <div class="mx-auto flex max-w-[1600px] gap-12">
-
+<section
+  id="ContactPage"
+  class="relative h-screen w-full overflow-hidden bg-white"
+>
+  <div
+    id="contact-stage"
+    class="absolute left-1/2 top-1/2 h-[1080px] w-[1920px] origin-center"
+  >
+    <div class="relative h-[1080px] w-[1920px] px-32 py-24">
+      <div class="mx-auto flex max-w-[1600px] gap-12">
         <!-- Sidebar -->
 
-        <aside class="flex w-[110px] flex-col items-center bg-yellow-300 py-10">
+        <aside
+          class="flex w-[110px] flex-col items-center bg-yellow-300 py-10"
+        >
+          <div class="mb-auto text-center">
+            <h3 class="text-4xl font-black">
+              CONTACT
+            </h3>
+          </div>
 
-            <div class="mb-auto text-center">
-
-                <h3 class="text-4xl font-black">
-                    CONTACT
-                </h3>
-
-            </div>
-
-            <div class="mt-auto">
-
-                <p class="rotate-90 text-4xl font-black whitespace-nowrap">
-                    RUCKY
-                </p>
-
-            </div>
-
+          <div class="mt-auto">
+            <p class="rotate-90 whitespace-nowrap text-4xl font-black">
+              RUCKY
+            </p>
+          </div>
         </aside>
 
         <!-- Content -->
 
         <main class="flex-1">
+          <div class="mb-8">
+            <p class="text-sm text-gray-500">
+              // Contact
+            </p>
 
-            <div class="mb-8">
+            <h1 class="text-6xl font-black">
+              LET'S CONNECT
+            </h1>
+          </div>
 
-                <p class="text-sm text-gray-500">
-                    // Contact
-                </p>
+          <div class="mb-10 border-b pb-6">
+            <p class="text-2xl">
+              Find me on these platforms.
+            </p>
+          </div>
 
-                <h1 class="text-6xl font-black">
-                    LET'S CONNECT
-                </h1>
+          <!-- Cards -->
 
-            </div>
+          <div class="grid grid-cols-3 gap-6">
+            <a
+              href="https://discord.com/users/YOUR_ID"
+              target="_blank"
+              class="group w-360 overflow-hidden rounded-lg border p-8 transition hover:-translate-y-2"
+            >
+              <h2 class="mb-4 text-4xl font-bold">
+                Discord
+              </h2>
 
-            <div class="mb-10 border-b pb-6">
-
-                <p class="text-2xl">
-                    Find me on these platforms.
-                </p>
-
-            </div>
-
-            <!-- Cards -->
-
-            <div class="grid grid-cols-3 gap-6">
-
-                <a
-                    href="https://discord.com/users/YOUR_ID"
-                    target="_blank"
-                    class="group overflow-hidden rounded-lg border w-360 p-8 transition hover:-translate-y-2"
-                >
-
-                    <h2 class="mb-4 text-4xl font-bold">
-                        Discord
-                    </h2>
-
-                    <p class="text-gray-500">
-                        Chat with me directly.
-                    </p>
-
-                </a>
-
-            </div>
-
+              <p class="text-gray-500">
+                Chat with me directly.
+              </p>
+            </a>
+          </div>
         </main>
-
+      </div>
     </div>
-
+  </div>
 </section>
+
+<script>
+  function autoScaleStage() {
+    const stage = document.getElementById("contact-stage");
+
+    if (!stage) return;
+
+    const baseWidth = 1920;
+    const baseHeight = 1080;
+
+    const scale = Math.min(
+      window.innerWidth / baseWidth,
+      window.innerHeight / baseHeight
+    );
+
+    stage.style.transform =
+      `translate(-50%, -50%) scale(${scale})`;
+  }
+
+  autoScaleStage();
+
+  window.addEventListener(
+    "resize",
+    autoScaleStage
+  );
+</script>

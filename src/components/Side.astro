@@ -3,25 +3,122 @@ import "../styles/global.css";
 ---
 
 <nav
-  class="fixed top-0 left-0 w-20 h-full bg-slate-900 backdrop-blur-sm border-r border-slate-800 flex flex-col items-center py-6 z-50"
+  id="side-nav"
+  class="fixed left-0 top-0 z-50 h-screen w-screen overflow-hidden pointer-events-none"
 >
   <div
-    class="w-10 h-10 bg-white text-black font-extrabold flex items-center justify-center mb-12 cursor-pointer"
+    id="nav-stage"
+    class="absolute left-0 top-0 h-[1080px] w-[1920px] origin-top-left pointer-events-auto"
   >
-  <a href="/">  R.</a>
+    <div
+      class="absolute left-0 top-0 flex h-[1080px] w-[80px] flex-col items-center border-r border-slate-800 bg-slate-900 py-6 backdrop-blur-sm"
+    >
+
+      <!-- Logo -->
+
+      <a
+        href="#WelcomePage"
+        class="mb-12 flex h-10 w-10 items-center justify-center bg-white font-extrabold text-black"
+      >
+        R.
+      </a>
+
+
+      <!-- Navigation -->
+
+      <ul class="flex w-full flex-col items-center gap-6">
+
+        <li class="w-full">
+          <a
+            href="#WelcomePage"
+            class="flex w-full justify-center py-3 hover:bg-white/10"
+            title="Welcome"
+          >
+            <div class="h-6 w-6 rounded-sm bg-slate-400"></div>
+          </a>
+        </li>
+
+
+        <li class="w-full">
+          <a
+            href="#MediaPage"
+            class="flex w-full justify-center py-3 hover:bg-white/10"
+            title="Media"
+          >
+            <div class="h-6 w-6 rounded-full bg-slate-400"></div>
+          </a>
+        </li>
+
+
+        <li class="w-full">
+          <a
+            href="#ProjectPage"
+            class="flex w-full justify-center py-3 hover:bg-white/10"
+            title="Project"
+          >
+            <div class="h-6 w-6 rotate-45 bg-slate-400"></div>
+          </a>
+        </li>
+
+
+        <li class="w-full">
+          <a
+            href="#SocialMediaPage"
+            class="flex w-full justify-center py-3 hover:bg-white/10"
+            title="Social Media"
+          >
+            <div class="h-6 w-6 border-2 border-slate-400"></div>
+          </a>
+        </li>
+
+
+        <li class="w-full">
+          <a
+            href="#ContactPage"
+            class="flex w-full justify-center py-3 hover:bg-white/10"
+            title="Contact"
+          >
+            <div
+              class="h-6 w-6 bg-slate-400
+              [clip-path:polygon(50%_0%,100%_100%,0%_100%)]"
+            ></div>
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
   </div>
-
-  <ul class="flex flex-col gap-6 w-full items-center">
-    <li class="w-full flex justify-center py-3 hover:bg-white/10">
-      <div class="w-6 h-6 bg-slate-400 rounded-sm"></div>
-    </li>
-
-    <li class="w-full flex justify-center py-3 hover:bg-white/10">
-      <div class="w-6 h-6 bg-slate-400 rounded-full"></div>
-    </li>
-
-    <li class="w-full flex justify-center py-3 hover:bg-white/10">
-      <div class="w-6 h-6 bg-slate-400 rotate-45"></div>
-    </li>
-  </ul>
 </nav>
+
+
+<script>
+  function autoScaleNavigation() {
+    const stage =
+      document.getElementById("nav-stage");
+
+    if (!stage) return;
+
+    const baseWidth = 1920;
+    const baseHeight = 1080;
+
+    const scaleX =
+      window.innerWidth / baseWidth;
+
+    const scaleY =
+      window.innerHeight / baseHeight;
+
+    const scale =
+      Math.min(scaleX, scaleY);
+
+    stage.style.transform =
+      `scale(${scale})`;
+  }
+
+  autoScaleNavigation();
+
+  window.addEventListener(
+    "resize",
+    autoScaleNavigation
+  );
+</script>
