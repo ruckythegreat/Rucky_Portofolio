@@ -1,94 +1,131 @@
 ---
 import "../styles/global.css";
 ---
-<section class="relative h-350 pl-20" id="MediaPage">
-  <div class="flex flex-col items-center h-full p-16">
-    <div
-    class="absolute top-50 left-50"
-    >
-    <h2 class="relative text-3xl text-white font-bold">
-    MEDIA
-    </h2>
-</div>
 
-<div class="absolute top-35 z-[-100] h-screen" >
-<img src="/media1.JPG" alt="">
-</div>
-
-<div class="absolute top-200 left-60 right-300 flex flex-col items-start text-white">
-<p
-class="m-1"
->TANGGAL MEDIA: 9-10-1009</p>
-<h1
-class="text-5xl m-1"
->JUDUL MEDIA</h1>
-
-<p
-class="m-1"
+<section
+  id="MediaPage"
+  class="relative w-screen h-screen overflow-hidden  flex items-center justify-center "
 >
-(DESKRIPSI MEDIA) ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.
-
-</p>
-
-<div
-class="bg-blue-600 w-15 h-15 top-60 absolute"
->
-Watch
-
-</div>
-
-<div
-class="bg-blue-600 w-50 h-15 left-20 top-60 absolute"
->
-| See more
-</div>
-
-</div>
-
-    <p class="relative top-20 left-180 mt-6 text-gray-400 max-w-3xl">
-     V.1-Entry⌈3/10⌋
-    </p>
-
-
-
-<div class="absolute bottom-70 right-0">
-
-    
-
-<div class="w-full h-[300pt] flex items-center justify-between px-6">
-
-    <div class="bg-blue-300 w-[226pt] h-[127pt]">
-            <img src="/media1.JPG" alt="">
-        Kiri</div>
-
-    <div class="bg-blue-300 w-[30pt] h-[30pt] right-80 bottom-35 absolute">
->
+  <!-- Fixed canvas -->
+  <div
+    id="media-stage"
+    class="absolute w-[1920px] h-[1080px] origin-center shrink-0"
+  >
+    <div class="relative h-350 pl-20">
+      <div class="flex flex-col items-center h-full">
+        <div class="absolute top-50 left-50">
+          <h2 class="relative text-3xl text-white font-bold">
+            MEDIA
+          </h2>
         </div>
 
-    <div class="m-10 bg-red-300 w-[283pt] h-[159pt]">
-            <img src="/media1.JPG" alt="">
-        Tengah (Paling Besar)</div>
-
-    <div class="bg-blue-300 w-[30pt] h-[30pt] left-80 bottom-35 absolute">
-<
+        <div class="absolute top-35 z-[-100] h-screen w-full">
+          <img src="/media1.JPG" alt="" />
         </div>
 
-    <div class="bg-green-300 w-[226pt] h-[127pt] ">
-            <img src="/media1.JPG" alt="">
-        Kanan</div>
+        <div
+          class="absolute top-180 left-60 right-300 flex flex-col items-start text-white"
+        >
+          <p class="m-1">
+            TANGGAL MEDIA: 9-10-1009
+          </p>
 
-<div 
-class="
-bg-amber-300 w-900 h-1 right-0 top-60 absolute z-[-5]
-">
+          <h1 class="text-5xl m-1">
+            JUDUL MEDIA
+          </h1>
 
-</div>
+          <p class="m-1">
+            (DESKRIPSI MEDIA) ut aliquip ex ea commodo consequat.
+            Duis aute irure dolor in reprehenderit in voluptate
+            velit esse.
+          </p>
 
-</div>
+          <div class="bg-blue-600 w-15 h-15 top-55 absolute">
+            Watch
+          </div>
 
-</div>
+          <div class="bg-blue-600 w-50 h-15 left-20 top-55 absolute">
+            | See more
+          </div>
+        </div>
 
+        <p class="relative top-20 left-180 mt-6 text-gray-400 max-w-3xl">
+          V.1-Entry⌈3/10⌋
+        </p>
+
+        <div class="absolute bottom-70 right-0">
+          <div
+            class="w-full h-[300pt] flex items-center justify-between px-6"
+          >
+            <div class="bg-blue-300 w-[226pt] h-[127pt]">
+              <img src="/media1.JPG" alt="" />
+              Kiri
+            </div>
+
+            <div
+              class="bg-blue-300 w-[30pt] h-[30pt] right-80 bottom-35 absolute"
+            >
+              >
+            </div>
+
+            <div class="m-10 bg-red-300 w-[283pt] h-[159pt]">
+              <img src="/media1.JPG" alt="" />
+              Tengah (Paling Besar)
+            </div>
+
+            <div
+              class="bg-blue-300 w-[30pt] h-[30pt] left-80 bottom-35 absolute"
+            >
+            </div>
+
+            <div class="bg-green-300 w-[226pt] h-[127pt]">
+              <img src="/media1.JPG" alt="" />
+              Kanan
+            </div>
+
+<div
+  class="
+    bg-amber-300
+    w-900
+    h-1
+    absolute
+    left-1/2
+    -translate-x-1/2
+    top-60
+    z-[-5]
+  "
+></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-
 </section>
+
+<script>
+  function autoScaleStage() {
+    const stage = document.getElementById("media-stage");
+
+    if (!stage) return;
+
+    const baseWidth = 1920;
+    const baseHeight = 1080;
+
+    const scaleX = window.innerWidth / baseWidth;
+    const scaleY = window.innerHeight / baseHeight;
+
+    const scale = Math.min(scaleX, scaleY);
+
+    stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
+
+    stage.style.left = "50%";
+    stage.style.top = "50%";
+  }
+
+  window.addEventListener("resize", autoScaleStage);
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    autoScaleStage
+  );
+</script>

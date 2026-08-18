@@ -1,86 +1,86 @@
 ---
 import "../styles/global.css";
 ---
-<section class="relative h-350 pl-20" id="EducationHistoryPage">
-  <div class="flex flex-col items-center h-full p-16">
-    <div
-    class="absolute top-70 left-120"
-    >
-    <h2 class="relative text-3xl text-white font-bold">
-    RUCKY: EDUCATION
-    </h2>
+<section class="relative w-screen h-screen overflow-hidden flex items-center justify-center " id="EducationHistoryPage">
+  
+  <!-- Canvas Stage: Dikunci ke resolusi standar Windows (1920x1080) -->
+  <div id="game-stage" class="w-[1920px] h-[1080px] relative origin-center shrink-0">
+    <div class="flex flex-col items-center h-full p-16">
+      
+      <div class="absolute top-70 left-120">
+        <h2 class="relative text-3xl text-white font-bold">
+          RUCKY: EDUCATION
+        </h2>
         <h2 class="relative text-5xl text-white font-bold">
-    HISTORY
-    </h2>
-</div>
+          HISTORY
+        </h2>
+      </div>
 
-<div class="absolute top-150 left-300 flex flex-col items-start text-white">
-<p
-class="m-1"
->RUCKY: EDUCATION-HISTORY</p>
-<h1
-class="text-5xl m-1"
->SDN PATRAKOMALA</h1>
+      <div class="absolute top-150 left-300 flex flex-col items-start text-white">
+        <p class="m-1">RUCKY: EDUCATION-HISTORY</p>
+        <h1 class="text-5xl m-1">SDN PATRAKOMALA</h1>
 
-<p
-class="m-1"
->
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <p class="m-1">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
 
-</p>
-</div>
-
-<div class="absolute top-300 left-260 flex flex-col items-start text-white">
-  <p class="absolute bottom-10 left-115">
-2/4
-</p>
-<ul>
-  <il
-  class="p-10"
-  >TK</il>
-  <il
-    class="p-10"
-  >SDN PATRA</il>
-  <il
-    class="p-10"
-  >SMPN 7</il>
-  <il
-    class="p-10"
-  >SMKN 2
-</il>
+        <img src="/CloseUpRucky.JPG" alt="" class="absolute right-230 h-200" />
+      </div>
+<div class="absolute top-[680px] left-[300px] flex flex-col items-start text-white">
+  <p class="absolute -top-8 left-[120px] text-gray-400">
+    2/4
+  </p>
+  <ul class="space-y-2">
+    <li>TK</li>
+    <li class="font-bold text-amber-300">SDN PATRA</li>
+    <li>SMPN 7</li>
+    <li>SMKN 2</li>
   </ul>
 
-  <div
-  class="bg-amber-300 w-10 h-10 absolute left-140"
-  >
-  <p
-  class="text-center text-3xl"
-  >
-    <
-  </p>
+  <!-- Tombol Navigasi Kiri -->
+  <div class="bg-amber-300 w-10 h-10 absolute left-[0px] top-50 flex items-center justify-center cursor-pointer">
+    <p class="text-2xl text-black font-bold">&lt;</p>
   </div>
 
-    <div
-  class="bg-amber-300 w-10 h-10 absolute left-170"
-  >
-    <p
-  class="text-center text-3xl"
-  >
-  >
-  </p>
+  <!-- Tombol Navigasi Kanan -->
+  <div class="bg-amber-300 w-10 h-10 absolute left-[70px] top-50 flex items-center justify-center cursor-pointer">
+    <p class="text-2xl text-black font-bold">&gt;</p>
   </div>
-
 </div>
 
-    <p class="relative top-200 left-180 mt-6 text-gray-400 max-w-3xl">
-     V.1-Entry⌈2/10⌋
-    </p>
+      <p class="relative top-200 left-180 mt-6 text-gray-400 max-w-3xl">
+        V.1-Entry⌈2/10⌋
+      </p>
 
+      <div class="top-80 absolute h-[120px] w-[19000px] flex z-[-3] bg-[rgb(255,201,148)] text-4xl -translate-y-1/2">
+      </div>
 
-
-  <div class="top-80 absolute h-[120px] w-[1900px] flex z-[-3] top-50 bg-[rgb(255,201,148)] text-4xl -translate-y-1/2">
+    </div>
   </div>
-  </div>
-
-
 </section>
+
+<!-- Script Auto-Scale -->
+<script>
+  function autoScaleStage() {
+    const stage = document.getElementById('game-stage');
+    if (!stage) return;
+
+    // Resolusi dasar Windows / Full HD
+    const baseWidth = 1920;
+    const baseHeight = 1080;
+
+    // Hitung perbandingan terhadap layar aktif
+    const scaleX = window.innerWidth / baseWidth;
+    const scaleY = window.innerHeight / baseHeight;
+
+    // Gunakan nilai terkecil agar tidak ada elemen terpotong
+    const scale = Math.min(scaleX, scaleY);
+
+    // Terapkan scaling secara otomatis
+    stage.style.transform = `scale(${scale})`;
+  }
+
+  // Jalankan saat pertama kali dibuka & saat ukuran window/zoom berubah
+  window.addEventListener('resize', autoScaleStage);
+  document.addEventListener('DOMContentLoaded', autoScaleStage);
+</script>

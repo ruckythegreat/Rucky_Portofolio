@@ -1,72 +1,129 @@
 ---
 import "../styles/global.css";
 ---
-<section class="relative h-350 pl-20" id="ProjectPage">
 
-  <div class="flex flex-col items-center h-full p-16">
+<section
+  id="ProjectPage"
+  class="relative h-[1080px] w-full overflow-hidden bg-white"
+>
+  <div
+    id="project-stage"
+    class="absolute left-1/2 top-1/2 h-[1080px] w-[1920px] origin-center shrink-0"
+  >
+    <div class="relative h-350 pl-20">
+      <div class="flex flex-col items-center h-full p-16">
 
-    <div class="top-0 absolute">
+        <div class="absolute top-0">
+          <img
+            src="/bannerexample.jpg"
+            alt=""
+            class="p-20"
+          />
 
+          <div class="mx-auto w-[1500px]">
 
+            <!-- Timeline -->
 
-<img src="/bannerexample.jpg" alt="" class="p-20">
-<div class="mx-auto w-[1500px]">
+            <div
+              class="mb-6 grid grid-cols-[80px_1fr_1fr] gap-4"
+            >
+              <div></div>
 
-  <!-- Timeline -->
+              <div class="relative">
+                <div
+                  class="absolute top-1/2 h-[2px] w-full
+                  -translate-y-1/2 bg-gray-300"
+                ></div>
 
-  <div class="mb-6 grid grid-cols-[80px_1fr_1fr] gap-4">
+                <div
+                  class="relative inline-block bg-black
+                  px-4 py-1 text-3xl font-bold text-white"
+                >
+                  07.16
+                </div>
+              </div>
 
-    <div></div>
+              <div class="relative">
+                <div
+                  class="absolute top-1/2 h-[2px] w-full
+                  -translate-y-1/2 bg-gray-300"
+                ></div>
 
-    <div class="relative">
-      <div class="absolute top-1/2 h-[2px] w-full -translate-y-1/2 bg-gray-300"></div>
+                <div
+                  class="relative inline-block bg-black
+                  px-4 py-1 text-3xl font-bold text-white"
+                >
+                  08.09
+                </div>
+              </div>
+            </div>
 
-      <div class="relative inline-block bg-black px-4 py-1 text-3xl font-bold text-white">
-        07.16
+            <!-- Content -->
+
+            <div
+              class="grid grid-cols-[80px_1fr_1fr]
+              grid-rows-4 gap-4"
+            >
+              <div
+                class="row-span-2 bg-black text-white"
+              >
+                Headhunting
+              </div>
+
+              <div class="h-[160px] bg-gray-300"></div>
+
+              <div></div>
+
+              <div></div>
+
+              <div class="h-[160px] bg-gray-300"></div>
+
+              <div
+                class="row-span-2 bg-black text-white"
+              >
+                Issue
+              </div>
+
+              <div class="h-[160px] bg-gray-300"></div>
+
+              <div class="h-[160px] bg-gray-300"></div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
-
-    <div class="relative">
-      <div class="absolute top-1/2 h-[2px] w-full -translate-y-1/2 bg-gray-300"></div>
-
-      <div class="relative inline-block bg-black px-4 py-1 text-3xl font-bold text-white">
-        08.09
-      </div>
-    </div>
-
   </div>
-
-  <!-- Content -->
-
-  <div class="grid grid-cols-[80px_1fr_1fr] grid-rows-4 gap-4">
-
-    <div class="row-span-2 bg-black text-white">
-      Headhunting
-    </div>
-
-    <div class="h-[160px] bg-gray-300"></div>
-
-    <div></div>
-
-    <div></div>
-
-    <div class="h-[160px] bg-gray-300"></div>
-
-    <div class="row-span-2 bg-black text-white">
-      Issue
-    </div>
-
-    <div class="h-[160px] bg-gray-300"></div>
-
-    <div class="h-[160px] bg-gray-300"></div>
-
-  </div>
-
-</div>
-
-    </div>
-
-  </div>
-
-
 </section>
+
+<script>
+  function autoScaleStage() {
+    const stage =
+      document.getElementById("project-stage");
+
+    if (!stage) return;
+
+    const baseWidth = 1920;
+    const baseHeight = 1080;
+
+    const scaleX =
+      window.innerWidth / baseWidth;
+
+    const scaleY =
+      window.innerHeight / baseHeight;
+
+    const scale =
+      Math.min(scaleX, scaleY);
+
+    stage.style.transform =
+      `translate(-50%, -50%) scale(${scale})`;
+  }
+
+  autoScaleStage();
+
+  window.addEventListener(
+    "resize",
+    autoScaleStage
+  );
+</script>

@@ -1,83 +1,104 @@
 ---
 import "../styles/global.css";
 ---
-<section class="relative h-350 pl-20 min-h-screen bg-white py-2" id="SocialMediaPage">
 
+<section
+  id="SocialMediaPage"
+  class="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-white"
+>
 
-    <h1 class="mb-20 text-center text-[180px] font-black">
+  <div
+    id="social-stage"
+    class="absolute h-[1080px] w-[1920px] origin-center"
+  >
+    <div class="relative h-350 pl-20 py-2">
+      <h1 class="mb-20 text-center text-[180px] font-black">
         GET IN TOUCH
-    </h1>
+      </h1>
 
-    <div class="mx-auto grid max-w-[1400px] grid-cols-[220px_1fr_180px] gap-10">
-
+      <div
+        class="mx-auto grid max-w-[1400px] grid-cols-[220px_1fr_180px] gap-10"
+      >
         <!-- Sidebar -->
 
         <aside>
+          <p class="mb-2 text-xs uppercase">
+            SOCIAL MEDIA · RUCKY
+          </p>
 
-            <p class="mb-2 text-xs uppercase">
-                SOCIAL MEDIA · RUCKY
-            </p>
+          <h2 class="mb-12 text-5xl font-bold">
+            STEAM
+          </h2>
 
-            <h2 class="mb-12 text-5xl font-bold">
-                STEAM
-            </h2>
+          <div class="mb-12 h-20 w-1 bg-black"></div>
 
-            <div class="mb-12 h-20 w-1 bg-black"></div>
-
-            <div class="h-24 w-24 bg-gray-200"></div>
-
+          <div class="h-24 w-24 bg-gray-200"></div>
         </aside>
 
         <!-- Konten -->
 
         <main>
+          <div class="relative">
+            <img
+              src="https://picsum.photos/1200/700"
+              class="h-[600px] w-full object-cover"
+            />
 
-            <div class="relative">
+            <!-- Simpan card di sini -->
+          </div>
 
-                <img
-                    src="https://picsum.photos/1200/700"
-                    class="h-[600px] w-full object-cover"
-                />
-<!-- di atas ini buat simpan card yang tadi di bawah di buat -->
-            </div>
+          <div class="mt-8">
+            <p class="text-sm font-bold">
+              2 / 4
+            </p>
 
-            <div class="mt-8">
-
-                <p class="text-sm font-bold">
-                    2 / 4
-                </p>
-
-                <h3 class="text-5xl font-bold">
-                    naPtuNE<3
-                </h3>
-
-                <p class="mt-4 max-w-4xl text-2xl">
-                    Lead your team into battle, working in sync and
-                    unleashing combo skills to overcome enemies.
-                </p>
-
-            </div>
-
+            <p class="mt-4 text-2xl">
+              Lead your team into battle, working in sync and
+              unleashing combo skills to overcome enemies.
+            </p>
+          </div>
         </main>
 
         <!-- Teks vertikal -->
 
-        <div class="bg-yellow-300 flex items-center justify-center">
-
-            <h2 class="rotate-90 text-7xl font-black">
-                STEAM
-            </h2>
-
-            
+        <div class="flex items-center justify-center bg-yellow-300">
+          <h2 class="rotate-90 text-7xl font-black">
+            STEAM
+          </h2>
         </div>
-
-
-
-
-
-
-
-
+      </div>
     </div>
-
+  </div>
 </section>
+
+<script>
+  function autoScaleStage() {
+    const stage = document.getElementById("social-stage");
+
+    if (!stage) return;
+
+    const baseWidth = 1920;
+    const baseHeight = 1080;
+
+    const scale = Math.min(
+      window.innerWidth / baseWidth,
+      window.innerHeight / baseHeight
+    );
+
+    stage.style.left = "50%";
+    stage.style.top = "50%";
+
+    stage.style.transform =
+      `translate(-50%, -50%) scale(${scale})`;
+  }
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    autoScaleStage
+  );
+
+  window.addEventListener(
+    "resize",
+    autoScaleStage
+  );
+</script>
