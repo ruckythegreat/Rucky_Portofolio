@@ -3,38 +3,45 @@ import "../styles/global.css";
 ---
 
 <!-- Outer Container: Mengunci tampilan seukuran layar penuh -->
-<section class="relative w-screen h-screen overflow-hidden flex items-center justify-center" id="BiodataPage">
+<section class="relative mt-40 w-screen h-screen overflow-hidden flex items-center justify-center" id="BiodataPage">
   
   <!-- Canvas Stage: Dikunci pada resolusi standar 1920x1080 -->
   <div id="game-stage-biodata" class="w-[1920px] h-[1080px] relative origin-center shrink-0">
     <div class="flex flex-col items-center h-full p-16">
       
-      <h2 class="relative top-20 right-100 text-5xl text-white">
+      <h2 class="relative top-20 right-100 text-5xl text-black">
         [About Rucky]
       </h2>
 
       <p class="relative top-200 left-180 mt-6 text-gray-400 max-w-3xl">
-        V.1-Entry⌈1/10⌋
+        V.1-Entry&#8968;1/10&#8969;
       </p>
 
-      <div class="absolute flex flex-col items-center text-white text-3xl top-100 left-60 p-8 space-y-4">
+      <div class="absolute flex flex-col items-center text-black text-3xl top-100 left-60 p-8 space-y-4">
         
         <div class="absolute w-[600px] p-6 flex flex-col justify-center left-100 top-6/7 -translate-y-1/2">
           <!-- Baris Atas: Title (Diatur ke Kanan) -->
           <div class="flex flex-col items-end w-full mb-4">
-            <h1 class="text-white text-4xl font-bold text-right">[Title]</h1>
+            <h1 class="text-black text-4xl font-bold text-right">[Title]</h1>
           </div>
 
           <!-- Baris Bawah: Paragraf (Diatur ke Kiri) -->
           <div class="flex flex-col items-start w-full">
-            <p class="text-white text-left text-base leading-relaxed">
+            <p class="text-black text-left text-base leading-relaxed">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
           </div>
         </div>
 
         <div class="w-full">
-          <div class="mb-2 text-center">⋀</div>
+          <div class="mb-2 text-center">
+            <center>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-up-icon lucide-chevron-up"><path d="m18 15-6-6-6 6"/></svg>
+          
+
+            </center>
+
+          </div>
         </div>
         <div class="w-full">
           <div class="mb-2">Personal Information</div>
@@ -52,7 +59,14 @@ import "../styles/global.css";
           <div class="mb-2">Purpose</div>
         </div>
         <div class="w-full">
-          <div class="mb-2 text-center">⋁</div>
+          <div class="mb-2 text-center">
+
+<center>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down-icon lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+
+</center>
+
+          </div>
         </div>
       </div>
 
@@ -64,25 +78,28 @@ import "../styles/global.css";
         />
       </div>
 
-      <div class="absolute w-[600px] p-6 flex flex-col justify-center left-380 top-150 text-white text-4xl -translate-y-1/2">
+      <div class="absolute w-[600px] p-6 flex flex-col justify-center left-380 top-150 text-black text-4xl -translate-y-1/2">
         <p>Text1</p>
       </div>
 
       <div class="absolute z-[-2] left-120 top-120 -translate-y-1/2 pointer-events-none font-bold">
-        <p style="font-size: 250px; color: rgba(0, 0, 0, 0.5); white-space: nowrap;">
+        <p style="font-size: 250px; color: rgba(0, 0, 0, 0.2); white-space: nowrap;">
           RUCKY PORTO
         </p>
       </div>
 
       <div>
-        <div class="absolute h-[400px] w-[400px] flex z-[-3] justify-center left-200 top-100 bg-[rgb(255,201,148)] text-4xl -translate-y-1/2">
-          <div class="absolute opacity-80 h-[300px] w-[400px] flex z-[-3] justify-center top-180 bg-[rgb(255,201,148)] text-4xl -translate-y-1/2" 
+        <div class="absolute h-[500px] w-[400px] flex z-[-3] justify-center left-200 top-50 bg-[rgb(255,201,148)] text-4xl -translate-y-1/2">
+          <div class="absolute opacity-80 h-[500px] w-[400px] flex z-[-3] justify-center top-220 bg-[rgb(255,201,148)] text-4xl -translate-y-1/2" 
             style="mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 90%);">
           </div>
         </div>
       </div>
 
+    
     </div>
+
+    
   </div>
 </section>
 
