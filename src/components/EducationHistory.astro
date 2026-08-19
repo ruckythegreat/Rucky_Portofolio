@@ -20,35 +20,42 @@ import "../styles/global.css";
 
       <div class="absolute top-150 left-300 flex flex-col items-start text-white">
         <p class="m-1">RUCKY: EDUCATION-HISTORY</p>
-        <h1 class="text-5xl m-1">SDN PATRAKOMALA</h1>
+        <!-- Element yang akan berubah dinamis -->
+        <h1 id="edu-title" class="text-5xl m-1 transition-opacity duration-300">SDN PATRAKOMALA</h1>
 
-        <p class="m-1">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <!-- Lebar dilimit agar tidak menabrak gambar -->
+        <p id="edu-desc" class="m-1 max-w-3xl transition-opacity duration-300">
+          Masa pendidikan dasar. Mulai belajar banyak hal baru dan berinteraksi dengan lingkungan sekitar. Membangun fondasi awal sebelum mengenal dunia teknologi lebih dalam.
         </p>
 
-        <img src="/CloseUpRucky.JPG" alt="" class="absolute right-230 h-200" />
+        <!-- Gambar yang akan berubah dinamis -->
+        <img id="edu-img" src="/bg3.jpg" alt="" class="absolute right-185 h-200 transition-opacity duration-300" />
       </div>
-<div class="absolute top-[680px] left-[300px] flex flex-col items-start text-white">
-  <p class="absolute -top-8 left-[120px] text-gray-400">
-    2/4
-  </p>
-  <ul class="space-y-2">
-    <li>TK</li>
-    <li class="font-bold text-amber-300">SDN PATRA</li>
-    <li>SMPN 7</li>
-    <li>SMKN 2</li>
-  </ul>
 
-  <!-- Tombol Navigasi Kiri -->
-  <div class="bg-amber-300 w-10 h-10 absolute left-[0px] top-50 flex items-center justify-center cursor-pointer">
-    <p class="text-2xl text-black font-bold">&lt;</p>
-  </div>
+      <div class="absolute top-[680px] left-[300px] flex flex-col items-start text-white">
+        <!-- Counter Halaman -->
+        <p id="edu-counter" class="absolute -top-8 left-[120px] text-gray-400 transition-opacity duration-300">
+          2/4
+        </p>
+        
+        <!-- List Pendidikan (Bisa diklik juga) -->
+        <ul class="space-y-2">
+          <li class="edu-list-item cursor-pointer px-2 transition-all duration-200" data-index="0">TK</li>
+          <li class="edu-list-item cursor-pointer px-2 transition-all duration-200 font-bold bg-[#FF7873]" data-index="1">SDN PATRA</li>
+          <li class="edu-list-item cursor-pointer px-2 transition-all duration-200" data-index="2">SMPN 7</li>
+          <li class="edu-list-item cursor-pointer px-2 transition-all duration-200" data-index="3">SMKN 2</li>
+        </ul>
 
-  <!-- Tombol Navigasi Kanan -->
-  <div class="bg-amber-300 w-10 h-10 absolute left-[70px] top-50 flex items-center justify-center cursor-pointer">
-    <p class="text-2xl text-black font-bold">&gt;</p>
-  </div>
-</div>
+        <!-- Tombol Navigasi Kiri -->
+        <div id="btn-prev" class="bg-[#FF7873] w-10 h-10 absolute left-[0px] top-50 flex items-center justify-center cursor-pointer hover:bg-orange-300 transition-colors">
+          <p class="text-2xl text-black font-bold">&lt;</p>
+        </div>
+
+        <!-- Tombol Navigasi Kanan -->
+        <div id="btn-next" class="bg-[#FF7873] w-10 h-10 absolute left-[70px] top-50 flex items-center justify-center cursor-pointer hover:bg-orange-300 transition-colors">
+          <p class="text-2xl text-black font-bold">&gt;</p>
+        </div>
+      </div>
 
       <p class="relative top-200 left-180 mt-6 text-gray-400 max-w-3xl">
         V.1-Entry&#8968;2/10&#8969;
@@ -61,28 +68,133 @@ import "../styles/global.css";
   </div>
 </section>
 
-<!-- Script Auto-Scale -->
+<!-- Script Auto-Scale & DOM Manipulation -->
 <script>
+  // 1. Data Riwayat Pendidikan
+  const educationData = [
+    {
+      title: "TAMAN KANAK-KANAK",
+      shortTitle: "TK",
+      desc: "Masa perkenalan dengan dunia pendidikan. Bermain sambil belajar untuk melatih motorik dan kreativitas dasar sebelum memasuki jenjang sekolah dasar.",
+      img: "/bg2.jpg"
+    },
+    {
+      title: "SDN PATRAKOMALA",
+      shortTitle: "SDN PATRA",
+      desc: "Masa pendidikan dasar. Mulai belajar banyak hal baru, disiplin, dan berinteraksi dengan lingkungan sekitar. Membangun fondasi awal sebelum mengenal dunia teknologi lebih dalam.",
+      img: "/bg3.jpg"
+    },
+    {
+      title: "SMPN 7 BANDUNG",
+      shortTitle: "SMPN 7",
+      desc: "Masa sekolah menengah pertama. Mulai mengeksplorasi minat dan bakat secara lebih spesifik, serta menjadi jembatan awal sebelum benar-benar mendalami dunia komputer.",
+      img: "/bg4.jpg"
+    },
+    {
+      title: "SMKN 2 BANDUNG",
+      shortTitle: "SMKN 2",
+      desc: "Saat ini menempuh pendidikan di kelas 10 jurusan Pengembangan Perangkat Lunak dan Gim (PPLG). Mulai fokus menguasai bahasa pemrograman (C++, Golang), sistem operasi Linux kustom, dan arsitektur perangkat lunak.",
+      img: "/bg5.jpg"
+    }
+  ];
+
+  let currentIndex = 1; // Default ke index 1 (SDN PATRA) sesuai desain awalkamu
+
   function autoScaleStage() {
     const stage = document.getElementById('game-stage');
     if (!stage) return;
 
-    // Resolusi dasar Windows / Full HD
     const baseWidth = 1920;
     const baseHeight = 1080;
-
-    // Hitung perbandingan terhadap layar aktif
     const scaleX = window.innerWidth / baseWidth;
     const scaleY = window.innerHeight / baseHeight;
-
-    // Gunakan nilai terkecil agar tidak ada elemen terpotong
     const scale = Math.min(scaleX, scaleY);
 
-    // Terapkan scaling secara otomatis
     stage.style.transform = `scale(${scale})`;
   }
 
-  // Jalankan saat pertama kali dibuka & saat ukuran window/zoom berubah
+  // 2. Fungsi untuk Update Tampilan Berdasarkan Index
+  function updateEducationUI(index) {
+    const titleEl = document.getElementById('edu-title');
+    const descEl = document.getElementById('edu-desc');
+    const imgEl = document.getElementById('edu-img');
+    const counterEl = document.getElementById('edu-counter');
+    const listItems = document.querySelectorAll('.edu-list-item');
+
+    const data = educationData[index];
+
+    // Animasi Fade Out
+    titleEl.style.opacity = 0;
+    descEl.style.opacity = 0;
+    imgEl.style.opacity = 0;
+    counterEl.style.opacity = 0;
+
+    setTimeout(() => {
+      // Ganti Konten
+      titleEl.textContent = data.title;
+      descEl.textContent = data.desc;
+      imgEl.src = data.img;
+      counterEl.textContent = `${index + 1}/${educationData.length}`;
+
+      // Update Styling pada List (Highlight yang aktif)
+      listItems.forEach((li, i) => {
+        if (i === index) {
+          li.classList.add('font-bold', 'bg-[#FF7873]');
+        } else {
+          li.classList.remove('font-bold', 'bg-[#FF7873]');
+        }
+      });
+
+      // Animasi Fade In
+      titleEl.style.opacity = 1;
+      descEl.style.opacity = 1;
+      imgEl.style.opacity = 1;
+      counterEl.style.opacity = 1;
+    }, 150); // Jeda kecil untuk transisi
+  }
+
+  // 3. Inisialisasi Tombol Event Listener
+  function initNavigasi() {
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+    const listItems = document.querySelectorAll('.edu-list-item');
+
+    // Tombol Kiri (Previous)
+    btnPrev.addEventListener('click', () => {
+      currentIndex--;
+      if (currentIndex < 0) {
+        currentIndex = educationData.length - 1; // Looping ke akhir jika sudah di awal
+      }
+      updateEducationUI(currentIndex);
+    });
+
+    // Tombol Kanan (Next)
+    btnNext.addEventListener('click', () => {
+      currentIndex++;
+      if (currentIndex >= educationData.length) {
+        currentIndex = 0; // Looping ke awal jika sudah di akhir
+      }
+      updateEducationUI(currentIndex);
+    });
+
+    // Klik langsung pada teks List (TK, SDN, dll)
+    listItems.forEach((li) => {
+      li.addEventListener('click', (e) => {
+        // Ambil index dari atribut data-index
+        const clickedIndex = parseInt(e.target.getAttribute('data-index'));
+        currentIndex = clickedIndex;
+        updateEducationUI(currentIndex);
+      });
+    });
+
+    // Panggil pertama kali untuk render data default
+    updateEducationUI(currentIndex);
+  }
+
+  // Jalankan saat ukuran window berubah & awal load
   window.addEventListener('resize', autoScaleStage);
-  document.addEventListener('DOMContentLoaded', autoScaleStage);
+  document.addEventListener('DOMContentLoaded', () => {
+    autoScaleStage();
+    initNavigasi();
+  });
 </script>

@@ -6,12 +6,11 @@ import "../styles/global.css";
   id="SocialMediaPage"
   class="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-white"
 >
-
   <div
     id="social-stage"
     class="absolute h-[1080px] w-[1920px] origin-center"
   >
-    <div class="relative h-350 pl-20 py-2">
+    <div class="relative h-[1080px] pl-20 py-2">
       <h1 class="mb-20 text-center text-[180px] font-black">
         GET IN TOUCH
       </h1>
@@ -26,43 +25,103 @@ import "../styles/global.css";
             SOCIAL MEDIA · RUCKY
           </p>
 
-          <h2 class="mb-12 text-5xl font-bold">
+          <h2
+            id="sidebar-title"
+            class="mb-12 text-5xl font-bold"
+          >
             STEAM
           </h2>
 
           <div class="mb-12 h-20 w-1 bg-black"></div>
 
-          <div class="h-24 w-24 bg-gray-200"></div>
+          <div
+            class="flex h-24 w-24 items-center justify-center bg-gray-200 text-4xl font-black"
+            id="sidebar-icon"
+          >
+            S
+          </div>
         </aside>
 
         <!-- Konten -->
 
         <main>
-          <div class="relative">
-            <img
-              src="https://picsum.photos/1200/700"
-              class="h-[600px] w-full object-cover"
-            />
+          <div
+            class="relative flex h-[600px] items-center justify-center border-4 border-black bg-gray-100"
+          >
+            <div
+              class="w-[500px] rounded-xl bg-white p-10 shadow-2xl"
+            >
+              <h2
+                id="social-name"
+                class="text-5xl font-black"
+              >
+                STEAM
+              </h2>
 
-            <!-- Simpan card di sini -->
+              <p
+                id="social-username"
+                class="mt-2 text-xl text-gray-500"
+              >
+                @rucky
+              </p>
+
+              <p
+                id="social-description"
+                class="mt-8 text-lg"
+              >
+                Game collection and community.
+              </p>
+
+              <a
+                id="social-link"
+                href="#"
+                target="_blank"
+                class="mt-10 inline-block bg-black px-8 py-4 text-white"
+              >
+                VISIT PROFILE
+              </a>
+            </div>
+
+            <!-- Tombol -->
+
+            <button
+              id="prev-btn"
+              class="absolute left-8 flex h-14 w-14 items-center justify-center rounded-full border border-black text-3xl"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            </button>
+
+            <button
+              id="next-btn"
+              class="absolute right-8 flex h-14 w-14 items-center justify-center rounded-full border border-black text-3xl"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
           </div>
 
           <div class="mt-8">
-            <p class="text-sm font-bold">
-              2 / 4
+            <p
+              id="social-counter"
+              class="text-sm font-bold"
+            >
+              1 / 4
             </p>
 
             <p class="mt-4 text-2xl">
-              Lead your team into battle, working in sync and
-              unleashing combo skills to overcome enemies.
+              Select a social media profile.
             </p>
           </div>
         </main>
 
         <!-- Teks vertikal -->
 
-        <div class="flex items-center justify-center bg-yellow-300">
-          <h2 class="rotate-90 text-7xl font-black">
+        <div
+          class="flex items-center justify-center bg-[#ffc994]"
+        >
+          <h2
+            id="vertical-title"
+            class="rotate-90 text-7xl font-black"
+          >
             STEAM
           </h2>
         </div>
@@ -71,34 +130,161 @@ import "../styles/global.css";
   </div>
 </section>
 
-<script>
-  function autoScaleStage() {
-    const stage = document.getElementById("social-stage");
+<script is:inline>
+  function initSocialPage() {
+    const stage =
+      document.getElementById("social-stage");
 
     if (!stage) return;
 
-    const baseWidth = 1920;
-    const baseHeight = 1080;
+    function autoScaleStage() {
+      const baseWidth = 1920;
+      const baseHeight = 1080;
 
-    const scale = Math.min(
-      window.innerWidth / baseWidth,
-      window.innerHeight / baseHeight
+      const scale = Math.min(
+        window.innerWidth / baseWidth,
+        window.innerHeight / baseHeight
+      );
+
+      stage.style.left = "50%";
+      stage.style.top = "50%";
+
+      stage.style.transform =
+        `translate(-50%, -50%) scale(${scale})`;
+    }
+
+    autoScaleStage();
+
+    window.addEventListener(
+      "resize",
+      autoScaleStage
     );
 
-    stage.style.left = "50%";
-    stage.style.top = "50%";
+    const socialList = [
+      {
+        name: "STEAM",
+        username: "@rucky",
+        icon: "S",
+        description:
+          "Game collection and community.",
+        url: "https://steamcommunity.com"
+      },
 
-    stage.style.transform =
-      `translate(-50%, -50%) scale(${scale})`;
+      {
+        name: "DISCORD",
+        username: "@rucky",
+        icon: "D",
+        description:
+          "Contact me through Discord.",
+        url: "https://discord.com"
+      },
+
+      {
+        name: "GITHUB",
+        username: "@rucky",
+        icon: "G",
+        description:
+          "Explore my projects and repositories.",
+        url: "https://github.com"
+      },
+
+      {
+        name: "YOUTUBE",
+        username: "@rucky",
+        icon: "Y",
+        description:
+          "Watch my latest videos.",
+        url: "https://youtube.com"
+      }
+    ];
+
+    let currentIndex = 0;
+
+    function updateSocial() {
+      const data =
+        socialList[currentIndex];
+
+      document.getElementById(
+        "sidebar-title"
+      ).textContent = data.name;
+
+      document.getElementById(
+        "vertical-title"
+      ).textContent = data.name;
+
+      document.getElementById(
+        "sidebar-icon"
+      ).textContent = data.icon;
+
+      document.getElementById(
+        "social-name"
+      ).textContent = data.name;
+
+      document.getElementById(
+        "social-username"
+      ).textContent =
+        data.username;
+
+      document.getElementById(
+        "social-description"
+      ).textContent =
+        data.description;
+
+      document.getElementById(
+        "social-link"
+      ).href = data.url;
+
+      document.getElementById(
+        "social-counter"
+      ).textContent =
+        `${currentIndex + 1} / ${socialList.length}`;
+    }
+
+    document
+      .getElementById("prev-btn")
+      .addEventListener(
+        "click",
+        () => {
+          currentIndex =
+            currentIndex === 0
+              ? socialList.length - 1
+              : currentIndex - 1;
+
+          updateSocial();
+        }
+      );
+
+    document
+      .getElementById("next-btn")
+      .addEventListener(
+        "click",
+        () => {
+          currentIndex =
+            currentIndex ===
+            socialList.length - 1
+              ? 0
+              : currentIndex + 1;
+
+          updateSocial();
+        }
+      );
+
+    updateSocial();
+  }
+
+  if (
+    document.readyState === "loading"
+  ) {
+    document.addEventListener(
+      "DOMContentLoaded",
+      initSocialPage
+    );
+  } else {
+    initSocialPage();
   }
 
   document.addEventListener(
-    "DOMContentLoaded",
-    autoScaleStage
-  );
-
-  window.addEventListener(
-    "resize",
-    autoScaleStage
+    "astro:page-load",
+    initSocialPage
   );
 </script>

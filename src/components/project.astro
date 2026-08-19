@@ -12,7 +12,6 @@ import "../styles/global.css";
   >
     <div class="flex flex-col items-center justify-center h-full p-12">
       
-      <!-- Top Banner & Meta -->
       <div class="relative w-[1500px] mb-6 flex flex-col">
         <img
           src="/bannerexample.jpg"
@@ -24,12 +23,10 @@ import "../styles/global.css";
         </p>
       </div>
 
-      <!-- Main Matrix Grid -->
       <div class="mx-auto w-[1500px]">
         
-        <!-- Headers Kategori -->
         <div class="mb-4 grid grid-cols-[80px_1fr_1fr] gap-4">
-          <div></div> <!-- Offset kiri -->
+          <div></div> 
 
           <div class="relative">
             <div class="absolute top-1/2 h-[2px] w-full -translate-y-1/2 bg-gray-300"></div>
@@ -46,19 +43,21 @@ import "../styles/global.css";
           </div>
         </div>
 
-        <!-- Matrix Content (Tinggi box disesuaikan ke 130px agar pas 1080px) -->
         <div class="grid grid-cols-[80px_1fr_1fr] grid-rows-4 gap-4">
           
-          <!-- 2026.08 -->
+
           <div class="row-span-2 bg-black text-white flex items-start justify-center pt-3 font-mono text-base font-bold">
             <span class="-rotate-90 mt-6 tracking-widest whitespace-nowrap">2026.08</span>
           </div>
 
-          <!-- Proyek 1: Developer Portfolio -->
           <div class="group relative h-[130px] bg-gray-100 border border-gray-300 p-3 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:border-black hover:bg-black hover:text-white cursor-crosshair">
             <div class="relative z-10 flex justify-between items-start">
               <h3 class="text-lg font-bold uppercase tracking-tighter leading-none">Developer Portfolio</h3>
-              <a href="#" class="opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">↗</a>
+              <a href="#" class="opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-right-dash-icon lucide-arrow-big-right-dash"><path d="M11 9a1 1 0 0 0 1-1V4.707a.707.707 0 0 1 1.207-.5l6.94 6.94a1.207 1.207 0 0 1 0 1.707l-6.94 6.94a.707.707 0 0 1-1.207-.5V16a1 1 0 0 0-1-1H9a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z"/><path d="M4 9v6"/></svg>
+              
+              </a>
             </div>
             <div class="relative z-10 opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out text-xs max-w-[85%] text-gray-400 group-hover:text-gray-300">
               Implementasi ScrollTrigger dengan transisi multi-warna dan struktur interaktif.
@@ -73,11 +72,15 @@ import "../styles/global.css";
           <div></div>
           <div></div>
 
-          <!-- Proyek 2: Entara -->
           <div class="group relative h-[130px] bg-gray-100 border border-gray-300 p-3 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:border-black hover:bg-black hover:text-white cursor-crosshair">
             <div class="relative z-10 flex justify-between items-start">
               <h3 class="text-lg font-bold uppercase tracking-tighter leading-none">Entara (Neptara)</h3>
-              <a href="#" class="opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">↗</a>
+              <a href="#" class="opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-right-dash-icon lucide-arrow-big-right-dash"><path d="M11 9a1 1 0 0 0 1-1V4.707a.707.707 0 0 1 1.207-.5l6.94 6.94a1.207 1.207 0 0 1 0 1.707l-6.94 6.94a.707.707 0 0 1-1.207-.5V16a1 1 0 0 0-1-1H9a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z"/><path d="M4 9v6"/></svg>
+              
+              </a>
+            
             </div>
             <div class="relative z-10 opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out text-xs max-w-[85%] text-gray-400 group-hover:text-gray-300">
               Konsep RPG souls-like open-world dengan sistem defleksi postur mekanik.
@@ -89,17 +92,19 @@ import "../styles/global.css";
             </div>
           </div>
 
-          <!-- 2025.07 -->
           <div class="row-span-2 bg-black text-white flex items-start justify-center pt-3 font-mono text-base font-bold">
             <span class="-rotate-90 mt-6 tracking-widest whitespace-nowrap">2025.07</span>
           </div>
 
-          <!-- Proyek 3: Mimi Visual Novel -->
           <div class="group relative h-[130px] bg-gray-100 border border-gray-300 p-3 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:border-black hover:bg-black hover:text-white cursor-crosshair">
             <div class="relative z-10 flex justify-between items-start">
               <h3 class="text-lg font-bold uppercase tracking-tighter leading-none">Mimi Visual Novel</h3>
-              <a href="#" class="opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">↗</a>
-            </div>
+              <a href="#" class="opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-right-dash-icon lucide-arrow-big-right-dash"><path d="M11 9a1 1 0 0 0 1-1V4.707a.707.707 0 0 1 1.207-.5l6.94 6.94a1.207 1.207 0 0 1 0 1.707l-6.94 6.94a.707.707 0 0 1-1.207-.5V16a1 1 0 0 0-1-1H9a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z"/><path d="M4 9v6"/></svg>
+              
+              </a>
+                        </div>
             <div class="relative z-10 opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out text-xs max-w-[85%] text-gray-400 group-hover:text-gray-300">
               Eksplorasi web app visual novel dengan structured chapter routing.
             </div>
@@ -112,12 +117,15 @@ import "../styles/global.css";
           <div></div>
           <div></div>
 
-          <!-- Proyek 4: Structures & Algo -->
           <div class="group relative h-[130px] bg-gray-100 border border-gray-300 p-3 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:border-black hover:bg-black hover:text-white cursor-crosshair">
             <div class="relative z-10 flex justify-between items-start">
               <h3 class="text-lg font-bold uppercase tracking-tighter leading-none">Structures & Algo</h3>
-              <a href="#" class="opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">↗</a>
-            </div>
+              <a href="#" class="opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-right-dash-icon lucide-arrow-big-right-dash"><path d="M11 9a1 1 0 0 0 1-1V4.707a.707.707 0 0 1 1.207-.5l6.94 6.94a1.207 1.207 0 0 1 0 1.707l-6.94 6.94a.707.707 0 0 1-1.207-.5V16a1 1 0 0 0-1-1H9a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z"/><path d="M4 9v6"/></svg>
+              
+              </a>
+                        </div>
             <div class="relative z-10 opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out text-xs max-w-[85%] text-gray-400 group-hover:text-gray-300">
               Penyelesaian problem trace, rekursi, dan implementasi data stack vector.
             </div>

@@ -3,7 +3,7 @@ import "../styles/global.css";
 ---
 
 <!-- Outer Container: Mengunci tampilan seukuran layar penuh -->
-<section class="relative mt-40 w-screen h-screen overflow-hidden flex items-center justify-center" id="BiodataPage">
+<section class="relative mt-40 w-screen h-screen overflow-hidden flex items-center justify-center bg-white" id="BiodataPage">
   
   <!-- Canvas Stage: Dikunci pada resolusi standar 1920x1080 -->
   <div id="game-stage-biodata" class="w-[1920px] h-[1080px] relative origin-center shrink-0">
@@ -14,72 +14,83 @@ import "../styles/global.css";
       </h2>
 
       <p class="relative top-200 left-180 mt-6 text-gray-400 max-w-3xl">
-        V.1-Entry&#8968;1/10&#8969;
+        V.1-Entry&#8968;<span id="dynamic-counter">1</span>/10&#8969;
       </p>
 
-      <div class="absolute flex flex-col items-center text-black text-3xl top-100 left-60 p-8 space-y-4">
+      <div class="absolute flex flex-col items-center text-black text-3xl top-100 left-60 p-1 space-y-4">
         
-        <div class="absolute w-[600px] p-6 flex flex-col justify-center left-100 top-6/7 -translate-y-1/2">
+        <div class="absolute w-[600px] p-6 flex flex-col justify-center left-60 top-6/7 -translate-y-1/2">
           <!-- Baris Atas: Title (Diatur ke Kanan) -->
           <div class="flex flex-col items-end w-full mb-4">
-            <h1 class="text-black text-4xl font-bold text-right">[Title]</h1>
+            <h1 id="dynamic-title" class="text-black text-4xl font-bold text-right transition-opacity duration-300">[Title]</h1>
           </div>
 
           <!-- Baris Bawah: Paragraf (Diatur ke Kiri) -->
-          <div class="flex flex-col items-start w-full">
-            <p class="text-black text-left text-base leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <div class="flex flex-col items-start w-full h-[250px]">
+            <p id="dynamic-desc" class="text-black text-left text-base leading-relaxed transition-opacity duration-300">
+              Pilih menu di bawah untuk melihat detail informasi.
             </p>
           </div>
         </div>
 
+        <!-- Arrow Up -->
         <div class="w-full">
           <div class="mb-2 text-center">
             <center>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-up-icon lucide-chevron-up"><path d="m18 15-6-6-6 6"/></svg>
-          
-
             </center>
-
           </div>
         </div>
-        <div class="w-full">
-          <div class="mb-2">Personal Information</div>
+
+        <!-- Menu Items (Diberi class 'menu-btn' dan 'data-target' untuk JS) -->
+<div class="w-full menu-btn cursor-pointer bg-black hover:text-gray-500 transition-colors" data-target="personal">
+  <div class="mb-2 px-4 py-1 text-2xl font-bold tracking-tighter text-white">
+    
+    Personal Information</div>
+</div>
+<div class="w-full menu-btn cursor-pointer bg-black hover:text-gray-500 transition-colors" data-target="strengths">
+  <div class="mb-2 px-4 py-1 text-2xl font-bold tracking-tighter text-white">
+            
+            Strengths</div>
         </div>
-        <div class="w-full">
-          <div class="mb-2">Strengths</div>
+<div class="w-full menu-btn cursor-pointer bg-black hover:text-gray-500 transition-colors" data-target="weaknesses">
+  <div class="mb-2 px-4 py-1 text-2xl font-bold tracking-tighter text-white">
+            
+            Weaknesses</div>
         </div>
-        <div class="w-full">
-          <div class="mb-2">Weaknesses</div>
+<div class="w-full menu-btn cursor-pointer bg-black hover:text-gray-500 transition-colors" data-target="hobbies">
+  <div class="mb-2 px-4 py-1 text-2xl font-bold tracking-tighter text-white">
+            
+            Hobbies</div>
         </div>
-        <div class="w-full">
-          <div class="mb-2">Hobbies</div>
+<div class="w-full menu-btn cursor-pointer bg-black hover:text-gray-500 transition-colors" data-target="purpose">
+  <div class="mb-2 px-4 py-1 text-2xl font-bold tracking-tighter text-white">
+            Purpose</div>
         </div>
-        <div class="w-full">
-          <div class="mb-2">Purpose</div>
-        </div>
+
+        <!-- Arrow Down -->
         <div class="w-full">
           <div class="mb-2 text-center">
-
-<center>
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down-icon lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
-
-</center>
-
+            <center>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down-icon lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+            </center>
           </div>
         </div>
       </div>
 
+      <!-- Gambar Dinamis -->
       <div class="absolute w-[600px] p-6 flex flex-col justify-center left-200 top-0 z-[-1] -translate-y-1/2">
         <img
-          src="/CloseUpRucky.JPG"
+          id="dynamic-img"
+          src="/bg1.jpg"
           alt="Rucky"
-          class="w-120 h-210 absolute left-70 top-30 mix-blend-plus-lighter"
+          class="w-120 h-210 absolute left-70 top-30 mix-blend-plus-lighter transition-opacity duration-500"
         />
       </div>
 
-      <div class="absolute w-[600px] p-6 flex flex-col justify-center left-380 top-150 text-black text-4xl -translate-y-1/2">
-        <p>Text1</p>
+      <!-- Teks Ekstra Dinamis (Text1) -->
+      <div class="absolute w-[600px] p-6 flex flex-col justify-center left-390 top-150 text-black text-4xl -translate-y-1/2">
+        <p id="dynamic-extra" class="font-bold transition-all duration-300">PPLG_</p>
       </div>
 
       <div class="absolute z-[-2] left-120 top-120 -translate-y-1/2 pointer-events-none font-bold">
@@ -96,30 +107,119 @@ import "../styles/global.css";
         </div>
       </div>
 
-    
     </div>
-
-    
   </div>
 </section>
 
-<!-- Script Scaling Otomatis -->
+<!-- Script Logic: Scaling dan DOM Manipulation -->
 <script>
+  // 1. Data Konten Dinamis
+  const biodataContent = {
+    personal: {
+      title: "[Personal Info]",
+      desc: "Siswa kelas 10 jurusan Pengembangan Perangkat Lunak dan Gim (PPLG) di SMKN 2 Bandung. Memiliki ketertarikan mendalam pada rekayasa perangkat lunak, arsitektur sistem, serta selalu antusias mengeksplorasi teknologi dan framework baru.",
+      img: "/bg1.jpg", 
+      extra: "PROFILE_01",
+      counter: "1"
+    },
+    strengths: {
+      title: "[Strengths]",
+      desc: "Mampu beradaptasi dengan berbagai bahasa pemrograman seperti C++, Java, dan Golang. Terbiasa mengonfigurasi dan mengoptimalkan lingkungan sistem operasi Linux kustom menggunakan Arch Linux dan Hyprland untuk efisiensi workflow.",
+      img: "/bg2.jpg", 
+      extra: "SYS_ARCH",
+      counter: "2"
+    },
+    weaknesses: {
+      title: "[Weaknesses]",
+      desc: "Terkadang terlalu fokus melakukan multitasking ekstrim. Bisa secara bersamaan melakukan debugging modul kernel, mendesain UI/UX, dan memantau live order book pergerakan saham, yang membuat alokasi waktu seringkali melebar dari jadwal awal.",
+      img: "/bg3.jpg", 
+      extra: "OVERCLOCK",
+      counter: "3"
+    },
+    hobbies: {
+      title: "[Hobbies]",
+      desc: "Di luar layar monitor, rutinitas diisi dengan aktivitas lari untuk menjaga kebugaran fisik dan bereksperimen dengan desain grafis. Juga mengikuti berbagai pop culture seperti anime Eighty-Six dan franchise game Silent Hill atau Minecraft.",
+      img: "/bg4.jpg", 
+      extra: "CREATIVE_RUN",
+      counter: "4"
+    },
+    purpose: {
+      title: "[Purpose]",
+      desc: "Tujuan utama adalah membangun sistem yang clean, solid, dan bermanfaat. Menggabungkan hobi desain grafis, kemampuan coding multibahasa, dan minat pada pasar modal untuk menciptakan aplikasi atau web portofolio tingkat lanjut di masa depan.",
+      img: "/bg5.jpg", 
+      extra: "GOAL_EXEC",
+      counter: "5"
+    }
+  };
+
+  // 2. Fungsi Skala Otomatis
   function autoScaleBiodataStage() {
     const stage = document.getElementById('game-stage-biodata');
     if (!stage) return;
 
     const baseWidth = 1920;
     const baseHeight = 1080;
-
     const scaleX = window.innerWidth / baseWidth;
     const scaleY = window.innerHeight / baseHeight;
-
     const scale = Math.min(scaleX, scaleY);
 
     stage.style.transform = `scale(${scale})`;
   }
 
+  // 3. Fungsi Interaksi Menu (DOM Manipulation)
+  function initInteractions() {
+    const menuButtons = document.querySelectorAll('.menu-btn');
+    const titleEl = document.getElementById('dynamic-title');
+    const descEl = document.getElementById('dynamic-desc');
+    const imgEl = document.getElementById('dynamic-img');
+    const extraEl = document.getElementById('dynamic-extra');
+    const counterEl = document.getElementById('dynamic-counter');
+
+    menuButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Reset styling semua tombol
+        menuButtons.forEach(b => {
+          b.classList.remove('font-bold', 'text-blue-600'); // Hapus state aktif
+        });
+
+        // Tambah state aktif ke tombol yang diklik
+        btn.classList.add('font-bold', 'text-black');
+
+        // Ambil data berdasarkan data-target
+        const target = btn.getAttribute('data-target');
+        const data = biodataContent[target];
+
+        // Efek fade out singkat (opsional)
+        titleEl.style.opacity = 0;
+        descEl.style.opacity = 0;
+        imgEl.style.opacity = 0;
+
+        setTimeout(() => {
+          // Update DOM HTML
+          titleEl.textContent = data.title;
+          descEl.textContent = data.desc;
+          imgEl.src = data.img;
+          extraEl.textContent = data.extra;
+          counterEl.textContent = data.counter;
+
+          // Fade in kembali
+          titleEl.style.opacity = 1;
+          descEl.style.opacity = 1;
+          imgEl.style.opacity = 1;
+        }, 150); // Waktu transisi menyesuaikan Tailwind duration
+      });
+    });
+
+    // Otomatis klik menu pertama saat halaman dimuat
+    if (menuButtons.length > 0) {
+      menuButtons[0].click();
+    }
+  }
+
+  // Menjalankan script saat halaman di-load dan di-resize
+  document.addEventListener('DOMContentLoaded', () => {
+    autoScaleBiodataStage();
+    initInteractions();
+  });
   window.addEventListener('resize', autoScaleBiodataStage);
-  document.addEventListener('DOMContentLoaded', autoScaleBiodataStage);
 </script>
