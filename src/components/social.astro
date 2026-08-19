@@ -46,7 +46,8 @@ import "../styles/global.css";
 
         <main>
           <div
-            class="relative flex h-[600px] items-center justify-center border-4 border-black bg-gray-100"
+            id="social-card-wrap"
+            class="relative flex h-[600px] items-center justify-center border-4 border-black bg-gray-100 transition-colors duration-500"
           >
             <div
               class="w-[500px] rounded-xl bg-white p-10 shadow-2xl"
@@ -86,14 +87,14 @@ import "../styles/global.css";
 
             <button
               id="prev-btn"
-              class="absolute left-8 flex h-14 w-14 items-center justify-center rounded-full border border-black text-3xl"
+              class="social-nav-btn absolute left-8 z-20 flex h-14 w-14 items-center justify-center rounded-full border-2 border-black bg-white text-black"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
             </button>
 
             <button
               id="next-btn"
-              class="absolute right-8 flex h-14 w-14 items-center justify-center rounded-full border border-black text-3xl"
+              class="social-nav-btn absolute right-8 z-20 flex h-14 w-14 items-center justify-center rounded-full border-2 border-black bg-white text-black"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </button>
@@ -116,7 +117,8 @@ import "../styles/global.css";
         <!-- Teks vertikal -->
 
         <div
-          class="flex items-center justify-center bg-[#ffc994]"
+          id="social-accent"
+          class="flex items-center justify-center bg-[#ffc994] transition-colors duration-500"
         >
           <h2
             id="vertical-title"
@@ -130,161 +132,123 @@ import "../styles/global.css";
   </div>
 </section>
 
-<script is:inline>
+<script>
+  import { gsap, fadeTransition, initSimpleStageScale } from "../Script/gsap-utils";
+
   function initSocialPage() {
-    const stage =
-      document.getElementById("social-stage");
-
-    if (!stage) return;
-
-    function autoScaleStage() {
-      const baseWidth = 1920;
-      const baseHeight = 1080;
-
-      const scale = Math.min(
-        window.innerWidth / baseWidth,
-        window.innerHeight / baseHeight
-      );
-
-      stage.style.left = "50%";
-      stage.style.top = "50%";
-
-      stage.style.transform =
-        `translate(-50%, -50%) scale(${scale})`;
-    }
-
-    autoScaleStage();
-
-    window.addEventListener(
-      "resize",
-      autoScaleStage
-    );
+    initSimpleStageScale("social-stage");
 
     const socialList = [
       {
         name: "STEAM",
         username: "@rucky",
         icon: "S",
-        description:
-          "Game collection and community.",
-        url: "https://steamcommunity.com"
+        description: "Game collection and community.",
+        url: "https://steamcommunity.com",
+        color1: "#ffc994",
+        color2: "#e8e8e8",
       },
-
       {
         name: "DISCORD",
         username: "@rucky",
         icon: "D",
-        description:
-          "Contact me through Discord.",
-        url: "https://discord.com"
+        description: "Contact me through Discord.",
+        url: "https://discord.com",
+        color1: "#5865F2",
+        color2: "#23272A",
       },
-
       {
         name: "GITHUB",
         username: "@rucky",
         icon: "G",
-        description:
-          "Explore my projects and repositories.",
-        url: "https://github.com"
+        description: "Explore my projects and repositories.",
+        url: "https://github.com",
+        color1: "#f5f5f5",
+        color2: "#24292f",
       },
-
       {
         name: "YOUTUBE",
         username: "@rucky",
         icon: "Y",
-        description:
-          "Watch my latest videos.",
-        url: "https://youtube.com"
-      }
+        description: "Watch my latest videos.",
+        url: "https://youtube.com",
+        color1: "#FF7873",
+        color2: "#0f0f0f",
+      },
     ];
 
     let currentIndex = 0;
+    let isAnimating = false;
 
-    function updateSocial() {
-      const data =
-        socialList[currentIndex];
+    const accent = document.getElementById("social-accent");
+    const cardWrap = document.getElementById("social-card-wrap");
+    const targets = [
+      "#sidebar-title",
+      "#vertical-title",
+      "#sidebar-icon",
+      "#social-name",
+      "#social-username",
+      "#social-description",
+      "#social-link",
+      "#social-counter",
+    ];
 
-      document.getElementById(
-        "sidebar-title"
-      ).textContent = data.name;
+    function applySocial(index) {
+      const data = socialList[index];
+      document.getElementById("sidebar-title").textContent = data.name;
+      document.getElementById("vertical-title").textContent = data.name;
+      document.getElementById("sidebar-icon").textContent = data.icon;
+      document.getElementById("social-name").textContent = data.name;
+      document.getElementById("social-username").textContent = data.username;
+      document.getElementById("social-description").textContent = data.description;
+      document.getElementById("social-link").href = data.url;
+      document.getElementById("social-counter").textContent = `${index + 1} / ${socialList.length}`;
 
-      document.getElementById(
-        "vertical-title"
-      ).textContent = data.name;
-
-      document.getElementById(
-        "sidebar-icon"
-      ).textContent = data.icon;
-
-      document.getElementById(
-        "social-name"
-      ).textContent = data.name;
-
-      document.getElementById(
-        "social-username"
-      ).textContent =
-        data.username;
-
-      document.getElementById(
-        "social-description"
-      ).textContent =
-        data.description;
-
-      document.getElementById(
-        "social-link"
-      ).href = data.url;
-
-      document.getElementById(
-        "social-counter"
-      ).textContent =
-        `${currentIndex + 1} / ${socialList.length}`;
+      gsap.to(accent, { backgroundColor: data.color1, duration: 0.8, ease: "power2.inOut" });
+      gsap.to(cardWrap, { backgroundColor: data.color2, duration: 0.8, ease: "power2.inOut" });
+      gsap.to("#social-card-wrap .rounded-xl", {
+        backgroundColor: index === 2 ? "#ffffff" : "#ffffff",
+        color: index === 2 ? "#111" : "#111",
+        duration: 0.6,
+      });
     }
 
-    document
-      .getElementById("prev-btn")
-      .addEventListener(
-        "click",
-        () => {
-          currentIndex =
-            currentIndex === 0
-              ? socialList.length - 1
-              : currentIndex - 1;
+    function changeSocial(nextIndex) {
+      if (isAnimating) return;
+      isAnimating = true;
+      fadeTransition(targets, () => {
+        currentIndex = nextIndex;
+        applySocial(currentIndex);
+      }).eventCallback("onComplete", () => {
+        isAnimating = false;
+      });
+    }
 
-          updateSocial();
-        }
-      );
+    document.getElementById("prev-btn")?.addEventListener("click", () => {
+      const next = currentIndex === 0 ? socialList.length - 1 : currentIndex - 1;
+      changeSocial(next);
+    });
 
-    document
-      .getElementById("next-btn")
-      .addEventListener(
-        "click",
-        () => {
-          currentIndex =
-            currentIndex ===
-            socialList.length - 1
-              ? 0
-              : currentIndex + 1;
+    document.getElementById("next-btn")?.addEventListener("click", () => {
+      const next = currentIndex === socialList.length - 1 ? 0 : currentIndex + 1;
+      changeSocial(next);
+    });
 
-          updateSocial();
-        }
-      );
+    document.querySelectorAll(".social-nav-btn").forEach((btn) => {
+      btn.addEventListener("mouseenter", () => {
+        gsap.to(btn, { scale: 1.12, duration: 0.35, ease: "back.out(2)" });
+      });
+      btn.addEventListener("mouseleave", () => {
+        gsap.to(btn, { scale: 1, duration: 0.4, ease: "elastic.out(1, 0.4)" });
+      });
+    });
 
-    updateSocial();
+    applySocial(currentIndex);
   }
 
-  if (
-    document.readyState === "loading"
-  ) {
-    document.addEventListener(
-      "DOMContentLoaded",
-      initSocialPage
-    );
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initSocialPage);
   } else {
     initSocialPage();
   }
-
-  document.addEventListener(
-    "astro:page-load",
-    initSocialPage
-  );
 </script>

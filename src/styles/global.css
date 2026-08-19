@@ -28,6 +28,16 @@ html {
   scroll-behavior: smooth;
 }
 
+.hero-line,
+.hero-headline {
+  perspective: 700px;
+}
+.hero-line .char,
+.hero-headline .char {
+  display: inline-block;
+  transform-style: preserve-3d;
+}
+
 #content { opacity: 1; }
 
 #loader {

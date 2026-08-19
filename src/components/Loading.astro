@@ -49,12 +49,12 @@ import "../styles/global.css";
   </div>
 </div>
 
-  <div id="loading-content" class="absolute left-100 items-left z-20">
+  <div id="loading-hint" class="absolute left-100 items-left z-20">
     <h1 class="text-white text-1xl font-bold tracking-widest uppercase">wanna break from the loading ?</h1>
   </div>
 
-  <div id="loading-content" class=" absolute right-40 bottom-20 flex flex-col items-left z-20">
-    <h1 class="text-white text-1xl font-bold tracking-widest uppercase">Loading...</h1>
+  <div id="loading-status" class="absolute right-40 bottom-20 flex flex-col items-left z-20">
+    <h1 id="loading-label" class="text-white text-1xl font-bold tracking-widest uppercase">Loading...</h1>
   </div>
 </div>
 
@@ -67,18 +67,33 @@ import "../styles/global.css";
 
 <script>
   import gsap from "gsap";
+  import { TextPlugin } from "gsap/TextPlugin";
   import { startAnimation } from "../Script/animation";
+  import { loadingTextCycle } from "../Script/gsap-utils";
+
+  gsap.registerPlugin(TextPlugin);
 
   const mainAnim = startAnimation();
+  let loadingLabelTl;
 
+  function initLoadingLabel() {
+    const label = document.getElementById("loading-label");
+    if (!label) return;
+    loadingLabelTl?.kill();
+    loadingLabelTl = loadingTextCycle(
+      label,
+      ["Loading...", "Loading", "Loading..", "Almost there..."],
+      { paused: false }
+    );
+  }
+
+  initLoadingLabel();
 
   function initTopo() {
     const svg = document.querySelector<SVGSVGElement>(".topo");
     if (!svg) return;
 
-
     gsap.set(svg, { scale: 1.25, xPercent: 8, yPercent: 4 });
-
 
     gsap.timeline({ repeat: -1, yoyo: true, defaults: { ease: "sine.inOut" } })
       .to(svg, { x: 50, y: -30, duration: 45 }, 0)
@@ -113,45 +128,46 @@ import "../styles/global.css";
 
   initTopo();
 
-window.addEventListener("load", () => {
-  const loaderTl = gsap.timeline();
-  const progress = { val: 0 };
+  window.addEventListener("load", () => {
+    const loaderTl = gsap.timeline();
+    const progress = { val: 0 };
 
-  loaderTl
-    .to(
-      progress,
-      {
-        val: 100,
-        duration: 2,
-        ease: "power2.inOut",
-        onUpdate: () => {
+    loaderTl
+      .to(
+        progress,
+        {
+          val: 100,
+          duration: 2,
+          ease: "power2.inOut",
+          onUpdate: () => {
+            const textEl = document.getElementById("progress-text");
+            if (textEl) textEl.innerText = Math.round(progress.val) + "%";
 
-          const textEl = document.getElementById("progress-text");
-          if (textEl) textEl.innerText = Math.round(progress.val) + "%";
-
-          const barEl = document.getElementById("progress-bar");
-          if (barEl) barEl.style.height = progress.val + "%";
+            const barEl = document.getElementById("progress-bar");
+            if (barEl) barEl.style.height = progress.val + "%";
+          },
         },
-      },
-      0
-    )
-    .to("#loading-content, #progress-bar", { opacity: 0, duration: 0.2 })
-    .to(
-      "#loader",
-      {
-        xPercent: 100,
-        duration: 1.2,
-        ease: "expo.out",
-        onStart: () => {
-          gsap.delayedCall(0.12, () => mainAnim.play());
+        0
+      )
+      .to("#loading-hint, #loading-status, #progress-bar", { opacity: 0, duration: 0.2 })
+      .to(
+        "#loader",
+        {
+          xPercent: 100,
+          duration: 1.2,
+          ease: "expo.out",
+          onStart: () => {
+            gsap.delayedCall(0.12, () => {
+              mainAnim.play();
+              // 👇 tell the Welcome section it's now safe to animate in
+              window.dispatchEvent(new Event("welcome-animate"));
+            });
+          },
+          onComplete: () => {
+            document.getElementById("loader")?.remove();
+          },
         },
-        onComplete: () => {
-          document.getElementById("loader")?.remove();
-        },
-      },
-      "-=0.1"
-    );
-});
-
-  
+        "-=0.1"
+      );
+  });
 </script>

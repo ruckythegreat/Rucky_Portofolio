@@ -6,16 +6,13 @@ import "../styles/global.css";
   id="side-nav"
   class="fixed left-0 top-0 z-50 h-screen w-screen overflow-hidden pointer-events-none"
 >
-  <!-- 1. Ubah pointer-events-auto menjadi pointer-events-none pada stage -->
   <div
     id="nav-stage"
     class="absolute left-0 top-0 h-[1080px] w-[1920px] origin-top-left pointer-events-none"
   >
-    <!-- 2. Pindahkan pointer-events-auto hanya ke pembungkus sidebar yang berukuran 80px -->
     <div
       class="absolute left-0 top-0 flex h-[1080px] w-[80px] flex-col items-center border-r border-slate-800 bg-black py-6 backdrop-blur-sm pointer-events-auto"
     >
-      <!-- Logo -->
       <a
         href="#WelcomePage"
         class="mb-12 flex h-10 w-10 items-center justify-center bg-white font-extrabold text-black"
@@ -23,58 +20,67 @@ import "../styles/global.css";
         R.
       </a>
 
-      <!-- Navigation -->
       <ul class="flex w-full flex-col items-center gap-6">
-        <li class="w-full">
+        <li class="nav-item group relative w-full">
           <a
             href="#WelcomePage"
-            class="flex w-full justify-center py-3 hover:bg-white/10"
+            class="nav-link flex w-full justify-center py-3 hover:bg-white/10"
             title="Welcome"
+            data-label="Welcome"
           >
             <div class="h-6 w-6 rounded-sm bg-slate-400"></div>
           </a>
+          <span class="nav-label pointer-events-none absolute left-[88px] top-1/2 -translate-y-1/2 whitespace-nowrap rounded bg-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-black opacity-0">Welcome</span>
         </li>
 
-        <li class="w-full">
+        <li class="nav-item group relative w-full">
           <a
             href="#MediaPage"
-            class="flex w-full justify-center py-3 hover:bg-white/10"
+            class="nav-link flex w-full justify-center py-3 hover:bg-white/10"
             title="Media"
+            data-label="Media"
           >
             <div class="h-6 w-6 rounded-full bg-slate-400"></div>
           </a>
+          <span class="nav-label pointer-events-none absolute left-[88px] top-1/2 -translate-y-1/2 whitespace-nowrap rounded bg-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-black opacity-0">Media</span>
         </li>
 
-        <li class="w-full">
+        <li class="nav-item group relative w-full">
           <a
             href="#ProjectPage"
-            class="flex w-full justify-center py-3 hover:bg-white/10"
+            class="nav-link flex w-full justify-center py-3 hover:bg-white/10"
             title="Project"
+            data-label="Project"
           >
             <div class="h-6 w-6 rotate-45 bg-slate-400"></div>
           </a>
+          <span class="nav-label pointer-events-none absolute left-[88px] top-1/2 -translate-y-1/2 whitespace-nowrap rounded bg-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-black opacity-0">Project</span>
         </li>
 
-        <li class="w-full">
+        <li class="nav-item group relative w-full">
           <a
             href="#SocialMediaPage"
-            class="flex w-full justify-center py-3 hover:bg-white/10"
+            class="nav-link flex w-full justify-center py-3 hover:bg-white/10"
             title="Social Media"
+            data-label="Social"
           >
             <div class="h-6 w-6 border-2 border-slate-400"></div>
           </a>
+          <span class="nav-label pointer-events-none absolute left-[88px] top-1/2 -translate-y-1/2 whitespace-nowrap rounded bg-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-black opacity-0">Social</span>
         </li>
 
-        <li class="w-full">
+        <li class="nav-item group relative w-full">
           <a
             href="#ContactPage"
-            class="flex w-full justify-center py-3 hover:bg-white/10"
+            class="nav-link flex w-full justify-center py-3 hover:bg-white/10"
             title="Contact"
+            data-label="Contact"
           >
             <div
               class="h-6 w-6 bg-slate-400 [clip-path:polygon(50%_0%,100%_100%,0%_100%)]"
             ></div>
           </a>
+          <span class="nav-label pointer-events-none absolute left-[88px] top-1/2 -translate-y-1/2 whitespace-nowrap rounded bg-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-black opacity-0">Contact</span>
         </li>
       </ul>
     </div>
@@ -82,6 +88,8 @@ import "../styles/global.css";
 </nav>
 
 <script>
+  import { gsap } from "../Script/gsap-utils";
+
   function autoScaleNavigation() {
     const stage = document.getElementById("nav-stage");
     if (!stage) return;
@@ -96,6 +104,24 @@ import "../styles/global.css";
     stage.style.transform = `scale(${scale})`;
   }
 
+  function initNavHover() {
+    document.querySelectorAll(".nav-item").forEach((item) => {
+      const label = item.querySelector(".nav-label");
+      const link = item.querySelector(".nav-link");
+      if (!label || !link) return;
+
+      const tl = gsap.timeline({ paused: true })
+        .to(label, { autoAlpha: 1, x: 0, duration: 0.45, ease: "back.out(2)" }, 0)
+        .to(link, { scale: 1.08, duration: 0.35, ease: "power2.out" }, 0);
+
+      gsap.set(label, { x: -8, autoAlpha: 0 });
+
+      item.addEventListener("mouseenter", () => tl.play());
+      item.addEventListener("mouseleave", () => tl.reverse());
+    });
+  }
+
   autoScaleNavigation();
+  initNavHover();
   window.addEventListener("resize", autoScaleNavigation);
 </script>

@@ -12,7 +12,6 @@ import "../styles/global.css";
     class="absolute inset-0 overflow-hidden"
   >
 
-    <!-- FIXED 1920x1080 CANVAS                                  -->
     <div
       id="welcome-stage"
       class="absolute left-1/2 top-1/2 h-[1080px] w-[1920px] origin-center z-10"
@@ -42,7 +41,6 @@ style="
           preserveAspectRatio="xMidYMid slice"
           class="block h-full w-full"
         >
-          <!-- Background base -->
           <rect
             x="-20%"
             y="-20%"
@@ -134,14 +132,12 @@ style="
         </svg>
       </div>
 
-      <!-- VERSION -->
       <div class="absolute right-[80px] top-[40px] z-10">
         <p class="text-lg text-gray-400">
           V.1-Entry &#8968;0/10&#8969;
         </p>
       </div>
 
-      <!-- CHARACTER -->
       <img
         src="/CloseUpRucky.JPG"
         alt="Rucky"
@@ -170,7 +166,6 @@ style="
         "
       />
 
-      <!-- HERO CONTENT -->
       <div
         class="
           absolute
@@ -183,117 +178,97 @@ style="
           text-left
         "
       >
-        <h1
-          class="
-            hero-title
-            translate-y-12
-            text-8xl
-            font-bold
-            text-white
-            opacity-0
-          "
-        >
-          HELOOO EVERYONE
-        </h1>
+<h1
+  id="hero-line-1"
+  class="hero-line text-8xl font-bold text-white invisible"
+></h1>
 
-        <h1
-          class="
-            hero-title
-            mt-2
-            translate-y-12
-            text-6xl
-            font-bold
-            opacity-0
-          "
-          style="color:#ffc994"
-        >
-          I'm Rucky
-        </h1>
+<h1
+  id="hero-line-2"
+  class="hero-headline mt-2 text-6xl font-bold invisible"
+  style="color:#ffc994"
+></h1>
 
-        <p
-          class="
-            hero-desc
-            mt-4
-            translate-y-8
-            text-lg
-            text-gray-400
-            opacity-0
-          "
-        >
-          A personal portfolio website, built for fun
-        </p>
+<p
+  id="hero-desc"
+  class="hero-desc mt-4 text-lg text-gray-400 invisible"
+></p>
       </div>
     </div>
 
   </div>
 </section>
-
 <script>
-  import gsap from "gsap";
+  import {
+    gsap,
+    animate3DChars,
+    animateHeadlineChars,
+    scrambleReveal,
+  } from "../Script/gsap-utils";
 
   const BASE_WIDTH = 1920;
   const BASE_HEIGHT = 1080;
 
-function autoScaleStage() {
-  const stage = document.getElementById("welcome-stage");
-  const svgBg = document.getElementById("svg-bg");
-  if (!stage) return;
+  function autoScaleStage() {
+    const stage = document.getElementById("welcome-stage");
+    const svgBg = document.getElementById("svg-bg");
+    if (!stage) return;
 
-  const sidebarWidth = 80;
+    const sidebarWidth = 80;
 
-  const availableWidth = Math.max(
-    window.innerWidth - sidebarWidth,
-    320
-  );
-  const availableHeight = Math.max(
-    window.innerHeight,
-    320
-  );
+    const availableWidth = Math.max(window.innerWidth - sidebarWidth, 320);
+    const availableHeight = Math.max(window.innerHeight, 320);
 
-  const scaleX = availableWidth / BASE_WIDTH;
-  const scaleY = availableHeight / BASE_HEIGHT;
+    const scaleX = availableWidth / BASE_WIDTH;
+    const scaleY = availableHeight / BASE_HEIGHT;
 
-  const scale = Math.min(scaleX, scaleY);
+    const scale = Math.min(scaleX, scaleY);
 
-  const centerX = sidebarWidth + availableWidth / 2;
-  const centerY = availableHeight / 2;
+    const centerX = sidebarWidth + availableWidth / 2;
+    const centerY = availableHeight / 2;
 
-  stage.style.left = `${centerX}px`;
-  stage.style.top = `${centerY}px`;
-  stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    stage.style.left = `${centerX}px`;
+    stage.style.top = `${centerY}px`;
+    stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
 
-  // Hitung background SVG agar menutupi 100% viewport dari x=0 hingga x=innerWidth
-  if (svgBg) {
-    const fullWidth = window.innerWidth / scale;
-    const fullHeight = window.innerHeight / scale;
+    if (svgBg) {
+      const fullWidth = window.innerWidth / scale;
+      const fullHeight = window.innerHeight / scale;
 
-    svgBg.style.width = `${fullWidth}px`;
-    svgBg.style.height = `${fullHeight}px`;
+      svgBg.style.width = `${fullWidth}px`;
+      svgBg.style.height = `${fullHeight}px`;
 
-    // Offset posisi agar tepi kiri SVG tepat berada di x = 0 layar
-    svgBg.style.left = `${BASE_WIDTH / 2 - centerX / scale}px`;
-    svgBg.style.top = `${BASE_HEIGHT / 2 - centerY / scale}px`;
+      svgBg.style.left = `${BASE_WIDTH / 2 - centerX / scale}px`;
+      svgBg.style.top = `${BASE_HEIGHT / 2 - centerY / scale}px`;
+    }
   }
-}
 
   autoScaleStage();
   window.addEventListener("resize", autoScaleStage);
 
-  window.addEventListener("load", () => {
-    gsap.to(".hero-title", {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power3.out"
+  function playHeroAnimations() {
+    const line1 = document.getElementById("hero-line-1");
+    const line2 = document.getElementById("hero-line-2");
+    const desc = document.getElementById("hero-desc");
+
+    if (!line1 || !line2 || !desc) return;
+
+    line1.textContent = "HELOOO EVERYONE";
+    line2.textContent = "I'm Rucky";
+    desc.textContent = "A personal portfolio website, built for fun";
+
+    gsap.set([line1, line2, desc], { visibility: "visible" });
+
+    animate3DChars(line1);
+
+    gsap.delayedCall(0.6, () => {
+      animateHeadlineChars(line2);
     });
 
-    gsap.to(".hero-desc", {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      delay: 0.4,
-      ease: "power3.out"
+    gsap.delayedCall(0.9, () => {
+      scrambleReveal(desc, "A personal portfolio website, built for fun");
     });
-  });
+  }
+
+  window.addEventListener("welcome-animate", playHeroAnimations, { once: true });
 </script>

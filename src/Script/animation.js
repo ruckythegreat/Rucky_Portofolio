@@ -11,9 +11,9 @@ export function startAnimation() {
     duration: 1.2,
     stagger: 0.12,
     ease: "expo.out",
-  })
-    .to(".hero-title", { opacity: 1, y: 0, duration: 0.8 }, "-=0.6")
-    .to(".hero-desc", { opacity: 1, y: 0, duration: 0.8 }, "-=0.6");
+  }).call(() => {
+    window.dispatchEvent(new CustomEvent("welcome-animate"));
+  });
 
   return tl;
 }

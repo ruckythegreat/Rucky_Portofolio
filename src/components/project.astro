@@ -1,167 +1,569 @@
 ---
+import { ArrowBigRightDash, X, ExternalLink, Github } from "lucide-astro";
 import "../styles/global.css";
+
+// Menggunakan data sesuai request (YT ID MwGRX73a4f4 & Github Repo)
+const projectGroups = [
+  {
+    date: "2026.08",
+    projects: [
+      {
+        title: "Developer Portfolio",
+        desc: "ScrollTrigger transitions, multi-color panels, and interactive layout.",
+        tags: ["Astro", "GSAP", "Tailwind"],
+        col: "website",
+        deploy: "https://youtu.be/MwGRX73a4f4?si=aT5EGZsYUooFDYKR",
+        source: "https://github.com/ruckythegreat/Rucky_Portofolio",
+        ytId: "MwGRX73a4f4", 
+      },
+      {
+        title: "Entara (Neptara)",
+        desc: "Souls-like RPG concept with posture deflection mechanics.",
+        tags: ["Unity", "C#", "Game Design"],
+        col: "game",
+        deploy: "https://youtu.be/MwGRX73a4f4?si=aT5EGZsYUooFDYKR",
+        source: "https://github.com/ruckythegreat/Rucky_Portofolio",
+        ytId: "MwGRX73a4f4",
+      },
+      {
+        title: "Zapping Zenith",
+        desc: "This portfolio site — GSAP motion, scaled stages, and section routing.",
+        tags: ["Astro", "GSAP"],
+        col: "website",
+        deploy: "https://youtu.be/MwGRX73a4f4?si=aT5EGZsYUooFDYKR",
+        source: "https://github.com/ruckythegreat/Rucky_Portofolio",
+        ytId: "MwGRX73a4f4",
+      },
+      {
+        title: "Hyprland Dotfiles",
+        desc: "Custom Arch Linux desktop config with tiling workflow scripts.",
+        tags: ["Linux", "Shell"],
+        col: "game",
+        deploy: "https://youtu.be/MwGRX73a4f4?si=aT5EGZsYUooFDYKR",
+        source: "https://github.com/ruckythegreat/Rucky_Portofolio",
+        ytId: "MwGRX73a4f4",
+      },
+    ],
+  },
+  {
+    date: "2025.07",
+    projects: [
+      {
+        title: "Mimi Visual Novel",
+        desc: "Web visual novel with structured chapter routing.",
+        tags: ["React", "Vite"],
+        col: "website",
+        deploy: "https://youtu.be/MwGRX73a4f4?si=aT5EGZsYUooFDYKR",
+        source: "https://github.com/ruckythegreat/Rucky_Portofolio",
+        ytId: "MwGRX73a4f4",
+      },
+      {
+        title: "Structures & Algo",
+        desc: "Trace problems, recursion, and vector stack implementations.",
+        tags: ["C++", "Algorithms"],
+        col: "game",
+        deploy: "https://youtu.be/MwGRX73a4f4?si=aT5EGZsYUooFDYKR",
+        source: "https://github.com/ruckythegreat/Rucky_Portofolio",
+        ytId: "MwGRX73a4f4",
+      },
+      {
+        title: "Trading Dashboard",
+        desc: "Live order book UI with real-time market data panels.",
+        tags: ["React", "WebSocket"],
+        col: "website",
+        deploy: "https://youtu.be/MwGRX73a4f4?si=aT5EGZsYUooFDYKR",
+        source: "https://github.com/ruckythegreat/Rucky_Portofolio",
+        ytId: "MwGRX73a4f4",
+      },
+    ],
+  },
+  {
+    date: "2025.03",
+    projects: [
+      {
+        title: "Redstone CPU",
+        desc: "Minecraft logic gates and 4-bit adder built in survival mode.",
+        tags: ["Minecraft", "Logic"],
+        col: "game",
+        deploy: "https://youtu.be/MwGRX73a4f4?si=aT5EGZsYUooFDYKR",
+        source: "https://github.com/ruckythegreat/Rucky_Portofolio",
+        ytId: "MwGRX73a4f4",
+      },
+      {
+        title: "CLI Task Manager",
+        desc: "Terminal todo app with JSON persistence and fuzzy search.",
+        tags: ["Golang", "CLI"],
+        col: "website",
+        deploy: "https://youtu.be/MwGRX73a4f4?si=aT5EGZsYUooFDYKR",
+        source: "https://github.com/ruckythegreat/Rucky_Portofolio",
+        ytId: "MwGRX73a4f4",
+      },
+    ],
+  },
+];
 ---
 
-<section
-  id="ProjectPage"
-  class="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-white font-sans"
->
-  <div
-    id="project-stage"
-    class="absolute h-[1080px] w-[1920px] origin-center shrink-0"
-  >
-    <div class="flex flex-col items-center justify-center h-full p-12">
-      
-      <div class="relative w-[1500px] mb-6 flex flex-col">
-        <img
-          src="/bannerexample.jpg"
-          alt="Project Banner"
-          class="w-full h-[180px] object-cover grayscale opacity-80"
-        />
-        <p class="absolute right-0 -top-7 text-gray-400 font-mono text-sm tracking-widest">
-          V.1-Entry&#8968;3/10&#8969;
-        </p>
-      </div>
-
-      <div class="mx-auto w-[1500px]">
-        
-        <div class="mb-4 grid grid-cols-[80px_1fr_1fr] gap-4">
-          <div></div> 
-
-          <div class="relative">
-            <div class="absolute top-1/2 h-[2px] w-full -translate-y-1/2 bg-gray-300"></div>
-            <div class="relative inline-block bg-black px-4 py-1 text-2xl font-bold tracking-tighter text-white">
-              WEBSITE
-            </div>
-          </div>
-
-          <div class="relative">
-            <div class="absolute top-1/2 h-[2px] w-full -translate-y-1/2 bg-gray-300"></div>
-            <div class="relative inline-block bg-black px-4 py-1 text-2xl font-bold tracking-tighter text-white">
-              GAME & OTHER
-            </div>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-[80px_1fr_1fr] grid-rows-4 gap-4">
-          
-
-          <div class="row-span-2 bg-black text-white flex items-start justify-center pt-3 font-mono text-base font-bold">
-            <span class="-rotate-90 mt-6 tracking-widest whitespace-nowrap">2026.08</span>
-          </div>
-
-          <div class="group relative h-[130px] bg-gray-100 border border-gray-300 p-3 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:border-black hover:bg-black hover:text-white cursor-crosshair">
-            <div class="relative z-10 flex justify-between items-start">
-              <h3 class="text-lg font-bold uppercase tracking-tighter leading-none">Developer Portfolio</h3>
-              <a href="#" class="opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-right-dash-icon lucide-arrow-big-right-dash"><path d="M11 9a1 1 0 0 0 1-1V4.707a.707.707 0 0 1 1.207-.5l6.94 6.94a1.207 1.207 0 0 1 0 1.707l-6.94 6.94a.707.707 0 0 1-1.207-.5V16a1 1 0 0 0-1-1H9a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z"/><path d="M4 9v6"/></svg>
-              
-              </a>
-            </div>
-            <div class="relative z-10 opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out text-xs max-w-[85%] text-gray-400 group-hover:text-gray-300">
-              Implementasi ScrollTrigger dengan transisi multi-warna dan struktur interaktif.
-            </div>
-            <div class="relative z-10 flex gap-2 mt-auto">
-              <span class="text-[9px] font-mono uppercase px-2 py-0.5 border border-current rounded-full">Astro</span>
-              <span class="text-[9px] font-mono uppercase px-2 py-0.5 border border-current rounded-full">GSAP</span>
-              <span class="text-[9px] font-mono uppercase px-2 py-0.5 border border-current rounded-full">Tailwind</span>
-            </div>
-          </div>
-
-          <div></div>
-          <div></div>
-
-          <div class="group relative h-[130px] bg-gray-100 border border-gray-300 p-3 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:border-black hover:bg-black hover:text-white cursor-crosshair">
-            <div class="relative z-10 flex justify-between items-start">
-              <h3 class="text-lg font-bold uppercase tracking-tighter leading-none">Entara (Neptara)</h3>
-              <a href="#" class="opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-right-dash-icon lucide-arrow-big-right-dash"><path d="M11 9a1 1 0 0 0 1-1V4.707a.707.707 0 0 1 1.207-.5l6.94 6.94a1.207 1.207 0 0 1 0 1.707l-6.94 6.94a.707.707 0 0 1-1.207-.5V16a1 1 0 0 0-1-1H9a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z"/><path d="M4 9v6"/></svg>
-              
-              </a>
-            
-            </div>
-            <div class="relative z-10 opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out text-xs max-w-[85%] text-gray-400 group-hover:text-gray-300">
-              Konsep RPG souls-like open-world dengan sistem defleksi postur mekanik.
-            </div>
-            <div class="relative z-10 flex gap-2 mt-auto">
-              <span class="text-[9px] font-mono uppercase px-2 py-0.5 border border-current rounded-full">Unity</span>
-              <span class="text-[9px] font-mono uppercase px-2 py-0.5 border border-current rounded-full">C#</span>
-              <span class="text-[9px] font-mono uppercase px-2 py-0.5 border border-current rounded-full">Game Design</span>
-            </div>
-          </div>
-
-          <div class="row-span-2 bg-black text-white flex items-start justify-center pt-3 font-mono text-base font-bold">
-            <span class="-rotate-90 mt-6 tracking-widest whitespace-nowrap">2025.07</span>
-          </div>
-
-          <div class="group relative h-[130px] bg-gray-100 border border-gray-300 p-3 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:border-black hover:bg-black hover:text-white cursor-crosshair">
-            <div class="relative z-10 flex justify-between items-start">
-              <h3 class="text-lg font-bold uppercase tracking-tighter leading-none">Mimi Visual Novel</h3>
-              <a href="#" class="opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-right-dash-icon lucide-arrow-big-right-dash"><path d="M11 9a1 1 0 0 0 1-1V4.707a.707.707 0 0 1 1.207-.5l6.94 6.94a1.207 1.207 0 0 1 0 1.707l-6.94 6.94a.707.707 0 0 1-1.207-.5V16a1 1 0 0 0-1-1H9a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z"/><path d="M4 9v6"/></svg>
-              
-              </a>
-                        </div>
-            <div class="relative z-10 opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out text-xs max-w-[85%] text-gray-400 group-hover:text-gray-300">
-              Eksplorasi web app visual novel dengan structured chapter routing.
-            </div>
-            <div class="relative z-10 flex gap-2 mt-auto">
-              <span class="text-[9px] font-mono uppercase px-2 py-0.5 border border-current rounded-full">React</span>
-              <span class="text-[9px] font-mono uppercase px-2 py-0.5 border border-current rounded-full">Vite</span>
-            </div>
-          </div>
-
-          <div></div>
-          <div></div>
-
-          <div class="group relative h-[130px] bg-gray-100 border border-gray-300 p-3 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:border-black hover:bg-black hover:text-white cursor-crosshair">
-            <div class="relative z-10 flex justify-between items-start">
-              <h3 class="text-lg font-bold uppercase tracking-tighter leading-none">Structures & Algo</h3>
-              <a href="#" class="opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-right-dash-icon lucide-arrow-big-right-dash"><path d="M11 9a1 1 0 0 0 1-1V4.707a.707.707 0 0 1 1.207-.5l6.94 6.94a1.207 1.207 0 0 1 0 1.707l-6.94 6.94a.707.707 0 0 1-1.207-.5V16a1 1 0 0 0-1-1H9a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z"/><path d="M4 9v6"/></svg>
-              
-              </a>
-                        </div>
-            <div class="relative z-10 opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out text-xs max-w-[85%] text-gray-400 group-hover:text-gray-300">
-              Penyelesaian problem trace, rekursi, dan implementasi data stack vector.
-            </div>
-            <div class="relative z-10 flex gap-2 mt-auto">
-              <span class="text-[9px] font-mono uppercase px-2 py-0.5 border border-current rounded-full">C++</span>
-              <span class="text-[9px] font-mono uppercase px-2 py-0.5 border border-current rounded-full">Algorithms</span>
-            </div>
-          </div>
-
-
-          
-        </div>
-      </div>
-
+<section id="ProjectPage" class="relative w-full bg-white font-sans">
+  <!-- Desktop marquee -->
+  <div class="project-marquee hidden overflow-hidden py-10 lg:block lg:py-14">
+    <div class="project-marquee-rail flex whitespace-nowrap will-change-transform">
+      {
+        Array.from({ length: 8 }).map(() => (
+          <h4 class="project-marquee-item mr-10 shrink-0 text-[100px] font-black uppercase tracking-tight">
+            // RUCKY PORTOFOLIO
+          </h4>
+        ))
+      }
     </div>
   </div>
+
+  <!-- Mobile header -->
+  <div class="project-mobile-header border-b border-black px-5 pb-4 pt-8 lg:hidden" style="padding-left: 5.5rem">
+    <p class="font-mono text-[10px] uppercase tracking-widest text-gray-400">V.1-Entry &#8968;3/10&#8969;</p>
+    <h2 class="mt-1 text-3xl font-black uppercase leading-none">// RUCKY<br />PORTOFOLIO</h2>
+  </div>
+
+  <div id="project-pin-zone" class="relative">
+    <div
+      id="project-banner-wrap"
+      class="project-banner relative z-40 mx-auto w-full max-w-[1500px] bg-white px-4 lg:px-0"
+    >
+      <img
+        id="project-banner-img"
+        src="/bannerexample.jpg"
+        alt="Project Banner"
+        class="h-[100px] w-full object-cover grayscale opacity-80 sm:h-[140px] lg:h-[180px]"
+      />
+      <p class="absolute -top-5 right-4 hidden font-mono text-xs tracking-widest text-gray-400 lg:block lg:right-0 lg:text-sm">
+        V.1-Entry&#8968;3/10&#8969;
+      </p>
+    </div>
+
+    <div id="project-body" class="relative mx-auto w-full max-w-[1500px] px-4 pb-48 pt-6 lg:px-0 lg:pb-56 lg:pt-8">
+      
+      <!-- Desktop grids -->
+      <div id="project-desktop" class="hidden lg:block">
+        {
+          projectGroups.map((group, gi) => (
+            <div class="project-group mb-10" data-group={gi}>
+              {gi === 0 && (
+                <div class="mb-4 grid grid-cols-[80px_1fr_1fr] gap-4">
+                  <div />
+                  <div class="relative">
+                    <div class="absolute top-1/2 h-[2px] w-full -translate-y-1/2 bg-gray-300" />
+                    <div class="relative inline-block bg-black px-4 py-1 text-2xl font-bold tracking-tighter text-white">
+                      WEBSITE
+                    </div>
+                  </div>
+                  <div class="relative">
+                    <div class="absolute top-1/2 h-[2px] w-full -translate-y-1/2 bg-gray-300" />
+                    <div class="relative inline-block bg-black px-4 py-1 text-2xl font-bold tracking-tighter text-white">
+                      GAME & OTHER
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div class="grid grid-cols-[80px_1fr_1fr] gap-4">
+                <div
+                  class="flex items-start justify-center bg-black pt-3 text-white"
+                  style={`grid-row: span ${Math.ceil(group.projects.length / 2)}`}
+                >
+                  <span class="mt-6 -rotate-90 whitespace-nowrap font-mono text-base font-bold tracking-widest">
+                    {group.date}
+                  </span>
+                </div>
+
+                {group.projects.map((project) => (
+                  <article
+                    class="project-card group relative flex h-[130px] cursor-pointer flex-col justify-between overflow-hidden border border-gray-300 bg-gray-100 p-0 transition-colors hover:border-black"
+                    data-yt={project.ytId}
+                    data-deploy={project.deploy}
+                    data-source={project.source}
+                    data-title={project.title}
+                    data-desc={project.desc}
+                    data-tags={project.tags.join(',')}
+                  >
+                    <div class="flex h-full w-full">
+                      <!-- Kiri: Konten Teks -->
+                      <div class="relative z-10 flex w-[65%] flex-col justify-between p-4 transition-colors duration-300">
+                        <div class="flex items-start justify-between">
+                          <h3 class="text-lg font-bold uppercase leading-none tracking-tighter transition-colors group-hover:text-white">
+                            {project.title}
+                          </h3>
+                        </div>
+                        <div class="max-w-[100%] -translate-x-3 text-xs text-gray-500 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:text-gray-200 group-hover:opacity-100">
+                          {project.desc}
+                        </div>
+                        <div class="mt-auto flex flex-wrap gap-2">
+                          {project.tags.map((tag) => (
+                            <span class="rounded-full border border-gray-400 px-2 py-0.5 font-mono text-[9px] uppercase transition-colors group-hover:border-white group-hover:text-white">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <!-- Kanan: Langsung Video Auto-Play menggantikan static image -->
+                      <div class="relative z-0 w-[35%] overflow-hidden border-l border-gray-300 bg-black transition-colors group-hover:border-black">
+                        <iframe
+                          src={`https://www.youtube.com/embed/${project.ytId}?autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1&rel=0&loop=1&playlist=${project.ytId}&playsinline=1`}
+                          class="pointer-events-none absolute left-1/2 top-1/2 h-[200%] w-[200%] -translate-x-1/2 -translate-y-1/2 grayscale transition-all duration-500 group-hover:scale-[1.1] group-hover:grayscale-0 group-hover:opacity-100"
+                          allow="autoplay; encrypted-media"
+                          loading="lazy"
+                          tabindex="-1"
+                        ></iframe>
+                        <!-- Icon panah di atas gambar saat di-hover -->
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100 text-[#FF7873]">
+                          <ArrowBigRightDash size={32} />
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Latar belakang hitam yang muncul saat di-hover (Hanya mengisi area kiri) -->
+                    <div class="pointer-events-none absolute inset-y-0 left-0 z-0 w-[65%] origin-left scale-x-0 bg-black transition-transform duration-300 group-hover:scale-x-100" />
+                  </article>
+                ))}
+
+                {group.projects.length % 2 !== 0 && <div />}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Mobile list -->
+      <div id="project-mobile" class="space-y-8 lg:hidden" style="padding-left: 4.5rem">
+        {
+          projectGroups.map((group) => (
+            <div class="project-mobile-group">
+              <div class="mb-3 inline-block bg-black px-3 py-1 font-mono text-xs font-bold tracking-widest text-white">
+                {group.date}
+              </div>
+              <div class="space-y-3">
+                {group.projects.map((project) => (
+                  <article
+                    class="project-card group relative cursor-pointer overflow-hidden border border-gray-300 bg-gray-100 active:bg-black active:text-white transition-colors"
+                    data-yt={project.ytId}
+                    data-deploy={project.deploy}
+                    data-source={project.source}
+                    data-title={project.title}
+                    data-desc={project.desc}
+                    data-tags={project.tags.join(',')}
+                  >
+                    <!-- Video Play untuk tampilan mobile -->
+                    <div class="relative h-28 w-full overflow-hidden border-b border-gray-300 bg-black transition-colors group-active:border-gray-700">
+                      <iframe
+                        src={`https://www.youtube.com/embed/${project.ytId}?autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1&rel=0&loop=1&playlist=${project.ytId}&playsinline=1`}
+                        class="pointer-events-none absolute left-1/2 top-1/2 h-[200%] w-[200%] -translate-x-1/2 -translate-y-1/2 grayscale transition-all duration-300 group-active:scale-[1.05] group-active:grayscale-0"
+                        allow="autoplay; encrypted-media"
+                        loading="lazy"
+                        tabindex="-1"
+                      ></iframe>
+                    </div>
+
+                    <div class="relative z-10 p-4">
+                      <div class="flex items-start justify-between gap-3">
+                        <h3 class="text-base font-bold uppercase leading-tight tracking-tighter">{project.title}</h3>
+                        <ArrowBigRightDash size={20} class="shrink-0 opacity-40 group-active:text-[#FF7873] group-active:opacity-100" />
+                      </div>
+                      <p class="mt-2 text-xs leading-relaxed text-gray-600 group-active:text-gray-300">
+                        {project.desc}
+                      </p>
+                      <div class="mt-3 flex flex-wrap gap-1.5">
+                        {project.tags.map((tag) => (
+                          <span class="rounded-full border border-current px-2 py-0.5 font-mono text-[8px] uppercase">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. KOTAK KECIL (HOVER PREVIEW DESKTOP) -->
+  <div
+    id="project-preview"
+    class="pointer-events-none fixed z-[60] hidden w-[340px] flex-col overflow-hidden rounded-lg border border-white/20 bg-black/80 shadow-[0_10px_40px_rgba(0,0,0,0.8)] backdrop-blur-md opacity-0 transition-opacity duration-200 lg:flex"
+  >
+    <div class="relative w-full aspect-video bg-zinc-900">
+      <iframe
+        id="project-preview-iframe"
+        class="absolute inset-0 h-full w-full pointer-events-none"
+        src=""
+        title="Project preview"
+        allow="autoplay; encrypted-media"
+        loading="lazy"
+      ></iframe>
+      <div class="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.5)]"></div>
+    </div>
+    <div class="flex items-center justify-between bg-black/90 p-3 text-xs uppercase tracking-wider text-white">
+      <span class="font-bold flex items-center gap-2"><ArrowBigRightDash size={14} class="text-[#FF7873]"/> Click to Expand</span>
+    </div>
+  </div>
+
+  <!-- 2. FULL PREVIEW MODAL (GEDEIN VIDEO + DETAIL) -->
+  <div 
+    id="project-modal" 
+    class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/95 backdrop-blur-md p-4 transition-opacity duration-300 opacity-0"
+  >
+    <!-- Close Button -->
+    <button 
+      id="project-modal-close" 
+      class="absolute top-6 right-6 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white hover:bg-[#FF7873] hover:text-black transition-colors"
+      aria-label="Close modal"
+    >
+      <X size={24} />
+    </button>
+
+    <div class="relative w-full max-w-6xl overflow-hidden rounded-xl border border-white/20 bg-zinc-900 shadow-2xl flex flex-col lg:flex-row max-h-[90vh]">
+      
+      <!-- Video Section (Kiri) -->
+      <div class="w-full lg:w-2/3 bg-black aspect-video lg:aspect-auto lg:h-[600px]">
+        <iframe
+          id="project-modal-iframe"
+          class="h-full w-full"
+          src=""
+          title="Full Project preview"
+          allow="autoplay; encrypted-media; fullscreen"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <!-- Detail Section (Kanan) -->
+      <div class="w-full lg:w-1/3 flex flex-col p-8 lg:p-10 justify-center overflow-y-auto">
+        <div class="mb-2 inline-block px-3 py-1 bg-[#FF7873] text-black font-mono text-xs font-bold tracking-widest uppercase">
+          Project Detail
+        </div>
+        <h3 id="project-modal-title" class="text-3xl lg:text-4xl font-black uppercase tracking-tight text-white mt-4 leading-none">
+          Project Title
+        </h3>
+        <p id="project-modal-desc" class="text-base text-gray-300 mt-6 leading-relaxed">
+          Project description goes here.
+        </p>
+        
+        <div id="project-modal-tags" class="mt-8 flex flex-wrap gap-2">
+          <!-- Tags injected by JS -->
+        </div>
+
+        <div class="mt-auto pt-10 flex flex-col gap-3">
+          <a id="project-modal-deploy" href="#" target="_blank" class="flex items-center justify-center gap-2 w-full bg-white text-black py-4 font-bold uppercase tracking-wider hover:bg-gray-200 transition-colors rounded-sm">
+            <ExternalLink size={18} /> Live Preview
+          </a>
+          <a id="project-modal-source" href="#" target="_blank" class="flex items-center justify-center gap-2 w-full bg-white/10 border border-white/20 text-white py-4 font-bold uppercase tracking-wider hover:bg-white/20 transition-colors rounded-sm">
+            <Github size={18} /> Source Code
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <script>
-  function autoScaleProjectStage() {
-    const stage = document.getElementById("project-stage");
-    if (!stage) return;
+  import { gsap, ScrollTrigger, Observer, horizontalLoop } from "../Script/gsap-utils";
 
-    const baseWidth = 1920;
-    const baseHeight = 1080;
+  let marqueeObserver: ReturnType<typeof Observer.create> | null = null;
 
-    const scale = Math.min(
-      window.innerWidth / baseWidth,
-      window.innerHeight / baseHeight
-    );
+  function initProjectPage() {
+    const page = document.getElementById("ProjectPage");
+    const body = document.getElementById("project-body");
+    
+    // Elements for Hover Preview (Kotak Kecil)
+    const preview = document.getElementById("project-preview");
+    const previewIframe = document.getElementById("project-preview-iframe") as HTMLIFrameElement;
+    
+    // Elements for Full Modal
+    const modal = document.getElementById("project-modal");
+    const modalCloseBtn = document.getElementById("project-modal-close");
+    const modalIframe = document.getElementById("project-modal-iframe") as HTMLIFrameElement;
+    const modalTitle = document.getElementById("project-modal-title");
+    const modalDesc = document.getElementById("project-modal-desc");
+    const modalTags = document.getElementById("project-modal-tags");
+    const modalDeploy = document.getElementById("project-modal-deploy") as HTMLAnchorElement;
+    const modalSource = document.getElementById("project-modal-source") as HTMLAnchorElement;
 
-    stage.style.left = "50%";
-    stage.style.top = "50%";
-    stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    if (!page || !body) return;
+
+    let isModalOpen = false;
+
+    // --- GSAP Setup & Animations ---
+    ScrollTrigger.getAll().forEach((st) => st.kill());
+    marqueeObserver?.kill();
+    marqueeObserver = null;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1024px)", () => {
+      // Marquee
+      const marqueeRail = document.querySelector<HTMLElement>(".project-marquee");
+      const marqueeItems = gsap.utils.toArray<HTMLElement>(".project-marquee-item");
+      let marqueeTl: gsap.core.Timeline | undefined;
+
+      if (marqueeItems.length) {
+        marqueeTl = horizontalLoop(marqueeItems, { repeat: -1, paddingRight: 30, speed: 0.55 });
+        marqueeObserver = Observer.create({
+          target: window,
+          type: "wheel,touch",
+          preventDefault: false,
+          onChangeY(self) {
+            if (!marqueeRail || !marqueeTl) return;
+            const factor = self.deltaY < 0 ? -2.5 : 2.5;
+            gsap.timeline({ defaults: { ease: "none" } })
+              .to(marqueeTl, { timeScale: factor * 2, duration: 0.2, overwrite: true })
+              .to(marqueeTl, { timeScale: factor / 2, duration: 0.8 }, "+=0.2");
+          },
+        });
+      }
+
+      // Card intro animation
+      gsap.from(".project-card", {
+        scrollTrigger: { trigger: body, start: "top 80%", toggleActions: "play none none reverse" },
+        y: 32, opacity: 0, stagger: 0.06, duration: 0.6, ease: "power3.out",
+      });
+
+      return () => {
+        marqueeTl?.kill();
+        marqueeObserver?.kill();
+      };
+    });
+
+    mm.add("(max-width: 1023px)", () => {
+      gsap.from(".project-card", {
+        scrollTrigger: { trigger: "#project-mobile", start: "top 85%", toggleActions: "play none none reverse" },
+        x: -20, opacity: 0, stagger: 0.05, duration: 0.5, ease: "power2.out",
+      });
+    });
+
+    // --- Hover Preview Logic (Kotak Kecil Desktop) ---
+    const allCards = document.querySelectorAll(".project-card");
+    
+    allCards.forEach((card) => {
+      let align: ((ev: MouseEvent) => void) | null = null;
+
+      // Mouse Enter (Tampilkan preview kecil)
+      card.addEventListener("mouseenter", (e) => {
+        if (!preview || !previewIframe || window.innerWidth < 1024 || isModalOpen) return;
+        
+        const yt = card.getAttribute("data-yt");
+        if (yt) previewIframe.src = `https://www.youtube.com/embed/${yt}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=${yt}`;
+        
+        gsap.to(card, { scale: 1.02, duration: 0.3, ease: "power2.out", overwrite: true });
+        
+        preview.style.display = "flex";
+        gsap.to(preview, { opacity: 1, duration: 0.2, ease: "power2.out" });
+
+        align = (ev: MouseEvent) => {
+          gsap.set(preview, { x: ev.clientX + 20, y: ev.clientY + 20 });
+        };
+        align(e as MouseEvent);
+        card.addEventListener("mousemove", align);
+      });
+
+      // Mouse Leave (Sembunyikan preview kecil)
+      card.addEventListener("mouseleave", () => {
+        if (window.innerWidth >= 1024) {
+          gsap.to(card, { scale: 1, duration: 0.3, ease: "power2.out" });
+        }
+        gsap.to(preview, {
+          opacity: 0,
+          duration: 0.15,
+          onComplete: () => {
+            if(preview) preview.style.display = "none";
+            if (previewIframe) previewIframe.src = "";
+          },
+        });
+        if (align) card.removeEventListener("mousemove", align);
+      });
+
+      // --- FULL MODAL LOGIC (Klik Card) ---
+      card.addEventListener("click", () => {
+        if (!modal) return;
+        isModalOpen = true;
+
+        if (preview) {
+          gsap.killTweensOf(preview);
+          preview.style.display = "none";
+          preview.style.opacity = "0";
+          previewIframe.src = "";
+        }
+
+        const yt = card.getAttribute("data-yt");
+        const title = card.getAttribute("data-title");
+        const desc = card.getAttribute("data-desc");
+        const deploy = card.getAttribute("data-deploy");
+        const source = card.getAttribute("data-source");
+        const tags = card.getAttribute("data-tags")?.split(",") || [];
+
+        if (modalTitle) modalTitle.textContent = title;
+        if (modalDesc) modalDesc.textContent = desc;
+        if (modalDeploy) modalDeploy.href = deploy || "#";
+        if (modalSource) modalSource.href = source || "#";
+        
+        if (modalTags) {
+          modalTags.innerHTML = tags.map(t => 
+            `<span class="rounded-full border border-gray-500 text-gray-300 px-3 py-1 font-mono text-[10px] uppercase">${t.trim()}</span>`
+          ).join('');
+        }
+
+        if (yt && modalIframe) {
+          modalIframe.src = `https://www.youtube.com/embed/${yt}?autoplay=1&rel=0`;
+        }
+
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+        gsap.to(modal, { opacity: 1, duration: 0.3, ease: "power2.out" });
+      });
+    });
+
+    const closeModal = () => {
+      if (!modal) return;
+      gsap.to(modal, {
+        opacity: 0,
+        duration: 0.2,
+        onComplete: () => {
+          modal.style.display = "none";
+          isModalOpen = false;
+          if (modalIframe) modalIframe.src = "";
+          document.body.style.overflow = "";
+        }
+      });
+    };
+
+    if (modalCloseBtn) modalCloseBtn.addEventListener("click", closeModal);
+    
+    if (modal) {
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+      });
+    }
+    
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isModalOpen) closeModal();
+    });
+
+    ScrollTrigger.refresh();
   }
 
-  document.addEventListener("DOMContentLoaded", autoScaleProjectStage);
-  window.addEventListener("resize", autoScaleProjectStage);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initProjectPage);
+  } else {
+    initProjectPage();
+  }
+
+  window.addEventListener("load", () => ScrollTrigger.refresh());
+  window.addEventListener("resize", () => ScrollTrigger.refresh());
+  document.addEventListener("astro:page-load", initProjectPage);
 </script>
+
+<style>
+  .project-marquee-rail { transform: translateZ(0); }
+  .project-banner { position: sticky; top: 0; }
+</style>

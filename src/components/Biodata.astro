@@ -2,10 +2,8 @@
 import "../styles/global.css";
 ---
 
-<!-- Outer Container: Mengunci tampilan seukuran layar penuh -->
 <section class="relative mt-40 w-screen h-screen overflow-hidden flex items-center justify-center bg-white" id="BiodataPage">
   
-  <!-- Canvas Stage: Dikunci pada resolusi standar 1920x1080 -->
   <div id="game-stage-biodata" class="w-[1920px] h-[1080px] relative origin-center shrink-0">
     <div class="flex flex-col items-center h-full p-16">
       
@@ -20,20 +18,17 @@ import "../styles/global.css";
       <div class="absolute flex flex-col items-center text-black text-3xl top-100 left-60 p-1 space-y-4">
         
         <div class="absolute w-[600px] p-6 flex flex-col justify-center left-60 top-6/7 -translate-y-1/2">
-          <!-- Baris Atas: Title (Diatur ke Kanan) -->
           <div class="flex flex-col items-end w-full mb-4">
-            <h1 id="dynamic-title" class="text-black text-4xl font-bold text-right transition-opacity duration-300">[Title]</h1>
+            <h1 id="dynamic-title" class="text-black text-4xl font-bold text-right">[Title]</h1>
           </div>
 
-          <!-- Baris Bawah: Paragraf (Diatur ke Kiri) -->
           <div class="flex flex-col items-start w-full h-[250px]">
-            <p id="dynamic-desc" class="text-black text-left text-base leading-relaxed transition-opacity duration-300">
+            <p id="dynamic-desc" class="text-black text-left text-base leading-relaxed">
               Pilih menu di bawah untuk melihat detail informasi.
             </p>
           </div>
         </div>
 
-        <!-- Arrow Up -->
         <div class="w-full">
           <div class="mb-2 text-center">
             <center>
@@ -42,7 +37,6 @@ import "../styles/global.css";
           </div>
         </div>
 
-        <!-- Menu Items (Diberi class 'menu-btn' dan 'data-target' untuk JS) -->
 <div class="w-full menu-btn cursor-pointer bg-black hover:text-gray-500 transition-colors" data-target="personal">
   <div class="mb-2 px-4 py-1 text-2xl font-bold tracking-tighter text-white">
     
@@ -68,7 +62,6 @@ import "../styles/global.css";
             Purpose</div>
         </div>
 
-        <!-- Arrow Down -->
         <div class="w-full">
           <div class="mb-2 text-center">
             <center>
@@ -78,19 +71,17 @@ import "../styles/global.css";
         </div>
       </div>
 
-      <!-- Gambar Dinamis -->
       <div class="absolute w-[600px] p-6 flex flex-col justify-center left-200 top-0 z-[-1] -translate-y-1/2">
         <img
           id="dynamic-img"
           src="/bg1.jpg"
           alt="Rucky"
-          class="w-120 h-210 absolute left-70 top-30 mix-blend-plus-lighter transition-opacity duration-500"
+          class="w-120 h-210 absolute left-70 top-30 mix-blend-plus-lighter"
         />
       </div>
 
-      <!-- Teks Ekstra Dinamis (Text1) -->
       <div class="absolute w-[600px] p-6 flex flex-col justify-center left-390 top-150 text-black text-4xl -translate-y-1/2">
-        <p id="dynamic-extra" class="font-bold transition-all duration-300">PPLG_</p>
+        <p id="dynamic-extra" class="font-bold">PPLG_</p>
       </div>
 
       <div class="absolute z-[-2] left-120 top-120 -translate-y-1/2 pointer-events-none font-bold">
@@ -111,9 +102,9 @@ import "../styles/global.css";
   </div>
 </section>
 
-<!-- Script Logic: Scaling dan DOM Manipulation -->
 <script>
-  // 1. Data Konten Dinamis
+  import { glitchTransition } from "../Script/gsap-utils";
+
   const biodataContent = {
     personal: {
       title: "[Personal Info]",
@@ -152,7 +143,6 @@ import "../styles/global.css";
     }
   };
 
-  // 2. Fungsi Skala Otomatis
   function autoScaleBiodataStage() {
     const stage = document.getElementById('game-stage-biodata');
     if (!stage) return;
@@ -166,7 +156,6 @@ import "../styles/global.css";
     stage.style.transform = `scale(${scale})`;
   }
 
-  // 3. Fungsi Interaksi Menu (DOM Manipulation)
   function initInteractions() {
     const menuButtons = document.querySelectorAll('.menu-btn');
     const titleEl = document.getElementById('dynamic-title');
@@ -174,49 +163,40 @@ import "../styles/global.css";
     const imgEl = document.getElementById('dynamic-img');
     const extraEl = document.getElementById('dynamic-extra');
     const counterEl = document.getElementById('dynamic-counter');
+    const glitchTargets = ['#dynamic-title', '#dynamic-desc', '#dynamic-img', '#dynamic-extra', '#dynamic-counter'];
+    let switching = false;
+
+    function applyContent(data) {
+      titleEl.textContent = data.title;
+      descEl.textContent = data.desc;
+      imgEl.src = data.img;
+      extraEl.textContent = data.extra;
+      counterEl.textContent = data.counter;
+    }
 
     menuButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Reset styling semua tombol
-        menuButtons.forEach(b => {
-          b.classList.remove('font-bold', 'text-blue-600'); // Hapus state aktif
-        });
+        if (switching) return;
+        switching = true;
 
-        // Tambah state aktif ke tombol yang diklik
-        btn.classList.add('font-bold', 'text-black');
+        menuButtons.forEach(b => b.classList.remove('ring-2', 'ring-[#ffc994]'));
+        btn.classList.add('ring-2', 'ring-[#ffc994]');
 
-        // Ambil data berdasarkan data-target
         const target = btn.getAttribute('data-target');
         const data = biodataContent[target];
 
-        // Efek fade out singkat (opsional)
-        titleEl.style.opacity = 0;
-        descEl.style.opacity = 0;
-        imgEl.style.opacity = 0;
-
-        setTimeout(() => {
-          // Update DOM HTML
-          titleEl.textContent = data.title;
-          descEl.textContent = data.desc;
-          imgEl.src = data.img;
-          extraEl.textContent = data.extra;
-          counterEl.textContent = data.counter;
-
-          // Fade in kembali
-          titleEl.style.opacity = 1;
-          descEl.style.opacity = 1;
-          imgEl.style.opacity = 1;
-        }, 150); // Waktu transisi menyesuaikan Tailwind duration
+        glitchTransition(glitchTargets, () => applyContent(data)).eventCallback('onComplete', () => {
+          switching = false;
+        });
       });
     });
 
-    // Otomatis klik menu pertama saat halaman dimuat
     if (menuButtons.length > 0) {
-      menuButtons[0].click();
+      menuButtons[0].classList.add('ring-2', 'ring-[#ffc994]');
+      applyContent(biodataContent.personal);
     }
   }
 
-  // Menjalankan script saat halaman di-load dan di-resize
   document.addEventListener('DOMContentLoaded', () => {
     autoScaleBiodataStage();
     initInteractions();

@@ -2,112 +2,122 @@
 import "../styles/global.css";
 ---
 
-<div class="w-screen h-[300px] bg-black"></div>
-
 <section
   id="MediaPage"
   class="relative w-screen h-screen overflow-hidden flex items-center justify-center bg-black"
 >
 
-
-
   <div
     id="media-stage"
     class="absolute w-[1920px] h-[1080px] origin-center shrink-0"
   >
-    <div class="relative h-full pl-20">
+    <!-- Tambahan padding kiri (pl-[100px]) untuk memberi jarak dari sidebar kiri -->
+    <div class="relative h-full pl-[100px]">
       <div class="flex flex-col items-start h-full">
-        
+
         <!-- Header Kiri Atas -->
-        <div class="absolute top-20 left-20 z-10">
-          <div class="flex items-center space-x-2">
-            <div class="w-8 h-8 border-2 border-white flex items-center justify-center">
-              <div class="w-4 h-4 bg-white"></div>
+        <div class="absolute top-[80px] left-[100px] z-20">
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 border-[3px] border-white flex items-center justify-center">
+              <div class="w-3.5 h-3.5 bg-white"></div>
             </div>
-            <h2 class="text-4xl text-white font-bold tracking-widest uppercase">
+            <h2 class="text-[2rem] text-white font-bold tracking-[0.2em] uppercase">
               MEDIA
             </h2>
           </div>
         </div>
 
-        <!-- Background Layar Penuh -->
-        <div class="absolute top-0 left-0 z-[-100] h-screen w-full">
-          <img 
-            id="main-bg" 
-            src="" 
-            alt="Background" 
-            class="w-full h-full object-cover opacity-60 blur-md transition-all duration-500 scale-105"
-          />
-          <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+        <!-- Background Video (autoplay, muted, loop) -->
+        <div class="absolute top-0 left-0 z-0 h-full w-full overflow-hidden">
+          <!-- Hapus blur-md dan paskan iframe untuk menghindari stretch -->
+          <div id="main-bg-wrap" class="absolute inset-0 scale-[1.05] opacity-80 transition-opacity duration-500">
+            <iframe
+              id="main-bg"
+              class="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+              src=""
+              title="Background preview"
+              allow="autoplay; encrypted-media"
+              frameborder="0"
+            ></iframe>
+          </div>
+          <!-- Gradien hitam agar teks putih tetap terbaca tanpa perlu di-blur -->
+          <div class="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
         </div>
 
         <!-- Konten Utama Kiri -->
-        <div class="absolute top-[40%] left-20 right-300 flex flex-col items-start text-white w-1/2">
-          <div class="flex items-center space-x-4 mb-2">
-            <span id="media-category" class="bg-white/20 px-3 py-1 rounded text-sm font-semibold tracking-wider">CATEGORY</span>
-            <p id="media-date" class="font-bold tracking-widest text-lg" style=" color:#FF7873
-
-            ">
+        <div class="absolute top-[35%] left-[100px] z-10 flex w-full max-w-2xl flex-col items-start text-white">
+          <div class="flex items-center space-x-4 mb-4">
+            <span id="media-category" class="bg-white/20 px-3 py-1 rounded text-sm font-bold tracking-widest uppercase">CATEGORY</span>
+            <p id="media-date" class="font-bold tracking-[0.15em] text-lg" style="color:#FF7873">
               2026-00-00
             </p>
           </div>
 
-          <h1 id="media-title" class="text-5xl font-bold my-4 leading-tight transition-opacity duration-300">
+          <h1 id="media-title" class="text-6xl font-extrabold my-4 leading-[1.1]">
             JUDUL MEDIA
           </h1>
 
-          <p id="media-desc" class="text-lg text-gray-300 mb-8 max-w-2xl transition-opacity duration-300">
+          <p id="media-desc" class="text-xl text-gray-300 mb-10 max-w-xl leading-relaxed">
             (DESKRIPSI MEDIA)
           </p>
 
           <div class="flex space-x-4">
-            <button class="bg-[#FF7873] hover:bg-[#FF7873] text-black font-bold flex items-center justify-center w-16 h-12 rounded transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+            <button
+              id="btn-play"
+              type="button"
+              class="bg-[#FF7873] hover:bg-[#ff9490] text-black font-bold flex items-center justify-center w-20 h-14 rounded-md transition-colors group shadow-[0_0_20px_rgba(255,120,115,0.4)]"
+              aria-label="Play video"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play group-hover:scale-110 transition-transform"><polygon points="6 3 20 12 6 21 6 3"/></svg>
             </button>
-            <button class="bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-6 h-12 flex items-center rounded transition-colors backdrop-blur-sm">
+            <button class="bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-8 h-14 flex items-center rounded-md transition-colors backdrop-blur-sm">
               More Videos
             </button>
           </div>
         </div>
 
-        <p class="absolute bottom-20 left-20 mt-6 text-gray-400">
-          V.1-Entry&#8968;<span id="media-counter">3</span>/10&#8969;
+        <!-- Garis Aksen (Posisikan di bawah agar tidak tumpang tindih dengan teks deskripsi) -->
+        <div class="absolute bottom-[160px] left-0 w-[55%] h-[2px] bg-[#FF7873] z-10 shadow-[0_0_10px_rgba(255,120,115,0.5)]"></div>
+        <div class="absolute bottom-[160px] left-[55%] w-[45%] h-[1px] bg-white/20 z-10"></div>
+
+        <p class="absolute bottom-14 left-[100px] z-10 mt-6 text-gray-400 font-medium tracking-wide">
+          V.1-Entry &#8968; <span id="media-counter" class="text-white font-bold">3</span> / 10 &#8969;
         </p>
 
-        <!-- Garis Aksen Kuning -->
-        <div class="absolute bottom-[350px] left-0 w-[60%] h-1 bg-[#FF7873] z-10"></div>
-        <div class="absolute bottom-[350px] left-[60%] w-[40%] h-[1px] bg-white/30 z-10"></div>
+        <!-- Carousel Kanan Bawah (Perbaikan Layout) -->
+        <div class="absolute bottom-[60px] right-[60px] z-20">
+          <div class="flex items-center justify-center space-x-6 relative">
 
-        <!-- Carousel Kanan Bawah -->
-        <div class="absolute bottom-10 right-10 z-20">
-          <div class="flex items-end space-x-4">
-            
             <!-- Thumbnail Kiri (Previous) -->
-            <div class="relative w-[240px] h-[135px] group cursor-pointer" id="card-prev">
-              <img id="thumb-prev" src="" alt="" class="w-full h-full object-cover opacity-50 group-hover:opacity-80 transition-opacity" />
-              <div class="absolute inset-0 bg-black/50"></div>
+            <div class="relative w-[220px] h-[124px] group cursor-pointer overflow-hidden rounded-lg shrink-0" id="card-prev">
+              <img id="thumb-prev" src="" alt="" class="media-thumb w-full h-full object-cover opacity-40 group-hover:opacity-100 transition-opacity duration-300" />
+              <div class="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors duration-300"></div>
             </div>
 
-            <!-- Tombol Navigasi Kiri (Menggunakan class, bukan id ganda) -->
-            <button type="button" class="btn-prev bg-white hover:bg-gray-200 text-black w-10 h-10 rounded-full flex items-center justify-center absolute left-[210px] bottom-[50px] z-30 transition-transform hover:scale-110 shadow-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            <!-- Tombol Prev -->
+            <button type="button" class="btn-prev bg-white hover:bg-gray-200 text-black w-12 h-12 rounded-full flex items-center justify-center absolute left-[208px] z-30 transition-transform hover:scale-110 shadow-[0_4px_14px_rgba(0,0,0,0.5)]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             </button>
 
             <!-- Thumbnail Tengah (Active) -->
-            <div class="relative w-[340px] h-[190px] border-4 border-[#FF7873] shadow-2xl scale-105 z-20">
-              <img id="thumb-curr" src="" alt="" class="w-full h-full object-cover" />
-              <div class="absolute top-2 left-2 bg-black/60 px-2 py-1 text-xs text-white">PLAYING</div>
+            <div class="relative w-[340px] h-[190px] border-[3px] border-[#FF7873] shadow-[0_10px_30px_rgba(0,0,0,0.6)] z-20 overflow-hidden cursor-pointer rounded-xl shrink-0" id="card-curr">
+              <img id="thumb-curr" src="" alt="" class="media-thumb w-full h-full object-cover" />
+              <div class="absolute top-3 left-3 bg-black/80 backdrop-blur-sm px-3 py-1.5 text-xs font-bold tracking-widest text-white rounded">PLAYING</div>
+              <div class="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 hover:opacity-100 transition-opacity duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="white" class="drop-shadow-lg"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+              </div>
             </div>
 
-            <!-- Tombol Navigasi Kanan (Menggunakan class, bukan id ganda) -->
-            <button type="button" class="btn-next bg-white hover:bg-gray-200 text-black w-10 h-10 rounded-full flex items-center justify-center absolute right-[210px] bottom-[50px] z-30 transition-transform hover:scale-110 shadow-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            <!-- Tombol Next -->
+            <button type="button" class="btn-next bg-white hover:bg-gray-200 text-black w-12 h-12 rounded-full flex items-center justify-center absolute right-[208px] z-30 transition-transform hover:scale-110 shadow-[0_4px_14px_rgba(0,0,0,0.5)]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             </button>
 
             <!-- Thumbnail Kanan (Next) -->
-            <div class="relative w-[240px] h-[135px] group cursor-pointer" id="card-next">
-              <img id="thumb-next" src="" alt="" class="w-full h-full object-cover opacity-50 group-hover:opacity-80 transition-opacity" />
-              <div class="absolute inset-0 bg-black/50"></div>
+            <div class="relative w-[220px] h-[124px] group cursor-pointer overflow-hidden rounded-lg shrink-0" id="card-next">
+              <img id="thumb-next" src="" alt="" class="media-thumb w-full h-full object-cover opacity-40 group-hover:opacity-100 transition-opacity duration-300" />
+              <div class="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors duration-300"></div>
             </div>
 
           </div>
@@ -116,38 +126,47 @@ import "../styles/global.css";
       </div>
     </div>
   </div>
+
+  <!-- Modal player (klik Play / thumbnail tengah) -->
+  <div
+    id="video-modal"
+    class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-sm"
+  >
+    <button
+      id="video-modal-close"
+      type="button"
+      aria-label="Close video"
+      class="absolute top-6 right-6 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <div class="aspect-video w-full max-w-5xl px-4">
+      <iframe
+        id="video-modal-iframe"
+        class="h-full w-full rounded-lg shadow-2xl"
+        src=""
+        title="Video player"
+        allow="autoplay; encrypted-media; fullscreen"
+        allowfullscreen
+        frameborder="0"
+      ></iframe>
+    </div>
+  </div>
 </section>
 
-<script is:inline>
+<script>
+  import { initSimpleStageScale, gsap } from "../Script/gsap-utils";
+
   function initMediaPage() {
-    const stage = document.getElementById("media-stage");
-    if (!stage) return; 
-
-    function autoScaleStage() {
-      const baseWidth = 1920;
-      const baseHeight = 1080;
-      const scaleX = window.innerWidth / baseWidth;
-      const scaleY = window.innerHeight / baseHeight;
-      const scale = Math.min(scaleX, scaleY);
-
-      stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
-      stage.style.left = "50%";
-      stage.style.top = "50%";
-    }
-
-    autoScaleStage();
-    window.addEventListener("resize", autoScaleStage);
-
-    if (window.mediaCarouselInitialized) return;
-    window.mediaCarouselInitialized = true;
+    initSimpleStageScale("media-stage");
 
     const mediaList = [
       {
         category: "ANIME",
         date: "2026-02-15",
         title: "Eighty-Six: Juggernaut Operations",
-        desc: "Dokumentasi pertempuran skuad Spearhead. Menampilkan taktik manuver lapangan dan komunikasi radio yang intens di medan perang.",
-        ytId: "QxRdIEoeLjo" 
+        desc: "Dokumentasi pertempuran skuad Spearhead...",
+        ytId: "DFWSf7kyg_k"
       },
       {
         category: "GAMING",
@@ -161,7 +180,7 @@ import "../styles/global.css";
         date: "2025-11-20",
         title: "Arch Linux x Hyprland",
         desc: "Demonstrasi setup Tiling Window Manager kustom. Menampilkan kelancaran workflow untuk proses debugging dan manajemen resource sistem.",
-        ytId: "9sT_M7K6p3c" 
+        ytId: "9sT_M7K6p3c"
       },
       {
         category: "TRADING",
@@ -180,74 +199,119 @@ import "../styles/global.css";
     ];
 
     let currentIndex = 0;
-    const getYtThumbnail = (id) => `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+    let switching = false;
+    let isFirstLoad = true;
 
-    function updateMediaUI() {
+    const getYtThumbnail = (id: string) => `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+    const getYtBgEmbed = (id: string) =>
+      `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3`;
+    const getYtWatchEmbed = (id: string) =>
+      `https://www.youtube.com/embed/${id}?autoplay=1&mute=0&rel=0&modestbranding=1`;
+
+    function setMediaContent(currentData: any, prevData: any, nextData: any) {
+      document.getElementById("media-category")!.textContent = currentData.category;
+      document.getElementById("media-date")!.textContent = currentData.date;
+      document.getElementById("media-title")!.textContent = currentData.title;
+      document.getElementById("media-desc")!.textContent = currentData.desc;
+      document.getElementById("media-counter")!.textContent = (currentIndex + 1).toString();
+
+      (document.getElementById("main-bg") as HTMLIFrameElement).src = getYtBgEmbed(currentData.ytId);
+      (document.getElementById("thumb-prev") as HTMLImageElement).src = getYtThumbnail(prevData.ytId);
+      (document.getElementById("thumb-curr") as HTMLImageElement).src = getYtThumbnail(currentData.ytId);
+      (document.getElementById("thumb-next") as HTMLImageElement).src = getYtThumbnail(nextData.ytId);
+    }
+
+    function updateMediaUI(direction = 1) {
+      if (switching) return;
+
       const prevIndex = currentIndex === 0 ? mediaList.length - 1 : currentIndex - 1;
       const nextIndex = currentIndex === mediaList.length - 1 ? 0 : currentIndex + 1;
-
       const currentData = mediaList[currentIndex];
       const prevData = mediaList[prevIndex];
       const nextData = mediaList[nextIndex];
 
-      const elCategory = document.getElementById("media-category");
-      const elDate = document.getElementById("media-date");
-      const elTitle = document.getElementById("media-title");
-      const elDesc = document.getElementById("media-desc");
-      const elCounter = document.getElementById("media-counter");
+      if (isFirstLoad) {
+        setMediaContent(currentData, prevData, nextData);
+        isFirstLoad = false;
+        return;
+      }
 
-      const bgMain = document.getElementById("main-bg");
-      const thumbPrev = document.getElementById("thumb-prev");
-      const thumbCurr = document.getElementById("thumb-curr");
-      const thumbNext = document.getElementById("thumb-next");
+      switching = true;
+      const slideX = direction >= 0 ? 40 : -40;
 
-      elTitle.style.opacity = "0";
-      elDesc.style.opacity = "0";
-      bgMain.style.opacity = "0.2"; 
+      const tl = gsap.timeline({ onComplete: () => { switching = false; } });
 
-      setTimeout(() => {
-        elCategory.textContent = currentData.category;
-        elDate.textContent = currentData.date;
-        elTitle.textContent = currentData.title;
-        elDesc.textContent = currentData.desc;
-        elCounter.textContent = (currentIndex + 1).toString();
-
-        bgMain.src = getYtThumbnail(currentData.ytId);
-        thumbPrev.src = getYtThumbnail(prevData.ytId);
-        thumbCurr.src = getYtThumbnail(currentData.ytId);
-        thumbNext.src = getYtThumbnail(nextData.ytId);
-
-        elTitle.style.opacity = "1";
-        elDesc.style.opacity = "1";
-        bgMain.style.opacity = "0.6"; 
-      }, 200);
+      tl.to(["#media-title", "#media-desc", "#media-category", "#media-date"], {
+        opacity: 0, y: -12, duration: 0.2, ease: "power2.in",
+      })
+        .to("#main-bg-wrap", { opacity: 0.1, duration: 0.2 }, 0)
+        .to(["#thumb-prev", "#thumb-curr", "#thumb-next"], {
+          opacity: 0, x: slideX, duration: 0.22, stagger: 0.04, ease: "power2.in",
+        }, 0)
+        .call(() => {
+          setMediaContent(currentData, prevData, nextData);
+          gsap.set(["#thumb-prev", "#thumb-curr", "#thumb-next"], { x: -slideX });
+        })
+        .to(["#media-title", "#media-desc", "#media-category", "#media-date"], {
+          opacity: 1, y: 0, duration: 0.35, stagger: 0.04, ease: "power2.out",
+        })
+        .to("#main-bg-wrap", { opacity: 0.8, duration: 0.4, ease: "power2.out" }, "-=0.25")
+        .to(["#thumb-prev", "#thumb-curr", "#thumb-next"], {
+          opacity: (i) => (i === 1 ? 1 : 0.5),
+          x: 0, duration: 0.35, stagger: 0.05, ease: "power3.out",
+        }, "-=0.3");
     }
 
     const goPrev = () => {
       currentIndex = currentIndex === 0 ? mediaList.length - 1 : currentIndex - 1;
-      updateMediaUI();
+      updateMediaUI(-1);
     };
 
     const goNext = () => {
       currentIndex = currentIndex === mediaList.length - 1 ? 0 : currentIndex + 1;
-      updateMediaUI();
+      updateMediaUI(1);
     };
 
-    // Menggunakan querySelectorAll agar semua tombol dengan class terkait berfungsi
+    const modal = document.getElementById("video-modal")!;
+    const modalIframe = document.getElementById("video-modal-iframe") as HTMLIFrameElement;
+
+    function openVideoModal() {
+      const data = mediaList[currentIndex];
+      modalIframe.src = getYtWatchEmbed(data.ytId);
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeVideoModal() {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      modalIframe.src = ""; // stop playback
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("btn-play")!.addEventListener("click", openVideoModal);
+    document.getElementById("card-curr")!.addEventListener("click", openVideoModal);
+    document.getElementById("video-modal-close")!.addEventListener("click", closeVideoModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeVideoModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !modal.classList.contains("hidden")) closeVideoModal();
+    });
+
     document.querySelectorAll(".btn-prev").forEach(btn => btn.addEventListener("click", goPrev));
     document.querySelectorAll(".btn-next").forEach(btn => btn.addEventListener("click", goNext));
-    
-    document.getElementById("card-prev").addEventListener("click", goPrev);
-    document.getElementById("card-next").addEventListener("click", goNext);
 
-    updateMediaUI();
+    document.getElementById("card-prev")!.addEventListener("click", goPrev);
+    document.getElementById("card-next")!.addEventListener("click", goNext);
+
+    updateMediaUI(0);
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initMediaPage);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMediaPage);
   } else {
     initMediaPage();
   }
-  
-  document.addEventListener("astro:page-load", initMediaPage);
 </script>
