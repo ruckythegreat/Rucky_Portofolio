@@ -1,59 +1,86 @@
 ---
 import "../styles/global.css";
 ---
+
+<!-- Ubah height jadi h-auto/min-h-screen di mobile, kembali ke ukuran tetap di desktop -->
 <section
-  class="relative mt-40 w-screen h-screen overflow-hidden flex items-center justify-center bg-black"
+  class="relative w-full min-h-screen overflow-hidden flex items-center justify-center bg-black lg:h-screen lg:w-screen"
   id="EducationHistoryPage"
 >
-  <div id="game-stage" class="w-[1920px] h-[1080px] relative origin-center shrink-0">
-    <div class="flex flex-col items-center h-full p-16">
+  <!-- Stage: Tinggi/lebar statis dimatikan di mobile, kembali absolute 1920x1080 di desktop -->
+  <div id="game-stage" class="w-full h-auto relative origin-center shrink-0 lg:h-[1080px] lg:w-[1920px]">
+    
+    <div class="flex flex-col h-full w-full px-6 py-24 z-10 lg:items-center lg:p-16 lg:static">
       
-      <div class="absolute top-3 left-120">
-        <h2 class="relative text-3xl text-white font-bold">
-          RUCKY: EDUCATION
+      <!-- HEADER -->
+      <div class="mb-10 lg:mb-0 lg:absolute lg:top-3 lg:left-120">
+        <h2 class="text-3xl text-white">
+          RUCKY: EDUCATION 
         </h2>
-        <h2 class="relative text-5xl text-white font-bold">
+        <h2 class="text-4xl md:text-5xl text-white font-bold lg:font-normal">
           HISTORY
         </h2>
       </div>
 
-      <div class="absolute top-150 left-300 flex flex-col items-start text-white">
-        <p class="m-1">RUCKY: EDUCATION-HISTORY</p>
-        <h1 id="edu-title" class="text-5xl m-1">SDN PATRAKOMALA</h1>
+      <!-- KONTEN UTAMA (Teks & Gambar) -->
+      <div class="relative w-full flex flex-col lg:absolute lg:top-150 lg:left-300 lg:w-auto lg:block">
+        
+        <div class="flex flex-col items-start text-white w-full">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-graduation-cap-icon lucide-graduation-cap"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+          <p class="m-1 text-sm lg:text-base">
+            RUCKY: EDUCATION-HISTORY 
+          </p>
+          
+          <h1 id="edu-title" class="text-3xl lg:text-5xl m-1 font-bold lg:font-normal mt-4 lg:mt-1">SDN PATRAKOMALA</h1>
 
-        <p id="edu-desc" class="m-1 max-w-3xl">
-          Masa pendidikan dasar. Mulai belajar banyak hal baru dan berinteraksi dengan lingkungan sekitar. Membangun fondasi awal sebelum mengenal dunia teknologi lebih dalam.
-        </p>
+          <p id="edu-desc" class="m-1 max-w-3xl text-gray-300 lg:text-white mt-4 lg:mt-1">
+            Masa pendidikan dasar. Mulai belajar banyak hal baru dan berinteraksi dengan lingkungan sekitar. Membangun fondasi awal sebelum mengenal dunia teknologi lebih dalam.
+          </p>
+        </div>
 
-        <img id="edu-img" src="/bg3.jpg" alt="" class="absolute right-185 h-200" />
+        <!-- Gambar: Di mobile ada di bawah deskripsi, di desktop kembali ke kanan -->
+        <img id="edu-img" src="/bg3.jpg" alt="" class="w-full h-64 object-cover mt-8 rounded-lg lg:rounded-none lg:mt-0 lg:w-auto lg:absolute lg:right-185 lg:top-0 lg:h-150" />
       </div>
-
-      <div class="absolute top-[680px] left-[300px] flex flex-col items-start text-white">
-        <p id="edu-counter" class="absolute -top-8 left-[120px] text-gray-400">
+      
+      <!-- NAVIGASI & LIST -->
+      <div class="relative w-full mt-12 flex flex-col items-start text-white lg:absolute lg:top-[680px] lg:left-[300px] lg:mt-0 lg:w-auto lg:block">
+            
+        <p id="edu-counter" class="text-gray-400 mb-4 lg:mb-0 lg:absolute lg:-top-8 lg:left-[120px]">
           2/4
         </p>
         
-        <ul class="space-y-2">
-          <li class="edu-list-item cursor-pointer px-2 transition-all duration-200" data-index="0">TK</li>
-          <li class="edu-list-item cursor-pointer px-2 transition-all duration-200 font-bold bg-[#FF7873]" data-index="1">SDN PATRA</li>
-          <li class="edu-list-item cursor-pointer px-2 transition-all duration-200" data-index="2">SMPN 7</li>
-          <li class="edu-list-item cursor-pointer px-2 transition-all duration-200" data-index="3">SMKN 2</li>
+        <!-- List: Di mobile jadi flex-row wrap (sejajar horizontal), di desktop vertikal -->
+        <ul class="flex flex-row flex-wrap gap-2 lg:gap-0 lg:flex-col lg:items-start lg:space-y-3 mb-8 lg:mb-0">
+          <li class="edu-list-item cursor-pointer px-3 py-2 text-sm lg:text-base lg:px-4 font-bold uppercase inline-block border border-gray-800 lg:border-none" data-index="0">TK</li>
+          <li class="edu-list-item cursor-pointer px-3 py-2 text-sm lg:text-base lg:px-4 font-bold uppercase inline-block border border-gray-800 lg:border-none" data-index="1">SDN PATRA</li>
+          <li class="edu-list-item cursor-pointer px-3 py-2 text-sm lg:text-base lg:px-4 font-bold uppercase inline-block border border-gray-800 lg:border-none" data-index="2">SMPN 7</li>
+          <li class="edu-list-item cursor-pointer px-3 py-2 text-sm lg:text-base lg:px-4 font-bold uppercase inline-block border border-gray-800 lg:border-none" data-index="3">SMKN 2</li>
         </ul>
 
-        <div id="btn-prev" class="bg-[#FF7873] w-10 h-10 absolute left-[0px] top-50 flex items-center justify-center cursor-pointer hover:bg-orange-300 transition-colors">
-          <p class="text-2xl text-black font-bold">&lt;</p>
-        </div>
+        <!-- Tombol Prev/Next -->
+        <div class="flex flex-row gap-4 lg:block">
+          <div id="btn-prev" class="bg-black text-white border border-white/20 lg:border-none w-12 h-12 lg:w-10 lg:h-10 relative lg:absolute lg:left-[0px] lg:top-50 flex items-center justify-center cursor-pointer">
+            <p class="text-2xl font-bold pointer-events-none">&lt;</p>
+          </div>
 
-        <div id="btn-next" class="bg-[#FF7873] w-10 h-10 absolute left-[70px] top-50 flex items-center justify-center cursor-pointer hover:bg-orange-300 transition-colors">
-          <p class="text-2xl text-black font-bold">&gt;</p>
+          <div id="btn-next" class="bg-black text-white border border-white/20 lg:border-none w-12 h-12 lg:w-10 lg:h-10 relative lg:absolute lg:left-[70px] lg:top-50 flex items-center justify-center cursor-pointer">
+            <p class="text-2xl font-bold pointer-events-none">&gt;</p>
+          </div>
         </div>
       </div>
 
-      <p class="relative top-200 left-180 mt-6 text-gray-400 max-w-3xl">
-        V.1-Entry&#8968;2/10&#8969;
+      <!-- DEKORASI (Disembunyikan di Mobile) -->
+      <p class="hidden lg:block relative top-200 left-180 mt-6 text-gray-400 max-w-3xl">
+        V.1-Entry&#8968;2:10&#8969;
       </p>
 
-      <div class="top-15 absolute h-[120px] w-[19000px] flex z-[-3] bg-[rgb(255,201,148)] text-4xl -translate-y-1/2">
+      <div class="hidden lg:flex top-15 absolute h-[120px] w-[19000px] z-[-3] bg-[rgb(255,201,148)] text-4xl -translate-y-1/2">
+      </div>
+
+      <div class="hidden lg:flex absolute top-330 right-32 items-center">
+        <div class="w-26 h-1 bg-[#E22F80]"></div>
+        <div class="w-22 h-1 bg-[#FF7873]"></div>
+        <div class="w-18 h-1 bg-[#ffc994]"></div>
       </div>
 
     </div>
@@ -62,6 +89,7 @@ import "../styles/global.css";
 
 <script>
   import { glitchTransition } from "../Script/gsap-utils";
+  import gsap from "gsap";
 
   const educationData = [
     {
@@ -92,7 +120,9 @@ import "../styles/global.css";
 
   let currentIndex = 1;
   let switching = false;
-  const glitchTargets = ['#edu-title', '#edu-desc', '#edu-img', '#edu-counter'];
+  // Cek eksistensi elemen agar glitch tidak error jika dipanggil
+  const glitchTargets = ['#edu-title', '#edu-desc', '#edu-img', '#edu-counter'].filter(selector => document.querySelector(selector) !== null);
+  const ACCENT_COLOR = '#FF7873';
 
   function updateEducationUI(index, animate = true) {
     const titleEl = document.getElementById('edu-title');
@@ -102,24 +132,45 @@ import "../styles/global.css";
     const listItems = document.querySelectorAll('.edu-list-item');
     const data = educationData[index];
 
+    const isMobile = window.innerWidth < 1024;
+    const moveXActive = isMobile ? 0 : 15; // Jangan geser X di mobile
+
     const apply = () => {
-      titleEl.textContent = data.title;
-      descEl.textContent = data.desc;
-      imgEl.src = data.img;
-      counterEl.textContent = `${index + 1}/${educationData.length}`;
+      if (titleEl) titleEl.textContent = data.title;
+      if (descEl) descEl.textContent = data.desc;
+      if (imgEl) imgEl.src = data.img;
+      if (counterEl) counterEl.textContent = `${index + 1}/${educationData.length}`;
+      
       listItems.forEach((li, i) => {
-        if (i === index) li.classList.add('font-bold', 'bg-[#FF7873]');
-        else li.classList.remove('font-bold', 'bg-[#FF7873]');
+        if (i === index) {
+          li.classList.add('active-edu');
+          gsap.to(li, { x: moveXActive, backgroundColor: ACCENT_COLOR, color: '#000000', duration: 0.3 });
+        } else {
+          li.classList.remove('active-edu');
+          gsap.to(li, { x: 0, backgroundColor: 'transparent', color: '#ffffff', duration: 0.3 });
+        }
       });
     };
 
-    if (animate) glitchTransition(glitchTargets, apply);
-    else apply();
+    if (animate) {
+      glitchTransition(glitchTargets, apply).eventCallback('onComplete', () => {
+        switching = false;
+      });
+    } else {
+      apply();
+      switching = false;
+    }
   }
 
   function autoScaleStage() {
     const stage = document.getElementById('game-stage');
     if (!stage) return;
+
+    // MATIKAN SCALING PAKSA DI MOBILE
+    if (window.innerWidth < 1024) {
+      stage.style.transform = '';
+      return;
+    }
 
     const baseWidth = 1920;
     const baseHeight = 1080;
@@ -132,24 +183,53 @@ import "../styles/global.css";
     const btnNext = document.getElementById('btn-next');
     const listItems = document.querySelectorAll('.edu-list-item');
 
-    btnPrev.addEventListener('click', () => {
-      currentIndex--;
-      if (currentIndex < 0) {
-        currentIndex = educationData.length - 1;
-      }
-      updateEducationUI(currentIndex);
-    });
+    // Helper untuk pergerakan hover
+    const getMoveX = (offset) => window.innerWidth < 1024 ? 0 : offset;
 
-    btnNext.addEventListener('click', () => {
-      currentIndex++;
-      if (currentIndex >= educationData.length) {
-        currentIndex = 0;
-      }
-      updateEducationUI(currentIndex);
-    });
+    if(btnPrev) {
+      btnPrev.addEventListener('mouseenter', () => gsap.to(btnPrev, { x: getMoveX(-5), backgroundColor: ACCENT_COLOR, color: '#000000', duration: 0.3 }));
+      btnPrev.addEventListener('mouseleave', () => gsap.to(btnPrev, { x: 0, backgroundColor: '#000000', color: '#ffffff', duration: 0.3 }));
+      btnPrev.addEventListener('click', () => {
+        if (switching) return;
+        switching = true;
+        currentIndex--;
+        if (currentIndex < 0) {
+          currentIndex = educationData.length - 1;
+        }
+        updateEducationUI(currentIndex);
+      });
+    }
+
+    if(btnNext) {
+      btnNext.addEventListener('mouseenter', () => gsap.to(btnNext, { x: getMoveX(5), backgroundColor: ACCENT_COLOR, color: '#000000', duration: 0.3 }));
+      btnNext.addEventListener('mouseleave', () => gsap.to(btnNext, { x: 0, backgroundColor: '#000000', color: '#ffffff', duration: 0.3 }));
+      btnNext.addEventListener('click', () => {
+        if (switching) return;
+        switching = true;
+        currentIndex++;
+        if (currentIndex >= educationData.length) {
+          currentIndex = 0;
+        }
+        updateEducationUI(currentIndex);
+      });
+    }
 
     listItems.forEach((li) => {
+      li.addEventListener('mouseenter', () => {
+        if (!li.classList.contains('active-edu')) {
+          gsap.to(li, { x: getMoveX(15), backgroundColor: ACCENT_COLOR, color: '#000000', duration: 0.3 });
+        }
+      });
+
+      li.addEventListener('mouseleave', () => {
+        if (!li.classList.contains('active-edu')) {
+          gsap.to(li, { x: 0, backgroundColor: 'transparent', color: '#ffffff', duration: 0.3 });
+        }
+      });
+
       li.addEventListener('click', (e) => {
+        if (switching || li.classList.contains('active-edu')) return;
+        switching = true;
         const clickedIndex = parseInt(e.target.getAttribute('data-index'));
         currentIndex = clickedIndex;
         updateEducationUI(currentIndex);
@@ -159,7 +239,19 @@ import "../styles/global.css";
     updateEducationUI(currentIndex, false);
   }
 
-  window.addEventListener('resize', autoScaleStage);
+  window.addEventListener('resize', () => {
+    autoScaleStage();
+    // Reset posisi X elemen aktif saat ukuran layar melintasi breakpoint
+    const listItems = document.querySelectorAll('.edu-list-item');
+    listItems.forEach(li => {
+      if(window.innerWidth < 1024) {
+        gsap.set(li, { x: 0 });
+      } else if (li.classList.contains('active-edu')) {
+        gsap.set(li, { x: 15 });
+      }
+    });
+  });
+
   document.addEventListener('DOMContentLoaded', () => {
     autoScaleStage();
     initNavigasi();

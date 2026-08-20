@@ -4,66 +4,103 @@ import "../styles/global.css";
 
 <section
   id="ContactPage"
-  class="relative h-screen w-full overflow-hidden bg-white"
+  class="relative flex w-full items-center justify-center bg-white max-lg:h-auto max-lg:min-h-screen max-lg:overflow-x-hidden lg:h-screen lg:overflow-hidden"
 >
+  <!-- 
+    FOOLPROOF MOBILE OVERRIDE:
+    Mematikan paksaan "scale" dan "translate" dari JS khusus saat di HP,
+    agar layout bisa menyesuaikan layar vertikal (scroll).
+  -->
+  <style>
+    @media (max-width: 1023px) {
+      #contact-stage {
+        transform: none !important;
+        width: 100% !important;
+        height: 100% !important;
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+      }
+    }
+  </style>
+
   <div
     id="contact-stage"
-    class="absolute left-1/2 top-1/2 h-[1080px] w-[1920px] origin-center"
+    class="absolute left-1/2 top-1/2 z-10 origin-center lg:h-[1080px] lg:w-[1920px]"
   >
-    <div class="relative h-[1080px] w-[1920px] px-32 py-24">
-      <div class="mx-auto flex max-w-[1600px] gap-12">
-<aside class="flex w-[110px] flex-col items-center bg-[#ffc994] py-10">
-          <div class="mb-auto text-center">
-            <h3 class="text-4xl font-black">
-                CONNECT
+    
+    <!-- Wrapper Utama -->
+    <div class="relative flex h-full w-full flex-col px-6 py-12 lg:block lg:h-[1080px] lg:w-[1920px] lg:px-32 lg:py-24">
+      
+      <!-- Teks Versi -->
+      <p class="absolute right-6 top-6 text-xs text-gray-400 lg:right-32 lg:top-12 lg:text-lg">
+        V.1-Entry &#8968;0:10&#8969;
+      </p>
+
+      <div class="mx-auto flex h-full max-w-[1600px] flex-col gap-8 lg:flex-row lg:gap-12">
+        
+        <!-- ================= SIDEBAR ================= -->
+        <!-- Di Desktop: Vertikal di kiri | Di Mobile: Menjadi Banner Horizontal memanjang di atas -->
+        <aside class="flex w-full items-center justify-between rounded-xl bg-[#ffc994] px-6 py-4 lg:w-[110px] lg:flex-col lg:rounded-none lg:px-0 lg:py-10">
+          <div class="text-left lg:mb-auto lg:text-center">
+            <h3 class="text-xl font-black lg:text-4xl">
+              CONNECT
             </h3>
           </div>
 
-          <div class="mt-auto">
-            <p class="rotate-90 whitespace-nowrap text-4xl font-black">
+          <div class="lg:mt-auto">
+            <p class="text-xl font-black lg:rotate-90 lg:whitespace-nowrap lg:text-4xl">
               RUCKY
             </p>
           </div>
         </aside>
 
-        <main class="flex-1">
-          <div class="mb-8">
-            <p class="text-sm text-gray-500">
+        <!-- ================= KONTEN UTAMA ================= -->
+        <main class="flex flex-1 flex-col justify-center">
+          <div class="mb-6 lg:mb-8">
+            <p class="mb-2 text-xs text-gray-500 lg:text-sm">
               // Connecting
             </p>
 
-            <h1 class="text-6xl font-black">
+            <h1 class="text-4xl font-black lg:text-6xl">
               LET'S CONNECT
             </h1>
           </div>
 
-          <div class="mb-10 border-b pb-6">
-            <p class="text-2xl">
+          <div class="mb-8 border-b pb-4 lg:mb-10 lg:pb-6">
+            <p class="text-lg lg:text-2xl">
               Find me on these platforms.
             </p>
           </div>
 
-          <div class="grid grid-cols-3 gap-6">
+          <!-- GRID KARTU (1 Kolom di HP, 2 Kolom Tablet, 3 Kolom Desktop) -->
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+            
             <a
               href="https://discord.com/users/YOUR_ID"
               target="_blank"
-              class="group w-360 overflow-hidden rounded-lg border p-8 transition hover:-translate-y-2"
+              class="group w-full overflow-hidden rounded-lg border p-6 transition hover:-translate-y-2 lg:p-8"
             >
-              <h2 class="mb-4 text-4xl font-bold">
+              <h2 class="mb-2 text-2xl font-bold lg:mb-4 lg:text-4xl">
                 Discord
               </h2>
 
-              <p class="text-gray-500">
+              <p class="text-sm text-gray-500 lg:text-base">
                 Chat with me directly.
               </p>
             </a>
+
+            <!-- Bisa Anda tambahkan kartu lain di sini (misal: Email, Twitter, dll) -->
+            
           </div>
         </main>
+
       </div>
     </div>
   </div>
 </section>
 
+<!-- SCRIPT JS TETAP SAMA PERSIS -->
 <script>
   function autoScaleStage() {
     const stage = document.getElementById("contact-stage");
@@ -78,14 +115,10 @@ import "../styles/global.css";
       window.innerHeight / baseHeight
     );
 
-    stage.style.transform =
-      `translate(-50%, -50%) scale(${scale})`;
+    stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
   }
 
   autoScaleStage();
 
-  window.addEventListener(
-    "resize",
-    autoScaleStage
-  );
+  window.addEventListener("resize", autoScaleStage);
 </script>

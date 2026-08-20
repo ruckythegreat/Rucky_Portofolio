@@ -2,86 +2,178 @@
 import "../styles/global.css";
 ---
 
+<!-- Ubah letak pembungkus agar nempel di bawah (bottom) saat mode mobile -->
 <nav
   id="side-nav"
-  class="fixed left-0 top-0 z-50 h-screen w-screen overflow-hidden pointer-events-none"
+  class="fixed inset-x-0 bottom-0 z-50 pointer-events-none lg:left-0 lg:top-0 lg:h-screen lg:w-screen lg:overflow-hidden"
 >
+  <!-- Stage: Tinggi/lebar statis dimatikan di mobile, kembali jadi absolute 1920x1080 di desktop -->
   <div
     id="nav-stage"
-    class="absolute left-0 top-0 h-[1080px] w-[1920px] origin-top-left pointer-events-none"
+    class="relative h-auto w-full pointer-events-none lg:absolute lg:left-0 lg:top-0 lg:h-[1080px] lg:w-[1920px] lg:origin-top-left"
   >
+    <!-- Sidebar / Bottom Bar -->
     <div
-      class="absolute left-0 top-0 flex h-[1080px] w-[80px] flex-col items-center border-r border-slate-800 bg-black py-6 backdrop-blur-sm pointer-events-auto"
+      id="sidebar"
+      class="pointer-events-auto flex w-full flex-row items-center justify-around border-t border-slate-800 bg-black/95 px-2 py-2 backdrop-blur-md lg:absolute lg:left-0 lg:top-0 lg:h-[1080px] lg:w-[80px] lg:flex-col lg:items-start lg:border-r lg:border-t-0 lg:px-0 lg:py-6 lg:overflow-hidden"
     >
+
+      <!-- Logo: Disembunyikan di Mobile agar Tab Bar tetap bersih -->
       <a
         href="#WelcomePage"
-        class="mb-12 flex h-10 w-10 items-center justify-center bg-white font-extrabold text-black"
+        class="hidden lg:flex mb-12 ml-[20px] h-10 w-10 shrink-0 items-center justify-center bg-white font-extrabold text-black"
       >
         R.
       </a>
 
-      <ul class="flex w-full flex-col items-center gap-6">
-        <li class="nav-item group relative w-full">
+      <!-- Navigation List -->
+      <ul class="flex w-full flex-row items-center justify-between gap-1 lg:flex-col lg:items-start lg:gap-2">
+
+        <!-- ==================== WELCOME ==================== -->
+        <li class="nav-item w-auto flex-1 lg:w-full">
           <a
             href="#WelcomePage"
-            class="nav-link flex w-full justify-center py-3 hover:bg-white/10"
+            class="nav-link flex flex-col items-center justify-center py-2 text-slate-400 transition-colors hover:bg-white/10 hover:text-white lg:flex-row lg:py-4 lg:pl-[28px] lg:justify-start lg:w-full"
             title="Welcome"
-            data-label="Welcome"
           >
-            <div class="h-6 w-6 rounded-sm bg-slate-400"></div>
+            <div class="icon-container flex h-6 w-6 shrink-0 items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <path d="M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z" />
+              </svg>
+            </div>
+            <!-- Teks Navigasi disembunyikan di Mobile -->
+            <span class="nav-label hidden whitespace-nowrap text-sm font-bold uppercase tracking-wider lg:block lg:ml-5">
+              Welcome
+            </span>
           </a>
-          <span class="nav-label pointer-events-none absolute left-[88px] top-1/2 -translate-y-1/2 whitespace-nowrap rounded bg-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-black opacity-0">Welcome</span>
         </li>
 
-        <li class="nav-item group relative w-full">
+        <!-- ==================== BIODATA ==================== -->
+        <li class="nav-item w-auto flex-1 lg:w-full">
+          <a
+            href="#BiodataPage"
+            class="nav-link flex flex-col items-center justify-center py-2 text-slate-400 transition-colors hover:bg-white/10 hover:text-white lg:flex-row lg:py-4 lg:pl-[28px] lg:justify-start lg:w-full"
+            title="Biodata"
+          >
+            <div class="icon-container flex h-6 w-6 shrink-0 items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+                <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+                <path d="M16 22a4 4 0 0 0-8 0" />
+                <circle cx="12" cy="15" r="3" />
+              </svg>
+            </div>
+            <span class="nav-label hidden whitespace-nowrap text-sm font-bold uppercase tracking-wider lg:block lg:ml-5">
+              Biodata
+            </span>
+          </a>
+        </li>
+
+        <!-- ==================== EDUCATION ==================== -->
+        <li class="nav-item w-auto flex-1 lg:w-full">
+          <a
+            href="#EducationHistoryPage"
+            class="nav-link flex flex-col items-center justify-center py-2 text-slate-400 transition-colors hover:bg-white/10 hover:text-white lg:flex-row lg:py-4 lg:pl-[28px] lg:justify-start lg:w-full"
+            title="Education"
+          >
+            <div class="icon-container flex h-6 w-6 shrink-0 items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="18" height="18" x="3" y="3" rx="2" />
+                <path d="M7 7v10" />
+                <path d="M11 7v10" />
+                <path d="m15 7 2 10" />
+              </svg>
+            </div>
+            <span class="nav-label hidden whitespace-nowrap text-sm font-bold uppercase tracking-wider lg:block lg:ml-5">
+              Education
+            </span>
+          </a>
+        </li>
+
+        <!-- ==================== MEDIA ==================== -->
+        <li class="nav-item w-auto flex-1 lg:w-full">
           <a
             href="#MediaPage"
-            class="nav-link flex w-full justify-center py-3 hover:bg-white/10"
+            class="nav-link flex flex-col items-center justify-center py-2 text-slate-400 transition-colors hover:bg-white/10 hover:text-white lg:flex-row lg:py-4 lg:pl-[28px] lg:justify-start lg:w-full"
             title="Media"
-            data-label="Media"
           >
-            <div class="h-6 w-6 rounded-full bg-slate-400"></div>
+            <div class="icon-container flex h-6 w-6 shrink-0 items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <path d="M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z" />
+              </svg>
+            </div>
+            <span class="nav-label hidden whitespace-nowrap text-sm font-bold uppercase tracking-wider lg:block lg:ml-5">
+              Media
+            </span>
           </a>
-          <span class="nav-label pointer-events-none absolute left-[88px] top-1/2 -translate-y-1/2 whitespace-nowrap rounded bg-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-black opacity-0">Media</span>
         </li>
 
-        <li class="nav-item group relative w-full">
+        <!-- ==================== PROJECT ==================== -->
+        <li class="nav-item w-auto flex-1 lg:w-full">
           <a
             href="#ProjectPage"
-            class="nav-link flex w-full justify-center py-3 hover:bg-white/10"
+            class="nav-link flex flex-col items-center justify-center py-2 text-slate-400 transition-colors hover:bg-white/10 hover:text-white lg:flex-row lg:py-4 lg:pl-[28px] lg:justify-start lg:w-full"
             title="Project"
-            data-label="Project"
           >
-            <div class="h-6 w-6 rotate-45 bg-slate-400"></div>
+            <div class="icon-container flex h-6 w-6 shrink-0 items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="18" height="18" x="3" y="3" rx="2" />
+                <path d="M9 8h7" />
+                <path d="M8 12h6" />
+                <path d="M11 16h5" />
+              </svg>
+            </div>
+            <span class="nav-label hidden whitespace-nowrap text-sm font-bold uppercase tracking-wider lg:block lg:ml-5">
+              Project
+            </span>
           </a>
-          <span class="nav-label pointer-events-none absolute left-[88px] top-1/2 -translate-y-1/2 whitespace-nowrap rounded bg-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-black opacity-0">Project</span>
         </li>
 
-        <li class="nav-item group relative w-full">
+        <!-- ==================== SOCIAL MEDIA ==================== -->
+        <li class="nav-item w-auto flex-1 lg:w-full">
           <a
             href="#SocialMediaPage"
-            class="nav-link flex w-full justify-center py-3 hover:bg-white/10"
+            class="nav-link flex flex-col items-center justify-center py-2 text-slate-400 transition-colors hover:bg-white/10 hover:text-white lg:flex-row lg:py-4 lg:pl-[28px] lg:justify-start lg:w-full"
             title="Social Media"
-            data-label="Social"
           >
-            <div class="h-6 w-6 border-2 border-slate-400"></div>
+            <div class="icon-container flex h-6 w-6 shrink-0 items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" />
+                <path d="M7 11h10" />
+                <path d="M7 15h6" />
+                <path d="M7 7h8" />
+              </svg>
+            </div>
+            <span class="nav-label hidden whitespace-nowrap text-sm font-bold uppercase tracking-wider lg:block lg:ml-5">
+              Social
+            </span>
           </a>
-          <span class="nav-label pointer-events-none absolute left-[88px] top-1/2 -translate-y-1/2 whitespace-nowrap rounded bg-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-black opacity-0">Social</span>
         </li>
 
-        <li class="nav-item group relative w-full">
+        <!-- ==================== CONTACT ==================== -->
+        <li class="nav-item w-auto flex-1 lg:w-full">
           <a
             href="#ContactPage"
-            class="nav-link flex w-full justify-center py-3 hover:bg-white/10"
+            class="nav-link flex flex-col items-center justify-center py-2 text-slate-400 transition-colors hover:bg-white/10 hover:text-white lg:flex-row lg:py-4 lg:pl-[28px] lg:justify-start lg:w-full"
             title="Contact"
-            data-label="Contact"
           >
-            <div
-              class="h-6 w-6 bg-slate-400 [clip-path:polygon(50%_0%,100%_100%,0%_100%)]"
-            ></div>
+            <div class="icon-container flex h-6 w-6 shrink-0 items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 2v2" />
+                <path d="M7 21v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2" />
+                <path d="M8 2v2" />
+                <circle cx="12" cy="10" r="3" />
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+              </svg>
+            </div>
+            <span class="nav-label hidden whitespace-nowrap text-sm font-bold uppercase tracking-wider lg:block lg:ml-5">
+              Contact
+            </span>
           </a>
-          <span class="nav-label pointer-events-none absolute left-[88px] top-1/2 -translate-y-1/2 whitespace-nowrap rounded bg-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-black opacity-0">Contact</span>
         </li>
+
       </ul>
     </div>
   </div>
@@ -90,38 +182,82 @@ import "../styles/global.css";
 <script>
   import { gsap } from "../Script/gsap-utils";
 
+  // Skala stage navigasi sesuai viewport khusus untuk desktop
   function autoScaleNavigation() {
     const stage = document.getElementById("nav-stage");
     if (!stage) return;
 
+    // CEK MOBILE: Hentikan pemaksaan resolusi di HP
+    if (window.innerWidth < 1024) {
+      stage.style.transform = '';
+      return; 
+    }
+
+    // DESKTOP: Jalankan scaling asli kamu
     const baseWidth = 1920;
     const baseHeight = 1080;
-
     const scaleX = window.innerWidth / baseWidth;
     const scaleY = window.innerHeight / baseHeight;
     const scale = Math.min(scaleX, scaleY);
-
+    
     stage.style.transform = `scale(${scale})`;
   }
 
-  function initNavHover() {
-    document.querySelectorAll(".nav-item").forEach((item) => {
-      const label = item.querySelector(".nav-label");
-      const link = item.querySelector(".nav-link");
-      if (!label || !link) return;
+  // Menggunakan gsap.matchMedia agar animasi hover hanya nyala di Desktop!
+  function initSidebarExpansion() {
+    const sidebar = document.getElementById("sidebar");
+    const labels = document.querySelectorAll(".nav-label");
+    const links = document.querySelectorAll(".nav-link");
 
-      const tl = gsap.timeline({ paused: true })
-        .to(label, { autoAlpha: 1, x: 0, duration: 0.45, ease: "back.out(2)" }, 0)
-        .to(link, { scale: 1.08, duration: 0.35, ease: "power2.out" }, 0);
+    if (!sidebar) return;
 
-      gsap.set(label, { x: -8, autoAlpha: 0 });
+    let mm = gsap.matchMedia();
 
-      item.addEventListener("mouseenter", () => tl.play());
-      item.addEventListener("mouseleave", () => tl.reverse());
+    // Kondisi: Hanya nyala jika layar 1024px ke atas (Tablet besar / Desktop)
+    mm.add("(min-width: 1024px)", () => {
+      // 1. Setup awal
+      gsap.set(labels, { autoAlpha: 0, x: -15 });
+
+      // 2. Buat Timeline
+      const sidebarTl = gsap.timeline({ paused: true })
+        .to(sidebar, { width: 260, duration: 0.45, ease: "power3.inOut" })
+        .to(labels, { autoAlpha: 1, x: 0, duration: 0.3, stagger: 0.03, ease: "power2.out" }, "-=0.25");
+
+      // 3. Handlers
+      const onEnter = () => sidebarTl.play();
+      const onLeave = () => sidebarTl.reverse();
+
+      const onLinkEnter = (e) => gsap.to(e.currentTarget.querySelector('.icon-container'), { scale: 1.15, duration: 0.3, ease: "back.out(2)" });
+      const onLinkLeave = (e) => gsap.to(e.currentTarget.querySelector('.icon-container'), { scale: 1, duration: 0.3, ease: "power2.out" });
+
+      // 4. Attach Listeners
+      sidebar.addEventListener("mouseenter", onEnter);
+      sidebar.addEventListener("mouseleave", onLeave);
+
+      links.forEach((link) => {
+        link.addEventListener("mouseenter", onLinkEnter);
+        link.addEventListener("mouseleave", onLinkLeave);
+      });
+
+      // 5. Cleanup otomatis saat di-resize jadi Mobile
+      return () => {
+        sidebar.removeEventListener("mouseenter", onEnter);
+        sidebar.removeEventListener("mouseleave", onLeave);
+        links.forEach((link) => {
+          link.removeEventListener("mouseenter", onLinkEnter);
+          link.removeEventListener("mouseleave", onLinkLeave);
+        });
+        
+        // Kembalikan style CSS ke asalnya
+        gsap.set([sidebar, labels], { clearProps: "all" });
+      };
     });
   }
 
+  // Inisialisasi
   autoScaleNavigation();
-  initNavHover();
+  initSidebarExpansion();
+
+  // Hitung ulang posisi stage setiap kali ukuran viewport berubah
   window.addEventListener("resize", autoScaleNavigation);
 </script>

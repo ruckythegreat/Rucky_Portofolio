@@ -4,71 +4,113 @@ import "../styles/global.css";
 
 <section
   id="SocialMediaPage"
-  class="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-white"
+  class="relative flex h-screen w-screen items-center justify-center overflow-x-hidden bg-white max-lg:h-auto max-lg:min-h-screen"
 >
+  <!-- 
+    FOOLPROOF MOBILE OVERRIDE:
+    Mematikan paksaan "scale" dari GSAP saat di HP,
+    membiarkan Tailwind bekerja secara natural.
+  -->
+  <style>
+    @media (max-width: 1023px) {
+      #social-stage {
+        transform: none !important;
+        width: 100% !important;
+        height: 100% !important;
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+      }
+    }
+  </style>
+
   <div
     id="social-stage"
-    class="absolute h-[1080px] w-[1920px] origin-center"
+    class="absolute origin-center z-10 lg:h-[1080px] lg:w-[1920px]"
   >
-    <div class="relative h-[1080px] pl-20 py-2">
-      <h1 class="mb-20 text-center text-[180px] font-black">
+    <!-- 
+      Penyesuaian Padding: 
+      Mobile pakai px-6 (kiri-kanan) dan padding atas-bawah.
+      Desktop kembali pakai pl-20 seperti aslinya.
+    -->
+    <div class="relative flex h-full flex-col justify-center px-6 py-12 lg:block lg:h-[1080px] lg:px-0 lg:py-2 lg:pl-20">
+      
+      <!-- ========================================= -->
+      <!-- HEADER TITLE -->
+      <!-- ========================================= -->
+      <h1 class="mb-4 text-center text-5xl font-black max-lg:mt-10 lg:mb-20 lg:text-[180px]">
         GET IN TOUCH
       </h1>
+      <p class="mb-8 text-center text-sm text-gray-400 lg:text-lg">
+        V.1-Entry &#8968;5:10&#8969;
+      </p>
 
+      <!-- ========================================= -->
+      <!-- MAIN GRID (Kolom Bertumpuk di HP, Grid 3-Kolom di Desktop) -->
+      <!-- ========================================= -->
       <div
-        class="mx-auto grid max-w-[1400px] grid-cols-[220px_1fr_180px] gap-10"
+        class="mx-auto flex w-full max-w-[1400px] flex-col gap-8 lg:grid lg:grid-cols-[220px_1fr_180px] lg:gap-10"
       >
-        <!-- Sidebar -->
-
-        <aside>
-          <p class="mb-2 text-xs uppercase">
-            SOCIAL MEDIA · RUCKY
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="flex flex-col max-lg:items-center max-lg:text-center">
+          <p class="mb-2 flex items-center text-[10px] uppercase lg:text-xs">
+            SOCIAL MEDIA 
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dot-icon lucide-dot mx-1"><circle cx="12" cy="12" r="1"/></svg> 
+            RUCKY
           </p>
 
           <h2
             id="sidebar-title"
-            class="mb-12 text-5xl font-bold"
+            class="mb-6 text-3xl font-bold lg:mb-12 lg:text-5xl"
           >
             STEAM
           </h2>
 
-          <div class="mb-12 h-20 w-1 bg-black"></div>
+          <!-- Garis vertikal disembunyikan di HP karena layoutnya berubah -->
+          <div class="mb-12 hidden h-20 w-1 bg-black lg:block"></div>
 
           <div
-            class="flex h-24 w-24 items-center justify-center bg-gray-200 text-4xl font-black"
+            class="flex h-16 w-16 items-center justify-center bg-gray-200 text-2xl font-black lg:h-24 lg:w-24 lg:text-4xl"
             id="sidebar-icon"
           >
             S
           </div>
         </aside>
 
-        <!-- Konten -->
-
-        <main>
+        <!-- ================= KONTEN UTAMA ================= -->
+        <main class="flex w-full flex-col max-lg:items-center">
+          
           <div
             id="social-card-wrap"
-            class="relative flex h-[600px] items-center justify-center border-4 border-black bg-gray-100 transition-colors duration-500"
+            class="relative flex w-full items-center justify-center overflow-hidden bg-gray-100 max-lg:h-[450px] max-lg:rounded-2xl lg:h-[600px]"
           >
+            <!-- OVERLAY TRANSISI -->
+            <div 
+              id="card-slide-overlay" 
+              class="pointer-events-none absolute inset-0 z-50 hidden h-full w-full"
+            ></div>
+
+            <!-- CARD PUTIH -->
             <div
-              class="w-[500px] rounded-xl bg-white p-10 shadow-2xl"
+              class="relative z-10 w-full max-w-[500px] rounded-xl border-2 border-black bg-white p-6 shadow-2xl max-lg:mx-4 lg:p-10"
             >
               <h2
                 id="social-name"
-                class="text-5xl font-black"
+                class="text-4xl font-black lg:text-5xl"
               >
                 STEAM
               </h2>
 
               <p
                 id="social-username"
-                class="mt-2 text-xl text-gray-500"
+                class="mt-1 text-lg text-gray-500 lg:mt-2 lg:text-xl"
               >
                 @rucky
               </p>
 
               <p
                 id="social-description"
-                class="mt-8 text-lg"
+                class="mt-6 text-base font-medium lg:mt-8 lg:text-lg"
               >
                 Game collection and community.
               </p>
@@ -77,63 +119,69 @@ import "../styles/global.css";
                 id="social-link"
                 href="#"
                 target="_blank"
-                class="mt-10 inline-block bg-black px-8 py-4 text-white"
+                class="mt-8 inline-block border-2 border-transparent bg-black px-6 py-3 font-bold text-white transition-colors duration-300 hover:border-black hover:bg-[#ffc994] hover:text-black lg:mt-10 lg:px-8 lg:py-4"
               >
                 VISIT PROFILE
               </a>
             </div>
 
-            <!-- Tombol -->
-
+            <!-- TOMBOL NAVIGASI -->
+            <!-- Dikecilkan di HP agar tidak menutupi Card terlalu banyak -->
             <button
               id="prev-btn"
-              class="social-nav-btn absolute left-8 z-20 flex h-14 w-14 items-center justify-center rounded-full border-2 border-black bg-white text-black"
+              class="social-nav-btn absolute left-4 z-20 flex h-10 w-10 items-center justify-center rounded-full border-2 border-black bg-white text-black transition-colors hover:bg-[#ffc994] lg:left-8 lg:h-14 lg:w-14"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left lg:h-6 lg:w-6"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
             </button>
 
             <button
               id="next-btn"
-              class="social-nav-btn absolute right-8 z-20 flex h-14 w-14 items-center justify-center rounded-full border-2 border-black bg-white text-black"
+              class="social-nav-btn absolute right-4 z-20 flex h-10 w-10 items-center justify-center rounded-full border-2 border-black bg-white text-black transition-colors hover:bg-[#ffc994] lg:right-8 lg:h-14 lg:w-14"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right lg:h-6 lg:w-6"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </button>
           </div>
 
-          <div class="mt-8">
+          <!-- KETERANGAN BAWAH -->
+          <div class="mt-8 max-lg:text-center">
             <p
               id="social-counter"
               class="text-sm font-bold"
             >
               1 / 4
             </p>
-
-            <p class="mt-4 text-2xl">
+            <p class="mt-2 text-xl font-medium lg:mt-4 lg:text-2xl">
               Select a social media profile.
             </p>
           </div>
         </main>
 
-        <!-- Teks vertikal -->
-
+        <!-- ================= TEKS VERTIKAL ================= -->
+        <!-- Sembunyikan di HP karena memakan tempat dan sulit dibaca -->
         <div
           id="social-accent"
-          class="flex items-center justify-center bg-[#ffc994] transition-colors duration-500"
+          class="hidden items-center justify-center border-l-4 border-black bg-[#ffc994] transition-colors duration-300 lg:flex"
         >
           <h2
             id="vertical-title"
-            class="rotate-90 text-7xl font-black"
+            class="rotate-90 whitespace-nowrap text-7xl font-black uppercase"
           >
             STEAM
           </h2>
         </div>
+
       </div>
     </div>
   </div>
 </section>
 
+<!-- 
+  SCRIPT JS/GSAP TETAP SAMA PERSIS 
+  Jangan diubah
+-->
 <script>
-  import { gsap, fadeTransition, initSimpleStageScale } from "../Script/gsap-utils";
+  import { initSimpleStageScale } from "../Script/gsap-utils";
+  import gsap from "gsap";
 
   function initSocialPage() {
     initSimpleStageScale("social-stage");
@@ -146,7 +194,7 @@ import "../styles/global.css";
         description: "Game collection and community.",
         url: "https://steamcommunity.com",
         color1: "#ffc994",
-        color2: "#e8e8e8",
+        color2: "#111111",
       },
       {
         name: "DISCORD",
@@ -163,7 +211,7 @@ import "../styles/global.css";
         icon: "G",
         description: "Explore my projects and repositories.",
         url: "https://github.com",
-        color1: "#f5f5f5",
+        color1: "#d1d5db", 
         color2: "#24292f",
       },
       {
@@ -182,61 +230,74 @@ import "../styles/global.css";
 
     const accent = document.getElementById("social-accent");
     const cardWrap = document.getElementById("social-card-wrap");
-    const targets = [
-      "#sidebar-title",
-      "#vertical-title",
-      "#sidebar-icon",
-      "#social-name",
-      "#social-username",
-      "#social-description",
-      "#social-link",
-      "#social-counter",
-    ];
+    const overlay = document.getElementById("card-slide-overlay");
 
-    function applySocial(index) {
+    function applySocial(index: number) {
       const data = socialList[index];
-      document.getElementById("sidebar-title").textContent = data.name;
-      document.getElementById("vertical-title").textContent = data.name;
-      document.getElementById("sidebar-icon").textContent = data.icon;
-      document.getElementById("social-name").textContent = data.name;
-      document.getElementById("social-username").textContent = data.username;
-      document.getElementById("social-description").textContent = data.description;
-      document.getElementById("social-link").href = data.url;
-      document.getElementById("social-counter").textContent = `${index + 1} / ${socialList.length}`;
+      document.getElementById("sidebar-title")!.textContent = data.name;
+      document.getElementById("vertical-title")!.textContent = data.name;
+      document.getElementById("sidebar-icon")!.textContent = data.icon;
+      document.getElementById("social-name")!.textContent = data.name;
+      document.getElementById("social-username")!.textContent = data.username;
+      document.getElementById("social-description")!.textContent = data.description;
+      (document.getElementById("social-link") as HTMLAnchorElement).href = data.url;
+      document.getElementById("social-counter")!.textContent = `${index + 1} / ${socialList.length}`;
 
-      gsap.to(accent, { backgroundColor: data.color1, duration: 0.8, ease: "power2.inOut" });
-      gsap.to(cardWrap, { backgroundColor: data.color2, duration: 0.8, ease: "power2.inOut" });
-      gsap.to("#social-card-wrap .rounded-xl", {
-        backgroundColor: index === 2 ? "#ffffff" : "#ffffff",
-        color: index === 2 ? "#111" : "#111",
-        duration: 0.6,
-      });
+      // Set warna dengan GSAP
+      if(accent) gsap.set(accent, { backgroundColor: data.color1 });
+      if(cardWrap) gsap.set(cardWrap, { backgroundColor: data.color2 });
     }
 
-    function changeSocial(nextIndex) {
+    function slideTransition(nextIndex: number, direction: 'next' | 'prev') {
       if (isAnimating) return;
       isAnimating = true;
-      fadeTransition(targets, () => {
-        currentIndex = nextIndex;
-        applySocial(currentIndex);
-      }).eventCallback("onComplete", () => {
-        isAnimating = false;
+
+      const targetData = socialList[nextIndex];
+
+      // Di HP maupun di PC animasi ini akan tetap responsif karena menggunakan nilai persen string
+      const startX = direction === 'next' ? '100%' : '-100%';
+      const endX = direction === 'next' ? '-100%' : '100%';
+
+      gsap.set(overlay, { 
+        x: startX, 
+        backgroundColor: targetData.color1, 
+        display: 'block' 
+      });
+
+      gsap.to(overlay, {
+        x: '0%',
+        duration: 0.4, 
+        ease: 'power3.inOut',
+        onComplete: () => {
+          currentIndex = nextIndex;
+          applySocial(currentIndex);
+
+          gsap.to(overlay, {
+            x: endX,
+            duration: 0.4,
+            ease: 'power3.inOut',
+            onComplete: () => {
+              gsap.set(overlay, { display: 'none' });
+              isAnimating = false;
+            }
+          });
+        }
       });
     }
 
     document.getElementById("prev-btn")?.addEventListener("click", () => {
       const next = currentIndex === 0 ? socialList.length - 1 : currentIndex - 1;
-      changeSocial(next);
+      slideTransition(next, 'prev');
     });
 
     document.getElementById("next-btn")?.addEventListener("click", () => {
       const next = currentIndex === socialList.length - 1 ? 0 : currentIndex + 1;
-      changeSocial(next);
+      slideTransition(next, 'next');
     });
 
     document.querySelectorAll(".social-nav-btn").forEach((btn) => {
       btn.addEventListener("mouseenter", () => {
-        gsap.to(btn, { scale: 1.12, duration: 0.35, ease: "back.out(2)" });
+        gsap.to(btn, { scale: 1.15, duration: 0.35, ease: "back.out(2)" });
       });
       btn.addEventListener("mouseleave", () => {
         gsap.to(btn, { scale: 1, duration: 0.4, ease: "elastic.out(1, 0.4)" });

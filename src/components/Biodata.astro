@@ -2,150 +2,196 @@
 import "../styles/global.css";
 ---
 
-<section class="relative mt-40 w-screen h-screen overflow-hidden flex items-center justify-center bg-white" id="BiodataPage">
-  
-  <div id="game-stage-biodata" class="w-[1920px] h-[1080px] relative origin-center shrink-0">
-    <div class="flex flex-col items-center h-full p-16">
+<!-- Ubah layout mobile agar bisa scroll natural (min-h-screen), dan kembali ke absolute/fixed-stage di desktop -->
+<section
+  class="relative mb-20 w-full min-h-screen overflow-hidden flex items-center justify-center bg-white lg:mt-40 lg:h-screen lg:w-screen"
+  id="BiodataPage"
+>
+  <!-- Stage: Tinggi/lebar statis dimatikan di mobile, kembali jadi absolute 1920x1080 di desktop -->
+  <div
+    id="game-stage-biodata"
+    class="w-full h-auto relative origin-center shrink-0 lg:absolute lg:h-[1080px] lg:w-[1920px]"
+  >
+    <!-- Kontainer utama: Padding disesuaikan untuk HP -->
+    <div class="relative flex flex-col w-full h-full px-6 py-24 z-10 lg:items-center lg:p-16">
       
-      <h2 class="relative top-20 right-100 text-5xl text-black">
+      <!-- TITLE -->
+      <h2
+        class="relative text-3xl font-bold text-black flex items-center gap-2 mb-2 lg:top-20 lg:right-100 lg:mb-0 lg:text-5xl"
+      >
         [About Rucky]
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-folder-plus-icon lucide-folder-plus lg:h-8 lg:w-8"
+          ><path d="M12 10v6"></path><path d="M9 13h6"></path><path
+            d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"
+          ></path></svg>
       </h2>
 
-      <p class="relative top-200 left-180 mt-6 text-gray-400 max-w-3xl">
-        V.1-Entry&#8968;<span id="dynamic-counter">1</span>/10&#8969;
+      <!-- COUNTER -->
+      <p class="relative text-sm text-gray-500 mb-8 max-w-3xl lg:top-200 lg:left-180 lg:mt-6 lg:mb-0 lg:text-base lg:text-gray-400">
+        V.1-Entry&#8968;1:10&#8969; [<span id="dynamic-counter">1</span>/5]
       </p>
 
-      <div class="absolute flex flex-col items-center text-black text-3xl top-100 left-60 p-1 space-y-4">
-        
-        <div class="absolute w-[600px] p-6 flex flex-col justify-center left-60 top-6/7 -translate-y-1/2">
-          <div class="flex flex-col items-end w-full mb-4">
-            <h1 id="dynamic-title" class="text-black text-4xl font-bold text-right">[Title]</h1>
-          </div>
-
-          <div class="flex flex-col items-start w-full h-[250px]">
-            <p id="dynamic-desc" class="text-black text-left text-base leading-relaxed">
-              Pilih menu di bawah untuk melihat detail informasi.
-            </p>
-          </div>
+      <!-- MENU WRAPPER: Di HP jadi Grid 2 Kolom, di Desktop jadi List Vertikal -->
+      <div
+        class="relative w-full grid grid-cols-2 gap-3 mb-10 z-20 lg:absolute lg:flex lg:flex-col lg:items-start lg:w-[350px] lg:top-[300px] lg:left-[200px] lg:space-y-3 lg:gap-0 lg:p-2 lg:mb-0 lg:block"
+      >
+        <!-- Arrow Up (Hidden di Mobile) -->
+        <div class="hidden lg:flex w-full justify-center mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-up text-black"><path d="m18 15-6-6-6 6"></path></svg>
         </div>
 
-        <div class="w-full">
-          <div class="mb-2 text-center">
-            <center>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-up-icon lucide-chevron-up"><path d="m18 15-6-6-6 6"/></svg>
-            </center>
-          </div>
-        </div>
+        <button class="w-full text-left menu-btn bg-black text-white px-4 py-3 text-xs md:text-sm font-bold uppercase border border-transparent lg:px-6 lg:py-3 lg:text-xl" data-target="personal">
+          Personal
+        </button>
+        <button class="w-full text-left menu-btn bg-black text-white px-4 py-3 text-xs md:text-sm font-bold uppercase border border-transparent lg:px-6 lg:py-3 lg:text-xl" data-target="strengths">
+          Strengths
+        </button>
+        <button class="w-full text-left menu-btn bg-black text-white px-4 py-3 text-xs md:text-sm font-bold uppercase border border-transparent lg:px-6 lg:py-3 lg:text-xl" data-target="weaknesses">
+          Weaknesses
+        </button>
+        <button class="w-full text-left menu-btn bg-black text-white px-4 py-3 text-xs md:text-sm font-bold uppercase border border-transparent lg:px-6 lg:py-3 lg:text-xl" data-target="hobbies">
+          Hobbies
+        </button>
+        <button class="w-full text-left menu-btn bg-black text-white px-4 py-3 text-xs md:text-sm font-bold uppercase border border-transparent lg:px-6 lg:py-3 lg:text-xl col-span-2 lg:col-span-1" data-target="purpose">
+          Purpose
+        </button>
 
-<div class="w-full menu-btn cursor-pointer bg-black hover:text-gray-500 transition-colors" data-target="personal">
-  <div class="mb-2 px-4 py-1 text-2xl font-bold tracking-tighter text-white">
-    
-    Personal Information</div>
-</div>
-<div class="w-full menu-btn cursor-pointer bg-black hover:text-gray-500 transition-colors" data-target="strengths">
-  <div class="mb-2 px-4 py-1 text-2xl font-bold tracking-tighter text-white">
-            
-            Strengths</div>
-        </div>
-<div class="w-full menu-btn cursor-pointer bg-black hover:text-gray-500 transition-colors" data-target="weaknesses">
-  <div class="mb-2 px-4 py-1 text-2xl font-bold tracking-tighter text-white">
-            
-            Weaknesses</div>
-        </div>
-<div class="w-full menu-btn cursor-pointer bg-black hover:text-gray-500 transition-colors" data-target="hobbies">
-  <div class="mb-2 px-4 py-1 text-2xl font-bold tracking-tighter text-white">
-            
-            Hobbies</div>
-        </div>
-<div class="w-full menu-btn cursor-pointer bg-black hover:text-gray-500 transition-colors" data-target="purpose">
-  <div class="mb-2 px-4 py-1 text-2xl font-bold tracking-tighter text-white">
-            Purpose</div>
-        </div>
-
-        <div class="w-full">
-          <div class="mb-2 text-center">
-            <center>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down-icon lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
-            </center>
-          </div>
+        <!-- Arrow Down (Hidden di Mobile) -->
+        <div class="hidden lg:flex w-full justify-center mt-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down text-black"><path d="m6 9 6 6 6-6"></path></svg>
         </div>
       </div>
 
-      <div class="absolute w-[600px] p-6 flex flex-col justify-center left-200 top-0 z-[-1] -translate-y-1/2">
+      <!-- DYNAMIC CONTENT (Title & Description) -->
+      <div
+        class="relative w-full flex flex-col items-start z-20 bg-white/70 backdrop-blur-md p-6 border border-slate-200 lg:bg-transparent lg:backdrop-blur-none lg:p-0 lg:border-none lg:absolute lg:w-[470px] lg:top-[350px] lg:left-[600px]"
+      >
+        <h1 id="dynamic-title" class="text-black text-3xl lg:text-5xl font-bold mb-4">
+          [Title]
+        </h1>
+        <p id="dynamic-desc" class="text-black text-left text-base lg:text-lg leading-relaxed">
+          Pilih menu di bawah untuk melihat detail informasi.
+        </p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-left hidden lg:block mt-4"><path d="M17 7 7 17"></path><path d="M17 17H7V7"></path></svg>
+      </div>
+
+      <!-- IMAGE: Di mobile jadi background samar, di desktop kembali ke ukuran asli -->
+      <div
+        class="absolute inset-0 opacity-15 pointer-events-none z-[-1] overflow-hidden lg:opacity-100 lg:w-[600px] lg:p-6 lg:flex lg:flex-col lg:justify-center lg:left-200 lg:top-0 lg:-translate-y-1/2"
+      >
         <img
           id="dynamic-img"
           src="/bg1.jpg"
           alt="Rucky"
-          class="w-120 h-210 absolute left-70 top-30 mix-blend-plus-lighter"
+          class="w-full h-full object-cover lg:w-120 lg:h-210 lg:absolute lg:left-70 lg:top-30 lg:mix-blend-plus-lighter"
         />
       </div>
 
-      <div class="absolute w-[600px] p-6 flex flex-col justify-center left-390 top-150 text-black text-4xl -translate-y-1/2">
+      <!-- DEKORASI DESKTOP ONLY: Disembunyikan di layar kecil agar tidak menumpuk -->
+      <!-- Land Plot Icon -->
+      <div class="hidden lg:block absolute top-15 right-85">
+        <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-land-plot"><path d="m12 8 6-3-6-3v10"></path><path d="m8 11.99-5.5 3.14a1 1 0 0 0 0 1.74l8.5 4.86a2 2 0 0 0 2 0l8.5-4.86a1 1 0 0 0 0-1.74L16 12"></path><path d="m6.49 12.85 11.02 6.3"></path><path d="M17.51 12.85 6.5 19.15"></path></svg>
+      </div>
+      <!-- Arrow icon kiri bawah -->
+      <div class="hidden lg:block absolute bottom-0 left-10">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-left"><path d="M17 7 7 17"></path><path d="M17 17H7V7"></path></svg>
+      </div>
+      <!-- Dynamic Extra Info (PPLG_) -->
+      <div class="hidden lg:flex absolute w-[600px] p-6 flex-col justify-center left-390 top-150 text-black text-4xl -translate-y-1/2">
         <p id="dynamic-extra" class="font-bold">PPLG_</p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-group"><path d="M3 7V5c0-1.1.9-2 2-2h2"></path><path d="M17 3h2c1.1 0 2 .9 2 2v2"></path><path d="M21 17v2c0 1.1-.9 2-2 2h-2"></path><path d="M7 21H5c-1.1 0-2-.9-2-2v-2"></path><rect width="7" height="5" x="7" y="7" rx="1"></rect><rect width="7" height="5" x="10" y="12" rx="1"></rect></svg>
       </div>
-
-      <div class="absolute z-[-2] left-120 top-120 -translate-y-1/2 pointer-events-none font-bold">
-        <p style="font-size: 250px; color: rgba(0, 0, 0, 0.2); white-space: nowrap;">
-          RUCKY PORTO
-        </p>
+      <!-- Teks RUCKY PORTO Raksasa -->
+      <div class="hidden lg:block absolute z-[-2] left-120 top-120 -translate-y-1/2 pointer-events-none font-bold">
+        <p style="font-size: 250px; color: rgba(0, 0, 0, 0.2); white-space: nowrap;">RUCKY PORTO</p>
       </div>
-
-      <div>
-        <div class="absolute h-[500px] w-[400px] flex z-[-3] justify-center left-200 top-50 bg-[rgb(255,201,148)] text-4xl -translate-y-1/2">
-          <div class="absolute opacity-80 h-[500px] w-[400px] flex z-[-3] justify-center top-220 bg-[rgb(255,201,148)] text-4xl -translate-y-1/2" 
-            style="mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 90%);">
-          </div>
-        </div>
+      <!-- Garis Warna-warni & Ikon Chevron/Grip -->
+      <div class="hidden lg:flex absolute top-247 z-[-2] right-260 items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevrons-right"><path d="m6 17 5-5-5-5"></path><path d="m13 17 5-5-5-5"></path></svg>
       </div>
-
+      <div class="hidden lg:flex absolute top-47 z-[-2] right-60 items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-grip-vertical"><circle cx="9" cy="12" r="1"></circle><circle cx="9" cy="5" r="1"></circle><circle cx="9" cy="19" r="1"></circle><circle cx="15" cy="12" r="1"></circle><circle cx="15" cy="5" r="1"></circle><circle cx="15" cy="19" r="1"></circle></svg>
+      </div>
+      <div class="hidden lg:flex absolute top-147 z-[-2] right-260 items-center">
+        <div class="w-106 h-2 bg-[#ffc994]"></div>
+        <div class="w-102 h-2 bg-[#FF7873]"></div>
+        <div class="w-98 h-2 bg-[#E22F80]"></div>
+      </div>
+      <div class="hidden lg:flex absolute top-147 z-[-2] left-300 items-center">
+        <div class="w-106 h-2 bg-[#E22F80]"></div>
+        <div class="w-102 h-2 bg-[#FF7873]"></div>
+        <div class="w-98 h-2 bg-[#ffc994]"></div>
+      </div>
+      <!-- Masking background block -->
+      <div class="hidden lg:flex absolute h-[500px] w-[400px] z-[-3] justify-center left-200 top-50 bg-[rgb(255,201,148)] text-4xl -translate-y-1/2">
+        <div class="absolute opacity-80 h-[500px] w-[400px] flex z-[-3] justify-center top-220 bg-[rgb(255,201,148)] text-4xl -translate-y-1/2" style="mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 90%);"></div>
+      </div>
+      
     </div>
   </div>
 </section>
 
 <script>
   import { glitchTransition } from "../Script/gsap-utils";
+  import gsap from "gsap";
 
   const biodataContent = {
     personal: {
       title: "[Personal Info]",
       desc: "Siswa kelas 10 jurusan Pengembangan Perangkat Lunak dan Gim (PPLG) di SMKN 2 Bandung. Memiliki ketertarikan mendalam pada rekayasa perangkat lunak, arsitektur sistem, serta selalu antusias mengeksplorasi teknologi dan framework baru.",
-      img: "/bg1.jpg", 
+      img: "/bg1.jpg",
       extra: "PROFILE_01",
-      counter: "1"
+      counter: "1",
     },
     strengths: {
       title: "[Strengths]",
       desc: "Mampu beradaptasi dengan berbagai bahasa pemrograman seperti C++, Java, dan Golang. Terbiasa mengonfigurasi dan mengoptimalkan lingkungan sistem operasi Linux kustom menggunakan Arch Linux dan Hyprland untuk efisiensi workflow.",
-      img: "/bg2.jpg", 
+      img: "/bg2.jpg",
       extra: "SYS_ARCH",
-      counter: "2"
+      counter: "2",
     },
     weaknesses: {
       title: "[Weaknesses]",
       desc: "Terkadang terlalu fokus melakukan multitasking ekstrim. Bisa secara bersamaan melakukan debugging modul kernel, mendesain UI/UX, dan memantau live order book pergerakan saham, yang membuat alokasi waktu seringkali melebar dari jadwal awal.",
-      img: "/bg3.jpg", 
+      img: "/bg3.jpg",
       extra: "OVERCLOCK",
-      counter: "3"
+      counter: "3",
     },
     hobbies: {
       title: "[Hobbies]",
       desc: "Di luar layar monitor, rutinitas diisi dengan aktivitas lari untuk menjaga kebugaran fisik dan bereksperimen dengan desain grafis. Juga mengikuti berbagai pop culture seperti anime Eighty-Six dan franchise game Silent Hill atau Minecraft.",
-      img: "/bg4.jpg", 
+      img: "/bg4.jpg",
       extra: "CREATIVE_RUN",
-      counter: "4"
+      counter: "4",
     },
     purpose: {
       title: "[Purpose]",
       desc: "Tujuan utama adalah membangun sistem yang clean, solid, dan bermanfaat. Menggabungkan hobi desain grafis, kemampuan coding multibahasa, dan minat pada pasar modal untuk menciptakan aplikasi atau web portofolio tingkat lanjut di masa depan.",
-      img: "/bg5.jpg", 
+      img: "/bg5.jpg",
       extra: "GOAL_EXEC",
-      counter: "5"
-    }
+      counter: "5",
+    },
   };
 
   function autoScaleBiodataStage() {
-    const stage = document.getElementById('game-stage-biodata');
+    const stage = document.getElementById("game-stage-biodata");
     if (!stage) return;
+
+    // CEK MOBILE: Matikan paksaan resolusi di HP (di bawah 1024px)
+    if (window.innerWidth < 1024) {
+      stage.style.transform = '';
+      return; 
+    }
 
     const baseWidth = 1920;
     const baseHeight = 1080;
@@ -157,49 +203,124 @@ import "../styles/global.css";
   }
 
   function initInteractions() {
-    const menuButtons = document.querySelectorAll('.menu-btn');
-    const titleEl = document.getElementById('dynamic-title');
-    const descEl = document.getElementById('dynamic-desc');
-    const imgEl = document.getElementById('dynamic-img');
-    const extraEl = document.getElementById('dynamic-extra');
-    const counterEl = document.getElementById('dynamic-counter');
-    const glitchTargets = ['#dynamic-title', '#dynamic-desc', '#dynamic-img', '#dynamic-extra', '#dynamic-counter'];
+    const menuButtons = document.querySelectorAll(".menu-btn");
+    const titleEl = document.getElementById("dynamic-title");
+    const descEl = document.getElementById("dynamic-desc");
+    const imgEl = document.getElementById("dynamic-img");
+    const extraEl = document.getElementById("dynamic-extra");
+    const counterEl = document.getElementById("dynamic-counter");
+    
+    // Target glitch di-cek keberadaannya, berjaga-jaga jika ada elemen hidden
+    const glitchTargets = [
+      "#dynamic-title",
+      "#dynamic-desc",
+      "#dynamic-img",
+      "#dynamic-extra",
+      "#dynamic-counter",
+    ].filter(selector => document.querySelector(selector) !== null);
+
     let switching = false;
 
     function applyContent(data) {
-      titleEl.textContent = data.title;
-      descEl.textContent = data.desc;
-      imgEl.src = data.img;
-      extraEl.textContent = data.extra;
-      counterEl.textContent = data.counter;
+      if (titleEl) titleEl.textContent = data.title;
+      if (descEl) descEl.textContent = data.desc;
+      if (imgEl) imgEl.src = data.img;
+      if (extraEl) extraEl.textContent = data.extra;
+      if (counterEl) counterEl.textContent = data.counter;
     }
 
-    menuButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        if (switching) return;
+    menuButtons.forEach((btn) => {
+      btn.addEventListener("mouseenter", () => {
+        if (!btn.classList.contains("active-btn")) {
+          // Di mobile pergerakan x diset 0 biar tidak keluar grid
+          const moveX = window.innerWidth < 1024 ? 0 : 15;
+          gsap.to(btn, {
+            x: moveX,
+            backgroundColor: "#ffc994",
+            color: "#000000",
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        }
+      });
+
+      btn.addEventListener("mouseleave", () => {
+        if (!btn.classList.contains("active-btn")) {
+          gsap.to(btn, {
+            x: 0,
+            backgroundColor: "#000000",
+            color: "#ffffff",
+            duration: 0.3,
+            ease: "power2.inOut",
+          });
+        }
+      });
+
+      btn.addEventListener("click", () => {
+        if (switching || btn.classList.contains("active-btn")) return;
         switching = true;
 
-        menuButtons.forEach(b => b.classList.remove('ring-2', 'ring-[#ffc994]'));
-        btn.classList.add('ring-2', 'ring-[#ffc994]');
+        menuButtons.forEach((b) => {
+          b.classList.remove("active-btn", "border-black");
+          gsap.to(b, {
+            x: 0,
+            backgroundColor: "#000000",
+            color: "#ffffff",
+            duration: 0.3,
+          });
+        });
 
-        const target = btn.getAttribute('data-target');
+        btn.classList.add("active-btn", "border-black");
+        
+        const moveX = window.innerWidth < 1024 ? 0 : 15;
+        gsap.to(btn, {
+          x: moveX,
+          backgroundColor: "#ffc994",
+          color: "#000000",
+          duration: 0.3,
+        });
+
+        const target = btn.getAttribute("data-target");
         const data = biodataContent[target];
 
-        glitchTransition(glitchTargets, () => applyContent(data)).eventCallback('onComplete', () => {
-          switching = false;
-        });
+        glitchTransition(glitchTargets, () => applyContent(data)).eventCallback(
+          "onComplete",
+          () => {
+            switching = false;
+          },
+        );
       });
     });
 
     if (menuButtons.length > 0) {
-      menuButtons[0].classList.add('ring-2', 'ring-[#ffc994]');
+      const firstBtn = menuButtons[0];
+      firstBtn.classList.add("active-btn", "border-black");
+      
+      const moveX = window.innerWidth < 1024 ? 0 : 15;
+      gsap.set(firstBtn, {
+        x: moveX,
+        backgroundColor: "#ffc994",
+        color: "#000000",
+      });
       applyContent(biodataContent.personal);
     }
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     autoScaleBiodataStage();
     initInteractions();
   });
-  window.addEventListener('resize', autoScaleBiodataStage);
+
+  window.addEventListener("resize", () => {
+    autoScaleBiodataStage();
+    // Reset button X positions if window is resized past breakpoints
+    const menuButtons = document.querySelectorAll(".menu-btn");
+    menuButtons.forEach((btn) => {
+      if (window.innerWidth < 1024) {
+        gsap.set(btn, { x: 0 });
+      } else if (btn.classList.contains("active-btn")) {
+        gsap.set(btn, { x: 15 });
+      }
+    });
+  });
 </script>

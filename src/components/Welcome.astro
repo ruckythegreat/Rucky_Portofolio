@@ -4,200 +4,112 @@ import "../styles/global.css";
 
 <section
   id="WelcomePage"
-  class="relative h-screen w-full overflow-hidden"
+  class="relative h-screen w-full overflow-hidden bg-[#11111d]"
 >
-
   <div
     id="welcome-viewport"
     class="absolute inset-0 overflow-hidden"
   >
-
+    <!-- Stage: Flexbox natural di Mobile, Absolute fixed di Desktop -->
     <div
       id="welcome-stage"
-      class="absolute left-1/2 top-1/2 h-[1080px] w-[1920px] origin-center z-10"
+      class="relative flex h-full w-full flex-col items-center justify-center lg:absolute lg:left-1/2 lg:top-1/2 lg:h-[1080px] lg:w-[1920px] lg:origin-center lg:z-10"
     >
-
+      <!-- Background SVG -->
       <div
         id="svg-bg"
-        class="pointer-events-none absolute z-0 overflow-hidden"
-style="
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0,0,0,1) 60%,
-    rgba(0,0,0,0.8) 78%,
-    rgba(0,0,0,0) 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0,0,0,1) 60%,
-    rgba(0,0,0,0.8) 78%,
-    rgba(0,0,0,0) 100%
-  );
+        class="pointer-events-none absolute inset-0 z-0 overflow-hidden lg:static"
+style="mask-image: linear-gradient(
+  to bottom,
+  rgba(0, 0, 0, 1) 60%,
+  rgba(0, 0, 0, 0.8) 82%,
+  rgba(0, 0, 0, 0.35) 94%,
+  rgba(0, 0, 0, 0) 100%
+);
+
+-webkit-mask-image: linear-gradient(
+  to bottom,
+  rgba(0, 0, 0, 1) 60%,
+  rgba(0, 0, 0, 0.8) 82%,
+  rgba(0, 0, 0, 0.35) 94%,
+  rgba(0, 0, 0, 0) 100%
+);
 "
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1920 1080"
           preserveAspectRatio="xMidYMid slice"
-          class="block h-full w-full"
+          class="block h-full w-full object-cover"
         >
-          <rect
-            x="-20%"
-            y="-20%"
-            width="140%"
-            height="140%"
-            fill="#11111d"
-          />
-
+          <rect x="-20%" y="-20%" width="140%" height="140%" fill="#11111d" />
           <defs>
-            <filter
-              id="blobFilter"
-              x="-200%"
-              y="-200%"
-              width="500%"
-              height="500%"
-            >
+            <filter id="blobFilter" x="-200%" y="-200%" width="500%" height="500%">
               <feGaussianBlur stdDeviation="97" />
             </filter>
-
-            <filter
-              id="grain"
-              x="-20%"
-              y="-20%"
-              width="140%"
-              height="140%"
-            >
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.658"
-                numOctaves="3"
-                stitchTiles="stitch"
-                seed="7599"
-              />
-              <feColorMatrix
-                type="saturate"
-                values="0"
-              />
+            <filter id="grain" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.658" numOctaves="3" stitchTiles="stitch" seed="7599" />
+              <feColorMatrix type="saturate" values="0" />
             </filter>
           </defs>
-
-          <path
-            d="M -127.9,-705.3 L -34.5,-576.8 L 60.3,-449.3 L 156.5,-322.9 L 254.1,-197.5 L 353.1,-73.3 L 453.4,50.0 L 555.0,172.3 L 657.8,293.7 L 761.7,414.3 L 866.4,534.1 L 972.0,653.4 L 1078.1,772.2 L 1184.8,890.7 L 1291.6,1009.0 L 1398.6,1127.2 L 1505.4,1245.5 L 1611.9,1364.0 L 1718.0,1482.9 L 1823.4,1602.3 L 1928.0,1722.3"
-            stroke="#e22f80"
-            stroke-width="199.4"
-            fill="none"
-            opacity="0.732"
-            stroke-linecap="round"
-            filter="url(#blobFilter)"
-          />
-
-          <path
-            d="M -568.6,-418.2 L -428.6,-369.3 L -289.8,-318.0 L -152.5,-264.0 L -16.7,-206.9 L 117.5,-146.6 L 250.0,-83.1 L 380.8,-16.1 L 509.8,54.3 L 637.1,128.0 L 762.8,204.8 L 887.0,284.7 L 1009.8,367.3 L 1131.3,452.3 L 1251.8,539.3 L 1371.5,628.1 L 1490.5,718.0 L 1609.1,808.7 L 1727.6,899.7 L 1846.2,990.5 L 1965.1,1080.6"
-            stroke="#e22f80"
-            stroke-width="132"
-            fill="none"
-            opacity="0.658"
-            stroke-linecap="round"
-            filter="url(#blobFilter)"
-          />
-
-          <path
-            d="M 362.6,-1013.5 L 422.3,-873.9 L 432.6,-697.2 L 426.1,-507.9 L 442.4,-335.7 L 511.5,-203.3 L 641.6,-116.9 L 815.5,-63.5 L 997.7,-16.3 L 1149.3,53.9 L 1244.3,166.8 L 1279.9,324.4 L 1278.2,510.1 L 1276.9,695.6 L 1313.2,852.8 L 1408.9,965.0 L 1561.2,1034.7 L 1743.6,1081.8 L 1917.1,1135.5 L 2046.4,1222.5 L 2114.8,1355.4"
-            stroke="#e22f80"
-            stroke-width="295.3"
-            fill="none"
-            opacity="0.566"
-            stroke-linecap="round"
-            filter="url(#blobFilter)"
-          />
-
-          <path
-            d="M -620.8,-885.7 L -432.3,-850.3 L -286.7,-737.9 L -180.3,-555.3 L -97.5,-330.3 L -16.1,-103.0 L 86.9,85.8 L 227.8,206.6 L 411.9,249.9 L 631.8,229.0 L 869.5,176.2 L 1101.9,133.1 L 1307.1,138.4 L 1471.7,216.7 L 1593.9,371.0 L 1684.6,582.0 L 1763.6,813.5 L 1854.7,1023.7 L 1977.7,1176.6 L 2143.1,1253.4 L 2349.1,1257.6"
-            stroke="#8140dc"
-            stroke-width="109.8"
-            fill="none"
-            opacity="0.576"
-            stroke-linecap="round"
-            filter="url(#blobFilter)"
-          />
-
-          <rect
-            x="-20%"
-            y="-20%"
-            width="140%"
-            height="140%"
-            filter="url(#grain)"
-            opacity="0.168"
-          />
+          <path d="M -127.9,-705.3 L -34.5,-576.8 L 60.3,-449.3 L 156.5,-322.9 L 254.1,-197.5 L 353.1,-73.3 L 453.4,50.0 L 555.0,172.3 L 657.8,293.7 L 761.7,414.3 L 866.4,534.1 L 972.0,653.4 L 1078.1,772.2 L 1184.8,890.7 L 1291.6,1009.0 L 1398.6,1127.2 L 1505.4,1245.5 L 1611.9,1364.0 L 1718.0,1482.9 L 1823.4,1602.3 L 1928.0,1722.3" stroke="#e22f80" stroke-width="199.4" fill="none" opacity="0.732" stroke-linecap="round" filter="url(#blobFilter)" />
+          <path d="M -568.6,-418.2 L -428.6,-369.3 L -289.8,-318.0 L -152.5,-264.0 L -16.7,-206.9 L 117.5,-146.6 L 250.0,-83.1 L 380.8,-16.1 L 509.8,54.3 L 637.1,128.0 L 762.8,204.8 L 887.0,284.7 L 1009.8,367.3 L 1131.3,452.3 L 1251.8,539.3 L 1371.5,628.1 L 1490.5,718.0 L 1609.1,808.7 L 1727.6,899.7 L 1846.2,990.5 L 1965.1,1080.6" stroke="#e22f80" stroke-width="132" fill="none" opacity="0.658" stroke-linecap="round" filter="url(#blobFilter)" />
+          <path d="M 362.6,-1013.5 L 422.3,-873.9 L 432.6,-697.2 L 426.1,-507.9 L 442.4,-335.7 L 511.5,-203.3 L 641.6,-116.9 L 815.5,-63.5 L 997.7,-16.3 L 1149.3,53.9 L 1244.3,166.8 L 1279.9,324.4 L 1278.2,510.1 L 1276.9,695.6 L 1313.2,852.8 L 1408.9,965.0 L 1561.2,1034.7 L 1743.6,1081.8 L 1917.1,1135.5 L 2046.4,1222.5 L 2114.8,1355.4" stroke="#e22f80" stroke-width="295.3" fill="none" opacity="0.566" stroke-linecap="round" filter="url(#blobFilter)" />
+          <path d="M -620.8,-885.7 L -432.3,-850.3 L -286.7,-737.9 L -180.3,-555.3 L -97.5,-330.3 L -16.1,-103.0 L 86.9,85.8 L 227.8,206.6 L 411.9,249.9 L 631.8,229.0 L 869.5,176.2 L 1101.9,133.1 L 1307.1,138.4 L 1471.7,216.7 L 1593.9,371.0 L 1684.6,582.0 L 1763.6,813.5 L 1854.7,1023.7 L 1977.7,1176.6 L 2143.1,1253.4 L 2349.1,1257.6" stroke="#8140dc" stroke-width="109.8" fill="none" opacity="0.576" stroke-linecap="round" filter="url(#blobFilter)" />
+          <rect x="-20%" y="-20%" width="140%" height="140%" filter="url(#grain)" opacity="0.168" />
         </svg>
       </div>
 
-      <div class="absolute right-[80px] top-[40px] z-10">
-        <p class="text-lg text-gray-400">
-          V.1-Entry &#8968;0/10&#8969;
+      <!-- Version Text -->
+      <div class="absolute right-4 top-4 z-10 lg:right-[80px] lg:top-[40px]">
+        <p class="text-xs text-gray-400 lg:text-lg">
+          V.1-Entry &#8968;0:10&#8969;
         </p>
       </div>
 
+      <!-- Image (Diperkecil dan ditengahkan di Mobile) -->
       <img
         src="/CloseUpRucky.JPG"
         alt="Rucky"
         class="
-          absolute
-          left-[200px]
-          top-[120px]
           z-10
-          h-[960px]
-          w-[500px]
-          object-cover
-          mix-blend-lighten
-          
+          mt-10 h-[45vh] w-auto object-cover mix-blend-lighten
+          lg:absolute lg:left-[200px] lg:top-[120px] lg:mt-0 lg:h-[960px] lg:w-[500px]
         "
         style="
-          mask-image: linear-gradient(
-            to bottom,
-            rgba(0,0,0,1) 60%,
-            rgba(0,0,0,0) 100%
-          );
-          -webkit-mask-image: linear-gradient(
-            to bottom,
-            rgba(0,0,0,1) 60%,
-            rgba(0,0,0,0) 100%
-          );
+          mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+          -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
         "
       />
 
+      <!-- Text Container (Diubah ukurannya di Mobile) -->
       <div
         class="
-          absolute
-          left-[740px]
-          top-[380px]
           z-10
-          flex
-          flex-col
-          items-center
-          text-left
+          mt-6 flex flex-col items-center px-4 text-center
+          lg:absolute lg:left-[740px] lg:top-[380px] lg:mt-0 lg:items-start lg:text-left
         "
       >
-<h1
-  id="hero-line-1"
-  class="hero-line text-8xl font-bold text-white invisible"
-></h1>
+        <h1
+          id="hero-line-1"
+          class="hero-line text-4xl font-bold text-white invisible md:text-6xl lg:text-8xl"
+        ></h1>
 
-<h1
-  id="hero-line-2"
-  class="hero-headline mt-2 text-6xl font-bold invisible"
-  style="color:#ffc994"
-></h1>
+        <h1
+          id="hero-line-2"
+          class="hero-headline mt-2 text-3xl font-bold invisible md:text-5xl lg:text-6xl"
+          style="color:#ffc994"
+        ></h1>
 
-<p
-  id="hero-desc"
-  class="hero-desc mt-4 text-lg text-gray-400 invisible"
-></p>
+        <p
+          id="hero-desc"
+          class="hero-desc mt-4 text-sm text-gray-400 invisible lg:text-lg"
+        ></p>
       </div>
     </div>
-
   </div>
 </section>
+
 <script>
   import {
     gsap,
@@ -214,14 +126,28 @@ style="
     const svgBg = document.getElementById("svg-bg");
     if (!stage) return;
 
-    const sidebarWidth = 80;
+    // --- CEK MOBILE: Jika lebar layar < 1024px, matikan scaling kaku ---
+    if (window.innerWidth < 1024) {
+      stage.style.left = '';
+      stage.style.top = '';
+      stage.style.transform = '';
+      
+      if (svgBg) {
+        svgBg.style.width = '100%';
+        svgBg.style.height = '100%';
+        svgBg.style.left = '0';
+        svgBg.style.top = '0';
+      }
+      return; // Berhenti di sini, biarkan Tailwind CSS mengambil alih
+    }
 
+    // --- DESKTOP: Logika original tetap berjalan ---
+    const sidebarWidth = 80;
     const availableWidth = Math.max(window.innerWidth - sidebarWidth, 320);
     const availableHeight = Math.max(window.innerHeight, 320);
 
     const scaleX = availableWidth / BASE_WIDTH;
     const scaleY = availableHeight / BASE_HEIGHT;
-
     const scale = Math.min(scaleX, scaleY);
 
     const centerX = sidebarWidth + availableWidth / 2;

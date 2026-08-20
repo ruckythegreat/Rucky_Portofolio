@@ -2,7 +2,11 @@
 import "../styles/global.css";
 ---
 
-<footer id="site-footer" class="relative bg-[#0d0d0d] text-white w-full font-sans border-t border-gray-800 overflow-hidden">
+<footer
+  id="site-footer"
+  class="relative bg-[#0d0d0d] text-white w-full font-sans border-t border-gray-800 overflow-hidden"
+>
+  <!-- Footer Wave -->
   <svg
     id="footer-wave"
     class="absolute top-0 left-0 w-full h-16 -translate-y-[99%] text-[#0d0d0d]"
@@ -17,63 +21,158 @@ import "../styles/global.css";
     />
   </svg>
 
+  <!-- === SECTION 1: LANGUAGE === -->
   <div class="flex flex-col items-center justify-center py-10">
-    <span class="text-gray-400 text-sm mb-3">Select Language</span>
-    
+    <span class="text-gray-400 text-sm mb-3">
+      Select Language
+    </span>
 
-    <button class="bg-[#f5f5f5] text-black w-64 py-2.5 px-4 flex items-center justify-between hover:bg-gray-300 transition-colors">
+    <button
+      class="bg-[#f5f5f5] text-black w-64 py-2.5 px-4 flex items-center justify-between hover:bg-gray-300 transition-colors"
+    >
       <div class="flex items-center gap-2">
-
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <!-- Globe Icon -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1"
+            d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
         </svg>
-        <span class="font-medium text-sm">English</span>
+
+        <span class="font-medium text-sm">
+          English
+        </span>
       </div>
 
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+      <!-- Chevron Up -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          d="M5 15l7-7 7 7"
+        />
       </svg>
     </button>
   </div>
 
-  <!-- === DIVIDER LINE === -->
+  <!-- Divider -->
   <div class="w-full h-px bg-[#1f1f1f]"></div>
 
-  <!-- === SECTION 2: MAIN FOOTER CONTENT === -->
+  <!-- === SECTION 2: MAIN FOOTER === -->
   <div class="flex flex-col items-center justify-center py-12 px-4">
-    <img src="" class="h-10 mb-10 object-contain" />
 
-    <!-- Links -->
-    <div class="flex items-center gap-6 text-[13px] font-bold tracking-widest mb-10 uppercase">
-      <a href="#" class="hover:text-gray-400 transition-colors">Terms of Service</a>
-      <span class="text-gray-600">|</span>
-      <a href="#" class="hover:text-gray-400 transition-colors">Privacy Policy</a>
-      <span class="text-gray-600">|</span>
-      <a href="#" class="hover:text-gray-400 transition-colors">Contact Us</a>
+    <!-- Logo / Name -->
+    <div class="mb-10 text-center">
+      <h2
+        class="text-2xl font-black tracking-[0.35em] uppercase"
+      >
+        Rucky
+      </h2>
+
+      <p class="text-[10px] text-gray-600 tracking-[0.3em] mt-2 uppercase">
+        Creative Developer
+      </p>
     </div>
 
+    <!-- Navigation Links -->
+    <div
+      class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-[13px] font-bold tracking-widest mb-10 uppercase"
+    >
+      <a
+        href="#"
+        class="hover:text-gray-400 transition-colors"
+      >
+        Terms of Service
+      </a>
 
-    <img src="" alt="" class="h-16 mb-8 border border-gray-600" />
+      <span class="text-gray-600">|</span>
+
+      <a
+        href="#"
+        class="hover:text-gray-400 transition-colors"
+      >
+        Privacy Policy
+      </a>
+
+      <span class="text-gray-600">|</span>
+
+      <a
+        href="#"
+        class="hover:text-gray-400 transition-colors"
+      >
+        Contact Us
+      </a>
+    </div>
+
+    <!-- Decorative Line -->
+    <div class="flex items-center gap-4 mb-8 w-full max-w-xl">
+      <div class="h-px flex-1 bg-[#242424]"></div>
+
+      <span class="text-[9px] text-gray-600 tracking-[0.3em] uppercase">
+        End of Page
+      </span>
+
+      <div class="h-px flex-1 bg-[#242424]"></div>
+    </div>
 
     <!-- Legal Text -->
-    <p class="text-[10px] text-gray-500 text-center max-w-4xl leading-relaxed mb-8">
-      "AUJSKDHIKJSADJHIKASDASD.<br/>
-      BABBABABAABBABABABABABABABABABA
+    <p
+      class="text-[10px] text-gray-500 text-center max-w-2xl leading-relaxed mb-8"
+    >
+      This website was designed and developed by Rucky as a personal
+      portfolio and creative showcase.
+      <br />
+      All original designs, visuals, and works presented on this website
+      belong to their respective creators or owners.
     </p>
 
-    <!-- Company Logos -->
-    <div class="flex items-center justify-center gap-8 mb-4">
-      <img src="" alt="" class="h-5 opacity-60 hover:opacity-100 transition-opacity grayscale" />
-      <img src="" alt=" " class="h-6 opacity-60 hover:opacity-100 transition-opacity grayscale" />
+    <!-- Creator Credit -->
+    <div class="flex flex-col items-center mb-8">
+      <span class="text-[9px] text-gray-600 uppercase tracking-[0.3em] mb-2">
+        Designed & Developed By
+      </span>
+
+      <span class="text-sm font-bold tracking-[0.2em] uppercase">
+        Rucky
+      </span>
+    </div>
+
+    <!-- Optional Company / Platform Logos -->
+    <div class="flex items-center justify-center gap-8 mb-6">
+      <img
+        src=""
+        alt=""
+        class="h-5 opacity-60 hover:opacity-100 transition-opacity grayscale"
+      />
+
+      <img
+        src=""
+        alt=""
+        class="h-6 opacity-60 hover:opacity-100 transition-opacity grayscale"
+      />
     </div>
 
     <!-- Copyright -->
-    <p class="text-[10px] text-gray-600">
-      © 2022-2026 Rucky. All rights reserved.
+    <p class="text-[10px] text-gray-600 text-center flex items-center"><svg class="m-1" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copyright-icon lucide-copyright"><circle cx="12" cy="12" r="10"/><path d="M14.83 14.83a4 4 0 1 1 0-5.66"/></svg>2026 - Now Rucky. All rights reserved.
+      <svg class="m-1" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copyleft-icon lucide-copyleft"><circle cx="12" cy="12" r="10"/><path d="M9.17 14.83a4 4 0 1 0 0-5.66"/></svg>
     </p>
 
   </div>
-  
 </footer>
 
 <script>
@@ -82,21 +181,36 @@ import "../styles/global.css";
   function initFooterWave() {
     const footer = document.getElementById("site-footer");
     const wave = document.getElementById("footer-wave-path");
+
     if (!footer || !wave) return;
 
     ScrollTrigger.create({
       trigger: footer,
       start: "top bottom",
+
       onEnter: (self) => {
         const velocity = Math.abs(self.getVelocity());
+
         const amp = 1 + Math.min(velocity / 8000, 0.6);
+
         gsap.fromTo(
           wave,
-          { attr: { d: "M0,64 C360,64 720,64 1080,64 C1260,64 1380,64 1440,64 L1440,80 L0,80 Z" } },
+
           {
-            attr: { d: "M0,40 C320,80 640,0 960,40 C1200,70 1320,20 1440,40 L1440,80 L0,80 Z" },
+            attr: {
+              d: "M0,64 C360,64 720,64 1080,64 C1260,64 1380,64 1440,64 L1440,80 L0,80 Z",
+            },
+          },
+
+          {
+            attr: {
+              d: "M0,40 C320,80 640,0 960,40 C1200,70 1320,20 1440,40 L1440,80 L0,80 Z",
+            },
+
             duration: 1.6,
+
             ease: `elastic.out(${amp}, 0.45)`,
+
             overwrite: true,
           }
         );
@@ -105,7 +219,10 @@ import "../styles/global.css";
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initFooterWave);
+    document.addEventListener(
+      "DOMContentLoaded",
+      initFooterWave
+    );
   } else {
     initFooterWave();
   }
