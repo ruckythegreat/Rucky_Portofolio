@@ -2,24 +2,21 @@
 import "../styles/global.css";
 ---
 
-<!-- Ubah layout mobile agar bisa scroll natural (min-h-screen), dan kembali ke absolute/fixed-stage di desktop -->
 <section
   class="relative mb-20 w-full min-h-screen overflow-hidden flex items-center justify-center bg-white lg:mt-40 lg:h-screen lg:w-screen"
   id="BiodataPage"
 >
-  <!-- Stage: Tinggi/lebar statis dimatikan di mobile, kembali jadi absolute 1920x1080 di desktop -->
   <div
     id="game-stage-biodata"
     class="w-full h-auto relative origin-center shrink-0 lg:absolute lg:h-[1080px] lg:w-[1920px]"
   >
-    <!-- Kontainer utama: Padding disesuaikan untuk HP -->
     <div class="relative flex flex-col w-full h-full px-6 py-24 z-10 lg:items-center lg:p-16">
       
-      <!-- TITLE -->
+      <!-- TITLE HEADER -->
       <h2
-        class="relative text-3xl font-bold text-black flex items-center gap-2 mb-2 lg:top-20 lg:right-100 lg:mb-0 lg:text-5xl"
+        class="relative text-3xl font-bold text-black flex items-center gap-3 mb-2 lg:top-20 lg:right-100 lg:mb-0 lg:text-5xl drop-shadow-sm"
       >
-        [About Rucky]
+        [About Raka]
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -27,65 +24,63 @@ import "../styles/global.css";
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="1"
+          stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="lucide lucide-folder-plus-icon lucide-folder-plus lg:h-8 lg:w-8"
-          ><path d="M12 10v6"></path><path d="M9 13h6"></path><path
+          class="lucide lucide-folder-plus-icon lucide-folder-plus lg:h-10 lg:w-10"
+        ><path d="M12 10v6"></path><path d="M9 13h6"></path><path
             d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"
           ></path></svg>
       </h2>
 
       <!-- COUNTER -->
-      <p class="relative text-sm text-gray-500 mb-8 max-w-3xl lg:top-200 lg:left-180 lg:mt-6 lg:mb-0 lg:text-base lg:text-gray-400">
-        V.1-Entry&#8968;1:10&#8969; [<span id="dynamic-counter">1</span>/5]
+      <p class="relative text-sm text-gray-500 mb-8 max-w-3xl font-mono tracking-wider lg:top-200 lg:left-180 lg:mt-6 lg:mb-0 lg:text-base lg:text-gray-500">
+        V.1-Entry&#8968;1:10&#8969; [<span id="dynamic-counter" class="font-bold text-black">1</span>/5]
       </p>
 
-      <!-- MENU WRAPPER: Di HP jadi Grid 2 Kolom, di Desktop jadi List Vertikal -->
+      <!-- MENU BUTTONS -->
       <div
-        class="relative w-full grid grid-cols-2 gap-3 mb-10 z-20 lg:absolute lg:flex lg:flex-col lg:items-start lg:w-[350px] lg:top-[300px] lg:left-[200px] lg:space-y-3 lg:gap-0 lg:p-2 lg:mb-0 lg:block"
+        class="relative w-full grid grid-cols-2 gap-3 mb-10 z-30 lg:absolute lg:flex lg:flex-col lg:items-start lg:w-[350px] lg:top-[300px] lg:left-[180px] lg:space-y-3 lg:gap-0 lg:p-2 lg:mb-0 lg:block"
       >
-        <!-- Arrow Up (Hidden di Mobile) -->
-        <div class="hidden lg:flex w-full justify-center mb-2">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-up text-black"><path d="m18 15-6-6-6 6"></path></svg>
+        <div class="hidden lg:flex w-full justify-center mb-4 opacity-50">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-up text-black"><path d="m18 15-6-6-6 6"></path></svg>
         </div>
 
-        <button class="w-full text-left menu-btn bg-black text-white px-4 py-3 text-xs md:text-sm font-bold uppercase border border-transparent lg:px-6 lg:py-3 lg:text-xl" data-target="personal">
+        <button class="w-full text-left menu-btn bg-black text-white px-5 py-4 text-xs md:text-sm font-bold uppercase tracking-wide border border-transparent transition-shadow hover:shadow-lg lg:px-8 lg:py-4 lg:text-xl" data-target="personal">
           Personal
         </button>
-        <button class="w-full text-left menu-btn bg-black text-white px-4 py-3 text-xs md:text-sm font-bold uppercase border border-transparent lg:px-6 lg:py-3 lg:text-xl" data-target="strengths">
+        <button class="w-full text-left menu-btn bg-black text-white px-5 py-4 text-xs md:text-sm font-bold uppercase tracking-wide border border-transparent transition-shadow hover:shadow-lg lg:px-8 lg:py-4 lg:text-xl" data-target="strengths">
           Strengths
         </button>
-        <button class="w-full text-left menu-btn bg-black text-white px-4 py-3 text-xs md:text-sm font-bold uppercase border border-transparent lg:px-6 lg:py-3 lg:text-xl" data-target="weaknesses">
+        <button class="w-full text-left menu-btn bg-black text-white px-5 py-4 text-xs md:text-sm font-bold uppercase tracking-wide border border-transparent transition-shadow hover:shadow-lg lg:px-8 lg:py-4 lg:text-xl" data-target="weaknesses">
           Weaknesses
         </button>
-        <button class="w-full text-left menu-btn bg-black text-white px-4 py-3 text-xs md:text-sm font-bold uppercase border border-transparent lg:px-6 lg:py-3 lg:text-xl" data-target="hobbies">
+        <button class="w-full text-left menu-btn bg-black text-white px-5 py-4 text-xs md:text-sm font-bold uppercase tracking-wide border border-transparent transition-shadow hover:shadow-lg lg:px-8 lg:py-4 lg:text-xl" data-target="hobbies">
           Hobbies
         </button>
-        <button class="w-full text-left menu-btn bg-black text-white px-4 py-3 text-xs md:text-sm font-bold uppercase border border-transparent lg:px-6 lg:py-3 lg:text-xl col-span-2 lg:col-span-1" data-target="purpose">
+        <button class="w-full text-left menu-btn bg-black text-white px-5 py-4 text-xs md:text-sm font-bold uppercase tracking-wide border border-transparent transition-shadow hover:shadow-lg col-span-2 lg:col-span-1 lg:px-8 lg:py-4 lg:text-xl" data-target="purpose">
           Purpose
         </button>
 
-        <!-- Arrow Down (Hidden di Mobile) -->
-        <div class="hidden lg:flex w-full justify-center mt-2">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down text-black"><path d="m6 9 6 6 6-6"></path></svg>
+        <div class="hidden lg:flex w-full justify-center mt-4 opacity-50">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down text-black"><path d="m6 9 6 6 6-6"></path></svg>
         </div>
       </div>
 
-      <!-- DYNAMIC CONTENT (Title & Description) -->
+      <!-- DYNAMIC CONTENT (Title & Description Card) -->
       <div
-        class="relative w-full flex flex-col items-start z-20 bg-white/70 backdrop-blur-md p-6 border border-slate-200 lg:bg-transparent lg:backdrop-blur-none lg:p-0 lg:border-none lg:absolute lg:w-[470px] lg:top-[350px] lg:left-[600px]"
+        class="relative w-full flex flex-col items-start z-30 bg-white/80 backdrop-blur-xl p-8 border border-slate-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-xl lg:bg-white/85 lg:backdrop-blur-2xl lg:p-12 lg:border-white/50 lg:shadow-2xl lg:absolute lg:w-[600px] lg:top-[300px] lg:left-[550px]"
       >
-        <h1 id="dynamic-title" class="text-black text-3xl lg:text-5xl font-bold mb-4">
+        <h1 id="dynamic-title" class="text-black text-3xl lg:text-5xl font-extrabold mb-6 tracking-tight">
           [Title]
         </h1>
-        <p id="dynamic-desc" class="text-black text-left text-base lg:text-lg leading-relaxed">
+        <p id="dynamic-desc" class="text-slate-800 text-left text-base lg:text-xl leading-relaxed lg:leading-[1.7]">
           Pilih menu di bawah untuk melihat detail informasi.
         </p>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-left hidden lg:block mt-4"><path d="M17 7 7 17"></path><path d="M17 17H7V7"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-left hidden lg:block mt-8 text-black opacity-40"><path d="M17 7 7 17"></path><path d="M17 17H7V7"></path></svg>
       </div>
 
-      <!-- IMAGE: Di mobile jadi background samar, di desktop kembali ke ukuran asli -->
+      <!-- IMAGE -->
       <div
         class="absolute inset-0 opacity-15 pointer-events-none z-[-1] overflow-hidden lg:opacity-100 lg:w-[600px] lg:p-6 lg:flex lg:flex-col lg:justify-center lg:left-200 lg:top-0 lg:-translate-y-1/2"
       >
@@ -93,48 +88,51 @@ import "../styles/global.css";
           id="dynamic-img"
           src="/bg1.jpg"
           alt="Rucky"
-          class="w-full h-full object-cover lg:w-120 lg:h-210 lg:absolute lg:left-70 lg:top-30 lg:mix-blend-plus-lighter"
+          class="w-full h-full object-cover lg:w-120 lg:h-210 lg:absolute lg:left-70 lg:top-30 lg:mix-blend-plus-lighter drop-shadow-2xl"
         />
       </div>
 
-      <!-- DEKORASI DESKTOP ONLY: Disembunyikan di layar kecil agar tidak menumpuk -->
-      <!-- Land Plot Icon -->
-      <div class="hidden lg:block absolute top-15 right-85">
-        <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-land-plot"><path d="m12 8 6-3-6-3v10"></path><path d="m8 11.99-5.5 3.14a1 1 0 0 0 0 1.74l8.5 4.86a2 2 0 0 0 2 0l8.5-4.86a1 1 0 0 0 0-1.74L16 12"></path><path d="m6.49 12.85 11.02 6.3"></path><path d="M17.51 12.85 6.5 19.15"></path></svg>
+      <!-- DEKORASI DESKTOP ONLY -->
+      <div class="hidden lg:block absolute top-15 right-85 text-black/40">
+        <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-land-plot"><path d="m12 8 6-3-6-3v10"></path><path d="m8 11.99-5.5 3.14a1 1 0 0 0 0 1.74l8.5 4.86a2 2 0 0 0 2 0l8.5-4.86a1 1 0 0 0 0-1.74L16 12"></path><path d="m6.49 12.85 11.02 6.3"></path><path d="M17.51 12.85 6.5 19.15"></path></svg>
       </div>
-      <!-- Arrow icon kiri bawah -->
-      <div class="hidden lg:block absolute bottom-0 left-10">
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-left"><path d="M17 7 7 17"></path><path d="M17 17H7V7"></path></svg>
+
+      <div class="hidden lg:block absolute bottom-10 left-10 text-black/40">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-left"><path d="M17 7 7 17"></path><path d="M17 17H7V7"></path></svg>
       </div>
-      <!-- Dynamic Extra Info (PPLG_) -->
+
+      <!-- Dynamic Extra Info -->
       <div class="hidden lg:flex absolute w-[600px] p-6 flex-col justify-center left-390 top-150 text-black text-4xl -translate-y-1/2">
-        <p id="dynamic-extra" class="font-bold">PPLG_</p>
-        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-group"><path d="M3 7V5c0-1.1.9-2 2-2h2"></path><path d="M17 3h2c1.1 0 2 .9 2 2v2"></path><path d="M21 17v2c0 1.1-.9 2-2 2h-2"></path><path d="M7 21H5c-1.1 0-2-.9-2-2v-2"></path><rect width="7" height="5" x="7" y="7" rx="1"></rect><rect width="7" height="5" x="10" y="12" rx="1"></rect></svg>
+        <p id="dynamic-extra" class="font-extrabold tracking-widest text-slate-800">PPLG_</p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-group mt-2 text-black"><path d="M3 7V5c0-1.1.9-2 2-2h2"></path><path d="M17 3h2c1.1 0 2 .9 2 2v2"></path><path d="M21 17v2c0 1.1-.9 2-2 2h-2"></path><path d="M7 21H5c-1.1 0-2-.9-2-2v-2"></path><rect width="7" height="5" x="7" y="7" rx="1"></rect><rect width="7" height="5" x="10" y="12" rx="1"></rect></svg>
       </div>
+
       <!-- Teks RUCKY PORTO Raksasa -->
-      <div class="hidden lg:block absolute z-[-2] left-120 top-120 -translate-y-1/2 pointer-events-none font-bold">
-        <p style="font-size: 250px; color: rgba(0, 0, 0, 0.2); white-space: nowrap;">RUCKY PORTO</p>
+      <div class="hidden lg:block absolute z-[-2] left-120 top-120 -translate-y-1/2 pointer-events-none font-black tracking-tighter">
+        <p style="font-size: 250px; color: rgba(0, 0, 0, 0.04); white-space: nowrap;">RAKA PORTO</p>
       </div>
-      <!-- Garis Warna-warni & Ikon Chevron/Grip -->
+
+      <!-- Garis Warna-warni & Ikon Chevron/Grip (Warm Accent Palette) -->
       <div class="hidden lg:flex absolute top-247 z-[-2] right-260 items-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevrons-right"><path d="m6 17 5-5-5-5"></path><path d="m13 17 5-5-5-5"></path></svg>
       </div>
       <div class="hidden lg:flex absolute top-47 z-[-2] right-60 items-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-grip-vertical"><circle cx="9" cy="12" r="1"></circle><circle cx="9" cy="5" r="1"></circle><circle cx="9" cy="19" r="1"></circle><circle cx="15" cy="12" r="1"></circle><circle cx="15" cy="5" r="1"></circle><circle cx="15" cy="19" r="1"></circle></svg>
       </div>
-      <div class="hidden lg:flex absolute top-147 z-[-2] right-260 items-center">
-        <div class="w-106 h-2 bg-[#ffc994]"></div>
-        <div class="w-102 h-2 bg-[#FF7873]"></div>
-        <div class="w-98 h-2 bg-[#E22F80]"></div>
+      <div class="hidden lg:flex absolute top-147 z-[-2] right-260 items-center gap-1">
+        <div class="w-24 h-1.5 bg-[#ffc994] rounded-full"></div>
+        <div class="w-16 h-1.5 bg-[#FF7873] rounded-full"></div>
+        <div class="w-8 h-1.5 bg-[#E22F80] rounded-full"></div>
       </div>
-      <div class="hidden lg:flex absolute top-147 z-[-2] left-300 items-center">
-        <div class="w-106 h-2 bg-[#E22F80]"></div>
-        <div class="w-102 h-2 bg-[#FF7873]"></div>
-        <div class="w-98 h-2 bg-[#ffc994]"></div>
+      <div class="hidden lg:flex absolute top-147 z-[-2] left-300 items-center gap-1">
+        <div class="w-8 h-1.5 bg-[#E22F80] rounded-full"></div>
+        <div class="w-16 h-1.5 bg-[#FF7873] rounded-full"></div>
+        <div class="w-24 h-1.5 bg-[#ffc994] rounded-full"></div>
       </div>
+
       <!-- Masking background block -->
       <div class="hidden lg:flex absolute h-[500px] w-[400px] z-[-3] justify-center left-200 top-50 bg-[rgb(255,201,148)] text-4xl -translate-y-1/2">
-        <div class="absolute opacity-80 h-[500px] w-[400px] flex z-[-3] justify-center top-220 bg-[rgb(255,201,148)] text-4xl -translate-y-1/2" style="mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 90%);"></div>
+        <div class="absolute opacity-80 h-[500px] w-[400px] flex z-[-3] justify-center top-220 bg-[rgb(255,201,148)] text-4xl -translate-y-1/2" style="mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 100%);"></div>
       </div>
       
     </div>
@@ -148,35 +146,35 @@ import "../styles/global.css";
   const biodataContent = {
     personal: {
       title: "[Personal Info]",
-      desc: "Lahir pada Tahun 2009 Bulan November Tanggal 22 Di Kota Bandung. Memiliki Kedua Orang Tua yang bekerja untuk menafkahi keluarga. Dan hidup di kota bandung dari kecil hingga dewasa, Sangat menyukai dan nyaman dengan Cuaca dan Keadaan Kota bandung.",
+      desc: "Lahir di Bandung pada bulan November 2009. Tumbuh dan berkembang di Kota Bandung, membentuk kenyamanan mendalam terhadap atmosfer serta dinamika lingkungan lokal. Biasa disapa Rucky, sebuah panggilan unik yang memudahkan identifikasi profesional. Memiliki minat mendalam dan dedikasi tinggi di bidang pengembangan gim, pemrograman perangkat lunak, serta desain grafis.",
       img: "/bg1.jpg",
       extra: "PROFILE_01",
       counter: "1",
     },
     strengths: {
       title: "[Strengths]",
-      desc: "Mampu beradaptasi dengan berbagai bahasa pemrograman seperti C++, Java, dan Golang. Terbiasa mengonfigurasi dan mengoptimalkan lingkungan sistem operasi Linux kustom menggunakan Arch Linux dan Hyprland untuk efisiensi workflow.",
+      desc: "Memiliki kemampuan adaptasi yang cepat terhadap lingkungan kerja yang dinamis, serta keterampilan belajar mandiri (fast learner) yang tinggi dalam menguasai bahasa pemrograman, analisis sistem, pemecahan masalah, hingga produksi multimedia. Aktif dalam kegiatan kolaboratif, memiliki komitmen tinggi terhadap tanggung jawab profesional, serta mampu bekerja secara efektif di dalam tim lintas disiplin.",
       img: "/bg2.jpg",
       extra: "SYS_ARCH",
       counter: "2",
     },
     weaknesses: {
       title: "[Weaknesses]",
-      desc: "Terkadang terlalu fokus melakukan multitasking ekstrim. Bisa secara bersamaan melakukan debugging modul kernel, mendesain UI/UX, dan memantau live order book pergerakan saham, yang membuat alokasi waktu seringkali melebar dari jadwal awal.",
+      desc: "Memiliki kondisi fisik khusus pada kaki sejak lahir yang dikelola dengan komitmen mobilitas tinggi dan etos kerja profesional. Secara proaktif terus melatih ketelitian komunikasi, mengelola tempo bicara, serta meminimalisir distraksi melalui manajemen tugas yang terstruktur, evaluasi berkala, dan tanggung jawab penuh atas setiap penyelesaian proyek.",
       img: "/bg3.jpg",
       extra: "OVERCLOCK",
       counter: "3",
     },
     hobbies: {
       title: "[Hobbies]",
-      desc: "Di luar layar monitor, rutinitas diisi dengan aktivitas lari untuk menjaga kebugaran fisik dan bereksperimen dengan desain grafis. Juga mengikuti berbagai pop culture seperti anime Eighty-Six dan franchise game Silent Hill atau Minecraft.",
+      desc: "Aktif mengeksplorasi seni digital dan tradisional, desain grafis, penyuntingan video, pemrograman gim dan aplikasi web, pemodelan 3D, serta analisis naratif media interaktif (anime dan film series). Seluruh hobi ini diselaraskan secara profesional untuk mendukung produktivitas teknis di industri kreatif.",
       img: "/bg4.jpg",
       extra: "CREATIVE_RUN",
       counter: "4",
     },
     purpose: {
       title: "[Purpose]",
-      desc: "Tujuan utama adalah membangun sistem yang clean, solid, dan bermanfaat. Menggabungkan hobi desain grafis, kemampuan coding multibahasa, dan minat pada pasar modal untuk menciptakan aplikasi atau web portofolio tingkat lanjut di masa depan.",
+      desc: "Berkomitmen untuk mengangkat kekayaan budaya Nusantara ke kancah industri gim global melalui pendekatan filosofis, naratif, dan mekanik gim yang imersif. Berdedikasi untuk menciptakan inovasi kreatif, memperluas jangkauan karya lokal, serta memperkenalkan identitas budaya Nusantara kepada audiens internasional melalui media hiburan digital.",
       img: "/bg5.jpg",
       extra: "GOAL_EXEC",
       counter: "5",
@@ -187,7 +185,6 @@ import "../styles/global.css";
     const stage = document.getElementById("game-stage-biodata");
     if (!stage) return;
 
-    // CEK MOBILE: Matikan paksaan resolusi di HP (di bawah 1024px)
     if (window.innerWidth < 1024) {
       stage.style.transform = '';
       return; 
@@ -206,11 +203,10 @@ import "../styles/global.css";
     const menuButtons = document.querySelectorAll(".menu-btn");
     const titleEl = document.getElementById("dynamic-title");
     const descEl = document.getElementById("dynamic-desc");
-    const imgEl = document.getElementById("dynamic-img");
+    const imgEl = document.querySelector<HTMLImageElement>("#dynamic-img");
     const extraEl = document.getElementById("dynamic-extra");
     const counterEl = document.getElementById("dynamic-counter");
-    
-    // Target glitch di-cek keberadaannya, berjaga-jaga jika ada elemen hidden
+
     const glitchTargets = [
       "#dynamic-title",
       "#dynamic-desc",
@@ -221,7 +217,13 @@ import "../styles/global.css";
 
     let switching = false;
 
-    function applyContent(data) {
+    function applyContent(data: {
+      title: string;
+      desc: string;
+      img: string;
+      extra: string;
+      counter: string;
+    }) {
       if (titleEl) titleEl.textContent = data.title;
       if (descEl) descEl.textContent = data.desc;
       if (imgEl) imgEl.src = data.img;
@@ -232,8 +234,7 @@ import "../styles/global.css";
     menuButtons.forEach((btn) => {
       btn.addEventListener("mouseenter", () => {
         if (!btn.classList.contains("active-btn")) {
-          // Di mobile pergerakan x diset 0 biar tidak keluar grid
-          const moveX = window.innerWidth < 1024 ? 0 : 15;
+          const moveX = window.innerWidth < 1024 ? 0 : 20;
           gsap.to(btn, {
             x: moveX,
             backgroundColor: "#ffc994",
@@ -272,7 +273,7 @@ import "../styles/global.css";
 
         btn.classList.add("active-btn", "border-black");
         
-        const moveX = window.innerWidth < 1024 ? 0 : 15;
+        const moveX = window.innerWidth < 1024 ? 0 : 20;
         gsap.to(btn, {
           x: moveX,
           backgroundColor: "#ffc994",
@@ -281,7 +282,9 @@ import "../styles/global.css";
         });
 
         const target = btn.getAttribute("data-target");
-        const data = biodataContent[target];
+        if (!target || !(target in biodataContent)) return;
+
+        const data = biodataContent[target as keyof typeof biodataContent];
 
         glitchTransition(glitchTargets, () => applyContent(data)).eventCallback(
           "onComplete",
@@ -296,7 +299,7 @@ import "../styles/global.css";
       const firstBtn = menuButtons[0];
       firstBtn.classList.add("active-btn", "border-black");
       
-      const moveX = window.innerWidth < 1024 ? 0 : 15;
+      const moveX = window.innerWidth < 1024 ? 0 : 20;
       gsap.set(firstBtn, {
         x: moveX,
         backgroundColor: "#ffc994",
@@ -313,13 +316,12 @@ import "../styles/global.css";
 
   window.addEventListener("resize", () => {
     autoScaleBiodataStage();
-    // Reset button X positions if window is resized past breakpoints
     const menuButtons = document.querySelectorAll(".menu-btn");
     menuButtons.forEach((btn) => {
       if (window.innerWidth < 1024) {
         gsap.set(btn, { x: 0 });
       } else if (btn.classList.contains("active-btn")) {
-        gsap.set(btn, { x: 15 });
+        gsap.set(btn, { x: 20 });
       }
     });
   });

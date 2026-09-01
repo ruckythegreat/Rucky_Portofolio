@@ -13,7 +13,7 @@ import "../styles/global.css";
     <!-- Stage: Flexbox natural di Mobile, Absolute fixed di Desktop -->
     <div
       id="welcome-stage"
-      class="relative flex h-full w-full flex-col items-center justify-center lg:absolute lg:left-1/2 lg:top-1/2 lg:h-[1080px] lg:w-[1920px] lg:origin-center lg:z-10"
+      class="relative flex h-full w-full flex-col items-center justify-center lg:absolute lg:left-1/2 lg:top-1/2 lg:h-[1200px] lg:w-[1920px] lg:origin-center lg:z-10"
     >
       <!-- Background SVG -->
       <div
@@ -179,9 +179,10 @@ style="mask-image: linear-gradient(
 
     if (!line1 || !line2 || !desc) return;
 
-    line1.textContent = "HELOOO EVERYONE";
-    line2.textContent = "I'm Rucky";
-    desc.textContent = "A personal portfolio website, built for fun";
+
+line1.textContent = "HELLO WORLD";
+line2.textContent = "I'm Raka Sabari";
+desc.textContent = "A personal portfolio showcasing my software engineering and game development projects.";
 
     gsap.set([line1, line2, desc], { visibility: "visible" });
 
@@ -192,7 +193,7 @@ style="mask-image: linear-gradient(
     });
 
     gsap.delayedCall(0.9, () => {
-      scrambleReveal(desc, "A personal portfolio website, built for fun");
+      scrambleReveal(desc, "A personal portfolio showcasing my software engineering and game development projects.");
     });
   }
 
