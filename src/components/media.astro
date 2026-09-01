@@ -23,12 +23,8 @@ import "../styles/global.css";
     id="media-stage"
     class="absolute z-10 h-[1080px] w-[1920px] shrink-0 origin-center"
   >
-    <!-- Wrapper Utama: Vertikal (Column) di Mobile, Block Biasa di Desktop -->
-    <div class="relative flex h-full w-full flex-col justify-between px-6 pb-28 pt-12 lg:block lg:p-0 lg:pl-[100px]">
+ <div class="relative flex h-full w-full flex-col justify-between px-6 pb-28 pt-12 lg:block lg:p-0 lg:pl-[100px]">
       
-      <!-- ========================================= -->
-      <!-- PAGE TITLE (Atas) -->
-      <!-- ========================================= -->
       <div class="z-20 mt-2 lg:absolute lg:left-[100px] lg:top-[80px] lg:mt-0">
         <div class="flex items-center space-x-3">
           <div class="flex h-6 w-6 items-center justify-center border-[2px] border-white lg:h-8 lg:w-8 lg:border-[3px]">
@@ -40,9 +36,6 @@ import "../styles/global.css";
         </div>
       </div>
 
-      <!-- ========================================= -->
-      <!-- BACKGROUND LAYER -->
-      <!-- ========================================= -->
       <div class="pointer-events-none absolute left-0 top-0 z-0 h-full w-full overflow-hidden">
         <div id="main-bg-wrap" class="absolute inset-0 scale-[1.05] opacity-80 transition-opacity duration-500">
           <iframe
@@ -54,58 +47,48 @@ import "../styles/global.css";
             frameborder="0"
           ></iframe>
         </div>
-        <!-- Gradient lebih tebal dari bawah ke atas khusus HP agar teks terbaca jelas -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent lg:bg-gradient-to-r lg:from-black lg:via-black/60 lg:to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent lg:bg-gradient-to-r lg:from-black lg:via-black/60 lg:to-transparent"></div>
         <div class="absolute inset-0 hidden bg-gradient-to-t from-black/80 via-transparent to-transparent lg:block"></div>
       </div>
 
-      <!-- ========================================= -->
-      <!-- CAROUSEL (Tengah di Mobile, Kanan Bawah di Desktop) -->
-      <!-- ========================================= -->
       <div class="relative z-20 my-auto flex w-full items-center justify-center lg:absolute lg:bottom-[60px] lg:right-[60px] lg:my-0 lg:block lg:w-auto">
         <div class="relative flex w-full items-center justify-between space-x-0 lg:w-auto lg:justify-center lg:space-x-6">
           
-          <!-- PREVIOUS CARD (Sembunyikan visualnya di HP, tapi biarkan elemennya ada untuk GSAP) -->
-          <div class="group relative hidden h-[124px] w-[220px] shrink-0 cursor-pointer overflow-hidden lg:block" id="card-prev">
+        <div class="group relative hidden h-[124px] w-[220px] shrink-0 cursor-pointer overflow-hidden lg:block" id="card-prev">
             <img id="thumb-prev" src="" alt="" class="media-thumb h-full w-full object-cover opacity-40 transition-opacity duration-300 group-hover:opacity-100" />
             <div class="absolute inset-0 bg-black/60 transition-colors duration-300 group-hover:bg-black/20"></div>
             <div class="pointer-events-none absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 35%, rgba(0,0,0,0.75) 100%);"></div>
             <div class="absolute bottom-3 right-3 z-10 flex items-center gap-2 text-[11px] font-bold tracking-widest text-white">
               <span id="prev-counter">00 / 000</span>
-              <span class="border border-[#FF7873]/60 px-1.5 py-0.5 text-[#FF7873]">LAST</span>
+              <span class="border border-[#4F7C89]/60 px-1.5 py-0.5 text-[#4F7C89]">LAST</span>
             </div>
           </div>
 
-          <!-- PREVIOUS BUTTON -->
           <button type="button" class="btn-prev relative z-30 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-black shadow-[0_4px_14px_rgba(0,0,0,0.5)] transition-transform hover:scale-110 hover:bg-gray-200 lg:absolute lg:left-[208px] lg:h-12 lg:w-12">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lg:h-6 lg:w-6"><path d="m15 18-6-6 6-6"/></svg>
           </button>
 
-          <!-- ACTIVE CARD (Besar di tengah saat Mobile) -->
           <div class="relative z-20 mx-4 aspect-video w-full max-w-[280px] shrink-0 cursor-pointer overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.6)] lg:mx-0 lg:h-[190px] lg:w-[340px] lg:max-w-none" id="card-curr">
             <img id="thumb-curr" src="" alt="" class="media-thumb h-full w-full object-cover" />
             <div class="absolute left-2 top-2 z-10 rounded bg-black/80 px-2 py-1 text-[10px] font-bold tracking-widest text-white backdrop-blur-sm lg:left-3 lg:top-3 lg:px-3 lg:py-1.5 lg:text-xs">
               PLAYING
             </div>
-            <div class="pointer-events-none absolute inset-0 z-10" style="background: linear-gradient(to bottom, rgba(255,230,0,0) 50%, #FF7873 100%);"></div>
-            <!-- Tombol play hover tampil secara default di HP sebagai penanda video bisa diklik -->
-            <div class="absolute inset-0 z-20 flex items-center justify-center bg-black/30 opacity-100 transition-opacity duration-300 hover:opacity-100 lg:opacity-0">
+            <div class="pointer-events-none absolute inset-0 z-10" style="background: linear-gradient(to bottom, rgba(255,230,0,0) 50%, #4F7C89 100%);"></div>
+          <div class="absolute inset-0 z-20 flex items-center justify-center bg-black/30 opacity-100 transition-opacity duration-300 hover:opacity-100 lg:opacity-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white" class="drop-shadow-lg lg:h-[56px] lg:w-[56px]"><polygon points="6 3 20 12 6 21 6 3"/></svg>
             </div>
           </div>
 
-          <!-- NEXT BUTTON -->
           <button type="button" class="btn-next relative z-30 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-black shadow-[0_4px_14px_rgba(0,0,0,0.5)] transition-transform hover:scale-110 hover:bg-gray-200 lg:absolute lg:right-[208px] lg:h-12 lg:w-12">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lg:h-6 lg:w-6"><path d="m9 18 6-6-6-6"/></svg>
           </button>
 
-          <!-- NEXT CARD (Sembunyikan visualnya di HP) -->
           <div class="group relative hidden h-[124px] w-[220px] shrink-0 cursor-pointer overflow-hidden lg:block" id="card-next">
             <img id="thumb-next" src="" alt="" class="media-thumb h-full w-full object-cover opacity-40 transition-opacity duration-300 group-hover:opacity-100" />
             <div class="absolute inset-0 bg-black/60 transition-colors duration-300 group-hover:bg-black/20"></div>
             <div class="pointer-events-none absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 35%, rgba(0,0,0,0.75) 100%);"></div>
             <div class="absolute bottom-3 left-3 z-10 flex items-center gap-2 text-[11px] font-bold tracking-widest text-white">
-              <span class="border border-[#FF7873]/60 px-1.5 py-0.5 text-[#FF7873]">NEXT</span>
+              <span class="border border-[#4F7C89]/60 px-1.5 py-0.5 text-[#4F7C89]">NEXT</span>
               <span id="next-counter">00 / 000</span>
             </div>
           </div>
@@ -113,15 +96,12 @@ import "../styles/global.css";
         </div>
       </div>
 
-      <!-- ========================================= -->
-      <!-- MAIN TEXT INFO (Bawah) -->
-      <!-- ========================================= -->
       <div class="relative z-10 mt-auto flex w-full max-w-2xl flex-col items-start text-white lg:absolute lg:bottom-[100px] lg:left-[100px] lg:mt-0 lg:pb-0">
         <div class="mb-2 flex items-center space-x-3 lg:mb-4">
           <span id="media-category" class="bg-white/20 px-2 py-1 text-[10px] font-bold uppercase tracking-widest lg:px-3 lg:text-sm">
             CATEGORY
           </span>
-          <p id="media-date" class="text-sm font-bold tracking-[0.15em] lg:text-lg" style="color:#FF7873">
+          <p id="media-date" class="text-sm font-bold tracking-[0.15em] lg:text-lg" style="color:#4F7C89">
             2026-00-00
           </p>
         </div>
@@ -130,14 +110,12 @@ import "../styles/global.css";
           JUDUL MEDIA
         </h1>
         
-        <!-- Dibatasi 3 baris di HP agar tidak memenuhi layar bawah -->
         <p id="media-desc" class="mb-6 line-clamp-3 max-w-xl text-sm leading-relaxed text-gray-300 lg:mb-10 lg:line-clamp-none lg:text-xl">
           (DESKRIPSI MEDIA)
         </p>
 
-        <!-- Buttons -->
         <div class="flex w-full space-x-3 lg:w-auto lg:space-x-4">
-          <button id="btn-play" type="button" class="group flex h-12 w-16 shrink-0 items-center justify-center bg-[#FF7873] font-bold text-black shadow-[0_0_20px_rgba(255,120,115,0.4)] transition-colors hover:bg-[#ff9490] lg:h-14 lg:w-20" aria-label="Play video">
+          <button id="btn-play" type="button" class="group flex h-12 w-16 shrink-0 items-center justify-center bg-[#4F7C89] font-bold text-black shadow-[0_0_20px_rgba(255,120,115,0.4)] transition-colors hover:bg-[#ff9490] lg:h-14 lg:w-20" aria-label="Play video">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:scale-110 lg:h-[28px] lg:w-[28px]"><polygon points="6 3 20 12 6 21 6 3"/></svg>
           </button>
           <button class="flex h-12 flex-1 items-center justify-center border border-white/30 bg-white/10 px-4 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20 lg:h-14 lg:flex-none lg:px-8 lg:text-base">
@@ -146,10 +124,7 @@ import "../styles/global.css";
         </div>
       </div>
 
-      <!-- ========================================= -->
-      <!-- ACCENT LINES & COUNTER (Sembunyikan di HP) -->
-      <!-- ========================================= -->
-      <div class="absolute bottom-[160px] left-0 z-10 hidden h-[2px] w-[55%] bg-[#FF7873] shadow-[0_0_10px_rgba(255,120,115,0.5)] lg:block"></div>
+      <div class="absolute bottom-[160px] left-0 z-10 hidden h-[2px] w-[55%] bg-[#4F7C89] shadow-[0_0_10px_rgba(255,120,115,0.5)] lg:block"></div>
       <div class="absolute bottom-[160px] left-[55%] z-10 hidden h-[1px] w-[45%] bg-white/20 lg:block"></div>
       <p class="absolute bottom-14 left-[100px] z-10 mt-6 hidden font-medium tracking-wide text-gray-400 lg:block">
         V.1-Entry &#8968; 3 / 10 &#8969;
@@ -159,9 +134,6 @@ import "../styles/global.css";
     </div>
   </div>
 
-  <!-- ========================================= -->
-  <!-- VIDEO MODAL -->
-  <!-- ========================================= -->
   <div
     id="video-modal"
     class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-sm"
@@ -197,68 +169,46 @@ import "../styles/global.css";
   function initMediaPage() {
     initSimpleStageScale("media-stage");
 
-    // =========================================
-    // MEDIA DATA
-    // =========================================
-
     const mediaList = [
+                  {
+        category: "Profile Kejuruan",
+        date: "2026-07-15",
+        title: "Video pengenalan PPLG & RPL",
+        desc: "Mengenal lingkungan, kurikulum serta kejuruan PPLG & RPL",
+        ytId: "FVaLj0g6Yzk",
+
+      },
+                        {
+        category: "Ucapan",
+        date: "2026-08-25",
+        title: "Happy Birthday SMKN 2 Bandung from RPL (Minecraft Edition)",
+        desc: "Ucapan Ulang tahun dan juga open house SMKN 2 dari RPL",
+        ytId: "WAAEZzLE-nQ",
+
+      },
       {
-        category: "ANIME",
-        date: "2026-02-15",
-        title: "Test: Test",
-        desc: "Dokumentasi...",
-        ytId: "Jx7nt0qeLF8",
-        // DFWSf7kyg_k
+        category: "Film pendek SMKN 2",
+        date: "2026-06-05",
+        title: "SANGTRIVARNA - KALA KITA",
+        desc: "Film pendek karya siswa SMK Negeri 2 Bandung ini menyoroti lika-liku kehidupan masa remaja di lingkungan sekolah. Melalui sudut pandang beberapa pelajar, narasi ini mengeksplorasi perjuangan dalam menghadapi konsekuensi peraturan, dinamika pertemanan, dan perjalanan pendewasaan diri yang penuh tantangan.",
+        ytId: "oRDGl6HP_i4",
+
       },
 
       {
-        category: "GAMING",
-        date: "2026-02-10",
-        title: "Exploration",
-        desc: "Menyoroti desain environment berkabut dan pendekatan tata suara khas dari franchise klasik ini.",
-        ytId: "Jx7nt0qeLF8",
-        // tK1kL_mF6Ew
-      },
+        category: "Profile SMKN 2",
+        date: "2022-07-15",
+        title: "Profile Video SMK NEGERI 2 BANDUNG",
+        desc: "PROFILE VIDEO SEKOLAH MENENGAH KEJURUAN ( SMKN 2 BANDUNG )",
+        ytId: "8CgZfaxn4uQ",
 
-      {
-        category: "OS CONFIG",
-        date: "2025-11-20",
-        title: "Arch Linux x Hyprland",
-        desc: "Demonstrasi setup Tiling Window Manager kustom. Menampilkan kelancaran workflow untuk proses debugging dan manajemen resource sistem.",
-        ytId: "Jx7nt0qeLF8",
-        // 9sT_M7K6p3c
-      },
-
-      {
-        category: "TRADING",
-        date: "2026-05-01",
-        title: "Market Analysis & Order Book",
-        desc: "Pantauan pergerakan emiten pasar modal. Analisis live order book secara real-time untuk mengeksekusi strategi transaksi berkecepatan tinggi.",
-        ytId: "Jx7nt0qeLF8",
-        // 5c-r529w4h8
-      },
-
-      {
-        category: "GAMING",
-        date: "2026-02-28",
-        title: "Minecraft: System Architecture",
-        desc: "Eksplorasi pembuatan sirkuit logika kompleks menggunakan Redstone, mereplikasikan prinsip dasar komputasi dan gerbang logika.",
-        ytId: "Jx7nt0qeLF8",
-        // MmB9b5njVbA
       },
     ];
-
-    // =========================================
-    // STATE
-    // =========================================
 
     let currentIndex = 0;
     let switching = false;
     let isFirstLoad = true;
 
-    // =========================================
-    // YOUTUBE HELPERS
-    // =========================================
 
     const getYtThumbnail = (id: string) =>
       `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
@@ -269,9 +219,6 @@ import "../styles/global.css";
     const getYtWatchEmbed = (id: string) =>
       `https://www.youtube.com/embed/${id}?autoplay=1&mute=0&rel=0&modestbranding=1`;
 
-    // =========================================
-    // UPDATE MEDIA CONTENT
-    // =========================================
 
     function setMediaContent(
       currentData: any,
@@ -292,7 +239,6 @@ import "../styles/global.css";
           ? 0
           : currentIndex + 1;
 
-      // Main content
       document.getElementById("media-category")!.textContent =
         currentData.category;
 
@@ -308,12 +254,10 @@ import "../styles/global.css";
       document.getElementById("media-counter")!.textContent =
         currentNumber.toString();
 
-      // Background
       (
         document.getElementById("main-bg") as HTMLIFrameElement
       ).src = getYtBgEmbed(currentData.ytId);
 
-      // Thumbnails
       (
         document.getElementById("thumb-prev") as HTMLImageElement
       ).src = getYtThumbnail(prevData.ytId);
@@ -326,9 +270,6 @@ import "../styles/global.css";
         document.getElementById("thumb-next") as HTMLImageElement
       ).src = getYtThumbnail(nextData.ytId);
 
-      // =========================================
-      // CAROUSEL COUNTERS
-      // =========================================
 
       document.getElementById("prev-counter")!.textContent =
         `${String(prevIndex + 1).padStart(2, "0")} / ${String(total).padStart(3, "0")}`;
@@ -336,10 +277,6 @@ import "../styles/global.css";
       document.getElementById("next-counter")!.textContent =
         `${String(nextIndex + 1).padStart(2, "0")} / ${String(total).padStart(3, "0")}`;
     }
-
-    // =========================================
-    // UPDATE UI / ANIMATION
-    // =========================================
 
     function updateMediaUI(direction = 1) {
       if (switching) return;
@@ -358,7 +295,6 @@ import "../styles/global.css";
       const prevData = mediaList[prevIndex];
       const nextData = mediaList[nextIndex];
 
-      // First render
       if (isFirstLoad) {
         setMediaContent(
           currentData,
@@ -383,7 +319,6 @@ import "../styles/global.css";
         },
       });
 
-      // Fade main text
       tl.to(
         [
           "#media-title",
@@ -399,7 +334,6 @@ import "../styles/global.css";
         }
       )
 
-        // Fade background
         .to(
           "#main-bg-wrap",
           {
@@ -409,7 +343,6 @@ import "../styles/global.css";
           0
         )
 
-        // Slide thumbnails
         .to(
           [
             "#thumb-prev",
@@ -426,7 +359,6 @@ import "../styles/global.css";
           0
         )
 
-        // Change content
         .call(() => {
           setMediaContent(
             currentData,
@@ -446,7 +378,6 @@ import "../styles/global.css";
           );
         })
 
-        // Show main text
         .to(
           [
             "#media-title",
@@ -463,7 +394,6 @@ import "../styles/global.css";
           }
         )
 
-        // Show background
         .to(
           "#main-bg-wrap",
           {
@@ -474,7 +404,6 @@ import "../styles/global.css";
           "-=0.25"
         )
 
-        // Show thumbnails
         .to(
           [
             "#thumb-prev",
@@ -491,10 +420,6 @@ import "../styles/global.css";
           "-=0.3"
         );
     }
-
-    // =========================================
-    // NAVIGATION
-    // =========================================
 
     const goPrev = () => {
       currentIndex =
@@ -514,9 +439,6 @@ import "../styles/global.css";
       updateMediaUI(1);
     };
 
-    // =========================================
-    // VIDEO MODAL
-    // =========================================
 
     const modal =
       document.getElementById("video-modal")!;
@@ -547,9 +469,6 @@ import "../styles/global.css";
       document.body.style.overflow = "";
     }
 
-    // =========================================
-    // EVENT LISTENERS
-    // =========================================
 
     document
       .getElementById("btn-play")!
@@ -587,7 +506,6 @@ import "../styles/global.css";
       }
     });
 
-    // Previous buttons
     document
       .querySelectorAll(".btn-prev")
       .forEach((btn) =>
@@ -597,7 +515,6 @@ import "../styles/global.css";
         )
       );
 
-    // Next buttons
     document
       .querySelectorAll(".btn-next")
       .forEach((btn) =>
@@ -607,7 +524,6 @@ import "../styles/global.css";
         )
       );
 
-    // Previous thumbnail
     document
       .getElementById("card-prev")!
       .addEventListener(
@@ -615,7 +531,6 @@ import "../styles/global.css";
         goPrev
       );
 
-    // Next thumbnail
     document
       .getElementById("card-next")!
       .addEventListener(
@@ -623,13 +538,8 @@ import "../styles/global.css";
         goNext
       );
 
-    // Initial UI
     updateMediaUI(0);
   }
-
-  // =========================================
-  // INITIALIZE
-  // =========================================
 
   if (document.readyState === "loading") {
     document.addEventListener(

@@ -1,15 +1,32 @@
 ---
-import { ArrowBigRightDash, X, ExternalLink, Github } from "lucide-astro";
+import { ArrowBigRightDash, X, ExternalLink, Github, Laptop } from "lucide-astro";
 import "../styles/global.css";
 
-// Project data yang sudah dirapikan tata bahasanya
-const projectGroups = [
-  {
+type Project = {
+  title: string;
+  desc: string;
+  tags: string[];
+  col: string;
+  deploy: string;
+  source: string;
+  ytId: string;
+  laptop?: string; // Opsional: Contoh "Laptop 01", "02", atau "Stand A"
+};
+
+type ProjectSlot = Project | null;
+
+type ProjectGroup = {
+  date: string;
+  projects: ProjectSlot[];
+};
+
+const projectGroups: ProjectGroup[] = [
+    {
     date: "Raka/Rucky.35",
     projects: [
       {
         title: "Mimi Visual Novel",
-        desc: "Proyek Visual Novel yang sangat fleksibel dan gampang. Didesain untuk mempermudah semua orang membuat visual novel tanpa harus mengerti coding mendalam.",
+        desc: "Projek Visual Novel yang sangat fleksibel dan gampang. Di design untuk mempermudah semua orang membuat visual novel tanpa ngerti coding mendalam.",
         tags: ["Vite.js", "React.js", "Tailwind"],
         col: "website",
         deploy: "https://mimi-visual-novel.vercel.app/",
@@ -18,184 +35,188 @@ const projectGroups = [
       },
       {
         title: "Entara",
-        desc: "Konsep game Souls-like RPG dengan mekanik posture deflection.",
+        desc: "Souls-like RPG concept with posture deflection mechanics.",
         tags: ["Unreal Engine", "C#", "Game Design"],
         col: "game",
         deploy: "",
         source: "https://github.com/ruckythegreat/UE_EndTara_Cloud",
         ytId: "oUMX-cTGXVQ",
-        laptop: "Maaf, proyek ini tidak tersedia live preview-nya akibat penggunaan RAM yang berlebihan dan masih dalam tahap pengembangan.",
+        laptop:"Maaf Project ini tidak tersedia live preview nya akibat Penggunaan Ram yang berlebihan dan masih tahap pengembangan",
       },
       {
-        title: "Propogen Chan",
-        desc: "Proposal generator. Otomatis membuat proposal yang sesuai standar dengan cepat.",
+        title: "Propogen chan",
+        desc: "Proposal generator, Otomatis membuat Proposal yang sesuai standar dengan cepat.",
         tags: ["Vite.js", "React.js", "Tailwind", "Python", "wkhtmltopdf"],
         col: "website",
         deploy: "https://propogen-chan-qk1e.vercel.app/",
         source: "https://github.com/ruckythegreat/Propogen-Chan",
         ytId: "gC21Y3vUiq8",
       },
+      null,
       {
         title: "Website Guess Character",
-        desc: "Website tebak karakter game Reverse: 1999.",
+        desc: "Website Tebak karakter game Reverse 1999.",
         tags: ["HTML", "JS"],
         col: "game",
         deploy: "https://website-guess-char-game.vercel.app/",
         source: "https://github.com/ruckythegreat/WebsiteGuessCharGame",
         ytId: "-30gdqj7aKk",
       },
+            null,
       {
         title: "Rucky Portofolio 2025",
-        desc: "Website pertama saya menggunakan library animasi GSAP.",
+        desc: "Website Pertama saya menggunakan Gsap.",
         tags: ["GSAP", "FrontEnd"],
         col: "game",
         deploy: "https://porto-recap2025-rucky.vercel.app/",
         source: "https://github.com/ruckythegreat/PortoRecap2025Rucky",
         ytId: "NM1dWeMg4yk",
       },
+                  null,
       {
         title: "My Waifu Website",
-        desc: "Website santai yang ditujukan hanya untuk bersenang-senang.",
+        desc: "Website paling gabut dan hanya bertujuan untuk senang senang.",
         tags: ["FrontEnd"],
         col: "game",
         deploy: "https://my-kisah-rucky.vercel.app/",
         source: "https://github.com/ruckythegreat/MyKisahRucky",
         ytId: "aD_U7mV23X0",
       },
-      {
-        title: "Website Kalkulator Simpel",
-        desc: "Membuat kalkulator sederhana dengan antarmuka mirip handphone menggunakan JavaScript.",
+                        null,
+            {
+        title: "Website Kalkulator simpel",
+        desc: "Membuat kalkulato sederhana mirip handphone menggunakan Java script.",
         tags: ["JS"],
         col: "game",
         deploy: "https://jawaskripsikalku.vercel.app/",
         source: "https://github.com/ruckythegreat/jawaskripsikalku",
         ytId: "obY1yj8gaGU",
       },
-      {
-        title: "BlodnimeScure (Web Test Design)",
-        desc: "Tempat bereksperimen dan belajar animasi web menggunakan GSAP.",
+        null,
+                  {
+        title: "BlodnimeScure (Website test design)",
+        desc: "Belajar GSAP di sini. tempat test saya.",
         tags: ["GSAP", "FrontEnd"],
         col: "game",
         deploy: "https://blodnimescure.vercel.app/",
         source: "https://github.com/ruckythegreat/blodnimescure",
         ytId: "7eYJ9mV1HQw",
       },
-      {
+                  {
         title: "Rucky.js",
-        desc: "Eksperimen membuat framework Node.js kustom sendiri.",
-        tags: ["Node.js", "Framework"],
+        desc: "Membuat FrameWork node.js sendiri.",
+        tags: ["node.js", "Framework"],
         col: "game",
         deploy: "https://rucky-js-deploy-ver.vercel.app/",
         source: "https://github.com/ruckythegreat/rucky.js",
         ytId: "GH0oNodqYwQ",
       },
-      {
+                    null,
+                  {
         title: "UangKy",
-        desc: "Website dan aplikasi mobile keuangan Android.",
-        tags: ["Flutter", "Dart"],
+        desc: "Website dan aplikasi keuangan Android.",
+        tags: ["FLutter", "Dart"],
         col: "game",
         deploy: "https://uangky.vercel.app/",
         source: "https://github.com/ruckythegreat/UangKy-Mobile-APK",
         ytId: "csr9d-eDfcA",
       },
-      {
-        title: "Portofolio Rucky",
-        desc: "Source code dari website portofolio original ini.",
-        tags: ["Flutter", "Dart"],
-        col: "game",
-        deploy: "",
-        source: "https://github.com/ruckythegreat/Rucky_Portofolio",
-        ytId: "",
-      },
-      {
+                          null,
+                  {
         title: "Password Generator Python",
-        desc: "Meng-generate kata sandi acak yang tidak bisa diprediksi untuk keamanan ekstra.",
+        desc: "Menggenerate random kata yang tidak bisa di prediksi sama sekali.",
         tags: ["Python"],
         col: "game",
         deploy: "",
         source: "https://github.com/ruckythegreat/Password-generator-FreshPython",
         ytId: "pr0qTmR1k8w",
-        laptop: "Project ini tersedia live preview pada Seri LAPTOP-A",
+          laptop:"Project ini tersedia live preview pada Seri LAPTOP-A",
       },
-      {
-        title: "Photo Editor Sederhana",
-        desc: "Program sederhana untuk melakukan editing foto dasar menggunakan Python.",
+                                      null,
+                  {
+        title: "Program sederhana editor Photo Python",
+        desc: "Menggenerate random kata yang tidak bisa di prediksi sama sekali.",
         tags: ["Python"],
         col: "game",
         deploy: "",
         source: "https://github.com/ruckythegreat/Python-Photo-Editor-basic",
         ytId: "R3ZEoF7AepY",
-        laptop: "Project ini tersedia live preview pada Seri LAPTOP-A",
+          laptop:"Project ini tersedia live preview pada Seri LAPTOP-A",
       },
-      {
-        title: "KyaNaDev (YT Music & Downloader)",
-        desc: "Program sederhana untuk memutar lagu YouTube tanpa membuka browser dan dapat didownload untuk offline.",
+                                            null,
+                  {
+        title: "KyaNaDev (Program dengar dan dowload lagu Yt)",
+        desc: "Program sederhana menndengar lagu Youtube tanpa buka youtube dan dapat mendowload secara offline.",
         tags: ["Python"],
         col: "game",
         deploy: "https://rucky-portofolio.vercel.app/",
         source: "https://github.com/ruckythegreat/Rucky_Portofolio",
         ytId: "kMucO82zI3E",
-        laptop: "Project ini tersedia live preview pada Seri LAPTOP-A",
+          laptop:"Project ini tersedia live preview pada Seri LAPTOP-A",
       },
-      {
-        title: "Kalkulator CLI Java Sederhana",
-        desc: "Belajar menggunakan bahasa Java untuk membuat program kalkulator berbasis terminal (CLI).",
+                                                  null,
+                  {
+        title: "Kalkulator CLI Java sederhana",
+        desc: "Belajar menggunakan bahasa Java untuk membuat kalkulator.",
         tags: ["Java"],
         col: "game",
         deploy: "",
         source: "https://github.com/ruckythegreat/Kalkulatorjava",
         ytId: "QmQasc_18MM",
-        laptop: "Project ini tersedia live preview pada Seri LAPTOP-A",
+          laptop:"Project ini tersedia live preview pada Seri LAPTOP-A",
       },
-      {
-        title: "ToDoList Advance (School Project)",
-        desc: "Belajar menggunakan struktur bahasa C++ untuk membuat aplikasi To-Do-List.",
+                                                        null,
+                  {
+        title: "ToDoListAdvance-SchoolProject",
+        desc: "Belajar menggunakan bahasa C++ untuk membuat To-Do-List sederhana.",
         tags: ["C++"],
         col: "game",
         deploy: "",
         source: "https://github.com/ruckythegreat/ToDoListAdvance-SchoolProject-",
         ytId: "4480G7_cpBg",
-        laptop: "Project ini tersedia live preview pada Seri LAPTOP-G",
+          laptop:"Project ini tersedia live preview pada Seri LAPTOP-G",
       },
-      {
-        title: "PHP Kalkulator Web",
-        desc: "Pembuatan sistem kalkulator berbasis web menggunakan pemrograman PHP.",
-        tags: ["PHP"],
+                  {
+        title: "Php Kalkulator Web",
+        desc: "Another day make calculator.",
+        tags: ["Php"],
         col: "game",
         deploy: "",
         source: "https://github.com/ruckythegreat/ToDoListAdvance-SchoolProject-",
         ytId: "CunfVdcIHpY",
-        laptop: "Project ini tersedia live preview pada Seri LAPTOP-A",
+          laptop:"Project ini tersedia live preview pada Seri LAPTOP-A",
       },
-      {
+                  {
         title: "StarLonia",
-        desc: "Game Rogue-like sederhana yang dikembangkan menggunakan Unity.",
-        tags: ["C#", "Unity"],
+        desc: "Game Rogue-like sederhana dari Unity.",
+        tags: ["C#"],
         col: "game",
         deploy: "",
         source: "https://github.com/ruckythegreat/StarLonia-Unity-",
         ytId: "HyDlmZfIzzI",
-        laptop: "Project ini tersedia live preview pada Seri LAPTOP-K",
+          laptop:"Project ini tersedia live preview pada Seri LAPTOP-K",
       },
-      {
+                                                                    null,
+                  {
         title: "Tugas Flutter",
-        desc: "Kumpulan seluruh tugas proyek Flutter selama pembelajaran di sekolah.",
-        tags: ["Flutter", "Dart"],
+        desc: "Semua Project Flutter Di sekolah.",
+        tags: ["Luau"],
         col: "game",
         deploy: "",
         source: "https://github.com/ruckythegreat/Tugas-Flutter-Boombayah",
         ytId: "JqoW1NDITxQ",
-        laptop: "Project ini tersedia live preview pada Seri LAPTOP-A Bagian HP",
+          laptop:"Project ini tersedia live preview pada Seri LAPTOP-A Bagian HP",
       },
-      {
-        title: "Roblox Turn Base & Other Games",
-        desc: "Kumpulan berbagai eksplorasi game Roblox Studio buatan Rucky.",
-        tags: ["Luau", "Roblox Studio"],
+                                                                          null,
+                  {
+        title: "Roblox Turn Base And other project of roblox studio Games",
+        desc: "Semua Project Roblox games Rucky.",
+        tags: ["Luau"],
         col: "game",
         deploy: "",
         source: "https://drive.google.com/drive/folders/1UvgG3hUsP2z24qeJDRNSgKHZnyhvF-xQ?usp=drive_link",
         ytId: "o7Ber55-5Fo",
-        laptop: "Project ini tersedia live preview pada Seri LAPTOP-B",
+          laptop:"Project ini tersedia live preview pada Seri LAPTOP-B",
       },
     ],
   },
@@ -206,9 +227,7 @@ const projectGroups = [
   id="ProjectPage"
   class="relative w-full bg-white font-sans max-lg:pt-0 lg:pt-20"
 >
-  <!-- ========================================= -->
-  <!-- DESKTOP MARQUEE -->
-  <!-- ========================================= -->
+  <!-- MARQUEE DESKTOP -->
   <div class="project-marquee hidden overflow-hidden py-10 lg:block lg:py-14">
     <div class="project-marquee-rail flex whitespace-nowrap will-change-transform">
       {
@@ -221,89 +240,84 @@ const projectGroups = [
     </div>
   </div>
 
-  <!-- ========================================= -->
   <!-- MOBILE HEADER -->
-  <!-- ========================================= -->
   <div class="project-mobile-header border-b border-black pb-4 pl-[80px] pr-4 pt-12 sm:pl-[100px] lg:hidden">
     <p class="font-mono text-[10px] uppercase tracking-widest text-gray-400">
       V.1-Entry &#8968;3/10&#8969;
     </p>
+
     <h2 class="mt-1 text-3xl font-black uppercase leading-none sm:text-4xl">
-      // RUCKY<br />
+      // RPL1&2<br />
       PORTOFOLIO
     </h2>
   </div>
 
-  <!-- ========================================= -->
   <!-- PROJECT SECTION -->
-  <!-- ========================================= -->
-  <div id="project-pin-zone" class="relative">
-    
-    <!-- ========================================= -->
-    <!-- PROJECT BANNER -->
-    <!-- ========================================= -->
-    <div
-      id="project-banner-wrap"
-      class="project-banner relative z-40 mx-auto w-full max-w-[1500px] bg-white max-lg:px-0 lg:px-4"
-    >
-      <img
-        id="project-banner-img"
-        src="/bannerexample.jpg"
-        alt="Project Banner"
-        class="h-[80px] w-full object-cover grayscale opacity-80 sm:h-[120px] lg:h-[180px]"
-      />
-      <p class="absolute -top-5 right-4 hidden font-mono text-xs tracking-widest text-gray-400 lg:block lg:right-0 lg:text-sm">
-        V.1-Entry&#8968;4:10&#8969;
-      </p>
-    </div>
+<div id="project-pin-zone" class="relative">
+  <!-- BANNER -->
+  <div
+    id="project-banner-wrap"
+    class="project-banner relative z-40 mx-auto w-full max-w-[1500px] bg-white max-lg:px-0 lg:px-4"
+  >
+    <img
+      id="project-banner-img"
+      src="/Banner_RPL.png"
+      alt="Project Banner"
+      class="h-auto w-full"
+    />
+    <p class="absolute -top-5 right-4 hidden font-mono text-xs tracking-widest text-gray-400 lg:right-0 lg:block lg:text-sm">
+      V.1-Entry&#8968;4:10&#8969;
+    </p>
+  </div>
 
-    <!-- ========================================= -->
-    <!-- PROJECT BODY -->
-    <!-- ========================================= -->
+    <!-- BODY -->
     <div
       id="project-body"
       class="relative mx-auto w-full max-w-[1500px] pb-32 pt-6 max-lg:px-0 lg:px-4 lg:pb-56 lg:pt-8"
     >
-      <!-- ========================================= -->
-      <!-- DESKTOP PROJECT GRID -->
-      <!-- ========================================= -->
+      <!-- DESKTOP GRID -->
       <div id="project-desktop" class="hidden lg:block">
         {
           projectGroups.map((group, gi) => (
             <div class="project-group mb-10" data-group={gi}>
-              <!-- Group Header -->
               {gi === 0 && (
                 <div class="mb-4 grid grid-cols-[80px_1fr_1fr] gap-4">
                   <div />
                   <div class="relative">
                     <div class="absolute top-1/2 h-[2px] w-full -translate-y-1/2 bg-gray-300" />
                     <div class="relative inline-block bg-black px-4 py-1 text-2xl font-bold tracking-tighter text-white">
-                      WEBSITE
+                      WEBSITE PROJECT 
                     </div>
                   </div>
                   <div class="relative">
                     <div class="absolute top-1/2 h-[2px] w-full -translate-y-1/2 bg-gray-300" />
                     <div class="relative inline-block bg-black px-4 py-1 text-2xl font-bold tracking-tighter text-white">
-                      GAME & OTHER
+                      OTHER PROJECT
                     </div>
                   </div>
                 </div>
               )}
 
               <div class="grid grid-cols-[80px_1fr_1fr] gap-4">
-                <!-- Date -->
                 <div
-                  class="flex items-start justify-center bg-black pt-3 text-white"
+                  class="flex items-center justify-center bg-black py-4 text-white overflow-hidden"
                   style={`grid-row: span ${Math.ceil(group.projects.length / 2)}`}
                 >
-                  <span class="mt-6 -rotate-90 whitespace-nowrap font-mono text-base font-bold tracking-widest">
+                  <span 
+                    class="font-mono text-base font-bold tracking-widest block max-h-full"
+                    style="writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                  >
                     {group.date}
                   </span>
                 </div>
 
                 {
                   group.projects.map((project, projectIndex) => {
-                    const accentColors = ["#ffc994", "#FF7873", "#E22F80", "#8140DC"];
+                    if (!project) {
+                      return <div class="project-empty-slot h-[130px]" aria-hidden="true" />;
+                    }
+
+                    const accentColors = ["#20414E", "#4F7C89", "#102A33", "#8140DC"];
                     const accent = accentColors[projectIndex % accentColors.length];
 
                     return (
@@ -311,11 +325,11 @@ const projectGroups = [
                         class="project-card group relative flex h-[130px] cursor-pointer flex-col justify-between overflow-hidden border border-gray-300 bg-gray-100 p-0 transition-colors duration-300 hover:border-black"
                         data-yt={project.ytId}
                         data-deploy={project.deploy}
+                        data-laptop={project.laptop || ""}
                         data-source={project.source}
                         data-title={project.title}
                         data-desc={project.desc}
                         data-tags={project.tags.join(",")}
-                        data-laptop={project.laptop || ""}
                       >
                         <div class="pointer-events-none absolute bottom-0 left-0 top-0 z-30 w-[3px]" style={`background-color: ${accent};`} />
                         <div class="pointer-events-none absolute left-0 top-0 z-30 h-[14px] w-[14px] border-l-[2px] border-t-[2px]" style={`border-color: ${accent};`} />
@@ -328,7 +342,7 @@ const projectGroups = [
                                 {project.title}
                               </h3>
                             </div>
-                            <div class="max-w-[100%] -translate-x-3 text-xs text-gray-500 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:text-gray-200 group-hover:opacity-100">
+                            <div class="-translate-x-3 max-w-[100%] text-xs text-gray-500 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:text-gray-200 group-hover:opacity-100">
                               {project.desc}
                             </div>
                             <div class="mt-auto flex flex-wrap gap-2">
@@ -340,19 +354,20 @@ const projectGroups = [
                             </div>
                           </div>
 
-                          <div class="relative z-0 w-[35%] overflow-hidden border-l border-gray-300 bg-black transition-colors group-hover:border-black flex items-center justify-center">
-                            {project.ytId ? (
-                              <iframe
-                                src={`https://www.youtube.com/embed/${project.ytId}?autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1&rel=0&loop=1&playlist=${project.ytId}&playsinline=1`}
-                                class="pointer-events-none absolute left-1/2 top-1/2 h-[200%] w-[200%] -translate-x-1/2 -translate-y-1/2 grayscale transition-all duration-500 group-hover:scale-[1.1] group-hover:grayscale-0 group-hover:opacity-100"
-                                allow="autoplay; encrypted-media"
-                                loading="lazy"
-                                tabindex="-1"
-                              />
-                            ) : (
-                               <div class="text-xs text-zinc-500 font-mono tracking-widest group-hover:text-white transition-colors duration-500">NO PREVIEW</div>
-                            )}
-                            <div class="absolute inset-0 flex items-center justify-center bg-black/40 text-[#ffffff] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                          <div class="relative z-0 w-[35%] overflow-hidden border-l border-gray-300 bg-black transition-colors group-hover:border-black">
+                            <img
+                              src={`https://img.youtube.com/vi/${project.ytId}/hqdefault.jpg`}
+                              alt=""
+                              loading="lazy"
+                              class="absolute inset-0 h-full w-full object-cover transition-all duration-500 group-hover:scale-[1.1]"
+                            />
+                            <iframe
+                              data-src={`https://www.youtube.com/embed/${project.ytId}?autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1&rel=0&loop=1&playlist=${project.ytId}&playsinline=1`}
+                              class="lazy-yt-iframe pointer-events-none absolute left-1/2 top-1/2 h-[200%] w-[200%] -translate-x-1/2 -translate-y-1/2 transition-all duration-500 group-hover:scale-[1.1] group-hover:opacity-100"
+                              allow="autoplay; encrypted-media"
+                              tabindex="-1"
+                            ></iframe>
+                            <div class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 text-[#ffffff] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                               <ArrowBigRightDash size={32} />
                             </div>
                           </div>
@@ -369,89 +384,92 @@ const projectGroups = [
         }
       </div>
 
-      <!-- ========================================= -->
-      <!-- MOBILE PROJECT LIST -->
-      <!-- ========================================= -->
+      <!-- MOBILE LIST -->
       <div id="project-mobile" class="space-y-6 pl-[80px] pr-4 sm:pl-[100px] lg:hidden">
         {
-          projectGroups.map((group) => (
-            <div class="project-mobile-group">
-              <div class="mb-3 inline-block bg-black px-3 py-1 font-mono text-xs font-bold tracking-widest text-white">
-                {group.date}
-              </div>
+          projectGroups.map((group) => {
+            const visibleProjects = group.projects.filter(
+              (p): p is Project => p !== null
+            );
 
-              <div class="space-y-4">
-                {
-                  group.projects.map((project, projectIndex) => {
-                    const accentColors = ["#ffc994", "#FF7873", "#E22F80", "#8140DC"];
-                    const accent = accentColors[projectIndex % accentColors.length];
+            return (
+              <div class="project-mobile-group">
+                <div class="mb-3 inline-block max-w-full truncate bg-black px-3 py-1 font-mono text-xs font-bold tracking-widest text-white">
+                  {group.date}
+                </div>
 
-                    return (
-                      <article
-                        class="project-card group relative cursor-pointer overflow-hidden rounded-md border border-gray-300 bg-gray-100 transition-colors active:bg-black active:text-white"
-                        data-yt={project.ytId}
-                        data-deploy={project.deploy}
-                        data-source={project.source}
-                        data-title={project.title}
-                        data-desc={project.desc}
-                        data-tags={project.tags.join(",")}
-                        data-laptop={project.laptop || ""}
-                      >
-                        <div class="pointer-events-none absolute bottom-0 left-0 top-0 z-30 w-[3px]" style={`background-color: ${accent};`} />
-                        <div class="pointer-events-none absolute left-0 top-0 z-30 h-[14px] w-[14px] border-l-[2px] border-t-[2px]" style={`border-color: ${accent};`} />
-                        <div class="pointer-events-none absolute bottom-0 left-0 z-30 h-[2px] w-[40%]" style={`background-color: ${accent};`} />
+                <div class="space-y-4">
+                  {
+                    visibleProjects.map((project, projectIndex) => {
+                      const accentColors = ["#20414E", "#4F7C89", "#102A33", "#8140DC"];
+                      const accent = accentColors[projectIndex % accentColors.length];
 
-                        <div class="relative aspect-video w-full flex items-center justify-center overflow-hidden border-b border-gray-300 bg-black transition-colors group-active:border-gray-700">
-                          {project.ytId ? (
-                             <iframe
-                               src={`https://www.youtube.com/embed/${project.ytId}?autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1&rel=0&loop=1&playlist=${project.ytId}&playsinline=1`}
-                               class="pointer-events-none absolute left-1/2 top-1/2 h-[200%] w-[200%] -translate-x-1/2 -translate-y-1/2 grayscale transition-all duration-300 group-active:scale-[1.05] group-active:grayscale-0"
-                               allow="autoplay; encrypted-media"
-                               loading="lazy"
-                               tabindex="-1"
-                             />
-                          ) : (
-                             <div class="text-xs text-zinc-600 font-mono tracking-widest">NO PREVIEW</div>
-                          )}
-                        </div>
+                      return (
+                        <article
+                          class="project-card group relative cursor-pointer overflow-hidden rounded-md border border-gray-300 bg-gray-100 transition-colors active:bg-black active:text-white"
+                          data-yt={project.ytId}
+                          data-deploy={project.deploy}
+                          data-laptop={project.laptop || ""}
+                          data-source={project.source}
+                          data-title={project.title}
+                          data-desc={project.desc}
+                          data-tags={project.tags.join(",")}
+                        >
+                          <div class="pointer-events-none absolute bottom-0 left-0 top-0 z-30 w-[3px]" style={`background-color: ${accent};`} />
+                          <div class="pointer-events-none absolute left-0 top-0 z-30 h-[14px] w-[14px] border-l-[2px] border-t-[2px]" style={`border-color: ${accent};`} />
+                          <div class="pointer-events-none absolute bottom-0 left-0 z-30 h-[2px] w-[40%]" style={`background-color: ${accent};`} />
 
-                        <div class="relative z-10 p-4">
-                          <div class="flex items-start justify-between gap-3">
-                            <h3 class="text-base font-bold uppercase leading-tight tracking-tighter">
-                              {project.title}
-                            </h3>
-                            <ArrowBigRightDash
-                              size={20}
-                              class="shrink-0 opacity-40 group-active:opacity-100"
-                              style={`color: ${accent};`}
+                          <div class="relative aspect-video w-full overflow-hidden border-b border-gray-300 bg-black transition-colors group-active:border-gray-700">
+                            <img
+                              src={`https://img.youtube.com/vi/${project.ytId}/hqdefault.jpg`}
+                              alt=""
+                              loading="lazy"
+                              class="absolute inset-0 h-full w-full object-cover transition-all duration-300 group-active:scale-[1.05]"
                             />
+                            <iframe
+                              data-src={`https://www.youtube.com/embed/${project.ytId}?autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1&rel=0&loop=1&playlist=${project.ytId}&playsinline=1`}
+                              class="lazy-yt-iframe pointer-events-none absolute left-1/2 top-1/2 h-[200%] w-[200%] -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group-active:scale-[1.05]"
+                              allow="autoplay; encrypted-media"
+                              tabindex="-1"
+                            ></iframe>
                           </div>
-                          <p class="mt-2 text-xs leading-relaxed text-gray-600 group-active:text-gray-300">
-                            {project.desc}
-                          </p>
-                          <div class="mt-4 flex flex-wrap gap-2">
-                            {project.tags.map((tag) => (
-                              <span class="rounded-full border border-current px-2 py-0.5 font-mono text-[9px] uppercase">
-                                {tag}
-                              </span>
-                            ))}
+
+                          <div class="relative z-10 p-4">
+                            <div class="flex items-start justify-between gap-3">
+                              <h3 class="text-base font-bold uppercase leading-tight tracking-tighter">
+                                {project.title}
+                              </h3>
+                              <ArrowBigRightDash
+                                size={20}
+                                class="shrink-0 opacity-40 group-active:opacity-100"
+                                style={`color: ${accent};`}
+                              />
+                            </div>
+                            <p class="mt-2 text-xs leading-relaxed text-gray-600 group-active:text-gray-300">
+                              {project.desc}
+                            </p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                              {project.tags.map((tag) => (
+                                <span class="rounded-full border border-current px-2 py-0.5 font-mono text-[9px] uppercase">
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
                           </div>
-                        </div>
-                      </article>
-                    );
-                  })
-                }
+                        </article>
+                      );
+                    })
+                  }
+                </div>
               </div>
-            </div>
-          ))
+            );
+          })
         }
       </div>
     </div>
   </div>
 
-  <!-- ========================================= -->
   <!-- HOVER PREVIEW DESKTOP -->
-  <!-- ========================================= -->
   <div
     id="project-preview"
     class="pointer-events-none fixed z-[60] hidden w-[340px] flex-col overflow-hidden rounded-lg border border-white/20 bg-black/80 opacity-0 shadow-[0_10px_40px_rgba(0,0,0,0.8)] backdrop-blur-md transition-opacity duration-200 lg:flex"
@@ -469,32 +487,296 @@ const projectGroups = [
     </div>
     <div class="flex items-center justify-between bg-black/90 p-3 text-xs uppercase tracking-wider text-white">
       <span class="flex items-center gap-2 font-bold">
-        <ArrowBigRightDash size={14} class="text-[#FF7873]" />
+        <ArrowBigRightDash size={14} class="text-[#4F7C89]" />
         Click to Expand
       </span>
     </div>
   </div>
 
-  <!-- ========================================= -->
   <!-- FULL PROJECT MODAL -->
-  <!-- ========================================= -->
   <div
     id="project-modal"
     class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/95 p-4 opacity-0 backdrop-blur-md transition-opacity duration-300 lg:p-10"
   >
     <button
       id="project-modal-close"
-      class="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition-colors hover:bg-[#FF7873] hover:text-black lg:right-6 lg:top-6 lg:h-12 lg:w-12 lg:bg-white/10"
+      class="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition-colors hover:bg-[#4F7C89] hover:text-black lg:right-6 lg:top-6 lg:h-12 lg:w-12 lg:bg-white/10"
       aria-label="Close modal"
     >
       <X size={24} />
     </button>
 
-    <div class="relative flex max-h-[95vh] w-full max-w-6xl flex-col overflow-hidden rounded-lg bg-zinc-900 shadow-2xl">
-      <!-- Area konten dinamis Modal nantinya dirender oleh JS Client-side -->
-      <div id="project-modal-content" class="h-full w-full p-6 text-white overflow-y-auto">
-         <!-- Container untuk iframe/video modal dan detail project -->
+    <div class="relative flex max-h-[95vh] w-full max-w-6xl flex-col overflow-hidden rounded-xl border border-white/20 bg-zinc-900 shadow-2xl lg:max-h-[90vh] lg:flex-row">
+      <!-- Video -->
+      <div class="aspect-video w-full shrink-0 bg-black lg:h-[600px] lg:aspect-auto lg:w-2/3">
+        <iframe
+          id="project-modal-iframe"
+          class="h-full w-full"
+          src=""
+          title="Full Project preview"
+          allow="autoplay; encrypted-media; fullscreen"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <!-- Details -->
+      <div class="flex w-full flex-col justify-center overflow-y-auto p-5 sm:p-8 lg:w-1/3 lg:p-10">
+        <div class="mb-2 inline-block self-start bg-[#4F7C89] px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-black">
+          Project Detail
+        </div>
+
+        <h3
+          id="project-modal-title"
+          class="mt-4 text-2xl font-black uppercase leading-none tracking-tight text-white lg:text-4xl"
+        >
+          Project Title
+        </h3>
+
+        <p
+          id="project-modal-desc"
+          class="mt-4 text-sm leading-relaxed text-gray-300 lg:mt-6 lg:text-base"
+        >
+          Project description goes here.
+        </p>
+
+        <div id="project-modal-tags" class="mt-6 flex flex-wrap gap-2 lg:mt-8">
+          <!-- Tags injected by JS -->
+        </div>
+
+        <div class="mt-auto flex flex-col gap-3 pt-6 lg:pt-10">
+          <a
+            id="project-modal-deploy"
+            href="#"
+            target="_blank"
+            class="flex w-full items-center justify-center gap-2 rounded-sm bg-white py-3 font-bold uppercase tracking-wider text-black transition-colors hover:bg-gray-200 lg:py-4"
+          >
+            <ExternalLink size={18} />
+            Live Preview
+          </a>
+
+          <div
+            id="project-modal-no-deploy"
+            class="hidden w-full items-center justify-center gap-2.5 rounded-sm border border-amber-500/40 bg-amber-500/10 px-4 py-3 font-mono text-xs uppercase tracking-wider text-amber-300 lg:py-3.5"
+          >
+            <Laptop size={18} class="shrink-0 text-amber-400" />
+            <span>Preview IRL: <strong class="text-white underline decoration-amber-400" id="project-modal-laptop-num">Laptop #01</strong></span>
+          </div>
+
+          <a
+            id="project-modal-source"
+            href="#"
+            target="_blank"
+            class="flex w-full items-center justify-center gap-2 rounded-sm border border-white/20 bg-white/10 py-3 font-bold uppercase tracking-wider text-white transition-colors hover:bg-white/20 lg:py-4"
+          >
+            <Github size={18} />
+            Source Code
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap, ScrollTrigger, Observer, horizontalLoop } from "../Script/gsap-utils";
+  
+  let marqueeObserver: ReturnType<typeof Observer.create> | null = null;
+  let ytObserver: IntersectionObserver | null = null; // Observer memori stabil
+
+  function initProjectPage() {
+    const page = document.getElementById("ProjectPage");
+    const body = document.getElementById("project-body");
+    const preview = document.getElementById("project-preview");
+    const previewIframe = document.getElementById("project-preview-iframe") as HTMLIFrameElement;
+    const modal = document.getElementById("project-modal");
+    const modalCloseBtn = document.getElementById("project-modal-close");
+    const modalIframe = document.getElementById("project-modal-iframe") as HTMLIFrameElement;
+    const modalTitle = document.getElementById("project-modal-title");
+    const modalDesc = document.getElementById("project-modal-desc");
+    const modalTags = document.getElementById("project-modal-tags");
+    const modalDeploy = document.getElementById("project-modal-deploy") as HTMLAnchorElement;
+    const modalNoDeploy = document.getElementById("project-modal-no-deploy");
+    const modalLaptopNum = document.getElementById("project-modal-laptop-num");
+    const modalSource = document.getElementById("project-modal-source") as HTMLAnchorElement;
+
+    if (!page || !body) return;
+
+    let isModalOpen = false;
+
+    ScrollTrigger.getAll().forEach((st) => st.kill());
+    marqueeObserver?.kill();
+    marqueeObserver = null;
+    
+    // Matikan observer YouTube lama jika halaman ter-load ulang
+    ytObserver?.disconnect();
+
+    // INTERSECTION OBSERVER SUPER RINGAN UNTUK 50+ VIDEOS
+    ytObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const iframe = entry.target as HTMLIFrameElement;
+        if (entry.isIntersecting) {
+          const dataSrc = iframe.getAttribute('data-src');
+          if (dataSrc && iframe.src !== dataSrc) {
+            iframe.src = dataSrc; // Load video hanya jika user scroll mendekat
+          }
+        } else {
+          iframe.src = ""; // Unload video langsung dari RAM saat lewat
+        }
+      });
+    }, { rootMargin: "300px 0px" });
+
+    document.querySelectorAll('.lazy-yt-iframe').forEach(iframe => {
+      ytObserver?.observe(iframe);
+    });
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1024px)", () => {
+      const marqueeRail = document.querySelector<HTMLElement>(".project-marquee");
+      const marqueeItems = gsap.utils.toArray<HTMLElement>(".project-marquee-item");
+      let marqueeTl: gsap.core.Timeline | undefined;
+
+      if (marqueeItems.length) {
+        marqueeTl = horizontalLoop(marqueeItems, { repeat: -1, paddingRight: 30, speed: 0.55 });
+        marqueeObserver = Observer.create({
+          target: window,
+          type: "wheel,touch",
+          preventDefault: false,
+          onChangeY(self) {
+            if (!marqueeRail || !marqueeTl) return;
+            const factor = self.deltaY < 0 ? -2.5 : 2.5;
+            gsap.timeline({ defaults: { ease: "none" } })
+              .to(marqueeTl, { timeScale: factor * 2, duration: 0.2, overwrite: true })
+              .to(marqueeTl, { timeScale: factor / 2, duration: 0.8 }, "+=0.2");
+          },
+        });
+      }
+      return () => { marqueeTl?.kill(); marqueeObserver?.kill(); };
+    });
+
+    const allCards = document.querySelectorAll(".project-card");
+    allCards.forEach((card) => {
+      let align: ((ev: MouseEvent) => void) | null = null;
+      card.addEventListener("mouseenter", (e) => {
+        if (!preview || !previewIframe || window.innerWidth < 1024 || isModalOpen) return;
+        const yt = card.getAttribute("data-yt");
+        if (yt) previewIframe.src = `https://www.youtube.com/embed/${yt}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=${yt}`;
+        preview.style.display = "flex";
+        gsap.to(preview, { opacity: 1, duration: 0.2, ease: "power2.out" });
+        align = (ev: MouseEvent) => { gsap.set(preview, { x: ev.clientX + 20, y: ev.clientY + 20 }); };
+        align(e as MouseEvent);
+        card.addEventListener("mousemove", align);
+      });
+
+      card.addEventListener("mouseleave", () => {
+        if (!preview) return;
+        gsap.to(preview, {
+          opacity: 0,
+          duration: 0.15,
+          onComplete: () => {
+            if (preview) preview.style.display = "none";
+            if (previewIframe) previewIframe.src = "";
+          },
+        });
+        if (align) card.removeEventListener("mousemove", align);
+      });
+
+      card.addEventListener("click", () => {
+        if (!modal) return;
+        isModalOpen = true;
+        if (preview) {
+          gsap.killTweensOf(preview);
+          preview.style.display = "none";
+          preview.style.opacity = "0";
+        }
+        if (previewIframe) previewIframe.src = "";
+
+        const yt = card.getAttribute("data-yt");
+        const title = card.getAttribute("data-title");
+        const desc = card.getAttribute("data-desc");
+        const deploy = card.getAttribute("data-deploy");
+        const laptop = card.getAttribute("data-laptop");
+        const source = card.getAttribute("data-source");
+        const tags = card.getAttribute("data-tags")?.split(",") || [];
+
+        if (modalTitle) modalTitle.textContent = title;
+        if (modalDesc) modalDesc.textContent = desc;
+
+        if (deploy && deploy.trim() !== "") {
+          if (modalDeploy) {
+            modalDeploy.href = deploy;
+            modalDeploy.classList.remove("hidden");
+            modalDeploy.classList.add("flex");
+          }
+          if (modalNoDeploy) {
+            modalNoDeploy.classList.add("hidden");
+            modalNoDeploy.classList.remove("flex");
+          }
+        } else {
+          if (modalDeploy) {
+            modalDeploy.classList.add("hidden");
+            modalDeploy.classList.remove("flex");
+          }
+          if (modalNoDeploy) {
+            modalNoDeploy.classList.remove("hidden");
+            modalNoDeploy.classList.add("flex");
+            if (modalLaptopNum) {
+              modalLaptopNum.textContent = laptop && laptop.trim() !== "" ? laptop : "Stand Pameran / Stand Utama";
+            }
+          }
+        }
+
+        if (modalSource) modalSource.href = source || "#";
+        if (modalTags) {
+          modalTags.innerHTML = tags.map((tag) => `<span class="rounded-full border border-gray-500 text-gray-300 px-3 py-1 font-mono text-[10px] uppercase">${tag.trim()}</span>`).join("");
+        }
+        if (yt && modalIframe) modalIframe.src = `https://www.youtube.com/embed/${yt}?autoplay=1&rel=0`;
+
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+        gsap.to(modal, { opacity: 1, duration: 0.3, ease: "power2.out" });
+      });
+    });
+
+    const closeModal = () => {
+      if (!modal) return;
+      gsap.to(modal, {
+        opacity: 0,
+        duration: 0.2,
+        onComplete: () => {
+          modal.style.display = "none";
+          isModalOpen = false;
+          if (modalIframe) modalIframe.src = "";
+          document.body.style.overflow = "";
+        },
+      });
+    };
+
+    if (modalCloseBtn) modalCloseBtn.addEventListener("click", closeModal);
+    if (modal) {
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+      });
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isModalOpen) closeModal();
+    });
+
+    ScrollTrigger.refresh();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initProjectPage);
+  } else {
+    initProjectPage();
+  }
+  window.addEventListener("load", () => ScrollTrigger.refresh());
+  window.addEventListener("resize", () => ScrollTrigger.refresh());
+  document.addEventListener("astro:page-load", initProjectPage);
+</script>
+
+<style>
+  .project-marquee-rail { transform: translateZ(0); }
+  .project-banner { position: sticky; top: 0; }
+</style>
