@@ -1,0 +1,245 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Side from "../components/Side.astro";
+import Footer from "../components/footer.astro";
+import "../styles/global.css";
+---
+
+<Side />
+
+<Layout title="More Videos">
+  <main class="relative min-h-screen w-full bg-black text-white lg:pl-[100px]">
+    
+    <section class="relative h-[300px] w-full lg:h-[400px]">
+      <img 
+        src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop" 
+        alt="Video Banner" 
+        class="h-full w-full object-cover opacity-50"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+      <div class="absolute bottom-10 left-6 lg:left-12">
+        <h1 class="text-4xl font-extrabold tracking-wider text-white lg:text-6xl">EXPLORE <span text-[#FF7873]>MEDIA</span></h1>
+        <p class="mt-2 max-w-xl text-gray-300 lg:text-lg">Kumpulan dokumentasi, film pendek, dan profil kegiatan sekolah.</p>
+      </div>
+    </section>
+
+    <section class="px-6 py-8 lg:px-12">
+      <div id="filter-container" class="flex flex-wrap gap-3 border-b border-white/10 pb-4">
+        </div>
+    </section>
+
+<section class="px-6 pb-12 lg:px-12">
+      <div id="video-grid" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      </div>
+
+      <div id="pagination-container" class="mt-12 flex items-center justify-center space-x-2">
+      </div>
+    </section>
+
+    <Footer />
+  </main>
+
+  <div id="video-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-sm">
+    <button id="close-modal" class="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center bg-white/10 text-white hover:bg-white/20 lg:right-6 lg:top-6">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6 6 18" /><path d="m6 6 12 12" />
+      </svg>
+    </button>
+    <div class="aspect-video w-full max-w-5xl px-4">
+      <iframe id="modal-iframe" class="h-full w-full rounded-lg shadow-2xl" src="" allow="autoplay; encrypted-media; fullscreen" allowfullscreen frameborder="0"></iframe>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // === DATA DUMMY VIDEO ===
+    const allVideos = [
+      { id: "FVaLj0g6Yzk", title: "Video pengenalan PPLG & RPL", category: "Profile Kejuruan", desc: "Mengenal lingkungan, kurikulum serta kejuruan PPLG & RPL di SMKN 2." },
+      { id: "WAAEZzLE-nQ", title: "Happy Birthday SMKN 2 Bandung", category: "Ucapan", desc: "Ucapan Ulang tahun dan open house SMKN 2 dari RPL (Minecraft Edition)." },
+      { id: "oRDGl6HP_i4", title: "SANGTRIVARNA - KALA KITA", category: "Film Pendek", desc: "Film pendek karya siswa menyoroti lika-liku kehidupan masa remaja." },
+      { id: "8CgZfaxn4uQ", title: "Profile Video SMK NEGERI 2 BANDUNG", category: "Profile Sekolah", desc: "PROFILE VIDEO SEKOLAH MENENGAH KEJURUAN 2 BANDUNG." },
+      { id: "kJQP7kiw5Fk", title: "Tutorial Dasar Pemrograman C++", category: "Tutorial", desc: "Membahas konsep dasar sintaks, struktur data, dan OOP dalam C++." },
+      { id: "M7lc1UVf-VE", title: "Vlog Pameran Pendidikan", category: "Vlog", desc: "Keseruan siswa mengunjungi pameran pendidikan dan teknologi tahunan." },
+      { id: "C0DPdy98e4c", title: "Cara Setup Workspace Visual Studio", category: "Tutorial", desc: "Langkah-langkah efisien mengatur workspace untuk produktivitas coding." },
+      { id: "jNQXAC9IVRw", title: "Sejarah Sekolah Kita", category: "Profile Sekolah", desc: "Melihat kembali sejarah panjang berdirinya bangunan bersekolah ini." },
+      { id: "dQw4w9WgXcQ", title: "Behind The Scene Sangtrivarna", category: "Film Pendek", desc: "Proses pembuatan film pendek Kala Kita oleh anak-anak PPLG." },
+      { id: "2Vv-BfVoq4g", title: "Lomba Coding Tingkat Nasional", category: "Vlog", desc: "Dokumentasi keberangkatan tim perwakilan sekolah di ajang nasional." },
+      { id: "V-_O7nl0Ii0", title: "Pengenalan Ekstrakurikuler IT Club", category: "Profile Kejuruan", desc: "Apa saja kegiatan IT Club di sekolah? Temukan jawabannya di sini." }
+    ];
+
+    // === STATE PAGINATION & FILTER ===
+    const ITEMS_PER_PAGE = 8; // Memastikan 4 baris, 2 kolom terisi penuh (jika item cukup)
+    let currentPage = 1;
+    let currentCategory = "All";
+    let filteredVideos = [...allVideos];
+
+    // DOM Elements
+    const gridContainer = document.getElementById("video-grid");
+    const filterContainer = document.getElementById("filter-container");
+    const paginationContainer = document.getElementById("pagination-container");
+    const modal = document.getElementById("video-modal");
+    const iframe = document.getElementById("modal-iframe") as HTMLIFrameElement;
+    const closeModalBtn = document.getElementById("close-modal");
+
+    // === RENDER FILTER BUTTONS ===
+    function renderFilters() {
+      // Ambil kategori unik dari data
+      const categories = ["All", ...new Set(allVideos.map(v => v.category))];
+      
+      filterContainer!.innerHTML = categories.map(cat => `
+        <button 
+          class="filter-btn rounded-full border border-white/20 px-5 py-2 text-sm font-medium transition-colors ${cat === currentCategory ? 'bg-[#FF7873] text-black border-[#FF7873]' : 'bg-transparent text-gray-300 hover:bg-white/10'}"
+          data-category="${cat}"
+        >
+          ${cat}
+        </button>
+      `).join("");
+
+      // Tambahkan event listener ke setiap tombol filter
+      document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          const target = e.currentTarget as HTMLElement;
+          currentCategory = target.dataset.category || "All";
+          currentPage = 1; // Reset ke page 1 setiap kali filter berubah
+          
+          if (currentCategory === "All") {
+            filteredVideos = [...allVideos];
+          } else {
+            filteredVideos = allVideos.filter(v => v.category === currentCategory);
+          }
+          
+          renderFilters(); // Re-render untuk update styling active
+          renderGrid();
+        });
+      });
+    }
+
+// === RENDER GRID VIDEO ===
+    function renderGrid() {
+      const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+      const endIndex = startIndex + ITEMS_PER_PAGE;
+      const videosToShow = filteredVideos.slice(startIndex, endIndex);
+
+      if (videosToShow.length === 0) {
+        // Sesuaikan col-span maksimal menjadi 4
+        gridContainer!.innerHTML = `<p class="col-span-1 sm:col-span-2 lg:col-span-4 py-10 text-center text-gray-400">Tidak ada video di kategori ini.</p>`;
+      } else {
+        gridContainer!.innerHTML = videosToShow.map(v => `
+          <div class="video-card group flex cursor-pointer flex-col overflow-hidden rounded-xl bg-white/5 border border-white/10 transition-transform duration-300 hover:-translate-y-1 hover:border-[#FF7873]/50 hover:shadow-[0_10px_30px_rgba(255,120,115,0.15)]" data-id="${v.id}">
+            <div class="relative aspect-video w-full overflow-hidden">
+              <img src="https://img.youtube.com/vi/${v.id}/maxresdefault.jpg" alt="${v.title}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              
+              <div class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+                <div class="flex h-12 w-12 items-center justify-center rounded-full bg-[#FF7873] shadow-lg">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="black"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                </div>
+              </div>
+              
+              <span class="absolute left-2 top-2 z-20 rounded bg-black/80 px-2 py-1 text-[9px] font-bold uppercase tracking-widest text-[#FF7873]">${v.category}</span>
+            </div>
+            
+            <div class="flex flex-1 flex-col p-4">
+              <h3 class="mb-1.5 line-clamp-2 text-base font-bold leading-snug text-white group-hover:text-[#FF7873] transition-colors">${v.title}</h3>
+              <p class="line-clamp-2 text-xs text-gray-400">${v.desc}</p>
+            </div>
+          </div>
+        `).join("");
+
+        // Attach event listener ke setiap card untuk buka modal
+        document.querySelectorAll(".video-card").forEach(card => {
+          card.addEventListener("click", (e) => {
+            const ytId = (e.currentTarget as HTMLElement).dataset.id;
+            openModal(ytId!);
+          });
+        });
+      }
+
+      renderPagination();
+    }
+
+    // === RENDER PAGINATION ===
+    function renderPagination() {
+      const totalPages = Math.ceil(filteredVideos.length / ITEMS_PER_PAGE);
+      let html = "";
+
+      if (totalPages > 1) {
+        // Tombol Prev
+        html += `
+          <button id="btn-prev" class="flex h-10 w-10 items-center justify-center border border-white/20 bg-white/5 transition-colors hover:bg-white/20 disabled:opacity-30 disabled:hover:bg-white/5" ${currentPage === 1 ? 'disabled' : ''}>
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+        `;
+
+        // Nomor Halaman
+        for (let i = 1; i <= totalPages; i++) {
+          html += `
+            <button class="page-num-btn h-10 w-10 border border-white/20 font-bold transition-colors ${currentPage === i ? 'bg-[#FF7873] text-black border-[#FF7873]' : 'bg-white/5 hover:bg-white/20'}" data-page="${i}">
+              ${i}
+            </button>
+          `;
+        }
+
+        // Tombol Next
+        html += `
+          <button id="btn-next" class="flex h-10 w-10 items-center justify-center border border-white/20 bg-white/5 transition-colors hover:bg-white/20 disabled:opacity-30 disabled:hover:bg-white/5" ${currentPage === totalPages ? 'disabled' : ''}>
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        `;
+      }
+
+      paginationContainer!.innerHTML = html;
+
+      // Event Listeners untuk Pagination
+      const btnPrev = document.getElementById("btn-prev");
+      if (btnPrev) btnPrev.addEventListener("click", () => changePage(currentPage - 1));
+
+      const btnNext = document.getElementById("btn-next");
+      if (btnNext) btnNext.addEventListener("click", () => changePage(currentPage + 1));
+
+      document.querySelectorAll(".page-num-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          const page = parseInt((e.currentTarget as HTMLElement).dataset.page!);
+          changePage(page);
+        });
+      });
+    }
+
+    function changePage(newPage: number) {
+      const totalPages = Math.ceil(filteredVideos.length / ITEMS_PER_PAGE);
+      if (newPage < 1 || newPage > totalPages) return;
+      currentPage = newPage;
+      renderGrid();
+      
+      // Auto-scroll halus ke atas grid saat pindah halaman
+      document.getElementById("filter-container")?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // === FUNGSI MODAL VIDEO ===
+    function openModal(ytId: string) {
+      iframe.src = `https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0`;
+      modal?.classList.remove("hidden");
+      modal?.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      iframe.src = "";
+      modal?.classList.add("hidden");
+      modal?.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
+
+    closeModalBtn?.addEventListener("click", closeModal);
+    modal?.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !modal?.classList.contains("hidden")) closeModal();
+    });
+
+    // === INISIALISASI AWAL ===
+    renderFilters();
+    renderGrid();
+  });
+</script>

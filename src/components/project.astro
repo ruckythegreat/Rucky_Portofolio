@@ -6,221 +6,211 @@ type Project = {
   title: string;
   desc: string;
   tags: string[];
-  col: string;
   deploy: string;
   source: string;
   ytId: string;
-  laptop?: string; // Opsional: Contoh "Laptop 01", "02", atau "Stand A"
+  laptop?: string;
+  category: "website" | "other";
 };
 
-type ProjectSlot = Project | null;
-
-type ProjectGroup = {
-  date: string;
-  projects: ProjectSlot[];
-};
-
-const projectGroups: ProjectGroup[] = [
-    {
-    date: "Raka/Rucky.35",
-    projects: [
-      {
-        title: "Mimi Visual Novel",
-        desc: "Projek Visual Novel yang sangat fleksibel dan gampang. Di design untuk mempermudah semua orang membuat visual novel tanpa ngerti coding mendalam.",
-        tags: ["Vite.js", "React.js", "Tailwind"],
-        col: "website",
-        deploy: "https://mimi-visual-novel.vercel.app/",
-        source: "https://github.com/ruckythegreat/MimiVisualNovel",
-        ytId: "PA_m9Lkl6Pw",
-      },
-      {
-        title: "Entara",
-        desc: "Souls-like RPG concept with posture deflection mechanics.",
-        tags: ["Unreal Engine", "C#", "Game Design"],
-        col: "game",
-        deploy: "",
-        source: "https://github.com/ruckythegreat/UE_EndTara_Cloud",
-        ytId: "oUMX-cTGXVQ",
-        laptop:"Maaf Project ini tidak tersedia live preview nya akibat Penggunaan Ram yang berlebihan dan masih tahap pengembangan",
-      },
-      {
-        title: "Propogen chan",
-        desc: "Proposal generator, Otomatis membuat Proposal yang sesuai standar dengan cepat.",
-        tags: ["Vite.js", "React.js", "Tailwind", "Python", "wkhtmltopdf"],
-        col: "website",
-        deploy: "https://propogen-chan-qk1e.vercel.app/",
-        source: "https://github.com/ruckythegreat/Propogen-Chan",
-        ytId: "gC21Y3vUiq8",
-      },
-      null,
-      {
-        title: "Website Guess Character",
-        desc: "Website Tebak karakter game Reverse 1999.",
-        tags: ["HTML", "JS"],
-        col: "game",
-        deploy: "https://website-guess-char-game.vercel.app/",
-        source: "https://github.com/ruckythegreat/WebsiteGuessCharGame",
-        ytId: "-30gdqj7aKk",
-      },
-            null,
-      {
-        title: "Rucky Portofolio 2025",
-        desc: "Website Pertama saya menggunakan Gsap.",
-        tags: ["GSAP", "FrontEnd"],
-        col: "game",
-        deploy: "https://porto-recap2025-rucky.vercel.app/",
-        source: "https://github.com/ruckythegreat/PortoRecap2025Rucky",
-        ytId: "NM1dWeMg4yk",
-      },
-                  null,
-      {
-        title: "My Waifu Website",
-        desc: "Website paling gabut dan hanya bertujuan untuk senang senang.",
-        tags: ["FrontEnd"],
-        col: "game",
-        deploy: "https://my-kisah-rucky.vercel.app/",
-        source: "https://github.com/ruckythegreat/MyKisahRucky",
-        ytId: "aD_U7mV23X0",
-      },
-                        null,
-            {
-        title: "Website Kalkulator simpel",
-        desc: "Membuat kalkulato sederhana mirip handphone menggunakan Java script.",
-        tags: ["JS"],
-        col: "game",
-        deploy: "https://jawaskripsikalku.vercel.app/",
-        source: "https://github.com/ruckythegreat/jawaskripsikalku",
-        ytId: "obY1yj8gaGU",
-      },
-        null,
-                  {
-        title: "BlodnimeScure (Website test design)",
-        desc: "Belajar GSAP di sini. tempat test saya.",
-        tags: ["GSAP", "FrontEnd"],
-        col: "game",
-        deploy: "https://blodnimescure.vercel.app/",
-        source: "https://github.com/ruckythegreat/blodnimescure",
-        ytId: "7eYJ9mV1HQw",
-      },
-                  {
-        title: "Rucky.js",
-        desc: "Membuat FrameWork node.js sendiri.",
-        tags: ["node.js", "Framework"],
-        col: "game",
-        deploy: "https://rucky-js-deploy-ver.vercel.app/",
-        source: "https://github.com/ruckythegreat/rucky.js",
-        ytId: "GH0oNodqYwQ",
-      },
-                    null,
-                  {
-        title: "UangKy",
-        desc: "Website dan aplikasi keuangan Android.",
-        tags: ["FLutter", "Dart"],
-        col: "game",
-        deploy: "https://uangky.vercel.app/",
-        source: "https://github.com/ruckythegreat/UangKy-Mobile-APK",
-        ytId: "csr9d-eDfcA",
-      },
-                          null,
-                  {
-        title: "Password Generator Python",
-        desc: "Menggenerate random kata yang tidak bisa di prediksi sama sekali.",
-        tags: ["Python"],
-        col: "game",
-        deploy: "",
-        source: "https://github.com/ruckythegreat/Password-generator-FreshPython",
-        ytId: "pr0qTmR1k8w",
-          laptop:"Project ini tersedia live preview pada Seri LAPTOP-A",
-      },
-                                      null,
-                  {
-        title: "Program sederhana editor Photo Python",
-        desc: "Menggenerate random kata yang tidak bisa di prediksi sama sekali.",
-        tags: ["Python"],
-        col: "game",
-        deploy: "",
-        source: "https://github.com/ruckythegreat/Python-Photo-Editor-basic",
-        ytId: "R3ZEoF7AepY",
-          laptop:"Project ini tersedia live preview pada Seri LAPTOP-A",
-      },
-                                            null,
-                  {
-        title: "KyaNaDev (Program dengar dan dowload lagu Yt)",
-        desc: "Program sederhana menndengar lagu Youtube tanpa buka youtube dan dapat mendowload secara offline.",
-        tags: ["Python"],
-        col: "game",
-        deploy: "https://rucky-portofolio.vercel.app/",
-        source: "https://github.com/ruckythegreat/Rucky_Portofolio",
-        ytId: "kMucO82zI3E",
-          laptop:"Project ini tersedia live preview pada Seri LAPTOP-A",
-      },
-                                                  null,
-                  {
-        title: "Kalkulator CLI Java sederhana",
-        desc: "Belajar menggunakan bahasa Java untuk membuat kalkulator.",
-        tags: ["Java"],
-        col: "game",
-        deploy: "",
-        source: "https://github.com/ruckythegreat/Kalkulatorjava",
-        ytId: "QmQasc_18MM",
-          laptop:"Project ini tersedia live preview pada Seri LAPTOP-A",
-      },
-                                                        null,
-                  {
-        title: "ToDoListAdvance-SchoolProject",
-        desc: "Belajar menggunakan bahasa C++ untuk membuat To-Do-List sederhana.",
-        tags: ["C++"],
-        col: "game",
-        deploy: "",
-        source: "https://github.com/ruckythegreat/ToDoListAdvance-SchoolProject-",
-        ytId: "4480G7_cpBg",
-          laptop:"Project ini tersedia live preview pada Seri LAPTOP-G",
-      },
-                  {
-        title: "Php Kalkulator Web",
-        desc: "Another day make calculator.",
-        tags: ["Php"],
-        col: "game",
-        deploy: "",
-        source: "https://github.com/ruckythegreat/ToDoListAdvance-SchoolProject-",
-        ytId: "CunfVdcIHpY",
-          laptop:"Project ini tersedia live preview pada Seri LAPTOP-A",
-      },
-                  {
-        title: "StarLonia",
-        desc: "Game Rogue-like sederhana dari Unity.",
-        tags: ["C#"],
-        col: "game",
-        deploy: "",
-        source: "https://github.com/ruckythegreat/StarLonia-Unity-",
-        ytId: "HyDlmZfIzzI",
-          laptop:"Project ini tersedia live preview pada Seri LAPTOP-K",
-      },
-                                                                    null,
-                  {
-        title: "Tugas Flutter",
-        desc: "Semua Project Flutter Di sekolah.",
-        tags: ["Luau"],
-        col: "game",
-        deploy: "",
-        source: "https://github.com/ruckythegreat/Tugas-Flutter-Boombayah",
-        ytId: "JqoW1NDITxQ",
-          laptop:"Project ini tersedia live preview pada Seri LAPTOP-A Bagian HP",
-      },
-                                                                          null,
-                  {
-        title: "Roblox Turn Base And other project of roblox studio Games",
-        desc: "Semua Project Roblox games Rucky.",
-        tags: ["Luau"],
-        col: "game",
-        deploy: "",
-        source: "https://drive.google.com/drive/folders/1UvgG3hUsP2z24qeJDRNSgKHZnyhvF-xQ?usp=drive_link",
-        ytId: "o7Ber55-5Fo",
-          laptop:"Project ini tersedia live preview pada Seri LAPTOP-B",
-      },
-    ],
+// Data yang sudah dikonversi otomatis ke format kategori stabil
+const allProjects: Project[] = [
+  {
+    title: "Mimi Visual Novel",
+    desc: "Projek Visual Novel yang sangat fleksibel dan gampang. Di design untuk mempermudah semua orang membuat visual novel tanpa ngerti coding mendalam.",
+    tags: ["Vite.js", "React.js", "Tailwind"],
+    deploy: "https://mimi-visual-novel.vercel.app/",
+    source: "https://github.com/ruckythegreat/MimiVisualNovel",
+    ytId: "PA_m9Lkl6Pw",
+    category: "website",
+  },
+  {
+    title: "Entara",
+    desc: "Souls-like RPG concept with posture deflection mechanics.",
+    tags: ["Unreal Engine", "C#", "Game Design"],
+    deploy: "",
+    source: "https://github.com/ruckythegreat/UE_EndTara_Cloud",
+    ytId: "oUMX-cTGXVQ",
+    laptop: "Maaf Project ini tidak tersedia live preview nya akibat Penggunaan Ram yang berlebihan dan masih tahap pengembangan",
+    category: "other",
+  },
+  {
+    title: "Propogen chan",
+    desc: "Proposal generator, Otomatis membuat Proposal yang sesuai standar dengan cepat.",
+    tags: ["Vite.js", "React.js", "Tailwind", "Python", "wkhtmltopdf"],
+    deploy: "https://propogen-chan-qk1e.vercel.app/",
+    source: "https://github.com/ruckythegreat/Propogen-Chan",
+    ytId: "gC21Y3vUiq8",
+    category: "website",
+  },
+  {
+    title: "Website Guess Character",
+    desc: "Website Tebak karakter game Reverse 1999.",
+    tags: ["HTML", "JS"],
+    deploy: "https://website-guess-char-game.vercel.app/",
+    source: "https://github.com/ruckythegreat/WebsiteGuessCharGame",
+    ytId: "-30gdqj7aKk",
+    category: "website",
+  },
+  {
+    title: "Rucky Portofolio 2025",
+    desc: "Website Pertama saya menggunakan Gsap.",
+    tags: ["GSAP", "FrontEnd"],
+    deploy: "https://porto-recap2025-rucky.vercel.app/",
+    source: "https://github.com/ruckythegreat/PortoRecap2025Rucky",
+    ytId: "NM1dWeMg4yk",
+    category: "website",
+  },
+  {
+    title: "My Waifu Website",
+    desc: "Website paling gabut dan hanya bertujuan untuk senang senang.",
+    tags: ["FrontEnd"],
+    deploy: "https://my-kisah-rucky.vercel.app/",
+    source: "https://github.com/ruckythegreat/MyKisahRucky",
+    ytId: "aD_U7mV23X0",
+    category: "website",
+  },
+  {
+    title: "Website Kalkulator simpel",
+    desc: "Membuat kalkulator sederhana mirip handphone menggunakan Java script.",
+    tags: ["JS"],
+    deploy: "https://jawaskripsikalku.vercel.app/",
+    source: "https://github.com/ruckythegreat/jawaskripsikalku",
+    ytId: "obY1yj8gaGU",
+    category: "website",
+  },
+  {
+    title: "BlodnimeScure (Website test design)",
+    desc: "Belajar GSAP di sini. tempat test saya.",
+    tags: ["GSAP", "FrontEnd"],
+    deploy: "https://blodnimescure.vercel.app/",
+    source: "https://github.com/ruckythegreat/blodnimescure",
+    ytId: "7eYJ9mV1HQw",
+    category: "website",
+  },
+  {
+    title: "Rucky.js",
+    desc: "Membuat FrameWork node.js sendiri.",
+    tags: ["node.js", "Framework"],
+    deploy: "https://rucky-js-deploy-ver.vercel.app/",
+    source: "https://github.com/ruckythegreat/rucky.js",
+    ytId: "GH0oNodqYwQ",
+    category: "website",
+  },
+  {
+    title: "UangKy",
+    desc: "Website dan aplikasi keuangan Android.",
+    tags: ["Flutter", "Dart"],
+    deploy: "https://uangky.vercel.app/",
+    source: "https://github.com/ruckythegreat/UangKy-Mobile-APK",
+    ytId: "csr9d-eDfcA",
+    category: "website",
+  },
+  {
+    title: "Password Generator Python",
+    desc: "Menggenerate random kata yang tidak bisa di prediksi sama sekali.",
+    tags: ["Python"],
+    deploy: "",
+    source: "https://github.com/ruckythegreat/Password-generator-FreshPython",
+    ytId: "pr0qTmR1k8w",
+    laptop: "Project ini tersedia live preview pada Seri LAPTOP-A",
+    category: "other",
+  },
+  {
+    title: "Program sederhana editor Photo Python",
+    desc: "Menggenerate random kata yang tidak bisa di prediksi sama sekali.",
+    tags: ["Python"],
+    deploy: "",
+    source: "https://github.com/ruckythegreat/Python-Photo-Editor-basic",
+    ytId: "R3ZEoF7AepY",
+    laptop: "Project ini tersedia live preview pada Seri LAPTOP-A",
+    category: "other",
+  },
+  {
+    title: "KyaNaDev (Program dengar dan download lagu Yt)",
+    desc: "Program sederhana mendengar lagu Youtube tanpa buka youtube dan dapat mendownload secara offline.",
+    tags: ["Python"],
+    deploy: "https://rucky-portofolio.vercel.app/",
+    source: "https://github.com/ruckythegreat/Rucky_Portofolio",
+    ytId: "kMucO82zI3E",
+    laptop: "Project ini tersedia live preview pada Seri LAPTOP-A",
+    category: "other",
+  },
+  {
+    title: "Kalkulator CLI Java sederhana",
+    desc: "Belajar menggunakan bahasa Java untuk membuat kalkulator.",
+    tags: ["Java"],
+    deploy: "",
+    source: "https://github.com/ruckythegreat/Kalkulatorjava",
+    ytId: "QmQasc_18MM",
+    laptop: "Project ini tersedia live preview pada Seri LAPTOP-A",
+    category: "other",
+  },
+  {
+    title: "ToDoListAdvance-SchoolProject",
+    desc: "Belajar menggunakan bahasa C++ untuk membuat To-Do-List sederhana.",
+    tags: ["C++"],
+    deploy: "",
+    source: "https://github.com/ruckythegreat/ToDoListAdvance-SchoolProject-",
+    ytId: "4480G7_cpBg",
+    laptop: "Project ini tersedia live preview pada Seri LAPTOP-G",
+    category: "other",
+  },
+  {
+    title: "Php Kalkulator Web",
+    desc: "Another day make calculator.",
+    tags: ["Php"],
+    deploy: "",
+    source: "https://github.com/ruckythegreat/ToDoListAdvance-SchoolProject-",
+    ytId: "CunfVdcIHpY",
+    laptop: "Project ini tersedia live preview pada Seri LAPTOP-A",
+    category: "other",
+  },
+  {
+    title: "StarLonia",
+    desc: "Game Rogue-like sederhana dari Unity.",
+    tags: ["C#"],
+    deploy: "",
+    source: "https://github.com/ruckythegreat/StarLonia-Unity-",
+    ytId: "HyDlmZfIzzI",
+    laptop: "Project ini tersedia live preview pada Seri LAPTOP-K",
+    category: "other",
+  },
+  {
+    title: "Tugas Flutter",
+    desc: "Semua Project Flutter Di sekolah.",
+    tags: ["Flutter"],
+    deploy: "",
+    source: "https://github.com/ruckythegreat/Tugas-Flutter-Boombayah",
+    ytId: "JqoW1NDITxQ",
+    laptop: "Project ini tersedia live preview pada Seri LAPTOP-A Bagian HP",
+    category: "other",
+  },
+  {
+    title: "Roblox Turn Base And other project of roblox studio Games",
+    desc: "Semua Project Roblox games Rucky.",
+    tags: ["Luau"],
+    deploy: "",
+    source: "https://drive.google.com/drive/folders/1UvgG3hUsP2z24qeJDRNSgKHZnyhvF-xQ?usp=drive_link",
+    ytId: "o7Ber55-5Fo",
+    laptop: "Project ini tersedia live preview pada Seri LAPTOP-B",
+    category: "other",
   },
 ];
+
+// Logika pembagian otomatis menjadi 2 section utama (Website & Other)
+const categories = [
+  {
+    title: "WEBSITE PROJECT",
+    label: "WEBSITE",
+    projects: allProjects.filter((p) => p.category === "website"),
+  },
+  {
+    title: "OTHER PROJECT",
+    label: "OTHER",
+    projects: allProjects.filter((p) => p.category === "other"),
+  },
+].filter((cat) => cat.projects.length > 0);
 ---
 
 <section
@@ -233,7 +223,7 @@ const projectGroups: ProjectGroup[] = [
       {
         Array.from({ length: 8 }).map(() => (
           <h4 class="project-marquee-item mr-10 shrink-0 text-[100px] font-black uppercase tracking-tight">
-            // RUCKY PORTOFOLIO
+            // RAKASABARI.35 // RUCKY PORTOFOLIO
           </h4>
         ))
       }
@@ -247,28 +237,28 @@ const projectGroups: ProjectGroup[] = [
     </p>
 
     <h2 class="mt-1 text-3xl font-black uppercase leading-none sm:text-4xl">
-      // RPL1&2<br />
+      // RAKA/RUCKY<br />
       PORTOFOLIO
     </h2>
   </div>
 
   <!-- PROJECT SECTION -->
-<div id="project-pin-zone" class="relative">
-  <!-- BANNER -->
-  <div
-    id="project-banner-wrap"
-    class="project-banner relative z-40 mx-auto w-full max-w-[1500px] bg-white max-lg:px-0 lg:px-4"
-  >
-    <img
-      id="project-banner-img"
-      src="/Banner_RPL.png"
-      alt="Project Banner"
-      class="h-auto w-full"
-    />
-    <p class="absolute -top-5 right-4 hidden font-mono text-xs tracking-widest text-gray-400 lg:right-0 lg:block lg:text-sm">
-      V.1-Entry&#8968;4:10&#8969;
-    </p>
-  </div>
+  <div id="project-pin-zone" class="relative">
+    <!-- BANNER -->
+    <div
+      id="project-banner-wrap"
+      class="project-banner relative z-40 mx-auto w-full max-w-[1500px] bg-white max-lg:px-0 lg:px-4"
+    >
+      <img
+        id="project-banner-img"
+        src="/Banner_RPL.png"
+        alt="Project Banner"
+        class="h-auto w-full"
+      />
+      <p class="absolute -top-5 right-4 hidden font-mono text-xs tracking-widest text-gray-400 lg:right-0 lg:block lg:text-sm">
+        V.1-Entry&#8968;4:10&#8969;
+      </p>
+    </div>
 
     <!-- BODY -->
     <div
@@ -278,46 +268,37 @@ const projectGroups: ProjectGroup[] = [
       <!-- DESKTOP GRID -->
       <div id="project-desktop" class="hidden lg:block">
         {
-          projectGroups.map((group, gi) => (
-            <div class="project-group mb-10" data-group={gi}>
-              {gi === 0 && (
-                <div class="mb-4 grid grid-cols-[80px_1fr_1fr] gap-4">
-                  <div />
-                  <div class="relative">
-                    <div class="absolute top-1/2 h-[2px] w-full -translate-y-1/2 bg-gray-300" />
-                    <div class="relative inline-block bg-black px-4 py-1 text-2xl font-bold tracking-tighter text-white">
-                      WEBSITE PROJECT 
-                    </div>
-                  </div>
-                  <div class="relative">
-                    <div class="absolute top-1/2 h-[2px] w-full -translate-y-1/2 bg-gray-300" />
-                    <div class="relative inline-block bg-black px-4 py-1 text-2xl font-bold tracking-tighter text-white">
-                      OTHER PROJECT
-                    </div>
+          categories.map((cat) => (
+            <div class="project-group mb-14" data-category={cat.label}>
+              <!-- Header Kategori -->
+              <div class="mb-4 grid grid-cols-[80px_1fr] gap-4">
+                <div />
+                <div class="relative">
+                  <div class="absolute top-1/2 h-[2px] w-full -translate-y-1/2 bg-gray-300" />
+                  <div class="relative inline-block bg-black px-4 py-1 text-2xl font-bold tracking-tighter text-white">
+                    {cat.title}
                   </div>
                 </div>
-              )}
+              </div>
 
+              <!-- Grid Project -->
               <div class="grid grid-cols-[80px_1fr_1fr] gap-4">
+                <!-- Label Vertikal -->
                 <div
-                  class="flex items-center justify-center bg-black py-4 text-white overflow-hidden"
-                  style={`grid-row: span ${Math.ceil(group.projects.length / 2)}`}
+                  class="flex items-center justify-center overflow-hidden bg-black py-4 text-white"
+                  style={`grid-row: span ${Math.ceil(cat.projects.length / 2) || 1}`}
                 >
-                  <span 
-                    class="font-mono text-base font-bold tracking-widest block max-h-full"
+                  <span
+                    class="block max-h-full font-mono text-base font-bold tracking-widest"
                     style="writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                   >
-                    {group.date}
+                    {cat.label}
                   </span>
                 </div>
 
                 {
-                  group.projects.map((project, projectIndex) => {
-                    if (!project) {
-                      return <div class="project-empty-slot h-[130px]" aria-hidden="true" />;
-                    }
-
-                    const accentColors = ["#E22F80", "#FF7873", "#ffc994", "#ffc994"];
+                  cat.projects.map((project, projectIndex) => {
+                    const accentColors = ["#E22F80", "#FF7873", "#ffc994", "#8140DC"];
                     const accent = accentColors[projectIndex % accentColors.length];
 
                     return (
@@ -347,7 +328,7 @@ const projectGroups: ProjectGroup[] = [
                             </div>
                             <div class="mt-auto flex flex-wrap gap-2">
                               {project.tags.map((tag) => (
-                                <span class="  border border-gray-400 px-2 py-0.5 font-mono text-[9px] uppercase transition-colors group-hover:border-white group-hover:text-white">
+                                <span class="border border-gray-400 px-2 py-0.5 font-mono text-[9px] uppercase transition-colors group-hover:border-white group-hover:text-white">
                                   {tag}
                                 </span>
                               ))}
@@ -377,7 +358,7 @@ const projectGroups: ProjectGroup[] = [
                     );
                   })
                 }
-                {group.projects.length % 2 !== 0 && <div />}
+                {cat.projects.length % 2 !== 0 && <div class="project-empty-slot h-[130px] bg-transparent" aria-hidden="true" />}
               </div>
             </div>
           ))
@@ -385,85 +366,79 @@ const projectGroups: ProjectGroup[] = [
       </div>
 
       <!-- MOBILE LIST -->
-      <div id="project-mobile" class="space-y-6 pl-[80px] pr-4 sm:pl-[100px] lg:hidden">
+      <div id="project-mobile" class="space-y-10 pl-[80px] pr-4 sm:pl-[100px] lg:hidden">
         {
-          projectGroups.map((group) => {
-            const visibleProjects = group.projects.filter(
-              (p): p is Project => p !== null
-            );
-
-            return (
-              <div class="project-mobile-group">
-                <div class="mb-3 inline-block max-w-full truncate bg-black px-3 py-1 font-mono text-xs font-bold tracking-widest text-white">
-                  {group.date}
-                </div>
-
-                <div class="space-y-4">
-                  {
-                    visibleProjects.map((project, projectIndex) => {
-                      const accentColors = ["#20414E", "#4F7C89", "#102A33", "#8140DC"];
-                      const accent = accentColors[projectIndex % accentColors.length];
-
-                      return (
-                        <article
-                          class="project-card group relative cursor-pointer overflow-hidden rounded-md border border-gray-300 bg-gray-100 transition-colors active:bg-black active:text-white"
-                          data-yt={project.ytId}
-                          data-deploy={project.deploy}
-                          data-laptop={project.laptop || ""}
-                          data-source={project.source}
-                          data-title={project.title}
-                          data-desc={project.desc}
-                          data-tags={project.tags.join(",")}
-                        >
-                          <div class="pointer-events-none absolute bottom-0 left-0 top-0 z-30 w-[3px]" style={`background-color: ${accent};`} />
-                          <div class="pointer-events-none absolute left-0 top-0 z-30 h-[14px] w-[14px] border-l-[2px] border-t-[2px]" style={`border-color: ${accent};`} />
-                          <div class="pointer-events-none absolute bottom-0 left-0 z-30 h-[2px] w-[40%]" style={`background-color: ${accent};`} />
-
-                          <div class="relative aspect-video w-full overflow-hidden border-b border-gray-300 bg-black transition-colors group-active:border-gray-700">
-                            <img
-                              src={`https://img.youtube.com/vi/${project.ytId}/hqdefault.jpg`}
-                              alt=""
-                              loading="lazy"
-                              class="absolute inset-0 h-full w-full object-cover transition-all duration-300 group-active:scale-[1.05]"
-                            />
-                            <iframe
-                              data-src={`https://www.youtube.com/embed/${project.ytId}?autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1&rel=0&loop=1&playlist=${project.ytId}&playsinline=1`}
-                              class="lazy-yt-iframe pointer-events-none absolute left-1/2 top-1/2 h-[200%] w-[200%] -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group-active:scale-[1.05]"
-                              allow="autoplay; encrypted-media"
-                              tabindex="-1"
-                            ></iframe>
-                          </div>
-
-                          <div class="relative z-10 p-4">
-                            <div class="flex items-start justify-between gap-3">
-                              <h3 class="text-base font-bold uppercase leading-tight tracking-tighter">
-                                {project.title}
-                              </h3>
-                              <ArrowBigRightDash
-                                size={20}
-                                class="shrink-0 opacity-40 group-active:opacity-100"
-                                style={`color: ${accent};`}
-                              />
-                            </div>
-                            <p class="mt-2 text-xs leading-relaxed text-gray-600 group-active:text-gray-300">
-                              {project.desc}
-                            </p>
-                            <div class="mt-4 flex flex-wrap gap-2">
-                              {project.tags.map((tag) => (
-                                <span class="  border border-current px-2 py-0.5 font-mono text-[9px] uppercase">
-                                  {tag}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </article>
-                      );
-                    })
-                  }
-                </div>
+          categories.map((cat) => (
+            <div class="project-mobile-group">
+              <div class="mb-4 inline-block max-w-full truncate bg-black px-4 py-2 font-mono text-sm font-bold tracking-widest text-white">
+                {cat.title}
               </div>
-            );
-          })
+
+              <div class="space-y-4">
+                {
+                  cat.projects.map((project, projectIndex) => {
+                    const accentColors = ["#20414E", "#4F7C89", "#102A33", "#8140DC"];
+                    const accent = accentColors[projectIndex % accentColors.length];
+
+                    return (
+                      <article
+                        class="project-card group relative cursor-pointer overflow-hidden rounded-md border border-gray-300 bg-gray-100 transition-colors active:bg-black active:text-white"
+                        data-yt={project.ytId}
+                        data-deploy={project.deploy}
+                        data-laptop={project.laptop || ""}
+                        data-source={project.source}
+                        data-title={project.title}
+                        data-desc={project.desc}
+                        data-tags={project.tags.join(",")}
+                      >
+                        <div class="pointer-events-none absolute bottom-0 left-0 top-0 z-30 w-[3px]" style={`background-color: ${accent};`} />
+                        <div class="pointer-events-none absolute left-0 top-0 z-30 h-[14px] w-[14px] border-l-[2px] border-t-[2px]" style={`border-color: ${accent};`} />
+                        <div class="pointer-events-none absolute bottom-0 left-0 z-30 h-[2px] w-[40%]" style={`background-color: ${accent};`} />
+
+                        <div class="relative aspect-video w-full overflow-hidden border-b border-gray-300 bg-black transition-colors group-active:border-gray-700">
+                          <img
+                            src={`https://img.youtube.com/vi/${project.ytId}/hqdefault.jpg`}
+                            alt=""
+                            loading="lazy"
+                            class="absolute inset-0 h-full w-full object-cover transition-all duration-300 group-active:scale-[1.05]"
+                          />
+                          <iframe
+                            data-src={`https://www.youtube.com/embed/${project.ytId}?autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1&rel=0&loop=1&playlist=${project.ytId}&playsinline=1`}
+                            class="lazy-yt-iframe pointer-events-none absolute left-1/2 top-1/2 h-[200%] w-[200%] -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group-active:scale-[1.05]"
+                            allow="autoplay; encrypted-media"
+                            tabindex="-1"
+                          ></iframe>
+                        </div>
+
+                        <div class="relative z-10 p-4">
+                          <div class="flex items-start justify-between gap-3">
+                            <h3 class="text-base font-bold uppercase leading-tight tracking-tighter">
+                              {project.title}
+                            </h3>
+                            <ArrowBigRightDash
+                              size={20}
+                              class="shrink-0 opacity-40 group-active:opacity-100"
+                              style={`color: ${accent};`}
+                            />
+                          </div>
+                          <p class="mt-2 text-xs leading-relaxed text-gray-600 group-active:text-gray-300">
+                            {project.desc}
+                          </p>
+                          <div class="mt-4 flex flex-wrap gap-2">
+                            {project.tags.map((tag) => (
+                              <span class="border border-current px-2 py-0.5 font-mono text-[9px] uppercase">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </article>
+                    );
+                  })
+                }
+              </div>
+            </div>
+          ))
         }
       </div>
     </div>
@@ -500,7 +475,7 @@ const projectGroups: ProjectGroup[] = [
   >
     <button
       id="project-modal-close"
-      class="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center   bg-white/20 text-white backdrop-blur-md transition-colors hover:bg-[#4F7C89] hover:text-black lg:right-6 lg:top-6 lg:h-12 lg:w-12 lg:bg-white/10"
+      class="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center bg-white/20 text-white backdrop-blur-md transition-colors hover:bg-[#4F7C89] hover:text-black lg:right-6 lg:top-6 lg:h-12 lg:w-12 lg:bg-white/10"
       aria-label="Close modal"
     >
       <X size={24} />
@@ -539,9 +514,7 @@ const projectGroups: ProjectGroup[] = [
           Project description goes here.
         </p>
 
-        <div id="project-modal-tags" class="mt-6 flex flex-wrap gap-2 lg:mt-8">
-          <!-- Tags injected by JS -->
-        </div>
+        <div id="project-modal-tags" class="mt-6 flex flex-wrap gap-2 lg:mt-8"></div>
 
         <div class="mt-auto flex flex-col gap-3 pt-6 lg:pt-10">
           <a
@@ -581,7 +554,7 @@ const projectGroups: ProjectGroup[] = [
   import { gsap, ScrollTrigger, Observer, horizontalLoop } from "../Script/gsap-utils";
   
   let marqueeObserver: ReturnType<typeof Observer.create> | null = null;
-  let ytObserver: IntersectionObserver | null = null; // Observer memori stabil
+  let ytObserver: IntersectionObserver | null = null;
 
   function initProjectPage() {
     const page = document.getElementById("ProjectPage");
@@ -607,20 +580,18 @@ const projectGroups: ProjectGroup[] = [
     marqueeObserver?.kill();
     marqueeObserver = null;
     
-    // Matikan observer YouTube lama jika halaman ter-load ulang
     ytObserver?.disconnect();
 
-    // INTERSECTION OBSERVER SUPER RINGAN UNTUK 50+ VIDEOS
     ytObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const iframe = entry.target as HTMLIFrameElement;
         if (entry.isIntersecting) {
           const dataSrc = iframe.getAttribute('data-src');
           if (dataSrc && iframe.src !== dataSrc) {
-            iframe.src = dataSrc; // Load video hanya jika user scroll mendekat
+            iframe.src = dataSrc;
           }
         } else {
-          iframe.src = ""; // Unload video langsung dari RAM saat lewat
+          iframe.src = "";
         }
       });
     }, { rootMargin: "300px 0px" });
@@ -728,7 +699,7 @@ const projectGroups: ProjectGroup[] = [
 
         if (modalSource) modalSource.href = source || "#";
         if (modalTags) {
-          modalTags.innerHTML = tags.map((tag) => `<span class="  border border-gray-500 text-gray-300 px-3 py-1 font-mono text-[10px] uppercase">${tag.trim()}</span>`).join("");
+          modalTags.innerHTML = tags.map((tag) => `<span class="border border-gray-500 text-gray-300 px-3 py-1 font-mono text-[10px] uppercase">${tag.trim()}</span>`).join("");
         }
         if (yt && modalIframe) modalIframe.src = `https://www.youtube.com/embed/${yt}?autoplay=1&rel=0`;
 
