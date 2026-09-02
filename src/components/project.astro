@@ -347,7 +347,7 @@ const projectGroups: ProjectGroup[] = [
                             </div>
                             <div class="mt-auto flex flex-wrap gap-2">
                               {project.tags.map((tag) => (
-                                <span class="rounded-full border border-gray-400 px-2 py-0.5 font-mono text-[9px] uppercase transition-colors group-hover:border-white group-hover:text-white">
+                                <span class="  border border-gray-400 px-2 py-0.5 font-mono text-[9px] uppercase transition-colors group-hover:border-white group-hover:text-white">
                                   {tag}
                                 </span>
                               ))}
@@ -450,7 +450,7 @@ const projectGroups: ProjectGroup[] = [
                             </p>
                             <div class="mt-4 flex flex-wrap gap-2">
                               {project.tags.map((tag) => (
-                                <span class="rounded-full border border-current px-2 py-0.5 font-mono text-[9px] uppercase">
+                                <span class="  border border-current px-2 py-0.5 font-mono text-[9px] uppercase">
                                   {tag}
                                 </span>
                               ))}
@@ -500,7 +500,7 @@ const projectGroups: ProjectGroup[] = [
   >
     <button
       id="project-modal-close"
-      class="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition-colors hover:bg-[#4F7C89] hover:text-black lg:right-6 lg:top-6 lg:h-12 lg:w-12 lg:bg-white/10"
+      class="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center   bg-white/20 text-white backdrop-blur-md transition-colors hover:bg-[#4F7C89] hover:text-black lg:right-6 lg:top-6 lg:h-12 lg:w-12 lg:bg-white/10"
       aria-label="Close modal"
     >
       <X size={24} />
@@ -728,7 +728,7 @@ const projectGroups: ProjectGroup[] = [
 
         if (modalSource) modalSource.href = source || "#";
         if (modalTags) {
-          modalTags.innerHTML = tags.map((tag) => `<span class="rounded-full border border-gray-500 text-gray-300 px-3 py-1 font-mono text-[10px] uppercase">${tag.trim()}</span>`).join("");
+          modalTags.innerHTML = tags.map((tag) => `<span class="  border border-gray-500 text-gray-300 px-3 py-1 font-mono text-[10px] uppercase">${tag.trim()}</span>`).join("");
         }
         if (yt && modalIframe) modalIframe.src = `https://www.youtube.com/embed/${yt}?autoplay=1&rel=0`;
 

@@ -1,0 +1,218 @@
+---
+import "../styles/global.css";
+---
+
+<section
+  class="relative w-full min-h-screen overflow-hidden flex items-center justify-center bg-[#000000] lg:h-screen lg:w-screen font-sans"
+  id="AchievementHistoryPage"
+>
+  <!-- Stage: Skala dinamis di desktop, statis di mobile -->
+  <div id="ach-stage" class="w-full h-auto relative origin-center shrink-0 lg:h-[1080px] lg:w-[1920px]">
+    
+    <div class="flex flex-col h-full w-full px-6 py-24 z-10 lg:static lg:p-0">
+      
+<!-- HEADER KIRI ATAS (Mirip menu "LORE" di referensi) -->
+      <div class="mb-10 lg:mb-0 lg:absolute lg:top-[160px] lg:left-[180px] flex flex-col items-start">
+        <div class="flex items-center gap-2 mb-2 text-gray-400">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          <span class="text-xs uppercase tracking-widest font-bold">RAKA PORTFOLIO</span>
+        </div>
+        <h2 class="text-4xl lg:text-5xl text-white font-bold tracking-widest">
+          ACHIEVEMENT
+        </h2>
+        <!-- Dekorasi Kotak Palet Warna -->
+        <div class="flex flex-col mt-6 gap-1">
+          <div class="flex gap-1">
+            <div class="w-2 h-2 bg-[#E22F80]"></div><div class="w-2 h-2 bg-[#FF7873]"></div><div class="w-2 h-2 bg-[#ffc994]"></div>
+          </div>
+          <div class="flex gap-1 items-end mt-2">
+            <div class="w-2 h-10 bg-[#ffc994]"></div>
+            <!-- Tambahan text-white agar stroke="currentColor" pada SVG terbaca putih -->
+            <div class="w-12 h-12 border border-gray-600 flex items-center justify-center text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkle-icon lucide-sparkle"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAMBAR & DEKORASI LINGKARAN (Mirip objek Ankor di referensi) -->
+      <div class="relative w-full flex justify-center items-center my-8 lg:my-0 lg:absolute lg:top-1/2 lg:left-[45%] lg:-translate-x-1/2 lg:-translate-y-1/2">
+        <!-- Lingkaran Luar Putus-putus -->
+        <div class="relative w-[300px] h-[300px] lg:w-[750px] lg:h-[750px] rounded-full border border-gray-700/50 flex items-center justify-center">
+          <div class="absolute w-full h-full rounded-full border-[1px] border-dashed border-gray-500/40 opacity-70 animate-[spin_60s_linear_infinite]"></div>
+          
+          <!-- Indikator Sudut (Crosshair) -->
+          <div class="absolute w-[105%] h-[2px] bg-transparent border-x border-gray-400/50"></div>
+          <div class="absolute h-[105%] w-[2px] bg-transparent border-y border-gray-400/50"></div>
+
+          <!-- Lingkaran Dalam -->
+          <div class="absolute w-[220px] h-[220px] lg:w-[550px] lg:h-[550px] rounded-full border-l-2 border-r-2 border-gray-400/60 flex items-center justify-center">
+            <!-- Gambar Prestasi -->
+            <img id="ach-img" src="/prestasi-iecc.jpg" alt="Achievement" class="relative z-10 w-3/4 h-3/4 object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]" />
+          </div>
+        </div>
+      </div>
+
+      <!-- KONTEN TEKS & NAVIGASI KANAN (Sesuai Layout Ankor) -->
+      <div class="relative w-full flex flex-col items-start lg:absolute lg:top-[380px] lg:left-[1150px] lg:w-[480px]">
+        
+        <!-- Label Sub-kategori -->
+        <p class="text-xs lg:text-sm text-gray-400 uppercase tracking-widest flex items-center gap-2 mb-2 font-semibold">
+          <span class="w-1.5 h-1.5 bg-white inline-block"></span> RAKA: ACHIEVEMENT-RECORD
+        </p>
+        
+        <!-- Judul Prestasi -->
+        <h1 id="ach-title" class="text-4xl lg:text-5xl text-white font-light tracking-wider mb-6 uppercase">
+          IECC 2025
+        </h1>
+
+        <!-- Deskripsi -->
+        <p id="ach-desc" class="text-sm lg:text-base text-gray-400 leading-relaxed min-h-[100px]">
+          Partisipasi dalam International Environmental Coding Competition (IECC 2025) yang diselenggarakan oleh Koding Next. Kompetisi ini menantang peserta untuk mengembangkan solusi perangkat lunak yang berfokus pada isu lingkungan global.
+        </p>
+
+        <!-- Navigasi & Progress Bar -->
+        <div class="w-full mt-12 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          
+          <!-- Indikator Progress -->
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>
+              <div id="ach-progress-container" class="flex gap-1.5">
+                <!-- Baris ini digenerate via JS -->
+              </div>
+            </div>
+            <p class="text-[#E22F80]  font-bold text-sm tracking-widest ml-5" id="ach-counter">
+              1 / 3
+            </p>
+          </div>
+
+          <!-- Tombol Kiri Kanan -->
+          <div class="flex gap-3">
+            <button id="ach-btn-prev" class="w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-white text-black flex items-center justify-center hover:bg-gray-300 transition-colors shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button id="ach-btn-next" class="w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-white text-black flex items-center justify-center hover:bg-gray-300 transition-colors shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+          
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  import { glitchTransition } from "../Script/gsap-utils";
+  import gsap from "gsap";
+
+  const achievementData = [
+  {
+    title: "STORY TELLING CONTEST KOREAN FESTIVAL 2023",
+    desc: "Berpartisipasi sebagai peserta Story Telling Online Contest dalam kegiatan pre-event 'The 5th Korean Festival 2023: To The Youth' yang diselenggarakan secara daring oleh FPBS Universitas Pendidikan Indonesia (UPI).",
+    img: "/Salinan Raka Sabari Pratama  .png"
+  },
+  {
+    title: "ALGONOVA PYTHON PROGRAMMING COURSE",
+    desc: "Sertifikasi penyelesaian 90 pelajaran pada tahun pertama 'Python Programming Course' dari Algonova. Silabus materi mencakup fundamental Python, Object-Oriented Programming (OOP), hingga Game Development menggunakan PyGame.",
+    img: "/IMG_20251221_184956.jpg"
+  },
+  {
+    title: "ITCC 2025 PROGRAMMING COMPETITION",
+    desc: "Berpartisipasi sebagai peserta dalam Programming Competition pada rangkaian Information Technology Creative Competition 2025 bertajuk 'Transcending Boundaries'[cite: 1]. Kompetisi ini diselenggarakan oleh Fakultas Teknik Universitas Udayana dan menjangkau peserta dari 20 provinsi[cite: 1].",
+    img: "/Salinan Raka Sabari Pratama.png"
+  },
+  {
+  title: "PENULIS BUKU: NIL VOLENTIBUS ARDUUM",
+  desc: "Menerima sertifikat penghargaan dari Dandelion Publisher atas karya sebagai penulis buku berjudul 'nil Volentibus Arduum'. Sertifikat diterbitkan pada 11 Februari 2025 dengan nomor DPBN: 1118-0125-0504-4.",
+  img: "/Arduum.jpg"
+}
+];
+
+  let achIndex = 0;
+  let achSwitching = false;
+  const achGlitchTargets = ['#ach-title', '#ach-desc', '#ach-img', '#ach-counter'].filter(s => document.querySelector(s) !== null);
+
+  function renderProgressBar() {
+    const container = document.getElementById('ach-progress-container');
+    if (!container) return;
+    container.innerHTML = '';
+    
+    achievementData.forEach((_, i) => {
+      const bar = document.createElement('div');
+      // Style garis putus-putus mirip di referensi gambar
+      bar.className = `h-[2px] transition-all duration-300 ${i === achIndex ? 'w-8 bg-[#E22F80]' : 'w-4 bg-[#333]'}`;
+      container.appendChild(bar);
+    });
+  }
+
+  function updateAchievementUI(index, animate = true) {
+    const titleEl = document.getElementById('ach-title');
+    const descEl = document.getElementById('ach-desc');
+    const imgEl = document.getElementById('ach-img');
+    const counterEl = document.getElementById('ach-counter');
+    const data = achievementData[index];
+
+    const apply = () => {
+      if (titleEl) titleEl.textContent = data.title;
+      if (descEl) descEl.textContent = data.desc;
+      if (imgEl) imgEl.src = data.img;
+      if (counterEl) counterEl.textContent = `${index + 1} / ${achievementData.length}`;
+      renderProgressBar();
+    };
+
+    if (animate) {
+      glitchTransition(achGlitchTargets, apply).eventCallback('onComplete', () => {
+        achSwitching = false;
+      });
+    } else {
+      apply();
+      achSwitching = false;
+    }
+  }
+
+  function achAutoScaleStage() {
+    const stage = document.getElementById('ach-stage');
+    if (!stage) return;
+    if (window.innerWidth < 1024) {
+      stage.style.transform = '';
+      return;
+    }
+    const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    stage.style.transform = `scale(${scale})`;
+  }
+
+  function initAchievementNav() {
+    const btnPrev = document.getElementById('ach-btn-prev');
+    const btnNext = document.getElementById('ach-btn-next');
+
+    if(btnPrev) {
+      btnPrev.addEventListener('click', () => {
+        if (achSwitching) return;
+        achSwitching = true;
+        achIndex = achIndex - 1 < 0 ? achievementData.length - 1 : achIndex - 1;
+        updateAchievementUI(achIndex);
+      });
+    }
+
+    if(btnNext) {
+      btnNext.addEventListener('click', () => {
+        if (achSwitching) return;
+        achSwitching = true;
+        achIndex = achIndex + 1 >= achievementData.length ? 0 : achIndex + 1;
+        updateAchievementUI(achIndex);
+      });
+    }
+
+    updateAchievementUI(achIndex, false);
+  }
+
+  window.addEventListener('resize', achAutoScaleStage);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    achAutoScaleStage();
+    initAchievementNav();
+  });
+</script>
