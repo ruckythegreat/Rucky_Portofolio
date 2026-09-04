@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import BlueprintDecor from "./BlueprintDecor.astro";
 
-// Dummy data untuk foto. Kamu bisa mengganti URL-nya dengan data aslimu nanti.
+// Dummy data untuk foto gallery
 const photoList = [
   {
     src: "/IMG_20251116_174551.jpg",
@@ -51,12 +51,10 @@ const photoList = [
   },
 ];
 ---
-<main
-  class="relative w-full bg-black overflow-x-hidden font-['HarmonyOS_Sans',_sans-serif]"
->
+<main class="relative w-full bg-black overflow-x-hidden font-['HarmonyOS_Sans',_sans-serif]">
   {
     /* =========================================================================
-      BAGIAN 1: MEDIA VIDEO (HERO SCREEN) - (Tetap sama seperti kodemu)
+      BAGIAN 1: MEDIA VIDEO (HERO SCREEN)
       ========================================================================= */
   }
   <section
@@ -75,47 +73,29 @@ const photoList = [
           left: 0 !important;
         }
       }
-
-      /* Style khusus untuk animasi foto modal */
-      .box-content img {
-        transition: transform 0.4s ease-out;
-      }
-      .box:hover .box-content img {
-        transform: scale(1.08);
-      }
+      .box-content img { transition: transform 0.4s ease-out; }
+      .box:hover .box-content img { transform: scale(1.08); }
     </style>
 
-    <div
-      id="media-stage"
-      class="absolute z-10 h-[1080px] w-[1920px] shrink-0 origin-center"
-    >
-      <div
-        class="relative flex h-full w-full flex-col justify-between px-6 pb-28 pt-12 lg:block lg:p-0 lg:pl-[100px]"
-      >
+    <div id="media-stage" class="absolute z-10 h-[1080px] w-[1920px] shrink-0 origin-center">
+      <div class="relative flex h-full w-full flex-col justify-between px-6 pb-28 pt-12 lg:block lg:p-0 lg:pl-[100px]">
         {/* JUDUL: MEDIA VIDEO */}
-        <div
-          class="z-20 mt-2 lg:absolute lg:left-[100px] lg:top-[80px] lg:mt-0"
-        >
+        <div class="z-20 mt-2 lg:absolute lg:left-[100px] lg:top-[80px] lg:mt-0">
           <div class="flex items-center space-x-3">
-            <div
-              class="flex h-6 w-6 items-center justify-center border-[2px] border-white lg:h-8 lg:w-8 lg:border-[3px]"
-            >
+            <div class="flex h-6 w-6 items-center justify-center border-[2px] border-white lg:h-8 lg:w-8 lg:border-[3px]">
               <div class="h-2.5 w-2.5 bg-white lg:h-3.5 lg:w-3.5"></div>
             </div>
-            <h2
-              class="text-2xl font-bold uppercase tracking-[0.2em] text-white lg:text-[2rem]"
-            >
+            <h2 class="text-2xl font-bold uppercase tracking-[0.2em] text-white lg:text-[2rem]">
               MEDIA VIDEO
             </h2>
           </div>
         </div>
 
-        <div
-          class="pointer-events-none absolute left-0 top-0 z-0 h-full w-full overflow-hidden"
-        >
+        {/* BACKGROUND */}
+        <div class="pointer-events-none absolute left-0 top-0 z-0 h-full w-full overflow-hidden">
           <div
             id="main-bg-wrap"
-            class="absolute inset-0 scale-[1.05] opacity-80 transition-opacity duration-500"
+            class="absolute inset-0 scale-[1.05] opacity-80 transition-all duration-500 bg-center bg-cover bg-no-repeat"
           >
             <iframe
               id="main-bg"
@@ -125,227 +105,94 @@ const photoList = [
               allow="autoplay; encrypted-media"
               frameborder="0"></iframe>
           </div>
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent lg:bg-gradient-to-r lg:from-black lg:via-black/60 lg:to-transparent"
-          >
-          </div>
-          <div
-            class="absolute inset-0 hidden bg-gradient-to-t from-black/80 via-transparent to-transparent lg:block"
-          >
-          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent lg:bg-gradient-to-r lg:from-black lg:via-black/60 lg:to-transparent"></div>
+          <div class="absolute inset-0 hidden bg-gradient-to-t from-black/80 via-transparent to-transparent lg:block"></div>
         </div>
 
-        <div
-          class="relative z-20 my-auto flex w-full items-center justify-center lg:absolute lg:bottom-[60px] lg:right-[60px] lg:my-0 lg:block lg:w-auto"
-        >
-          <div
-            class="relative flex w-full items-center justify-between space-x-0 lg:w-auto lg:justify-center lg:space-x-6"
-          >
-            <div
-              class="group relative hidden h-[124px] w-[220px] shrink-0 cursor-pointer overflow-hidden lg:block"
-              id="card-prev"
-            >
-              <img
-                id="thumb-prev"
-                src=""
-                alt=""
-                class="media-thumb h-full w-full object-cover opacity-40 transition-opacity duration-300 group-hover:opacity-100"
-              />
-              <div
-                class="absolute inset-0 bg-black/60 transition-colors duration-300 group-hover:bg-black/20"
-              >
-              </div>
-              <div
-                class="pointer-events-none absolute inset-0"
-                style="background: linear-gradient(to bottom, rgba(0,0,0,0) 35%, rgba(0,0,0,0.75) 100%);"
-              >
-              </div>
-              <div
-                class="absolute bottom-3 right-3 z-10 flex items-center gap-2 text-[11px] font-bold tracking-widest text-white"
-              >
+        {/* MEDIA CONTROLS & THUMBNAILS */}
+        <div class="relative z-20 my-auto flex w-full items-center justify-center lg:absolute lg:bottom-[60px] lg:right-[60px] lg:my-0 lg:block lg:w-auto">
+          <div class="relative flex w-full items-center justify-between space-x-0 lg:w-auto lg:justify-center lg:space-x-6">
+            
+            {/* CARD PREV */}
+            <div class="group relative hidden h-[124px] w-[220px] shrink-0 cursor-pointer overflow-hidden lg:block" id="card-prev">
+              <img id="thumb-prev" src="" alt="" class="media-thumb h-full w-full object-cover opacity-40 transition-opacity duration-300 group-hover:opacity-100" />
+              <div class="absolute inset-0 bg-black/60 transition-colors duration-300 group-hover:bg-black/20"></div>
+              <div class="pointer-events-none absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 35%, rgba(0,0,0,0.75) 100%);"></div>
+              <div class="absolute bottom-3 right-3 z-10 flex items-center gap-2 text-[11px] font-bold tracking-widest text-white">
                 <span id="prev-counter">00 / 000</span>
-                <span
-                  class="border border-[var(--color-2)]/60 px-1.5 py-0.5 text-[var(--color-2)]"
-                  >LAST</span
-                >
+                <span class="border border-[var(--color-2)]/60 px-1.5 py-0.5 text-[var(--color-2)]">LAST</span>
               </div>
             </div>
 
-            <button
-              type="button"
-              class="btn-prev relative z-30 flex h-10 w-10 shrink-0 items-center justify-center bg-white text-black shadow-[0_4px_14px_rgba(0,0,0,0.5)] transition-transform hover:scale-110 hover:bg-gray-200 lg:absolute lg:left-[208px] lg:h-12 lg:w-12"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lg:h-6 lg:w-6"><path d="m15 18-6-6 6-6"></path></svg
-              >
+            {/* BTN PREV */}
+            <button type="button" class="btn-prev relative z-30 flex h-10 w-10 shrink-0 items-center justify-center bg-white text-black shadow-[0_4px_14px_rgba(0,0,0,0.5)] transition-transform hover:scale-110 hover:bg-gray-200 lg:absolute lg:left-[208px] lg:h-12 lg:w-12">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lg:h-6 lg:w-6"><path d="m15 18-6-6 6-6"></path></svg>
             </button>
 
-            <div
-              class="relative z-20 mx-4 aspect-video w-full max-w-[280px] shrink-0 cursor-pointer overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.6)] lg:mx-0 lg:h-[190px] lg:w-[340px] lg:max-w-none"
-              id="card-curr"
-            >
-              <img
-                id="thumb-curr"
-                src=""
-                alt=""
-                class="media-thumb h-full w-full object-cover"
-              />
-              <div
-                class="absolute left-2 top-2 z-10 rounded bg-black/80 px-2 py-1 text-[10px] font-bold tracking-widest text-white backdrop-blur-sm lg:left-3 lg:top-3 lg:px-3 lg:py-1.5 lg:text-xs"
-              >
+            {/* CARD CURR (PLAYING) */}
+            <div class="relative z-20 mx-4 aspect-video w-full max-w-[280px] shrink-0 cursor-pointer overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.6)] lg:mx-0 lg:h-[190px] lg:w-[340px] lg:max-w-none bg-black/50" id="card-curr">
+              <img id="thumb-curr" src="" alt="" class="media-thumb h-full w-full object-cover" />
+              <div class="absolute left-2 top-2 z-10 rounded bg-black/80 px-2 py-1 text-[10px] font-bold tracking-widest text-white backdrop-blur-sm lg:left-3 lg:top-3 lg:px-3 lg:py-1.5 lg:text-xs">
                 PLAYING
               </div>
-              <div
-                class="pointer-events-none absolute inset-0 z-10"
-                style="background: linear-gradient(to bottom, rgba(255,230,0,0) 50%, var(--color-2) 100%);"
-              >
-              </div>
-              <div
-                class="absolute inset-0 z-20 flex items-center justify-center bg-black/30 opacity-100 transition-opacity duration-300 hover:opacity-100 lg:opacity-0"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="40"
-                  height="40"
-                  viewBox="0 0 24 24"
-                  fill="white"
-                  class="drop-shadow-lg lg:h-[56px] lg:w-[56px]"
-                  ><polygon points="6 3 20 12 6 21 6 3"></polygon></svg
-                >
+              <div class="pointer-events-none absolute inset-0 z-10" style="background: linear-gradient(to bottom, rgba(255,230,0,0) 50%, var(--color-2) 100%);"></div>
+              <div class="absolute inset-0 z-20 flex items-center justify-center bg-black/30 opacity-100 transition-opacity duration-300 hover:opacity-100 lg:opacity-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white" class="drop-shadow-lg lg:h-[56px] lg:w-[56px]"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
               </div>
             </div>
 
-            <button
-              type="button"
-              class="btn-next relative z-30 flex h-10 w-10 shrink-0 items-center justify-center bg-white text-black shadow-[0_4px_14px_rgba(0,0,0,0.5)] transition-transform hover:scale-110 hover:bg-gray-200 lg:absolute lg:right-[208px] lg:h-12 lg:w-12"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lg:h-6 lg:w-6"><path d="m9 18 6-6-6-6"></path></svg
-              >
+            {/* BTN NEXT */}
+            <button type="button" class="btn-next relative z-30 flex h-10 w-10 shrink-0 items-center justify-center bg-white text-black shadow-[0_4px_14px_rgba(0,0,0,0.5)] transition-transform hover:scale-110 hover:bg-gray-200 lg:absolute lg:right-[208px] lg:h-12 lg:w-12">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lg:h-6 lg:w-6"><path d="m9 18 6-6-6-6"></path></svg>
             </button>
 
-            <div
-              class="group relative hidden h-[124px] w-[220px] shrink-0 cursor-pointer overflow-hidden lg:block"
-              id="card-next"
-            >
-              <img
-                id="thumb-next"
-                src=""
-                alt=""
-                class="media-thumb h-full w-full object-cover opacity-40 transition-opacity duration-300 group-hover:opacity-100"
-              />
-              <div
-                class="absolute inset-0 bg-black/60 transition-colors duration-300 group-hover:bg-black/20"
-              >
-              </div>
-              <div
-                class="pointer-events-none absolute inset-0"
-                style="background: linear-gradient(to bottom, rgba(0,0,0,0) 35%, rgba(0,0,0,0.75) 100%);"
-              >
-              </div>
-              <div
-                class="absolute bottom-3 left-3 z-10 flex items-center gap-2 text-[11px] font-bold tracking-widest text-white"
-              >
-                <span
-                  class="border border-[var(--color-2)]/60 px-1.5 py-0.5 text-[var(--color-2)]"
-                  >NEXT</span
-                >
+            {/* CARD NEXT */}
+            <div class="group relative hidden h-[124px] w-[220px] shrink-0 cursor-pointer overflow-hidden lg:block" id="card-next">
+              <img id="thumb-next" src="" alt="" class="media-thumb h-full w-full object-cover opacity-40 transition-opacity duration-300 group-hover:opacity-100" />
+              <div class="absolute inset-0 bg-black/60 transition-colors duration-300 group-hover:bg-black/20"></div>
+              <div class="pointer-events-none absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 35%, rgba(0,0,0,0.75) 100%);"></div>
+              <div class="absolute bottom-3 left-3 z-10 flex items-center gap-2 text-[11px] font-bold tracking-widest text-white">
+                <span class="border border-[var(--color-2)]/60 px-1.5 py-0.5 text-[var(--color-2)]">NEXT</span>
                 <span id="next-counter">00 / 000</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div
-          class="relative z-10 mt-auto flex w-full max-w-2xl flex-col items-start text-white lg:absolute lg:bottom-[100px] lg:left-[100px] lg:mt-0 lg:pb-0"
-        >
+        {/* TEKS & KONTEN BAWAH */}
+        <div class="relative z-10 mt-auto flex w-full max-w-2xl flex-col items-start text-white lg:absolute lg:bottom-[100px] lg:left-[100px] lg:mt-0 lg:pb-0">
           <div class="mb-2 flex items-center space-x-3 lg:mb-4">
-            <span
-              id="media-category"
-              class="bg-white/20 px-2 py-1 text-[10px] font-bold uppercase tracking-widest lg:px-3 lg:text-sm"
-            >
+            <span id="media-category" class="bg-white/20 px-2 py-1 text-[10px] font-bold uppercase tracking-widest lg:px-3 lg:text-sm">
               CATEGORY
             </span>
-            <p
-              id="media-date"
-              class="text-sm font-bold tracking-[0.15em] lg:text-lg"
-              style="color:var(--color-2)"
-            >
+            <p id="media-date" class="text-sm font-bold tracking-[0.15em] lg:text-lg" style="color:var(--color-2)">
               2026-00-00
             </p>
           </div>
 
-          <h1
-            id="media-title"
-            class="my-2 text-3xl font-extrabold leading-[1.1] lg:my-4 lg:text-6xl"
-          >
+          <h1 id="media-title" class="my-2 text-3xl font-extrabold leading-[1.1] lg:my-4 lg:text-6xl">
             JUDUL MEDIA
           </h1>
 
-          <p
-            id="media-desc"
-            class="mb-8 line-clamp-3 max-w-xl text-sm leading-relaxed text-gray-300 lg:mb-12 lg:line-clamp-none lg:text-xl"
-          >
+          <p id="media-desc" class="mb-8 line-clamp-3 max-w-xl text-sm leading-relaxed text-gray-300 lg:mb-12 lg:line-clamp-none lg:text-xl">
             (DESKRIPSI MEDIA)
           </p>
 
           <div class="flex w-full space-x-3 lg:w-auto lg:space-x-4">
-            <button
-              id="btn-play"
-              type="button"
-              class="eng-hover group flex h-12 w-16 shrink-0 items-center justify-center bg-[var(--color-2)] font-bold text-black shadow-[0_0_20px_rgba(255,120,115,0.35)] lg:h-14 lg:w-20 tracking-widest uppercase text-xs"
-              data-hover-default="PLAY"
-              data-hover-alt="▶ RUN"
-              aria-label="Play video"
-            >
-            </button>
-            <a
-              href="/videos"
-              class="eng-hover flex h-12 flex-1 items-center justify-center border border-white/30 bg-white/10 px-4 text-sm font-semibold text-white lg:h-14 lg:flex-none lg:px-8 lg:text-base tracking-widest uppercase"
-              data-hover-default="More Videos"
-              data-hover-alt="Open Archive"
-            >
-            </a>
+            <button id="btn-play" type="button" class="eng-hover group flex h-12 w-16 shrink-0 items-center justify-center bg-[var(--color-2)] font-bold text-black shadow-[0_0_20px_rgba(255,120,115,0.35)] lg:h-14 lg:w-20 tracking-widest uppercase text-xs" data-hover-default="PLAY" data-hover-alt="▶ RUN" aria-label="Play video"></button>
+            <a href="/videos" class="eng-hover flex h-12 flex-1 items-center justify-center border border-white/30 bg-white/10 px-4 text-sm font-semibold text-white lg:h-14 lg:flex-none lg:px-8 lg:text-base tracking-widest uppercase" data-hover-default="More Videos" data-hover-alt="Open Archive"></a>
           </div>
         </div>
 
-        <div
-          class="absolute bottom-[160px] left-0 z-10 hidden h-[2px] w-[55%] bg-[var(--color-2)] shadow-[0_0_10px_rgba(255,120,115,0.4)] lg:block"
-        >
-        </div>
-        <div
-          class="absolute bottom-[160px] left-[55%] z-10 hidden h-[1px] w-[45%] bg-white/20 lg:block"
-        >
-        </div>
-        <p
-          class="absolute bottom-14 left-[100px] z-10 mt-6 hidden font-medium tracking-wide text-gray-400 lg:block"
-        >
-          V.1-Entry &#8968; 3 / 10 &#8969;
-          <span id="media-counter" class="font-bold text-white opacity-0"
-            >1</span
-          >
+        {/* DEKORASI LINE */}
+        <div class="absolute bottom-[160px] left-0 z-10 hidden h-[2px] w-[55%] bg-[var(--color-2)] shadow-[0_0_10px_rgba(255,120,115,0.4)] lg:block"></div>
+        <div class="absolute bottom-[160px] left-[55%] z-10 hidden h-[1px] w-[45%] bg-white/20 lg:block"></div>
+        <p class="absolute bottom-14 left-[100px] z-10 mt-6 hidden font-medium tracking-wide text-gray-400 lg:block">
+          V.1-Entry &#8968; <span id="media-counter" class="font-bold text-white">1</span> / 10 &#8969;
         </p>
       </div>
     </div>
-</section>
+  </section>
 
   {
     /* =========================================================================
@@ -356,67 +203,38 @@ const photoList = [
     <BlueprintDecor intensity="subtle" />
     <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-24">
       <div class="mb-14 flex items-center space-x-3">
-        <div
-          class="flex h-6 w-6 items-center justify-center border-[2px] border-white lg:h-8 lg:w-8 lg:border-[3px]"
-        >
+        <div class="flex h-6 w-6 items-center justify-center border-[2px] border-white lg:h-8 lg:w-8 lg:border-[3px]">
           <div class="h-2.5 w-2.5 bg-white lg:h-3.5 lg:w-3.5"></div>
         </div>
-        <h2
-          class="text-2xl font-bold uppercase tracking-[0.2em] text-white lg:text-[2rem]"
-        >
+        <h2 class="text-2xl font-bold uppercase tracking-[0.2em] text-white lg:text-[2rem]">
           MEDIA PHOTO
         </h2>
       </div>
 
       {/* BOXES CONTAINER (Grid Layout) */}
-      <div
-        class="boxes-container grid grid-cols-2 gap-5 lg:grid-cols-3 lg:gap-8"
-      >
-        {
-          photoList.map((photo, index) => (
-            // 2. Tambahkan class "group" di pembungkus luar agar kita bisa men-trigger hover anak elemennya
-            <div
-              class={`box group aspect-[4/3] ${index >= 6 ? "hidden-box hidden" : ""}`}
-            >
-              <div class="box-content relative h-full w-full flex items-center justify-center cursor-pointer overflow-hidden rounded-md bg-white/5">
-                <img
-                  src={photo.src}
-                  alt={photo.desc}
-                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                
-                {/* 3. OVERLAY INFO SAAT HOVER */}
-                <div class="pointer-events-none absolute inset-0 z-10 flex flex-col justify-end bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 lg:p-6 opacity-0 transition-all duration-300 ease-out group-hover:opacity-100">
-                  <div class="translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
-                    <p class="mb-1 text-[10px] font-bold uppercase tracking-widest text-[var(--color-2)] lg:text-xs">
-                      {photo.date}
-                    </p>
-                    <p class="line-clamp-2 text-xs font-medium leading-relaxed text-white lg:text-sm">
-                      {photo.desc}
-                    </p>
-                  </div>
+      <div class="boxes-container grid grid-cols-2 gap-5 lg:grid-cols-3 lg:gap-8">
+        {photoList.map((photo, index) => (
+          <div class={`box group aspect-[4/3] ${index >= 6 ? "hidden-box hidden" : ""}`}>
+            <div class="box-content relative h-full w-full flex items-center justify-center cursor-pointer overflow-hidden rounded-md bg-white/5">
+              <img src={photo.src} alt={photo.desc} class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"/>
+              
+              <div class="pointer-events-none absolute inset-0 z-10 flex flex-col justify-end bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 lg:p-6 opacity-0 transition-all duration-300 ease-out group-hover:opacity-100">
+                <div class="translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
+                  <p class="mb-1 text-[10px] font-bold uppercase tracking-widest text-[var(--color-2)] lg:text-xs">{photo.date}</p>
+                  <p class="line-clamp-2 text-xs font-medium leading-relaxed text-white lg:text-sm">{photo.desc}</p>
                 </div>
-
               </div>
             </div>
-          ))
-        }
+          </div>
+        ))}
       </div>
 
       {/* TOMBOL SELENGKAPNYA */}
-      {
-        photoList.length > 6 && (
-          <div class="mt-16 flex justify-center">
-            <button
-              id="btn-more-photos"
-              class="eng-hover border border-white/30 bg-white/10 px-10 py-3.5 text-sm font-semibold tracking-widest text-white uppercase"
-              data-hover-default="Selengkapnya"
-              data-hover-alt="Load All"
-            >
-            </button>
-          </div>
-        )
-      }
+      {photoList.length > 6 && (
+        <div class="mt-16 flex justify-center">
+          <button id="btn-more-photos" class="eng-hover border border-white/30 bg-white/10 px-10 py-3.5 text-sm font-semibold tracking-widest text-white uppercase" data-hover-default="Selengkapnya" data-hover-alt="Load All"></button>
+        </div>
+      )}
     </div>
   </section>
 
@@ -426,178 +244,134 @@ const photoList = [
       ========================================================================= */
   }
 
-  {/* Modal Video (Bawaan) */}
-  <div
-    id="video-modal"
-    class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-sm"
-  >
-    <button
-      id="video-modal-close"
-      type="button"
-      aria-label="Close video"
-      class="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center bg-white/10 text-white hover:bg-white/20 lg:right-6 lg:top-6"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M18 6 6 18"></path>
-        <path d="m6 6 12 12"></path>
-      </svg>
+  {/* Modal Video (Bawaan) - Ditambahkan pembungkus ID 'modal-wrapper' untuk ukuran dinamis */}
+  <div id="video-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-sm">
+    <button id="video-modal-close" type="button" aria-label="Close video" class="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center bg-white/10 text-white hover:bg-white/20 lg:right-6 lg:top-6">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
     </button>
-    <div class="aspect-video w-full max-w-5xl px-4">
-      <iframe
-        id="video-modal-iframe"
-        class="h-full w-full rounded-lg shadow-2xl"
-        src=""
-        title="Video player"
-        allow="autoplay; encrypted-media; fullscreen"
-        allowfullscreen
-        frameborder="0"></iframe>
+    <div id="modal-wrapper" class="w-full max-w-5xl px-4 aspect-video transition-all duration-300">
+      <iframe id="video-modal-iframe" class="h-full w-full rounded-lg shadow-2xl bg-[#111]" src="" title="Video player" allow="autoplay; encrypted-media; fullscreen" allowfullscreen frameborder="0"></iframe>
     </div>
   </div>
 
   {/* Modal Foto (GSAP Flip) */}
-  <div
-    id="photo-modal"
-    class="fixed inset-0 z-[100] hidden items-center justify-center"
-  >
-    <div
-      class="overlay absolute inset-0 bg-black/90 backdrop-blur-sm invisible opacity-0"
-    >
-    </div>
-    <button
-      id="photo-modal-close"
-      type="button"
-      aria-label="Close photo"
-      class="absolute right-4 top-4 z-30 flex h-11 w-11 items-center justify-center bg-white/10 text-white hover:bg-white/20 lg:right-6 lg:top-6 invisible opacity-0"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M18 6 6 18"></path>
-        <path d="m6 6 12 12"></path>
-      </svg>
+  <div id="photo-modal" class="fixed inset-0 z-[100] hidden items-center justify-center">
+    <div class="overlay absolute inset-0 bg-black/90 backdrop-blur-sm invisible opacity-0"></div>
+    <button id="photo-modal-close" type="button" aria-label="Close photo" class="absolute right-4 top-4 z-30 flex h-11 w-11 items-center justify-center bg-white/10 text-white hover:bg-white/20 lg:right-6 lg:top-6 invisible opacity-0">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
     </button>
-    <div
-      class="content relative z-20 flex w-full max-w-5xl items-center justify-center p-4"
-    >
-      <!-- Image box will flip into here -->
-    </div>
+    <div class="content relative z-20 flex w-full max-w-5xl items-center justify-center p-4"></div>
   </div>
 </main>
 
 <script>
   import { initSimpleStageScale, gsap, initEngineHover } from "../Script/gsap-utils";
-  // Import GSAP Flip plugin
   import { Flip } from "gsap/Flip";
 
   function initMediaPage() {
     gsap.registerPlugin(Flip);
-
-    // Inisialisasi scale panggung video
     initSimpleStageScale("media-stage");
     initEngineHover(document.querySelector("main") || document);
 
     // ==========================================
-    // LOGIKA CAROUSEL VIDEO (EXISTING)
+    // DATA CAROUSEL MEDIA (Tanpa Local Thumb)
     // ==========================================
     const mediaList = [
-      {
-        category: "Profile Kejuruan",
-        date: "2026-07-15",
-        title: "Video pengenalan PPLG & RPL",
-        desc: "Mengenal lingkungan, kurikulum serta kejuruan PPLG & RPL",
-        ytId: "FVaLj0g6Yzk",
-      },
-      {
-        category: "Ucapan",
-        date: "2026-08-25",
-        title: "Happy Birthday SMKN 2 Bandung from RPL (Minecraft Edition)",
-        desc: "Ucapan Ulang tahun dan juga open house SMKN 2 dari RPL",
-        ytId: "WAAEZzLE-nQ",
-      },
-      {
-        category: "Film pendek SMKN 2",
-        date: "2026-06-05",
-        title: "SANGTRIVARNA - KALA KITA",
-        desc: "Film pendek karya siswa SMK Negeri 2 Bandung ini menyoroti lika-liku kehidupan masa remaja di lingkungan sekolah. Melalui sudut pandang beberapa pelajar, narasi ini mengeksplorasi perjuangan dalam menghadapi konsekuensi peraturan, dinamika pertemanan, dan perjalanan pendewasaan diri yang penuh tantangan.",
-        ytId: "oRDGl6HP_i4",
-      },
-
-      {
-        category: "Profile SMKN 2",
-        date: "2022-07-15",
-        title: "Profile Video SMK NEGERI 2 BANDUNG",
-        desc: "PROFILE VIDEO SEKOLAH MENENGAH KEJURUAN ( SMKN 2 BANDUNG )",
-        ytId: "8CgZfaxn4uQ",
-      },
+      { category: "Ucapan", date: "2026-08-25", title: "Happy Birthday SMKN 2 Bandung from RPL (Minecraft Edition)", desc: "Ucapan Ulang tahun dan juga open house SMKN 2 dari RPL", type: "youtube", mediaId: "WAAEZzLE-nQ" },
+      { category: "TikTok", date: "2025-10-22", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7563950930966727954" },
+      { category: "Instagram", date: "2025-07-02", title: "Instagram Post @naptuneeel", desc: "Postingan media Instagram dari akun @naptuneeel", type: "instagram", mediaId: "DLmxMGCPoMlaW5FDhyZtyMZCuN38vKJiEtp_nU0" },
+      { category: "TikTok", date: "2025-06-16", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7516563138003700999" },
+      { category: "TikTok", date: "2025-06-05", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7512389312193858834" },
+      { category: "Instagram", date: "2024-12-16", title: "Instagram Post @naptuneeel", desc: "Postingan media Instagram dari akun @naptuneeel", type: "instagram", mediaId: "DDq9QJjvaq_u7QgafFQUSa2fCT5ZBrwe9z5EaE0" },
+      { category: "TikTok", date: "2024-12-13", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7447688845388270866" },
+      { category: "TikTok", date: "2024-12-12", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7447363285629930759" },
+      { category: "TikTok", date: "2024-12-06", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7445337305654562066" },
+      { category: "TikTok", date: "2023-09-23", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7282004747773594886" },
+      { category: "TikTok", date: "2023-09-12", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7277770319064993029" },
+      { category: "Motion Graphics", date: "2023-09-07", title: "First Mograph #Shiroko", desc: "Eksperimen pertama membuat animasi motion graphics untuk karakter Shiroko.", type: "youtube", mediaId: "_6dhlWfs1gs" },
+      { category: "Minecraft", date: "2023-08-17", title: "AUGUST 17th IS THE DAY INDONESIAN INDEPENDEN 🔥", desc: "Merayakan Hari Kemerdekaan Indonesia dengan membangun Monas (Monumen Nasional) Jakarta di Minecraft.", type: "youtube", mediaId: "w5nbenCaAak" },
+      { category: "Gaming", date: "2023-07-01", title: "DIMAS SIGMA VS INTRUDERS @Greyzon Ch. :v", desc: "Gameplay seru dan kocak saat Dimas Sigma bermain game horor Roblox Intruders.", type: "youtube", mediaId: "jhlx7CK4IJQ" },
+      { category: "TikTok", date: "2023-05-27", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7237778359030271237" },
+      { category: "TikTok", date: "2023-05-14", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7233007196630437146" },
+      { category: "TikTok", date: "2023-05-12", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7232318285084216602" },
+      { category: "TikTok", date: "2023-05-06", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7229960977687530778" },
+      { category: "TikTok", date: "2023-04-23", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7225138172865383686" },
+      { category: "TikTok", date: "2023-04-20", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7224151841850821894" },
+      { category: "TikTok", date: "2023-04-17", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7222886262053539099" },
+      { category: "TikTok", date: "2023-04-13", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7221315111653231899" },
+      { category: "TikTok", date: "2023-04-10", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7220386671345274139" }
     ];
+
+    mediaList.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     let currentIndex = 0;
     let switching = false;
     let isFirstLoad = true;
 
-    const getYtThumbnail = (id: string) =>
-      `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
-    const getYtBgEmbed = (id: string) =>
-      `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3`;
-    const getYtWatchEmbed = (id: string) =>
-      `https://www.youtube.com/embed/${id}?autoplay=1&mute=0&rel=0&modestbranding=1`;
+    // Helper functions dinamis berdasarkan platform (Generated Online Placeholders)
+    const getThumbnail = (media: any) => {
+      if (media.type === "youtube") return `https://img.youtube.com/vi/${media.mediaId}/maxresdefault.jpg`;
+      if (media.type === "tiktok") return "https://placehold.co/400x600/111111/FFFFFF/png?text=TikTok+Preview";
+      if (media.type === "instagram") return "https://placehold.co/400x600/e1306c/FFFFFF/png?text=Instagram+Preview";
+      return "";
+    };
+
+    const getBgEmbed = (media: any) => {
+      if (media.type === "youtube") return `https://www.youtube.com/embed/${media.mediaId}?autoplay=1&mute=1&loop=1&playlist=${media.mediaId}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3`;
+      return ""; // Dimatikan untuk TikTok/IG agar layar background tidak error/pecah
+    };
+
+    const getWatchEmbed = (media: any) => {
+      if (media.type === "youtube") return `https://www.youtube.com/embed/${media.mediaId}?autoplay=1&mute=0&rel=0&modestbranding=1`;
+      if (media.type === "tiktok") return `https://www.tiktok.com/embed/v2/${media.mediaId}`;
+      if (media.type === "instagram") return `https://www.instagram.com/p/${media.mediaId}/embed/`;
+      return "";
+    };
 
     function setMediaContent(currentData: any, prevData: any, nextData: any) {
-      if (mediaList.length === 0) return; // Prevent error if list is empty
+      if (mediaList.length === 0) return;
 
       const total = mediaList.length;
-      const currentNumber = currentIndex + 1;
       const prevIndex = currentIndex === 0 ? total - 1 : currentIndex - 1;
       const nextIndex = currentIndex === total - 1 ? 0 : currentIndex + 1;
 
-      document.getElementById("media-category")!.textContent =
-        currentData.category;
+      document.getElementById("media-category")!.textContent = currentData.category;
       document.getElementById("media-date")!.textContent = currentData.date;
       document.getElementById("media-title")!.textContent = currentData.title;
       document.getElementById("media-desc")!.textContent = currentData.desc;
-      document.getElementById("media-counter")!.textContent =
-        currentNumber.toString();
+      document.getElementById("media-counter")!.textContent = (currentIndex + 1).toString();
 
-      (document.getElementById("main-bg") as HTMLIFrameElement).src =
-        getYtBgEmbed(currentData.ytId);
-      (document.getElementById("thumb-prev") as HTMLImageElement).src =
-        getYtThumbnail(prevData.ytId);
-      (document.getElementById("thumb-curr") as HTMLImageElement).src =
-        getYtThumbnail(currentData.ytId);
-      (document.getElementById("thumb-next") as HTMLImageElement).src =
-        getYtThumbnail(nextData.ytId);
+      // Penanganan khusus Iframe/Gambar Background agar IG/TikTok tidak pecah
+      const bgWrap = document.getElementById("main-bg-wrap")!;
+      const bgIframe = document.getElementById("main-bg") as HTMLIFrameElement;
+      
+      if (currentData.type === "youtube") {
+        bgIframe.style.display = "block";
+        bgIframe.src = getBgEmbed(currentData);
+        bgWrap.style.backgroundImage = "none";
+        bgWrap.style.filter = "none";
+      } else {
+        bgIframe.style.display = "none";
+        bgIframe.src = "";
+        // Gunakan efek gambar blur elegan sebagai ganti iframe vertical yang nyangkut di layout 16:9
+        bgWrap.style.backgroundImage = `url('${getThumbnail(currentData)}')`;
+        bgWrap.style.backgroundSize = "cover";
+        bgWrap.style.filter = "blur(15px) brightness(0.6)"; 
+      }
 
-      document.getElementById("prev-counter")!.textContent =
-        `${String(prevIndex + 1).padStart(2, "0")} / ${String(total).padStart(3, "0")}`;
-      document.getElementById("next-counter")!.textContent =
-        `${String(nextIndex + 1).padStart(2, "0")} / ${String(total).padStart(3, "0")}`;
+      (document.getElementById("thumb-prev") as HTMLImageElement).src = getThumbnail(prevData);
+      (document.getElementById("thumb-curr") as HTMLImageElement).src = getThumbnail(currentData);
+      (document.getElementById("thumb-next") as HTMLImageElement).src = getThumbnail(nextData);
+
+      document.getElementById("prev-counter")!.textContent = `${String(prevIndex + 1).padStart(2, "0")} / ${String(total).padStart(3, "0")}`;
+      document.getElementById("next-counter")!.textContent = `${String(nextIndex + 1).padStart(2, "0")} / ${String(total).padStart(3, "0")}`;
     }
 
     function updateMediaUI(direction = 1) {
       if (switching || mediaList.length === 0) return;
 
-      const prevIndex =
-        currentIndex === 0 ? mediaList.length - 1 : currentIndex - 1;
-      const nextIndex =
-        currentIndex === mediaList.length - 1 ? 0 : currentIndex + 1;
+      const prevIndex = currentIndex === 0 ? mediaList.length - 1 : currentIndex - 1;
+      const nextIndex = currentIndex === mediaList.length - 1 ? 0 : currentIndex + 1;
 
       const currentData = mediaList[currentIndex];
       const prevData = mediaList[prevIndex];
@@ -612,81 +386,42 @@ const photoList = [
       switching = true;
       const slideX = direction >= 0 ? 40 : -40;
       const tl = gsap.timeline({
-        onComplete: () => {
-          switching = false;
-        },
+        onComplete: () => { switching = false; }
       });
 
-      tl.to(["#media-title", "#media-desc", "#media-category", "#media-date"], {
-        opacity: 0,
-        y: -12,
-        duration: 0.2,
-        ease: "power2.in",
-      })
+      tl.to(["#media-title", "#media-desc", "#media-category", "#media-date"], { opacity: 0, y: -12, duration: 0.2, ease: "power2.in" })
         .to("#main-bg-wrap", { opacity: 0.1, duration: 0.2 }, 0)
-        .to(
-          ["#thumb-prev", "#thumb-curr", "#thumb-next"],
-          {
-            opacity: 0,
-            x: slideX,
-            duration: 0.22,
-            stagger: 0.04,
-            ease: "power2.in",
-          },
-          0,
-        )
+        .to(["#thumb-prev", "#thumb-curr", "#thumb-next"], { opacity: 0, x: slideX, duration: 0.22, stagger: 0.04, ease: "power2.in" }, 0)
         .call(() => {
           setMediaContent(currentData, prevData, nextData);
-          gsap.set(["#thumb-prev", "#thumb-curr", "#thumb-next"], {
-            x: -slideX,
-          });
+          gsap.set(["#thumb-prev", "#thumb-curr", "#thumb-next"], { x: -slideX });
         })
-        .to(["#media-title", "#media-desc", "#media-category", "#media-date"], {
-          opacity: 1,
-          y: 0,
-          duration: 0.35,
-          stagger: 0.04,
-          ease: "power2.out",
-        })
-        .to(
-          "#main-bg-wrap",
-          { opacity: 0.8, duration: 0.4, ease: "power2.out" },
-          "-=0.25",
-        )
-        .to(
-          ["#thumb-prev", "#thumb-curr", "#thumb-next"],
-          {
-            opacity: (i) => (i === 1 ? 1 : 0.5),
-            x: 0,
-            duration: 0.35,
-            stagger: 0.05,
-            ease: "power3.out",
-          },
-          "-=0.3",
-        );
+        .to(["#media-title", "#media-desc", "#media-category", "#media-date"], { opacity: 1, y: 0, duration: 0.35, stagger: 0.04, ease: "power2.out" })
+        .to("#main-bg-wrap", { opacity: 0.8, duration: 0.4, ease: "power2.out" }, "-=0.25")
+        .to(["#thumb-prev", "#thumb-curr", "#thumb-next"], { opacity: (i) => (i === 1 ? 1 : 0.5), x: 0, duration: 0.35, stagger: 0.05, ease: "power3.out" }, "-=0.3");
     }
 
-    const goPrev = () => {
-      currentIndex =
-        currentIndex === 0 ? mediaList.length - 1 : currentIndex - 1;
-      updateMediaUI(-1);
-    };
-    const goNext = () => {
-      currentIndex =
-        currentIndex === mediaList.length - 1 ? 0 : currentIndex + 1;
-      updateMediaUI(1);
-    };
+    const goPrev = () => { currentIndex = currentIndex === 0 ? mediaList.length - 1 : currentIndex - 1; updateMediaUI(-1); };
+    const goNext = () => { currentIndex = currentIndex === mediaList.length - 1 ? 0 : currentIndex + 1; updateMediaUI(1); };
 
-    // VIDEO MODAL LOGIC
+    // VIDEO MODAL LOGIC (Layout Otomatis Berubah Tergantung Tipe Konten)
     const modalVideo = document.getElementById("video-modal")!;
-    const modalIframe = document.getElementById(
-      "video-modal-iframe",
-    ) as HTMLIFrameElement;
+    const modalWrapper = document.getElementById("modal-wrapper")!;
+    const modalIframe = document.getElementById("video-modal-iframe") as HTMLIFrameElement;
 
     function openVideoModal() {
       if (mediaList.length === 0) return;
       const data = mediaList[currentIndex];
-      modalIframe.src = getYtWatchEmbed(data.ytId);
+      
+      modalIframe.src = getWatchEmbed(data);
+
+      // Ubah class wrapper Iframe, vertikal (IG/TikTok) vs horizontal (YT)
+      if (data.type === "youtube") {
+        modalWrapper.className = "w-full max-w-5xl px-4 aspect-video transition-all duration-300";
+      } else {
+        modalWrapper.className = "w-full max-w-[400px] h-[80vh] px-4 transition-all duration-300";
+      }
+
       modalVideo.classList.remove("hidden");
       modalVideo.classList.add("flex");
       document.body.style.overflow = "hidden";
@@ -699,29 +434,18 @@ const photoList = [
       document.body.style.overflow = "";
     }
 
-    document
-      .getElementById("btn-play")
-      ?.addEventListener("click", openVideoModal);
-    document
-      .getElementById("card-curr")
-      ?.addEventListener("click", openVideoModal);
-    document
-      .getElementById("video-modal-close")
-      ?.addEventListener("click", closeVideoModal);
-    modalVideo.addEventListener("click", (e) => {
-      if (e.target === modalVideo) closeVideoModal();
-    });
+    document.getElementById("btn-play")?.addEventListener("click", openVideoModal);
+    document.getElementById("card-curr")?.addEventListener("click", openVideoModal);
+    document.getElementById("video-modal-close")?.addEventListener("click", closeVideoModal);
+    modalVideo.addEventListener("click", (e) => { if (e.target === modalVideo) closeVideoModal(); });
 
-    document
-      .querySelectorAll(".btn-prev")
-      .forEach((btn) => btn.addEventListener("click", goPrev));
-    document
-      .querySelectorAll(".btn-next")
-      .forEach((btn) => btn.addEventListener("click", goNext));
+    document.querySelectorAll(".btn-prev").forEach((btn) => btn.addEventListener("click", goPrev));
+    document.querySelectorAll(".btn-next").forEach((btn) => btn.addEventListener("click", goNext));
     document.getElementById("card-prev")?.addEventListener("click", goPrev);
     document.getElementById("card-next")?.addEventListener("click", goNext);
 
     updateMediaUI(0);
+
     // ==========================================
     // LOGIKA MEDIA PHOTO GSAP FLIP
     // ==========================================
@@ -729,92 +453,57 @@ const photoList = [
     const photoModalContent = photoModal?.querySelector(".content");
     const photoModalOverlay = photoModal?.querySelector(".overlay");
     const photoModalClose = document.getElementById("photo-modal-close");
-
     const boxes = gsap.utils.toArray(".boxes-container .box");
     const boxesContent = gsap.utils.toArray(".box-content");
     let boxIndex = undefined;
 
-    boxesContent.forEach((box, i) => {
+    boxesContent.forEach((box: any, i) => {
       box.addEventListener("click", () => {
         if (boxIndex !== undefined) return;
-
         const img = box.querySelector("img");
-
-        // Ambil state container DAN img sebelum diubah
         const state = Flip.getState([box, img]);
 
-        // Pindahkan kotak ke dalam modal
         photoModalContent.appendChild(box);
         boxIndex = i;
 
-        // Ubah styling: Dari mode "Grid/Crop" ke mode "Zoom/Utuh"
         box.classList.remove("h-full", "w-full", "rounded-md");
         box.classList.add("w-[90vw]", "h-[85vh]", "rounded-none");
-
         img.classList.remove("object-cover", "hover:scale-110");
-        img.classList.add("object-contain"); // Ini yang bikin foto ga nge-crop saat di-zoom
+        img.classList.add("object-contain"); 
 
         gsap.set(photoModal, { display: "flex" });
         gsap.to(photoModalOverlay, { autoAlpha: 0.85, duration: 0.35 });
         gsap.to(photoModalClose, { autoAlpha: 1, duration: 0.35, delay: 0.2 });
 
-        Flip.from(state, {
-          duration: 0.7,
-          ease: "power2.inOut",
-          absolute: true,
-          nested: true,
-          onComplete: () => gsap.set(box, { clearProps: "zIndex" }),
-        });
-
+        Flip.from(state, { duration: 0.7, ease: "power2.inOut", absolute: true, nested: true, onComplete: () => gsap.set(box, { clearProps: "zIndex" }) });
         gsap.set(box, { zIndex: 1002 });
         document.body.style.overflow = "hidden";
       });
     });
+
     const closePhotoModal = () => {
       if (boxIndex === undefined) return;
-
-      const box = boxesContent[boxIndex];
-      const img = box.querySelector("img");
-
+      const box = boxesContent[boxIndex] as HTMLElement;
+      const img = box.querySelector("img") as HTMLImageElement;
       const state = Flip.getState([box, img]);
 
-      // Kembalikan ke bungkus aslinya di grid
-      boxes[boxIndex].appendChild(box);
+      (boxes[boxIndex] as HTMLElement).appendChild(box);
 
       box.classList.remove("w-[90vw]", "h-[85vh]", "rounded-none");
       box.classList.add("h-full", "w-full", "rounded-md");
-
       img.classList.remove("object-contain");
       img.classList.add("object-cover", "hover:scale-110");
 
       gsap.to([photoModalOverlay, photoModalClose], {
-        autoAlpha: 0,
-        ease: "power1.inOut",
-        duration: 0.35,
-        onComplete: () => {
-          gsap.set(photoModal, { display: "none" });
-          boxIndex = undefined;
-          document.body.style.overflow = "";
-        },
+        autoAlpha: 0, ease: "power1.inOut", duration: 0.35,
+        onComplete: () => { gsap.set(photoModal, { display: "none" }); boxIndex = undefined; document.body.style.overflow = ""; }
       });
-
       gsap.set(box, { zIndex: 50 });
-
-      Flip.from(state, {
-        duration: 0.7,
-        ease: "power2.inOut",
-        absolute: true,
-        nested: true,
-        onComplete: () => {
-          // Hapus inline z-index saat sudah mendarat dengan sempurna
-          gsap.set(box, { clearProps: "zIndex" });
-        },
-      });
+      Flip.from(state, { duration: 0.7, ease: "power2.inOut", absolute: true, nested: true, onComplete: () => { gsap.set(box, { clearProps: "zIndex" }); } });
     };
 
     photoModalOverlay?.addEventListener("click", closePhotoModal);
     photoModalClose?.addEventListener("click", closePhotoModal);
-    // Menangani Event Keyboard untuk Escape
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         if (!modalVideo.classList.contains("hidden")) closeVideoModal();
@@ -827,25 +516,17 @@ const photoList = [
     // ==========================================
     const btnMorePhotos = document.getElementById("btn-more-photos");
     const hiddenBoxes = document.querySelectorAll(".hidden-box");
-
     if (btnMorePhotos) {
       btnMorePhotos.addEventListener("click", () => {
         hiddenBoxes.forEach((box) => {
           box.classList.remove("hidden");
-          gsap.fromTo(
-            box,
-            { autoAlpha: 0, y: 30 },
-            { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" },
-          );
+          gsap.fromTo(box, { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" });
         });
         btnMorePhotos.style.display = "none";
       });
     }
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initMediaPage);
-  } else {
-    initMediaPage();
-  }
+  if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", initMediaPage); } 
+  else { initMediaPage(); }
 </script>

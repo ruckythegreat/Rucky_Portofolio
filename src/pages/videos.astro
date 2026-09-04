@@ -18,7 +18,7 @@ import "../styles/global.css";
       />
       <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
       <div class="absolute bottom-10 left-6 lg:left-12">
-        <h1 class="text-4xl font-extrabold tracking-wider text-white lg:text-6xl">EXPLORE <span text-[#FF7873]>MEDIA</span></h1>
+        <h1 class="text-4xl font-extrabold tracking-wider text-white lg:text-6xl">EXPLORE <span class="text-[#FF7873]">MEDIA</span></h1>
         <p class="mt-2 max-w-xl text-gray-300 lg:text-lg">Kumpulan dokumentasi, film pendek, dan profil kegiatan sekolah.</p>
       </div>
     </section>
@@ -28,48 +28,81 @@ import "../styles/global.css";
         </div>
     </section>
 
-<section class="px-6 pb-12 lg:px-12">
+    <section class="px-6 pb-12 lg:px-12">
       <div id="video-grid" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      </div>
+        </div>
 
       <div id="pagination-container" class="mt-12 flex items-center justify-center space-x-2">
-      </div>
+        </div>
     </section>
 
     <Footer />
   </main>
 
+  {/* MODAL (Ditambahkan ID 'modal-wrapper' untuk ukuran dinamis) */}
   <div id="video-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-sm">
     <button id="close-modal" class="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center bg-white/10 text-white hover:bg-white/20 lg:right-6 lg:top-6">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M18 6 6 18" /><path d="m6 6 12 12" />
       </svg>
     </button>
-    <div class="aspect-video w-full max-w-5xl px-4">
-      <iframe id="modal-iframe" class="h-full w-full rounded-lg shadow-2xl" src="" allow="autoplay; encrypted-media; fullscreen" allowfullscreen frameborder="0"></iframe>
+    <div id="modal-wrapper" class="w-full max-w-5xl px-4 aspect-video transition-all duration-300">
+      <iframe id="modal-iframe" class="h-full w-full rounded-lg shadow-2xl bg-[#111]" src="" allow="autoplay; encrypted-media; fullscreen" allowfullscreen frameborder="0"></iframe>
     </div>
   </div>
 </Layout>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    // === DATA DUMMY VIDEO ===
-    const allVideos = [
-      { id: "FVaLj0g6Yzk", title: "Video pengenalan PPLG & RPL", category: "Profile Kejuruan", desc: "Mengenal lingkungan, kurikulum serta kejuruan PPLG & RPL di SMKN 2." },
-      { id: "WAAEZzLE-nQ", title: "Happy Birthday SMKN 2 Bandung", category: "Ucapan", desc: "Ucapan Ulang tahun dan open house SMKN 2 dari RPL (Minecraft Edition)." },
-      { id: "oRDGl6HP_i4", title: "SANGTRIVARNA - KALA KITA", category: "Film Pendek", desc: "Film pendek karya siswa menyoroti lika-liku kehidupan masa remaja." },
-      { id: "8CgZfaxn4uQ", title: "Profile Video SMK NEGERI 2 BANDUNG", category: "Profile Sekolah", desc: "PROFILE VIDEO SEKOLAH MENENGAH KEJURUAN 2 BANDUNG." },
-      { id: "kJQP7kiw5Fk", title: "Tutorial Dasar Pemrograman C++", category: "Tutorial", desc: "Membahas konsep dasar sintaks, struktur data, dan OOP dalam C++." },
-      { id: "M7lc1UVf-VE", title: "Vlog Pameran Pendidikan", category: "Vlog", desc: "Keseruan siswa mengunjungi pameran pendidikan dan teknologi tahunan." },
-      { id: "C0DPdy98e4c", title: "Cara Setup Workspace Visual Studio", category: "Tutorial", desc: "Langkah-langkah efisien mengatur workspace untuk produktivitas coding." },
-      { id: "jNQXAC9IVRw", title: "Sejarah Sekolah Kita", category: "Profile Sekolah", desc: "Melihat kembali sejarah panjang berdirinya bangunan bersekolah ini." },
-      { id: "dQw4w9WgXcQ", title: "Behind The Scene Sangtrivarna", category: "Film Pendek", desc: "Proses pembuatan film pendek Kala Kita oleh anak-anak PPLG." },
-      { id: "2Vv-BfVoq4g", title: "Lomba Coding Tingkat Nasional", category: "Vlog", desc: "Dokumentasi keberangkatan tim perwakilan sekolah di ajang nasional." },
-      { id: "V-_O7nl0Ii0", title: "Pengenalan Ekstrakurikuler IT Club", category: "Profile Kejuruan", desc: "Apa saja kegiatan IT Club di sekolah? Temukan jawabannya di sini." }
+    // === DATA DUMMY VIDEO (Digabung dengan IG & TikTok) ===
+    const rawVideos = [
+      // Data YouTube Lama
+
+      { category: "Ucapan", date: "2026-08-25", title: "Happy Birthday SMKN 2 Bandung from RPL (Minecraft Edition)", desc: "Ucapan Ulang tahun dan juga open house SMKN 2 dari RPL", type: "youtube", mediaId: "WAAEZzLE-nQ" },
+      { category: "TikTok", date: "2025-10-22", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7563950930966727954" },
+      { category: "Instagram", date: "2025-07-02", title: "Instagram Post @naptuneeel", desc: "Postingan media Instagram dari akun @naptuneeel", type: "instagram", mediaId: "DLmxMGCPoMlaW5FDhyZtyMZCuN38vKJiEtp_nU0" },
+      { category: "TikTok", date: "2025-06-16", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7516563138003700999" },
+      { category: "TikTok", date: "2025-06-05", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7512389312193858834" },
+      { category: "Instagram", date: "2024-12-16", title: "Instagram Post @naptuneeel", desc: "Postingan media Instagram dari akun @naptuneeel", type: "instagram", mediaId: "DDq9QJjvaq_u7QgafFQUSa2fCT5ZBrwe9z5EaE0" },
+      { category: "TikTok", date: "2024-12-13", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7447688845388270866" },
+      { category: "TikTok", date: "2024-12-12", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7447363285629930759" },
+      { category: "TikTok", date: "2024-12-06", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7445337305654562066" },
+      { category: "TikTok", date: "2023-09-23", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7282004747773594886" },
+      { category: "TikTok", date: "2023-09-12", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7277770319064993029" },
+      { category: "Motion Graphics", date: "2023-09-07", title: "First Mograph #Shiroko", desc: "Eksperimen pertama membuat animasi motion graphics untuk karakter Shiroko.", type: "youtube", mediaId: "_6dhlWfs1gs" },
+      { category: "Minecraft", date: "2023-08-17", title: "AUGUST 17th IS THE DAY INDONESIAN INDEPENDEN 🔥", desc: "Merayakan Hari Kemerdekaan Indonesia dengan membangun Monas (Monumen Nasional) Jakarta di Minecraft.", type: "youtube", mediaId: "w5nbenCaAak" },
+      { category: "Gaming", date: "2023-07-01", title: "DIMAS SIGMA VS INTRUDERS @Greyzon Ch. :v", desc: "Gameplay seru dan kocak saat Dimas Sigma bermain game horor Roblox Intruders.", type: "youtube", mediaId: "jhlx7CK4IJQ" },
+      { category: "TikTok", date: "2023-05-27", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7237778359030271237" },
+      { category: "TikTok", date: "2023-05-14", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7233007196630437146" },
+      { category: "TikTok", date: "2023-05-12", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7232318285084216602" },
+      { category: "TikTok", date: "2023-05-06", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7229960977687530778" },
+      { category: "TikTok", date: "2023-04-23", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7225138172865383686" },
+      { category: "TikTok", date: "2023-04-20", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7224151841850821894" },
+      { category: "TikTok", date: "2023-04-17", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7222886262053539099" },
+      { category: "TikTok", date: "2023-04-13", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7221315111653231899" },
+      { category: "TikTok", date: "2023-04-10", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7220386671345274139" }
     ];
 
+    // Urutkan otomatis dari terbaru ke terlama
+    const allVideos = rawVideos.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+    // === HELPER FUNCTIONS UNTUK EMBED DAN THUMBNAIL ===
+    const getThumbnail = (media: any) => {
+      if (media.type === "youtube") return `https://img.youtube.com/vi/${media.mediaId}/maxresdefault.jpg`;
+      if (media.type === "tiktok") return "https://placehold.co/600x400/111111/FFFFFF/png?text=TikTok+Preview";
+      if (media.type === "instagram") return "https://placehold.co/600x400/e1306c/FFFFFF/png?text=Instagram+Preview";
+      return "";
+    };
+
+    const getWatchEmbed = (media: any) => {
+      if (media.type === "youtube") return `https://www.youtube.com/embed/${media.mediaId}?autoplay=1&mute=0&rel=0&modestbranding=1`;
+      if (media.type === "tiktok") return `https://www.tiktok.com/embed/v2/${media.mediaId}`;
+      if (media.type === "instagram") return `https://www.instagram.com/p/${media.mediaId}/embed/`;
+      return "";
+    };
+
     // === STATE PAGINATION & FILTER ===
-    const ITEMS_PER_PAGE = 8; // Memastikan 4 baris, 2 kolom terisi penuh (jika item cukup)
+    const ITEMS_PER_PAGE = 8;
     let currentPage = 1;
     let currentCategory = "All";
     let filteredVideos = [...allVideos];
@@ -79,12 +112,12 @@ import "../styles/global.css";
     const filterContainer = document.getElementById("filter-container");
     const paginationContainer = document.getElementById("pagination-container");
     const modal = document.getElementById("video-modal");
+    const modalWrapper = document.getElementById("modal-wrapper");
     const iframe = document.getElementById("modal-iframe") as HTMLIFrameElement;
     const closeModalBtn = document.getElementById("close-modal");
 
     // === RENDER FILTER BUTTONS ===
     function renderFilters() {
-      // Ambil kategori unik dari data
       const categories = ["All", ...new Set(allVideos.map(v => v.category))];
       
       filterContainer!.innerHTML = categories.map(cat => `
@@ -96,12 +129,11 @@ import "../styles/global.css";
         </button>
       `).join("");
 
-      // Tambahkan event listener ke setiap tombol filter
       document.querySelectorAll(".filter-btn").forEach(btn => {
         btn.addEventListener("click", (e) => {
           const target = e.currentTarget as HTMLElement;
           currentCategory = target.dataset.category || "All";
-          currentPage = 1; // Reset ke page 1 setiap kali filter berubah
+          currentPage = 1; 
           
           if (currentCategory === "All") {
             filteredVideos = [...allVideos];
@@ -109,26 +141,27 @@ import "../styles/global.css";
             filteredVideos = allVideos.filter(v => v.category === currentCategory);
           }
           
-          renderFilters(); // Re-render untuk update styling active
+          renderFilters(); 
           renderGrid();
         });
       });
     }
 
-// === RENDER GRID VIDEO ===
+    // === RENDER GRID VIDEO ===
     function renderGrid() {
       const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
       const endIndex = startIndex + ITEMS_PER_PAGE;
       const videosToShow = filteredVideos.slice(startIndex, endIndex);
 
       if (videosToShow.length === 0) {
-        // Sesuaikan col-span maksimal menjadi 4
         gridContainer!.innerHTML = `<p class="col-span-1 sm:col-span-2 lg:col-span-4 py-10 text-center text-gray-400">Tidak ada video di kategori ini.</p>`;
       } else {
-        gridContainer!.innerHTML = videosToShow.map(v => `
-          <div class="video-card group flex cursor-pointer flex-col overflow-hidden rounded-xl bg-white/5 border border-white/10 transition-transform duration-300 hover:-translate-y-1 hover:border-[#FF7873]/50 hover:shadow-[0_10px_30px_rgba(255,120,115,0.15)]" data-id="${v.id}">
-            <div class="relative aspect-video w-full overflow-hidden">
-              <img src="https://img.youtube.com/vi/${v.id}/maxresdefault.jpg" alt="${v.title}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        gridContainer!.innerHTML = videosToShow.map((v, index) => {
+          const actualIndex = startIndex + index;
+          return `
+          <div class="video-card group flex cursor-pointer flex-col overflow-hidden rounded-xl bg-white/5 border border-white/10 transition-transform duration-300 hover:-translate-y-1 hover:border-[#FF7873]/50 hover:shadow-[0_10px_30px_rgba(255,120,115,0.15)]" data-index="${actualIndex}">
+            <div class="relative aspect-video w-full overflow-hidden bg-[#111]">
+              <img src="${getThumbnail(v)}" alt="${v.title}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
               
               <div class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
                 <div class="flex h-12 w-12 items-center justify-center rounded-full bg-[#FF7873] shadow-lg">
@@ -144,13 +177,13 @@ import "../styles/global.css";
               <p class="line-clamp-2 text-xs text-gray-400">${v.desc}</p>
             </div>
           </div>
-        `).join("");
+        `}).join("");
 
         // Attach event listener ke setiap card untuk buka modal
         document.querySelectorAll(".video-card").forEach(card => {
           card.addEventListener("click", (e) => {
-            const ytId = (e.currentTarget as HTMLElement).dataset.id;
-            openModal(ytId!);
+            const idx = parseInt((e.currentTarget as HTMLElement).dataset.index!);
+            openModal(filteredVideos[idx]);
           });
         });
       }
@@ -164,14 +197,12 @@ import "../styles/global.css";
       let html = "";
 
       if (totalPages > 1) {
-        // Tombol Prev
         html += `
           <button id="btn-prev" class="flex h-10 w-10 items-center justify-center border border-white/20 bg-white/5 transition-colors hover:bg-white/20 disabled:opacity-30 disabled:hover:bg-white/5" ${currentPage === 1 ? 'disabled' : ''}>
              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
           </button>
         `;
 
-        // Nomor Halaman
         for (let i = 1; i <= totalPages; i++) {
           html += `
             <button class="page-num-btn h-10 w-10 border border-white/20 font-bold transition-colors ${currentPage === i ? 'bg-[#FF7873] text-black border-[#FF7873]' : 'bg-white/5 hover:bg-white/20'}" data-page="${i}">
@@ -180,7 +211,6 @@ import "../styles/global.css";
           `;
         }
 
-        // Tombol Next
         html += `
           <button id="btn-next" class="flex h-10 w-10 items-center justify-center border border-white/20 bg-white/5 transition-colors hover:bg-white/20 disabled:opacity-30 disabled:hover:bg-white/5" ${currentPage === totalPages ? 'disabled' : ''}>
              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
@@ -190,7 +220,6 @@ import "../styles/global.css";
 
       paginationContainer!.innerHTML = html;
 
-      // Event Listeners untuk Pagination
       const btnPrev = document.getElementById("btn-prev");
       if (btnPrev) btnPrev.addEventListener("click", () => changePage(currentPage - 1));
 
@@ -211,13 +240,21 @@ import "../styles/global.css";
       currentPage = newPage;
       renderGrid();
       
-      // Auto-scroll halus ke atas grid saat pindah halaman
       document.getElementById("filter-container")?.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // === FUNGSI MODAL VIDEO ===
-    function openModal(ytId: string) {
-      iframe.src = `https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0`;
+    // === FUNGSI MODAL VIDEO DINAMIS ===
+    function openModal(media: any) {
+      iframe.src = getWatchEmbed(media);
+
+      // Ubah layout modal tergantung sumber video (Vertikal vs Horizontal)
+      if (media.type === "youtube") {
+        modalWrapper!.className = "w-full max-w-5xl px-4 aspect-video transition-all duration-300";
+      } else {
+        // Mode Smartphone untuk Tiktok & Instagram
+        modalWrapper!.className = "w-full max-w-[400px] h-[85vh] px-4 transition-all duration-300";
+      }
+
       modal?.classList.remove("hidden");
       modal?.classList.add("flex");
       document.body.style.overflow = "hidden";
