@@ -2,275 +2,365 @@
 import "../styles/global.css";
 ---
 
-<!-- Ubah height jadi h-auto/min-h-screen di mobile, kembali ke ukuran tetap di desktop -->
 <section
-  class="relative w-full min-h-screen overflow-hidden flex items-center justify-center bg-black lg:h-screen lg:w-screen"
+  class="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-black font-sans text-white py-16 lg:h-screen lg:py-0"
   id="EducationHistoryPage"
 >
-  <!-- Stage: Tinggi/lebar statis dimatikan di mobile, kembali absolute 1920x1080 di desktop -->
-  <div id="game-stage" class="w-full h-auto relative origin-center shrink-0 lg:h-[1080px] lg:w-[1920px]">
-    
-    <div class="flex flex-col h-full w-full px-6 py-24 z-10 lg:items-center lg:p-16 lg:static">
-      
+  {/* Grid Background Halus Biar Tetap Matching tapi Gak Polos-Polos Amat */}
+  <div class="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:24px_24px] opacity-40" aria-hidden="true"></div>
 
-      
-      <!-- HEADER -->
-      <div class="mb-10 lg:mb-0 lg:absolute lg:top-3 lg:left-120">
-        <h2 class="text-3xl text-white">
-          RAKA: EDUCATION 
-        </h2>
-        <h2 class="text-4xl md:text-5xl text-white font-bold lg:font-normal">
-          HISTORY
-        </h2>
+  <div
+    id="game-stage"
+    class="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col justify-center px-6 lg:px-12"
+  >
+    {/* HEADER HUD */}
+    <div class="mb-8 flex flex-col items-start lg:mb-12">
+      <div class="mb-2 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-[#FF7873]">
+        <span class="inline-block h-1.5 w-1.5 bg-[#FF7873]"></span>
+        <span>RAKA PORTFOLIO</span>
       </div>
+      <h2 class="text-3xl font-extrabold uppercase tracking-[0.2em] text-white lg:text-5xl">
+        EDUCATION
+      </h2>
+      <div class="mt-3 flex items-center gap-1.5">
+        <div class="h-1 w-8 bg-[#FF7873]"></div>
+        <div class="h-1 w-2 bg-white/40"></div>
+        <div class="h-1 w-2 bg-white/20"></div>
+      </div>
+    </div>
 
-      <!-- KONTEN UTAMA (Teks & Gambar) -->
-      <div class="relative w-full flex flex-col lg:absolute lg:top-150 lg:left-300 lg:w-auto lg:block">
-        
-        <div class="flex flex-col items-start text-white w-full">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-graduation-cap-icon lucide-graduation-cap"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
-          <p class="m-1 text-sm lg:text-base text-gray-400">
-            RAKA: EDUCATION-HISTORY 
+    {/* MAIN CONTENT GRID */}
+    <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16">
+      
+{/* LEFT COLUMN: FRAME FOTO HUD FLEKSIBEL */}
+<div class="flex justify-center lg:col-span-5 lg:justify-start">
+  <div class="edu-arch-frame relative w-full max-w-[420px] p-3 border border-white/10 bg-white/[0.02] backdrop-blur-sm lg:max-w-[500px]">
+    {/* Corner accents */}
+    <span class="edu-arch-corner edu-arch-corner--tl"></span>
+    <span class="edu-arch-corner edu-arch-corner--tr"></span>
+    <span class="edu-arch-corner edu-arch-corner--bl"></span>
+    <span class="edu-arch-corner edu-arch-corner--br"></span>
+
+    {/* Aspect ratio diubah ke 4/3 biar muat foto lanskap tanpa kepotong */}
+    <div class="edu-arch-frame__inner relative aspect-[4/3] w-full overflow-hidden border border-white/10 bg-black/80 sm:aspect-[16/10]">
+      
+      {/* Background blur bayangan foto (opsional, biar frame gak kosong kalau foto beda rasio) */}
+      <img
+        id="edu-img-bg"
+        src="/SDN.jpg"
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover opacity-20 blur-md scale-110 pointer-events-none"
+      />
+
+      {/* Foto Utama: object-contain biar FULL kelihatan tanpa terpotong */}
+      <img
+        id="edu-img"
+        src="/SDN.jpg"
+        alt="Education Photo"
+        class="relative z-10 h-full w-full object-contain p-1 transition-all duration-300"
+      />
+    </div>
+
+    <div class="mt-2 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-gray-400">
+      <span>SYS // REF-IMG</span>
+      <span>ASPECT: FLEXIBLE</span>
+    </div>
+  </div>
+</div>
+      {/* RIGHT COLUMN: INFO & NAVIGASI TAB */}
+      <div class="flex flex-col justify-between lg:col-span-7">
+        <div>
+          <p class="mb-2 font-mono text-xs uppercase tracking-widest text-[#FF7873]">
+            // RAKA: EDUCATION-HISTORY
           </p>
-          
-          <h1 id="edu-title" class="text-3xl lg:text-5xl m-1 font-bold lg:font-normal mt-4 lg:mt-1">SDN PATRAKOMALA</h1>
 
-          <p id="edu-desc" class="m-1 max-w-3xl text-gray-300 lg:text-white mt-4 lg:mt-1">
-            Masa pendidikan dasar. Mulai belajar banyak hal baru dan berinteraksi dengan lingkungan sekitar. Membangun fondasi awal sebelum mengenal dunia teknologi lebih dalam.
+          <h1
+            id="edu-title"
+            class="mb-4 min-h-[60px] text-2xl font-bold uppercase tracking-wider text-white lg:text-4xl"
+          >
+            SDN 034 PATRAKOMALA KOTA BANDUNG
+          </h1>
+
+          <p
+            id="edu-desc"
+            class="mb-8 min-h-[90px] text-sm leading-relaxed text-gray-300/90 lg:text-base"
+          >
+            Masa pendidikan dasar. Mulai belajar banyak hal baru dan berinteraksi dengan lingkungan sekitar.
           </p>
         </div>
 
-        <!-- Gambar: Di mobile ada di bawah deskripsi, di desktop kembali ke kanan -->
-        <img id="edu-img" src="/bg3.jpg" alt="" class="w-full h-64 object-cover mt-8 rounded-lg lg:rounded-none lg:mt-0 lg:w-auto lg:absolute lg:right-185 lg:top-0 lg:h-150" />
-      </div>
-      
-      <!-- NAVIGASI & LIST -->
-      <div class="relative w-full mt-12 flex flex-col items-start text-white lg:absolute lg:top-[680px] lg:left-[300px] lg:mt-0 lg:w-auto lg:block">
-            
-        <p id="edu-counter" class="text-gray-400 mb-4 lg:mb-0 lg:absolute lg:-top-8 lg:left-[120px]">
-          2/4
-        </p>
-        
-        <!-- List: Di mobile jadi flex-row wrap (sejajar horizontal), di desktop vertikal -->
-        <ul class="flex flex-row flex-wrap gap-2 lg:gap-0 lg:flex-col lg:items-start lg:space-y-3 mb-8 lg:mb-0">
-          <li class="edu-list-item cursor-pointer px-3 py-2 text-sm lg:text-base lg:px-4 font-bold uppercase inline-block border border-gray-800 lg:border-none" data-index="0">TK</li>
-          <li class="edu-list-item cursor-pointer px-3 py-2 text-sm lg:text-base lg:px-4 font-bold uppercase inline-block border border-gray-800 lg:border-none" data-index="1">SDN PATRA</li>
-          <li class="edu-list-item cursor-pointer px-3 py-2 text-sm lg:text-base lg:px-4 font-bold uppercase inline-block border border-gray-800 lg:border-none" data-index="2">SMPN 7</li>
-          <li class="edu-list-item cursor-pointer px-3 py-2 text-sm lg:text-base lg:px-4 font-bold uppercase inline-block border border-gray-800 lg:border-none" data-index="3">SMKN 2</li>
-        </ul>
-
-        <!-- Tombol Prev/Next -->
-        <div class="flex flex-row gap-4 lg:block">
-          <div id="btn-prev" class="bg-black text-white border border-white/20 lg:border-none w-12 h-12 lg:w-10 lg:h-10 relative lg:absolute lg:left-[0px] lg:top-50 flex items-center justify-center cursor-pointer">
-            <p class="text-2xl font-bold pointer-events-none">&lt;</p>
-          </div>
-
-          <div id="btn-next" class="bg-black text-white border border-white/20 lg:border-none w-12 h-12 lg:w-10 lg:h-10 relative lg:absolute lg:left-[70px] lg:top-50 flex items-center justify-center cursor-pointer">
-            <p class="text-2xl font-bold pointer-events-none">&gt;</p>
+        {/* LIST TAB SEKOLAH */}
+        <div class="mb-8">
+          <p class="mb-3 font-mono text-[11px] uppercase tracking-widest text-gray-500">SELECT LEVEL:</p>
+          <div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
+            <button class="edu-list-item" data-index="0">TK</button>
+            <button class="edu-list-item active-edu" data-index="1">SDN PATRA</button>
+            <button class="edu-list-item" data-index="2">SMPN 7</button>
+            <button class="edu-list-item" data-index="3">SMKN 2</button>
           </div>
         </div>
+
+        {/* PROGRESS & BUTTON CONTROL */}
+        <div class="border-t border-white/10 pt-6">
+          <div class="mb-6 flex items-center justify-between">
+            <div id="edu-progress-container" class="flex gap-2"></div>
+            <p id="edu-counter" class="font-mono text-sm font-bold tracking-widest text-[#FF7873]">
+              2 / 4
+            </p>
+          </div>
+
+          {/* BUTTON NAVIGASI */}
+          <div class="flex items-center gap-4">
+            <button
+              id="btn-prev"
+              type="button"
+              class="edu-nav-btn flex-1"
+              aria-label="Previous school"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+              <span>PREVIOUS</span>
+            </button>
+            <button
+              id="btn-next"
+              type="button"
+              class="edu-nav-btn edu-nav-btn--primary flex-1"
+              aria-label="Next school"
+            >
+              <span>NEXT</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+
       </div>
 
-      <!-- DEKORASI (Disembunyikan di Mobile) -->
-      <p class="hidden lg:block relative top-200 left-180 mt-6 text-gray-400 max-w-3xl">
-        V.1-Entry&#8968;2:10&#8969;
-      </p>
+    </div>
 
-      <div class="hidden lg:flex top-15 absolute h-[120px] w-[19000px] z-[-3] bg-[rgb(255,201,148)] text-4xl -translate-y-1/2">
-      </div>
-
-      <div class="hidden lg:flex absolute top-330 right-32 items-center">
-        <div class="w-26 h-1 bg-[#E22F80]"></div>
-        <div class="w-22 h-1 bg-[#FF7873]"></div>
-        <div class="w-18 h-1 bg-[#ffc994]"></div>
-      </div>
-      <div class="hidden lg:flex absolute top-247 z-[-2] right-260 items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevrons-right"><path d="m6 17 5-5-5-5"></path><path d="m13 17 5-5-5-5"></path></svg>
-      </div>
-      <div class="hidden lg:flex absolute top-47 z-[-2] right-60 items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-grip-vertical"><circle cx="9" cy="12" r="1"></circle><circle cx="9" cy="5" r="1"></circle><circle cx="9" cy="19" r="1"></circle><circle cx="15" cy="12" r="1"></circle><circle cx="15" cy="5" r="1"></circle><circle cx="15" cy="19" r="1"></circle></svg>
-      </div>
-      <div class="hidden lg:flex absolute top-260 z-[-2] right-380 items-center gap-1">
-        <div class="w-24 h-1.5 bg-[#ffc994]  "></div>
-        <div class="w-16 h-1.5 bg-[#FF7873]  "></div>
-        <div class="w-8 h-1.5 bg-[#E22F80]  "></div>
-      </div>
-      <div class="hidden lg:flex absolute top-147 z-[-2] left-300 items-center gap-1">
-        <div class="w-8 h-1.5 bg-[#E22F80]  "></div>
-        <div class="w-16 h-1.5 bg-[#FF7873]  "></div>
-        <div class="w-24 h-1.5 bg-[#ffc994]  "></div>
-      </div>
+    {/* FOOTER METADATA */}
+    <div class="mt-12 hidden justify-between font-mono text-[11px] tracking-widest text-gray-600 lg:flex">
+      <span>V.1-ENTRY&#8968;2:10&#8969;</span>
+      <span>PPLG / RPL SYSTEM</span>
     </div>
   </div>
 </section>
 
+<style>
+  /* CORNER HUD STYLES */
+  .edu-arch-corner {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: #FF7873;
+    border-style: solid;
+    z-index: 10;
+  }
+  .edu-arch-corner--tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+  .edu-arch-corner--tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+  .edu-arch-corner--bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+  .edu-arch-corner--br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+  /* LIST ITEM (TAB) STYLES */
+  .edu-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1rem;
+    font-family: monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .edu-list-item:hover:not(.active-edu) {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .edu-list-item.active-edu {
+    background: rgba(255, 120, 115, 0.12);
+    color: #fff;
+    border-color: rgba(255, 120, 115, 0.4);
+    border-left-color: #FF7873;
+  }
+
+  /* BUTTON STYLES */
+  .edu-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 46px;
+    padding: 0 1.5rem;
+    font-family: monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .edu-nav-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .edu-nav-btn--primary {
+    background: #FF7873;
+    border-color: #FF7873;
+    color: #000;
+  }
+
+  .edu-nav-btn--primary:hover:not(:disabled) {
+    background: #ff8e8a;
+    border-color: #ff8e8a;
+    color: #000;
+  }
+
+  .edu-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+</style>
+
 <script>
-  import { glitchTransition } from "../Script/gsap-utils";
-  import gsap from "gsap";
+  import { fadeTransition } from "../Script/gsap-utils";
 
   const educationData = [
     {
       title: "TAMAN KANAK-KANAK",
       shortTitle: "TK",
-      desc: "ga tau sih ga inget tk lagi ngapain.",
-      img: "/bg2.jpg"
+      desc: "Masa awal pengenalan lingkungan sekolah dan interaksi dasar.",
+      img: "/bg2.jpg",
     },
     {
       title: "SDN 034 PATRAKOMALA KOTA BANDUNG",
       shortTitle: "SDN PATRA",
-      desc: "SDN 034 Patrakomala merupakan sekolah dasar negeri yang berlokasi di Jalan Patrakomala No. 63, Kelurahan Merdeka, Kecamatan Sumur Bandung, Kota Bandung. Sekolah ini memiliki akreditasi A yang didapatkan pada tanggal 19 Oktober 2016 berdasarkan SK No. 02.00/272/BAP-SM/SK/X/2016.",
-      img: "/SDN.jpg"
+      desc: "SDN 034 Patrakomala merupakan sekolah dasar negeri yang berlokasi di Jalan Patrakomala No. 63, Kelurahan Merdeka, Kecamatan Sumur Bandung, Kota Bandung. Sekolah ini memiliki akreditasi A.",
+      img: "/SDN.jpg",
     },
     {
       title: "SMPN 7 BANDUNG",
       shortTitle: "SMPN 7",
-      desc: "SMPN 7 Bandung adalah salah satu sekolah menengah pertama negeri berstatus unggulan di Kota Bandung, terkenal dengan akreditasi A, prestasi akademik dan non-akademiknya, serta pengembangan karakter siswa. Raka menempuh pendidikan di SMPN 7 Bandung dari kelas 7 hingga kelas 9, Menjabat sebagai ketua kelas Di kelas 7 dan wakil di kelas 8, membangun fondasi akademik dan keterampilan sosial yang kuat serta ikut dalam estrakulikuler Seni lukis, dan Jurnal 7.",
-      img: "/SMP.jpg"
+      desc: "SMPN 7 Bandung adalah sekolah menengah pertama negeri berstatus unggulan di Kota Bandung. Menjabat sebagai ketua kelas di kelas 7 dan wakil di kelas 8, serta aktif dalam ekstrakurikuler Seni Lukis dan Jurnal 7.",
+      img: "/SMP.jpg",
     },
     {
       title: "SMKN 2 BANDUNG",
       shortTitle: "SMKN 2",
-      desc: "SMKN 2 Bandung adalah sekolah menengah kejuruan negeri di Bandung, Indonesia, yang menawarkan program khusus di bidang teknis dan kreatif dengan akreditasi A untuk pendidikan berkualitas tinggi. Raka menempuh pendidikan di SMKN 2 Bandung dari kelas 10 PPLG hingga Saat ini 11 RPL, fokus pada pengembangan keterampilan teknis dan kreatif, serta aktif dalam kegiatan ekstrakurikuler seperti Japanese club sebagai wakil ketua eskul, English Club sebagai pengurus, CreoFrame dan Ketua dari Kasantara Game Studio.",
-      img: "/SMK.jpeg"
-    }
+      desc: "SMKN 2 Bandung adalah sekolah kejuruan negeri di Bandung. Menempuh pendidikan jurusan PPLG/RPL, fokus pada pengembangan keterampilan teknis software development, serta aktif di Japanese Club, English Club, CreoFrame, dan Kasantara Game Studio.",
+      img: "/SMK.jpeg",
+    },
   ];
 
   let currentIndex = 1;
   let switching = false;
-  // Cek eksistensi elemen agar glitch tidak error jika dipanggil
-  const glitchTargets = ['#edu-title', '#edu-desc', '#edu-img', '#edu-counter'].filter(selector => document.querySelector(selector) !== null);
-  const ACCENT_COLOR = '#FF7873';
 
-  function updateEducationUI(index, animate = true) {
-    const titleEl = document.getElementById('edu-title');
-    const descEl = document.getElementById('edu-desc');
-    const imgEl = document.getElementById('edu-img');
-    const counterEl = document.getElementById('edu-counter');
-    const listItems = document.querySelectorAll('.edu-list-item');
-    const data = educationData[index];
+  const transitionTargets = ["#edu-title", "#edu-desc", "#edu-img", "#edu-counter"].filter(
+    (s) => document.querySelector(s)
+  );
 
-    const isMobile = window.innerWidth < 1024;
-    const moveXActive = isMobile ? 0 : 15; // Jangan geser X di mobile
+  function renderEduProgress() {
+    const container = document.getElementById("edu-progress-container");
+    if (!container) return;
+    container.innerHTML = "";
+    educationData.forEach((_, i) => {
+      const bar = document.createElement("div");
+      bar.className = `h-1 transition-all duration-300 ${i === currentIndex ? "w-8 bg-[#FF7873]" : "w-3 bg-white/20"}`;
+      container.appendChild(bar);
+    });
+  }
 
-    const apply = () => {
-      if (titleEl) titleEl.textContent = data.title;
-      if (descEl) descEl.textContent = data.desc;
-      if (imgEl) imgEl.src = data.img;
-      if (counterEl) counterEl.textContent = `${index + 1}/${educationData.length}`;
-      
-      listItems.forEach((li, i) => {
-        if (i === index) {
-          li.classList.add('active-edu');
-          gsap.to(li, { x: moveXActive, backgroundColor: ACCENT_COLOR, color: '#000000', duration: 0.3 });
-        } else {
-          li.classList.remove('active-edu');
-          gsap.to(li, { x: 0, backgroundColor: 'transparent', color: '#ffffff', duration: 0.3 });
-        }
-      });
-    };
+  function setNavDisabled(disabled) {
+    const btnPrev = document.getElementById("btn-prev") as HTMLButtonElement | null;
+    const btnNext = document.getElementById("btn-next") as HTMLButtonElement | null;
+    if (btnPrev) btnPrev.disabled = disabled;
+    if (btnNext) btnNext.disabled = disabled;
+  }
 
-    if (animate) {
-      glitchTransition(glitchTargets, apply).eventCallback('onComplete', () => {
+function updateEducationUI(index, animate = true) {
+  const titleEl = document.getElementById("edu-title");
+  const descEl = document.getElementById("edu-desc");
+  const imgEl = document.getElementById("edu-img") as HTMLImageElement | null;
+  const imgBgEl = document.getElementById("edu-img-bg") as HTMLImageElement | null; // Tambahkan ini
+  const counterEl = document.getElementById("edu-counter");
+  const listItems = document.querySelectorAll(".edu-list-item");
+  const data = educationData[index];
+
+  const apply = () => {
+    if (titleEl) titleEl.textContent = data.title;
+    if (descEl) descEl.textContent = data.desc;
+    if (imgEl) imgEl.src = data.img;
+    if (imgBgEl) imgBgEl.src = data.img; // Set background blur sesuai gambar aktif
+    if (counterEl)
+      counterEl.textContent = `${index + 1} / ${educationData.length}`;
+
+    listItems.forEach((li, i) => {
+      li.classList.toggle("active-edu", i === index);
+    });
+    renderEduProgress();
+  };
+
+  if (animate && transitionTargets.length > 0) {
+    setNavDisabled(true);
+    fadeTransition(transitionTargets, apply, { duration: 0.22 }).eventCallback(
+      "onComplete",
+      () => {
         switching = false;
-      });
-    } else {
-      apply();
-      switching = false;
-    }
+        setNavDisabled(false);
+      }
+    );
+  } else {
+    apply();
+    switching = false;
+    setNavDisabled(false);
   }
-
-  function autoScaleStage() {
-    const stage = document.getElementById('game-stage');
-    if (!stage) return;
-
-    // MATIKAN SCALING PAKSA DI MOBILE
-    if (window.innerWidth < 1024) {
-      stage.style.transform = '';
-      return;
-    }
-
-    const baseWidth = 1920;
-    const baseHeight = 1080;
-    const scale = Math.min(window.innerWidth / baseWidth, window.innerHeight / baseHeight);
-    stage.style.transform = `scale(${scale})`;
-  }
+}
 
   function initNavigasi() {
-    const btnPrev = document.getElementById('btn-prev');
-    const btnNext = document.getElementById('btn-next');
-    const listItems = document.querySelectorAll('.edu-list-item');
-
-    // Helper untuk pergerakan hover
-    const getMoveX = (offset) => window.innerWidth < 1024 ? 0 : offset;
-
-    if(btnPrev) {
-      btnPrev.addEventListener('mouseenter', () => gsap.to(btnPrev, { x: getMoveX(-5), backgroundColor: ACCENT_COLOR, color: '#000000', duration: 0.3 }));
-      btnPrev.addEventListener('mouseleave', () => gsap.to(btnPrev, { x: 0, backgroundColor: '#000000', color: '#ffffff', duration: 0.3 }));
-      btnPrev.addEventListener('click', () => {
-        if (switching) return;
-        switching = true;
-        currentIndex--;
-        if (currentIndex < 0) {
-          currentIndex = educationData.length - 1;
-        }
-        updateEducationUI(currentIndex);
-      });
-    }
-
-    if(btnNext) {
-      btnNext.addEventListener('mouseenter', () => gsap.to(btnNext, { x: getMoveX(5), backgroundColor: ACCENT_COLOR, color: '#000000', duration: 0.3 }));
-      btnNext.addEventListener('mouseleave', () => gsap.to(btnNext, { x: 0, backgroundColor: '#000000', color: '#ffffff', duration: 0.3 }));
-      btnNext.addEventListener('click', () => {
-        if (switching) return;
-        switching = true;
-        currentIndex++;
-        if (currentIndex >= educationData.length) {
-          currentIndex = 0;
-        }
-        updateEducationUI(currentIndex);
-      });
-    }
+    const btnPrev = document.getElementById("btn-prev");
+    const btnNext = document.getElementById("btn-next");
+    const listItems = document.querySelectorAll(".edu-list-item");
 
     listItems.forEach((li) => {
-      li.addEventListener('mouseenter', () => {
-        if (!li.classList.contains('active-edu')) {
-          gsap.to(li, { x: getMoveX(15), backgroundColor: ACCENT_COLOR, color: '#000000', duration: 0.3 });
-        }
-      });
-
-      li.addEventListener('mouseleave', () => {
-        if (!li.classList.contains('active-edu')) {
-          gsap.to(li, { x: 0, backgroundColor: 'transparent', color: '#ffffff', duration: 0.3 });
-        }
-      });
-
-      li.addEventListener('click', (e) => {
-        if (switching || li.classList.contains('active-edu')) return;
+      li.addEventListener("click", (e) => {
+        const target = e.currentTarget as HTMLElement;
+        if (switching || target.classList.contains("active-edu")) return;
         switching = true;
-        const clickedIndex = parseInt(e.target.getAttribute('data-index'));
-        currentIndex = clickedIndex;
+        currentIndex = parseInt(target.getAttribute("data-index") || "0", 10);
         updateEducationUI(currentIndex);
       });
+    });
+
+    btnPrev?.addEventListener("click", () => {
+      if (switching) return;
+      switching = true;
+      currentIndex = currentIndex - 1 < 0 ? educationData.length - 1 : currentIndex - 1;
+      updateEducationUI(currentIndex);
+    });
+
+    btnNext?.addEventListener("click", () => {
+      if (switching) return;
+      switching = true;
+      currentIndex = currentIndex + 1 >= educationData.length ? 0 : currentIndex + 1;
+      updateEducationUI(currentIndex);
     });
 
     updateEducationUI(currentIndex, false);
   }
 
-  window.addEventListener('resize', () => {
-    autoScaleStage();
-    // Reset posisi X elemen aktif saat ukuran layar melintasi breakpoint
-    const listItems = document.querySelectorAll('.edu-list-item');
-    listItems.forEach(li => {
-      if(window.innerWidth < 1024) {
-        gsap.set(li, { x: 0 });
-      } else if (li.classList.contains('active-edu')) {
-        gsap.set(li, { x: 15 });
-      }
-    });
-  });
-
-  document.addEventListener('DOMContentLoaded', () => {
-    autoScaleStage();
+  document.addEventListener("DOMContentLoaded", () => {
     initNavigasi();
   });
 </script>

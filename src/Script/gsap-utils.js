@@ -314,4 +314,180 @@ export function initSimpleStageScale(stageId, baseWidth = 1920, baseHeight = 108
   window.addEventListener("resize", apply);
 }
 
+export function initEngineHover(root = document) {
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const els = root.querySelectorAll(".eng-hover:not([data-eng-init])");
+
+  els.forEach((el) => {
+    el.setAttribute("data-eng-init", "1");
+
+    const slot = el.querySelector("[data-hover-slot]") || el;
+    const defaultText = (
+      slot.getAttribute("data-hover-default") ||
+      el.getAttribute("data-hover-default") ||
+      slot.textContent ||
+      ""
+    ).trim();
+    const hoverText = (
+      slot.getAttribute("data-hover-alt") ||
+      el.getAttribute("data-hover-alt") ||
+      defaultText
+    ).trim();
+
+    const preserved = slot === el ? [...el.querySelectorAll("svg, img")] : [];
+
+    const textWrap = document.createElement("span");
+    textWrap.className = "eng-hover__text";
+    textWrap.textContent = defaultText;
+
+    const brackets = document.createElement("span");
+    brackets.className = "eng-hover__brackets";
+    brackets.setAttribute("aria-hidden", "true");
+    brackets.innerHTML = "<span></span><span></span><span></span><span></span>";
+
+    if (slot === el) {
+      el.textContent = "";
+      preserved.forEach((node) => el.appendChild(node));
+      el.appendChild(textWrap);
+      el.appendChild(brackets);
+    } else {
+      slot.textContent = "";
+      slot.appendChild(textWrap);
+      slot.appendChild(brackets);
+    }
+
+    const bracketSpans = brackets.querySelectorAll("span");
+    gsap.set(bracketSpans, { scale: 0.65, opacity: 0.35 });
+
+    let hoverTl = null;
+
+    const swapText = (nextText, direction = 1) => {
+      if (reduced) {
+        textWrap.textContent = nextText;
+        return;
+      }
+
+      hoverTl?.kill();
+      hoverTl = gsap.timeline({
+        defaults: { ease: direction > 0 ? "power3.out" : "power2.inOut" },
+      });
+
+      hoverTl
+        .to(textWrap, {
+          y: direction > 0 ? -10 : 10,
+          opacity: 0,
+          duration: 0.14,
+        })
+        .call(() => {
+          textWrap.textContent = nextText;
+        })
+        .fromTo(
+          textWrap,
+          { y: direction > 0 ? 12 : -12, opacity: 0, skewX: direction > 0 ? 4 : -4 },
+          { y: 0, opacity: 1, skewX: 0, duration: 0.22, ease: "back.out(1.4)" }
+        );
+    };
+
+    const hoverTarget = slot === el ? el : slot.closest(".eng-hover") || el;
+
+    hoverTarget.addEventListener("mouseenter", () => {
+      swapText(hoverText, 1);
+      if (!reduced) {
+        gsap.to(bracketSpans, {
+          scale: 1,
+          opacity: 1,
+          duration: 0.25,
+          stagger: 0.04,
+          ease: "power2.out",
+          overwrite: true,
+        });
+        gsap.to(hoverTarget, {
+          letterSpacing: "0.12em",
+          duration: 0.3,
+          ease: "power2.out",
+          overwrite: true,
+        });
+      }
+    });
+
+    hoverTarget.addEventListener("mouseleave", () => {
+      swapText(defaultText, -1);
+      if (!reduced) {
+        gsap.to(bracketSpans, {
+          scale: 0.65,
+          opacity: 0.35,
+          duration: 0.2,
+          stagger: 0.03,
+          ease: "power2.in",
+          overwrite: true,
+        });
+        gsap.to(hoverTarget, {
+          letterSpacing: "0.05em",
+          duration: 0.25,
+          ease: "power2.inOut",
+          overwrite: true,
+        });
+      }
+    });
+  });
+}
+
+export function initNavButtonHover(root = document) {
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const accent =
+    getComputedStyle(document.documentElement).getPropertyValue("--color-2").trim() ||
+    "#FF7873";
+
+  root.querySelectorAll(".eng-nav-btn:not([data-nav-init])").forEach((btn) => {
+    btn.setAttribute("data-nav-init", "1");
+    const out = btn.querySelector(".eng-nav-btn__icon--out");
+    const inn = btn.querySelector(".eng-nav-btn__icon--in");
+    if (!out || !inn) return;
+
+    gsap.set(out, { yPercent: 0, opacity: 1 });
+    gsap.set(inn, { yPercent: 110, opacity: 0 });
+
+    const isDark = btn.classList.contains("eng-nav-btn--dark");
+    const restBg = isDark ? "#000000" : "#ffffff";
+    const restColor = isDark ? "#ffffff" : "#000000";
+
+    btn.addEventListener("mouseenter", () => {
+      if (reduced) return;
+      gsap
+        .timeline({ overwrite: true })
+        .to(out, { yPercent: -110, opacity: 0, duration: 0.18, ease: "power2.in" }, 0)
+        .fromTo(
+          inn,
+          { yPercent: 110, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.24, ease: "back.out(1.7)" },
+          0.06
+        );
+      gsap.to(btn, {
+        scale: 1.08,
+        backgroundColor: accent,
+        color: "#000000",
+        duration: 0.22,
+        ease: "power2.out",
+        overwrite: true,
+      });
+    });
+
+    btn.addEventListener("mouseleave", () => {
+      if (reduced) return;
+      gsap
+        .timeline({ overwrite: true })
+        .to(inn, { yPercent: 110, opacity: 0, duration: 0.16, ease: "power2.in" }, 0)
+        .to(out, { yPercent: 0, opacity: 1, duration: 0.2, ease: "power2.out" }, 0.05);
+      gsap.to(btn, {
+        scale: 1,
+        backgroundColor: restBg,
+        color: restColor,
+        duration: 0.2,
+        ease: "power2.inOut",
+        overwrite: true,
+      });
+    });
+  });
+}
+
 export { gsap, ScrollTrigger, Flip, Observer, TextPlugin };

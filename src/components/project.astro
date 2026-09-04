@@ -113,7 +113,6 @@ const allProjects: Project[] = [
     deploy: "",
     source: "https://github.com/ruckythegreat/Password-generator-FreshPython",
     ytId: "pr0qTmR1k8w",
-    laptop: "Project ini tersedia live preview pada Seri LAPTOP-A",
     category: "other",
   },
   {
@@ -123,17 +122,15 @@ const allProjects: Project[] = [
     deploy: "",
     source: "https://github.com/ruckythegreat/Python-Photo-Editor-basic",
     ytId: "R3ZEoF7AepY",
-    laptop: "Project ini tersedia live preview pada Seri LAPTOP-A",
     category: "other",
   },
   {
     title: "KyaNaDev (Program dengar dan download lagu Yt)",
     desc: "Program sederhana mendengar lagu Youtube tanpa buka youtube dan dapat mendownload secara offline.",
     tags: ["Python"],
-    deploy: "https://rucky-portofolio.vercel.app/",
+    deploy: "",
     source: "https://github.com/ruckythegreat/Rucky_Portofolio",
     ytId: "kMucO82zI3E",
-    laptop: "Project ini tersedia live preview pada Seri LAPTOP-A",
     category: "other",
   },
   {
@@ -143,7 +140,6 @@ const allProjects: Project[] = [
     deploy: "",
     source: "https://github.com/ruckythegreat/Kalkulatorjava",
     ytId: "QmQasc_18MM",
-    laptop: "Project ini tersedia live preview pada Seri LAPTOP-A",
     category: "other",
   },
   {
@@ -153,7 +149,6 @@ const allProjects: Project[] = [
     deploy: "",
     source: "https://github.com/ruckythegreat/ToDoListAdvance-SchoolProject-",
     ytId: "4480G7_cpBg",
-    laptop: "Project ini tersedia live preview pada Seri LAPTOP-G",
     category: "other",
   },
   {
@@ -163,7 +158,6 @@ const allProjects: Project[] = [
     deploy: "",
     source: "https://github.com/ruckythegreat/ToDoListAdvance-SchoolProject-",
     ytId: "CunfVdcIHpY",
-    laptop: "Project ini tersedia live preview pada Seri LAPTOP-A",
     category: "other",
   },
   {
@@ -173,7 +167,6 @@ const allProjects: Project[] = [
     deploy: "",
     source: "https://github.com/ruckythegreat/StarLonia-Unity-",
     ytId: "HyDlmZfIzzI",
-    laptop: "Project ini tersedia live preview pada Seri LAPTOP-K",
     category: "other",
   },
   {
@@ -183,7 +176,6 @@ const allProjects: Project[] = [
     deploy: "",
     source: "https://github.com/ruckythegreat/Tugas-Flutter-Boombayah",
     ytId: "JqoW1NDITxQ",
-    laptop: "Project ini tersedia live preview pada Seri LAPTOP-A Bagian HP",
     category: "other",
   },
   {
@@ -193,7 +185,6 @@ const allProjects: Project[] = [
     deploy: "",
     source: "https://drive.google.com/drive/folders/1UvgG3hUsP2z24qeJDRNSgKHZnyhvF-xQ?usp=drive_link",
     ytId: "o7Ber55-5Fo",
-    laptop: "Project ini tersedia live preview pada Seri LAPTOP-B",
     category: "other",
   },
 ];
@@ -215,15 +206,15 @@ const categories = [
 
 <section
   id="ProjectPage"
-  class="relative w-full bg-white font-sans max-lg:pt-0 lg:pt-20"
+  class="section-breathe relative w-full bg-white font-sans max-lg:pt-0 lg:pt-24"
 >
   <!-- MARQUEE DESKTOP -->
-  <div class="project-marquee hidden overflow-hidden py-10 lg:block lg:py-14">
+  <div class="project-marquee hidden overflow-hidden py-12 lg:block lg:py-16">
     <div class="project-marquee-rail flex whitespace-nowrap will-change-transform">
       {
         Array.from({ length: 8 }).map(() => (
           <h4 class="project-marquee-item mr-10 shrink-0 text-[100px] font-black uppercase tracking-tight">
-            // RAKASABARI.35 // RUCKY PORTOFOLIO
+            // RAKASABARI // RUCKY PORTOFOLIO
           </h4>
         ))
       }
@@ -263,15 +254,15 @@ const categories = [
     <!-- BODY -->
     <div
       id="project-body"
-      class="relative mx-auto w-full max-w-[1500px] pb-32 pt-6 max-lg:px-0 lg:px-4 lg:pb-56 lg:pt-8"
+      class="relative mx-auto w-full max-w-[1500px] pb-40 pt-10 max-lg:px-0 lg:px-4 lg:pb-64 lg:pt-12"
     >
       <!-- DESKTOP GRID -->
       <div id="project-desktop" class="hidden lg:block">
         {
           categories.map((cat) => (
-            <div class="project-group mb-14" data-category={cat.label}>
+            <div class="project-group mb-20 lg:mb-28" data-category={cat.label}>
               <!-- Header Kategori -->
-              <div class="mb-4 grid grid-cols-[80px_1fr] gap-4">
+              <div class="mb-6 grid grid-cols-[80px_1fr] gap-4">
                 <div />
                 <div class="relative">
                   <div class="absolute top-1/2 h-[2px] w-full -translate-y-1/2 bg-gray-300" />
@@ -282,7 +273,7 @@ const categories = [
               </div>
 
               <!-- Grid Project -->
-              <div class="grid grid-cols-[80px_1fr_1fr] gap-4">
+              <div class="grid grid-cols-[80px_1fr_1fr] gap-5 lg:gap-6">
                 <!-- Label Vertikal -->
                 <div
                   class="flex items-center justify-center overflow-hidden bg-black py-4 text-white"
@@ -298,7 +289,7 @@ const categories = [
 
                 {
                   cat.projects.map((project, projectIndex) => {
-                    const accentColors = ["#E22F80", "#FF7873", "#ffc994", "#8140DC"];
+                    const accentColors = ["var(--color-3)", "var(--color-2)", "var(--color-1)", "var(--color-3)"];
                     const accent = accentColors[projectIndex % accentColors.length];
 
                     return (
@@ -366,7 +357,7 @@ const categories = [
       </div>
 
       <!-- MOBILE LIST -->
-      <div id="project-mobile" class="space-y-10 pl-[80px] pr-4 sm:pl-[100px] lg:hidden">
+      <div id="project-mobile" class="space-y-14 pl-[80px] pr-4 sm:pl-[100px] lg:hidden">
         {
           categories.map((cat) => (
             <div class="project-mobile-group">
@@ -374,10 +365,10 @@ const categories = [
                 {cat.title}
               </div>
 
-              <div class="space-y-4">
+              <div class="space-y-5">
                 {
                   cat.projects.map((project, projectIndex) => {
-                    const accentColors = ["#20414E", "#4F7C89", "#102A33", "#8140DC"];
+                    const accentColors = ["var(--color-3)", "var(--color-2)", "var(--color-1)", "var(--color-2)"];
                     const accent = accentColors[projectIndex % accentColors.length];
 
                     return (
@@ -462,7 +453,7 @@ const categories = [
     </div>
     <div class="flex items-center justify-between bg-black/90 p-3 text-xs uppercase tracking-wider text-white">
       <span class="flex items-center gap-2 font-bold">
-        <ArrowBigRightDash size={14} class="text-[#4F7C89]" />
+        <ArrowBigRightDash size={14} class="text-[var(--color-2)]" />
         Click to Expand
       </span>
     </div>
@@ -475,7 +466,7 @@ const categories = [
   >
     <button
       id="project-modal-close"
-      class="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center bg-white/20 text-white backdrop-blur-md transition-colors hover:bg-[#4F7C89] hover:text-black lg:right-6 lg:top-6 lg:h-12 lg:w-12 lg:bg-white/10"
+      class="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center bg-white/20 text-white backdrop-blur-md transition-colors hover:bg-[var(--color-2)] hover:text-black lg:right-6 lg:top-6 lg:h-12 lg:w-12 lg:bg-white/10"
       aria-label="Close modal"
     >
       <X size={24} />
@@ -496,7 +487,7 @@ const categories = [
 
       <!-- Details -->
       <div class="flex w-full flex-col justify-center overflow-y-auto p-5 sm:p-8 lg:w-1/3 lg:p-10">
-        <div class="mb-2 inline-block self-start bg-[#4F7C89] px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-black">
+        <div class="mb-2 inline-block self-start bg-[var(--color-2)] px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-black">
           Project Detail
         </div>
 
@@ -521,10 +512,12 @@ const categories = [
             id="project-modal-deploy"
             href="#"
             target="_blank"
-            class="flex w-full items-center justify-center gap-2 rounded-sm bg-white py-3 font-bold uppercase tracking-wider text-black transition-colors hover:bg-gray-200 lg:py-4"
+            class="eng-hover flex w-full items-center justify-center gap-2 rounded-sm bg-white py-3 font-bold uppercase tracking-wider text-black lg:py-4"
+            data-hover-default="Live Preview"
+            data-hover-alt="Open Deploy"
           >
             <ExternalLink size={18} />
-            Live Preview
+            <span data-hover-slot></span>
           </a>
 
           <div
@@ -539,10 +532,12 @@ const categories = [
             id="project-modal-source"
             href="#"
             target="_blank"
-            class="flex w-full items-center justify-center gap-2 rounded-sm border border-white/20 bg-white/10 py-3 font-bold uppercase tracking-wider text-white transition-colors hover:bg-white/20 lg:py-4"
+            class="eng-hover flex w-full items-center justify-center gap-2 rounded-sm border border-white/20 bg-white/10 py-3 font-bold uppercase tracking-wider text-white lg:py-4"
+            data-hover-default="Source Code"
+            data-hover-alt="View Repo"
           >
             <Github size={18} />
-            Source Code
+            <span data-hover-slot></span>
           </a>
         </div>
       </div>
@@ -551,7 +546,7 @@ const categories = [
 </section>
 
 <script>
-  import { gsap, ScrollTrigger, Observer, horizontalLoop } from "../Script/gsap-utils";
+  import { gsap, ScrollTrigger, Observer, horizontalLoop, initEngineHover } from "../Script/gsap-utils";
   
   let marqueeObserver: ReturnType<typeof Observer.create> | null = null;
   let ytObserver: IntersectionObserver | null = null;
@@ -573,6 +568,8 @@ const categories = [
     const modalSource = document.getElementById("project-modal-source") as HTMLAnchorElement;
 
     if (!page || !body) return;
+
+    initEngineHover(page);
 
     let isModalOpen = false;
 
@@ -692,7 +689,7 @@ const categories = [
             modalNoDeploy.classList.remove("hidden");
             modalNoDeploy.classList.add("flex");
             if (modalLaptopNum) {
-              modalLaptopNum.textContent = laptop && laptop.trim() !== "" ? laptop : "Stand Pameran / Stand Utama";
+              modalLaptopNum.textContent = laptop && laptop.trim() !== "" ? laptop : "Dapat dicoba pada device masing-masing dengan mengikuti panduan Readme.md pada github source code project ini.";
             }
           }
         }

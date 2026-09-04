@@ -1,0 +1,227 @@
+---
+import "../styles/global.css";
+---
+
+<section 
+  class="section-breathe relative w-full min-h-screen bg-[#000000] font-sans text-white overflow-hidden"
+  id="MilestoneIdentityPage"
+>
+  <!-- Milestone-only bg: left accent rail + diagonal hatch (no plus grid) -->
+  <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+    <div class="absolute inset-y-0 left-0 w-[3px] bg-gradient-to-b from-[var(--color-3)] via-[var(--color-2)] to-[var(--color-1)] opacity-80"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_60%_80%_at_100%_50%,rgba(226,47,128,0.07),transparent_60%)]"></div>
+    <div class="milestone-hatch absolute inset-0 opacity-[0.18]"></div>
+    <div class="absolute top-0 right-0 h-full w-px bg-white/[0.04]"></div>
+  </div>
+
+  <div class="relative w-full max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-col lg:flex-row gap-10 lg:gap-20 pb-16 lg:pb-24 z-10">
+    
+    <div class="section-hud-header lg:absolute lg:top-28 lg:right-12 flex flex-col items-end text-right z-20 mb-14 lg:mb-0">
+      <div class="section-hud-kicker justify-end">
+        <span>RAKA: IDENTITY-LOG</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+      <h2 class="section-hud-title">Milestones</h2>
+      <div class="section-hud-palette items-end">
+        <div class="flex gap-1 justify-end">
+          <div class="w-3 h-3 bg-[var(--color-3)]"></div>
+          <div class="w-3 h-3 bg-[var(--color-2)]"></div>
+          <div class="w-3 h-3 bg-[var(--color-1)]"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden lg:flex w-[100px] shrink-0 flex-col items-center relative py-[12vh]">
+      <div class="absolute top-0 bottom-0 w-[2px] border-l-2 border-dashed border-gray-700/50 left-1/2 -translate-x-1/2"></div>
+      
+      <div class="waypoint-anchor absolute left-1/2 -translate-x-1/2 top-[10%] w-4 h-4 rounded-full border border-gray-600 bg-black z-0"></div>
+      <div class="waypoint-anchor absolute left-1/2 -translate-x-1/2 top-[35%] w-4 h-4 rounded-full border border-gray-600 bg-black z-0"></div>
+      <div class="waypoint-anchor absolute left-1/2 -translate-x-1/2 top-[60%] w-4 h-4 rounded-full border border-gray-600 bg-black z-0"></div>
+      <div class="waypoint-anchor absolute left-1/2 -translate-x-1/2 top-[85%] w-4 h-4 rounded-full border border-gray-600 bg-black z-0"></div>
+
+      <div class="marker-container absolute left-1/2 -translate-x-1/2 top-0 z-10 w-24 h-24 flex items-center justify-center">
+        <svg id="morph-stage" viewBox="0 0 100 100" class="w-full h-full" aria-hidden="true">
+          <defs>
+            <linearGradient id="grad-marker" x1="0" y1="0" x2="100" y2="100">
+              <stop offset="0%" stop-color="var(--color-3)" />
+              <stop offset="100%" stop-color="var(--color-2)" />
+            </linearGradient>
+            <!-- INIT: pixel arrow / boot glyph -->
+            <path id="shape1" d="M45 12 L55 12 L55 52 L72 52 L50 78 L28 52 L45 52 Z" />
+            <!-- PLAN: L-floor blueprint corner -->
+            <path id="shape2" d="M16 16 L16 84 L84 84 L84 46 L52 46 L52 16 Z" />
+            <!-- ENGINE: hex bolt head -->
+            <path id="shape3" d="M50 8 L74 24 L74 56 L50 72 L26 56 L26 24 Z" />
+            <!-- TARGET: 8-point reticle -->
+            <path id="shape4" d="M50 6 L58 38 L92 50 L58 62 L50 94 L42 62 L8 50 L42 38 Z" />
+          </defs>
+          <path id="active-shape" fill="url(#grad-marker)" d="M45 12 L55 12 L55 52 L72 52 L50 78 L28 52 L45 52 Z" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="flex-1 flex flex-col gap-[var(--card-gap)] py-[8vh] lg:py-[10vh] lg:pl-10 relative">
+      
+      <div class="milestone-card group relative w-full lg:w-[85%] border border-gray-700/50 bg-gradient-to-br from-[#3a1528] to-black p-10 lg:p-14 rounded-sm overflow-hidden">
+        <div class="absolute top-0 left-0 w-1 h-full bg-[var(--color-3)] transform origin-top scale-y-0 transition-transform duration-500 group-hover:scale-y-100"></div>
+        <span class="text-[var(--color-3)] font-mono text-sm tracking-widest mb-3 block">PHASE 01 / EST. 2009</span>
+        <h3 class="text-3xl lg:text-4xl font-light mb-2 uppercase">INITIALIZATION</h3>
+        <h4 class="text-gray-400 text-lg tracking-wide mb-8 uppercase">Raka Sabari Pratama / Foxy</h4>
+        <p class="text-gray-300 leading-relaxed mb-8 text-sm lg:text-base max-w-2xl">
+          Memulai perjalanan fundamental. Eksplorasi awal difokuskan pada pemahaman logika komputasional dan struktur kode sebagai siswa SMK jurusan PPLG. Fase ini membangun dasar yang kuat untuk pengembangan perangkat lunak modern.
+        </p>
+        <div class="border-t border-gray-800 pt-5 mt-auto">
+          <p class="text-xs text-gray-500 uppercase tracking-widest mb-3">Core Learnings:</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 border border-gray-700 text-xs text-gray-300">C++ Fundamentals</span>
+            <span class="px-3 py-1 border border-gray-700 text-xs text-gray-300">Object-Oriented Programming</span>
+            <span class="px-3 py-1 border border-gray-700 text-xs text-gray-300">Polymorphism & Encapsulation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="milestone-card group relative w-full lg:w-[85%] border border-gray-700/50 bg-gradient-to-br from-[#1a2838] to-black p-10 lg:p-14 rounded-sm overflow-hidden lg:ml-auto">
+        <div class="absolute top-0 left-0 w-1 h-full bg-[var(--color-2)] transform origin-top scale-y-0 transition-transform duration-500 group-hover:scale-y-100"></div>
+        <span class="text-[var(--color-2)] font-mono text-sm tracking-widest mb-3 block">PHASE 02 / FEB 2025</span>
+        <h3 class="text-3xl lg:text-4xl font-light mb-2 uppercase">LITERARY CREATIVE</h3>
+        <h4 class="text-gray-400 text-lg tracking-wide mb-8 uppercase">Nil Volentibus Arduum</h4>
+        <div class="flex flex-col md:flex-row gap-8 mb-8">
+          <div class="flex-1">
+            <p class="text-gray-300 leading-relaxed text-sm lg:text-base">
+              Menembus batas antara logika dan imajinasi. Menerbitkan buku sebagai penulis di bawah naungan Dandelion Publisher. Sebuah pembuktian bahwa menyusun narasi cerita membutuhkan presisi yang sama dengan merancang arsitektur kode.
+            </p>
+          </div>
+          <div class="w-full md:w-1/3 shrink-0 h-36 bg-gray-800/80 border border-gray-700 flex items-center justify-center text-gray-500 text-xs tracking-widest">
+            [ MEDIA / COVER ART ]
+          </div>
+        </div>
+        <div class="border-t border-gray-800 pt-5">
+          <p class="text-xs text-gray-500 uppercase tracking-widest mb-3">Developed Skills:</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 border border-gray-700 text-xs text-gray-300">Creative Writing</span>
+            <span class="px-3 py-1 border border-gray-700 text-xs text-gray-300">Narrative Structuring</span>
+            <span class="px-3 py-1 border border-gray-700 text-xs text-gray-300">Foreign Vocabulary Integration</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="milestone-card group relative w-full lg:w-[85%] border border-gray-700/50 bg-gradient-to-br from-[#2a2418] to-black p-10 lg:p-14 rounded-sm overflow-hidden">
+        <div class="absolute top-0 left-0 w-1 h-full bg-[var(--color-1)] transform origin-top scale-y-0 transition-transform duration-500 group-hover:scale-y-100"></div>
+        <span class="text-[var(--color-1)] font-mono text-sm tracking-widest mb-3 block">PHASE 03 / 2025-2026</span>
+        <h3 class="text-3xl lg:text-4xl font-light mb-2 uppercase">SYSTEM & MARKET</h3>
+        <h4 class="text-gray-400 text-lg tracking-wide mb-8 uppercase">Environment & Equity</h4>
+        <p class="text-gray-300 leading-relaxed mb-8 text-sm lg:text-base max-w-2xl">
+          Mengeksplorasi kendali sistem operasi tingkat rendah dengan melakukan troubleshooting pada <i>kernel modules</i> dan konfigurasi tampilan Linux. Bersamaan dengan itu, mengaplikasikan kedisiplinan analitis dalam melakukan <i>short-term equity trading</i> secara aktif.
+        </p>
+        <div class="border-t border-gray-800 pt-5 mt-auto">
+          <p class="text-xs text-gray-500 uppercase tracking-widest mb-3">Core Learnings:</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 border border-gray-700 text-xs text-gray-300">Linux Kernel Modules</span>
+            <span class="px-3 py-1 border border-gray-700 text-xs text-gray-300">Desktop Environment Customization</span>
+            <span class="px-3 py-1 border border-gray-700 text-xs text-gray-300">Real-time Market Execution</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="milestone-card group relative w-full lg:w-[85%] border border-gray-700/50 bg-gradient-to-br from-[#1f2a28] to-black p-10 lg:p-14 rounded-sm overflow-hidden lg:ml-auto">
+        <div class="absolute top-0 left-0 w-1 h-full bg-[var(--color-2)] transform origin-top scale-y-0 transition-transform duration-500 group-hover:scale-y-100"></div>
+        <span class="text-[var(--color-2)] font-mono text-sm tracking-widest mb-3 block">PHASE 04 / 2025-2026</span>
+        <h3 class="text-3xl lg:text-4xl font-light mb-2 uppercase">COMPETITIVE LOGIC</h3>
+        <h4 class="text-gray-400 text-lg tracking-wide mb-8 uppercase">IECC, ITCC & Algonova</h4>
+        <p class="text-gray-300 leading-relaxed mb-8 text-sm lg:text-base max-w-2xl">
+          Mengkalibrasi logika pemrograman dalam skenario kompetitif. Terlibat dalam ajang perancangan solusi perangkat lunak berfokus lingkungan (IECC), turnamen ITCC, serta menyelesaikan puluhan modul Python yang mencakup fundamental hingga game development.
+        </p>
+        <div class="border-t border-gray-800 pt-5 mt-auto">
+          <p class="text-xs text-gray-500 uppercase tracking-widest mb-3">Core Learnings:</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 border border-gray-700 text-xs text-gray-300">Python & PyGame</span>
+            <span class="px-3 py-1 border border-gray-700 text-xs text-gray-300">Algorithmic Efficiency</span>
+            <span class="px-3 py-1 border border-gray-700 text-xs text-gray-300">Software Problem Solving</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
+
+  gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const cards = gsap.utils.toArray(".milestone-card");
+    cards.forEach((card) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+        y: reduced ? 0 : 40,
+        opacity: 0,
+        duration: reduced ? 0 : 0.7,
+        ease: "power3.out",
+      });
+    });
+
+    if (window.innerWidth >= 1024 && !reduced) {
+      const marker = document.querySelector(".marker-container");
+      const anchors = gsap.utils.toArray(".waypoint-anchor");
+      const activeShape = document.querySelector("#active-shape");
+
+      if (!marker || !activeShape || anchors.length === 0) return;
+
+      const getPoints = () =>
+        anchors.map((anchor) => ({
+          y: anchor.offsetTop - marker.offsetHeight / 2 + 8,
+        }));
+
+      const shapes = ["#shape1", "#shape2", "#shape3", "#shape4"];
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#MilestoneIdentityPage",
+          start: "top 15%",
+          end: "bottom 85%",
+          scrub: 0.8,
+        },
+      });
+
+      const points = getPoints();
+
+      points.forEach((point, i) => {
+        if (i === 0) {
+          gsap.set(marker, { y: point.y });
+        } else {
+          tl.to(marker, { y: point.y, ease: "none", duration: 1 }).to(
+            activeShape,
+            { morphSVG: shapes[i], ease: "power2.inOut", duration: 1 },
+            "<",
+          );
+        }
+      });
+
+      window.addEventListener("resize", () => ScrollTrigger.refresh(), { passive: true });
+    }
+  });
+</script>
+
+<style>
+  .milestone-hatch {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 14px,
+      rgba(255, 255, 255, 0.04) 14px,
+      rgba(255, 255, 255, 0.04) 15px
+    );
+    mask-image: linear-gradient(to bottom, black 10%, transparent 95%);
+    -webkit-mask-image: linear-gradient(to bottom, black 10%, transparent 95%);
+  }
+</style>

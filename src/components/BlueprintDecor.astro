@@ -1,0 +1,74 @@
+---
+interface Props {
+  /** subtle = lower opacity for busy sections */
+  intensity?: "subtle" | "normal";
+}
+
+const { intensity = "normal" } = Astro.props;
+const opacity = intensity === "subtle" ? "opacity-40" : "opacity-70";
+---
+
+<div class={`blueprint-decor pointer-events-none absolute inset-0 overflow-hidden z-0 ${opacity}`} aria-hidden="true">
+  <!-- Plus-mark grid -->
+  <div class="blueprint-grid absolute inset-0"></div>
+
+  <!-- Structural axis lines -->
+  <div class="absolute top-[18%] left-0 right-0 h-px bg-white/[0.06]"></div>
+  <div class="absolute top-[62%] left-0 right-0 h-px bg-white/[0.04]"></div>
+  <div class="absolute top-0 bottom-0 left-[12%] w-px bg-white/[0.05] hidden lg:block"></div>
+  <div class="absolute top-0 bottom-0 right-[18%] w-px bg-white/[0.05] hidden lg:block"></div>
+
+  <!-- Corner registration marks (architect) -->
+  <svg class="absolute top-6 left-6 w-12 h-12 text-white/20" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1">
+    <path d="M0 16 V0 H16" /><circle cx="24" cy="24" r="2" fill="currentColor" stroke="none" opacity="0.5" />
+  </svg>
+  <svg class="absolute top-6 right-6 w-12 h-12 text-white/20" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1">
+    <path d="M48 16 V0 H32" /><path d="M40 8 H48 V16" opacity="0.4" />
+  </svg>
+  <svg class="absolute bottom-6 left-6 w-12 h-12 text-white/20" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1">
+    <path d="M0 32 V48 H16" />
+  </svg>
+  <svg class="absolute bottom-6 right-6 w-12 h-12 text-white/20 hidden sm:block" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1">
+    <path d="M48 32 V48 H32" />
+  </svg>
+
+  <!-- Background engineering glyphs -->
+  <svg class="absolute -right-8 top-1/4 w-40 h-40 text-[var(--color-3)]/10 hidden lg:block" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.75">
+    <circle cx="50" cy="50" r="42" stroke-dasharray="4 6" />
+    <path d="M50 8 L58 38 L92 50 L58 62 L50 92 L42 62 L8 50 L42 38 Z" opacity="0.6" />
+    <line x1="50" y1="8" x2="50" y2="92" opacity="0.4" />
+    <line x1="8" y1="50" x2="92" y2="50" opacity="0.4" />
+  </svg>
+
+  <svg class="absolute -left-4 bottom-1/4 w-32 h-32 text-[var(--color-2)]/10 hidden lg:block" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.75">
+    <path d="M16 16 L16 84 L84 84 L84 46 L52 46 L52 16 Z" />
+    <line x1="16" y1="16" x2="84" y2="84" opacity="0.3" stroke-dasharray="3 5" />
+  </svg>
+
+  <svg class="absolute right-[8%] bottom-[12%] w-24 h-24 text-white/[0.07] hidden md:block" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1">
+    <rect x="8" y="8" width="48" height="48" />
+    <line x1="8" y1="32" x2="56" y2="32" />
+    <line x1="32" y1="8" x2="32" y2="56" />
+    <circle cx="32" cy="32" r="4" fill="currentColor" opacity="0.5" />
+  </svg>
+</div>
+
+<style>
+  .blueprint-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 45%, black 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 45%, black 20%, transparent 75%);
+  }
+
+  .blueprint-grid::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M23 22h2v2h-2zM23 0h2v4h-2zM23 44h2v4h-2zM0 23h4v2H0zM44 23h4v2h-4z' fill='rgba(255,255,255,0.12)'/%3E%3C/svg%3E");
+    background-size: 48px 48px;
+    opacity: 0.9;
+  }
+</style>
