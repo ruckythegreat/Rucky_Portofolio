@@ -113,7 +113,7 @@ import BlueprintDecor from "./BlueprintDecor.astro";
 </section>
 
 <script>
-  import { fadeTransition, initNavButtonHover, gsap } from "../Script/gsap-utils";
+  import { fadeTransition, initNavButtonHover, gsap, onWinResize } from "../Script/gsap-utils";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
@@ -224,7 +224,7 @@ import BlueprintDecor from "./BlueprintDecor.astro";
     updateAchievementUI(achIndex, false);
   }
 
-  window.addEventListener('resize', achAutoScaleStage);
+  onWinResize(achAutoScaleStage);
 
   document.addEventListener('DOMContentLoaded', () => {
     achAutoScaleStage();

@@ -272,7 +272,7 @@ import "../styles/global.css";
 </nav>
 
 <script>
-  import { gsap } from "../Script/gsap-utils";
+  import { gsap, onWinResize } from "../Script/gsap-utils";
 
   function autoScaleNavigation() {
     const stage = document.getElementById("nav-stage");
@@ -505,8 +505,5 @@ gsap.set(
 
   initSidebarExpansion();
 
-  window.addEventListener(
-    "resize",
-    autoScaleNavigation
-  );
+  onWinResize(autoScaleNavigation);
 </script>

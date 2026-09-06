@@ -279,6 +279,22 @@ export function horizontalLoop(items, config = {}) {
   return tl;
 }
 
+export function onWinResize(fn) {
+  let raf = 0;
+  const onResize = () => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = 0;
+      fn();
+    });
+  };
+  window.addEventListener("resize", onResize, { passive: true });
+  return () => {
+    window.removeEventListener("resize", onResize);
+    if (raf) cancelAnimationFrame(raf);
+  };
+}
+
 export function initStageScale(stageId, baseWidth = 1920, baseHeight = 1080, offsetLeft = 0) {
   const stage = document.getElementById(stageId);
   if (!stage) return;
@@ -295,7 +311,7 @@ export function initStageScale(stageId, baseWidth = 1920, baseHeight = 1080, off
   };
 
   apply();
-  window.addEventListener("resize", apply);
+  onWinResize(apply);
   return apply;
 }
 
@@ -311,7 +327,7 @@ export function initSimpleStageScale(stageId, baseWidth = 1920, baseHeight = 108
   };
 
   apply();
-  window.addEventListener("resize", apply);
+  onWinResize(apply);
 }
 
 export function initEngineHover(root = document) {

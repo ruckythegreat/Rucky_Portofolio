@@ -310,7 +310,7 @@ import "../styles/global.css";
 </section>
 
 <script>
-  import { glitchTransition } from "../Script/gsap-utils";
+  import { glitchTransition, onWinResize } from "../Script/gsap-utils";
   import gsap from "gsap";
 
   const biodataContent = {
@@ -484,7 +484,7 @@ import "../styles/global.css";
     initInteractions();
   });
 
-  window.addEventListener("resize", () => {
+  onWinResize(() => {
     autoScaleBiodataStage();
     const menuButtons = document.querySelectorAll(".menu-btn");
     menuButtons.forEach((btn) => {

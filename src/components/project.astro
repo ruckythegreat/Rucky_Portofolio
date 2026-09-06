@@ -550,6 +550,8 @@ const categories = [
   
   let marqueeObserver: ReturnType<typeof Observer.create> | null = null;
   let ytObserver: IntersectionObserver | null = null;
+  let projectInited = false;
+  let marqueeSpeedTl: gsap.core.Timeline | undefined;
 
   function initProjectPage() {
     const page = document.getElementById("ProjectPage");
@@ -567,15 +569,17 @@ const categories = [
     const modalLaptopNum = document.getElementById("project-modal-laptop-num");
     const modalSource = document.getElementById("project-modal-source") as HTMLAnchorElement;
 
-    if (!page || !body) return;
+    if (!page || !body || projectInited) return;
+    projectInited = true;
 
     initEngineHover(page);
 
     let isModalOpen = false;
 
-    ScrollTrigger.getAll().forEach((st) => st.kill());
     marqueeObserver?.kill();
     marqueeObserver = null;
+    marqueeSpeedTl?.kill();
+    marqueeSpeedTl = undefined;
     
     ytObserver?.disconnect();
 
@@ -613,13 +617,14 @@ const categories = [
           onChangeY(self) {
             if (!marqueeRail || !marqueeTl) return;
             const factor = self.deltaY < 0 ? -2.5 : 2.5;
-            gsap.timeline({ defaults: { ease: "none" } })
+            marqueeSpeedTl?.kill();
+            marqueeSpeedTl = gsap.timeline({ defaults: { ease: "none" } })
               .to(marqueeTl, { timeScale: factor * 2, duration: 0.2, overwrite: true })
               .to(marqueeTl, { timeScale: factor / 2, duration: 0.8 }, "+=0.2");
           },
         });
       }
-      return () => { marqueeTl?.kill(); marqueeObserver?.kill(); };
+      return () => { marqueeTl?.kill(); marqueeSpeedTl?.kill(); marqueeObserver?.kill(); };
     });
 
     const allCards = document.querySelectorAll(".project-card");
@@ -739,9 +744,7 @@ const categories = [
   } else {
     initProjectPage();
   }
-  window.addEventListener("load", () => ScrollTrigger.refresh());
-  window.addEventListener("resize", () => ScrollTrigger.refresh());
-  document.addEventListener("astro:page-load", initProjectPage);
+  window.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
 </script>
 
 <style>

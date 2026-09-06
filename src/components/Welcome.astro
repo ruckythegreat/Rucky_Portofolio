@@ -116,6 +116,7 @@ style="mask-image: linear-gradient(
     animate3DChars,
     animateHeadlineChars,
     scrambleReveal,
+    onWinResize,
   } from "../Script/gsap-utils";
 
   const BASE_WIDTH = 1920;
@@ -170,7 +171,7 @@ style="mask-image: linear-gradient(
   }
 
   autoScaleStage();
-  window.addEventListener("resize", autoScaleStage);
+  onWinResize(autoScaleStage);
 
   function playHeroAnimations() {
     const line1 = document.getElementById("hero-line-1");

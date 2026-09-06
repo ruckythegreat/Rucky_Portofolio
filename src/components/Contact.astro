@@ -120,5 +120,12 @@ import "../styles/global.css";
 
   autoScaleStage();
 
-  window.addEventListener("resize", autoScaleStage);
+  let contactResizeRaf = 0;
+  window.addEventListener("resize", () => {
+    if (contactResizeRaf) return;
+    contactResizeRaf = requestAnimationFrame(() => {
+      contactResizeRaf = 0;
+      autoScaleStage();
+    });
+  }, { passive: true });
 </script>
