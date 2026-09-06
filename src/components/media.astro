@@ -52,7 +52,7 @@ const photoList = [
 ];
 ---
 <main class="relative w-full bg-black overflow-x-hidden font-['HarmonyOS_Sans',_sans-serif]">
-  {
+{
     /* =========================================================================
       BAGIAN 1: MEDIA VIDEO (HERO SCREEN)
       ========================================================================= */
@@ -76,11 +76,12 @@ const photoList = [
       .box-content img { transition: transform 0.4s ease-out; }
       .box:hover .box-content img { transform: scale(1.08); }
     </style>
-
-    <div id="media-stage" class="absolute z-10 h-[1080px] w-[1920px] shrink-0 origin-center">
-      <div class="relative flex h-full w-full flex-col justify-between px-6 pb-28 pt-12 lg:block lg:p-0 lg:pl-[100px]">
+<div id="media-stage" class="absolute z-10 h-[1080px] w-[1920px] shrink-0 origin-center">
+      {/* PERBAIKAN: Menggunakan h-full agar elemen 'bottom' tidak terlempar ke luar layar di desktop */}
+      <div class="relative flex h-full w-full flex-col justify-center gap-8 px-6 py-20 lg:block lg:p-0 lg:pl-[100px]">
+        
         {/* JUDUL: MEDIA VIDEO */}
-        <div class="z-20 mt-2 lg:absolute lg:left-[100px] lg:top-[80px] lg:mt-0">
+        <div class="relative z-20 mt-4 lg:absolute lg:left-[100px] lg:top-[80px] lg:mt-0">
           <div class="flex items-center space-x-3">
             <div class="flex h-6 w-6 items-center justify-center border-[2px] border-white lg:h-8 lg:w-8 lg:border-[3px]">
               <div class="h-2.5 w-2.5 bg-white lg:h-3.5 lg:w-3.5"></div>
@@ -95,11 +96,11 @@ const photoList = [
         <div class="pointer-events-none absolute left-0 top-0 z-0 h-full w-full overflow-hidden">
           <div
             id="main-bg-wrap"
-            class="absolute inset-0 scale-[1.05] opacity-80 transition-all duration-500 bg-center bg-cover bg-no-repeat"
+            class="absolute inset-0 scale-[1.05] bg-cover bg-center bg-no-repeat opacity-80 transition-all duration-500"
           >
             <iframe
               id="main-bg"
-              class="pointer-events-none absolute left-1/2 top-1/2 h-[56.25vw] min-h-[100vh] w-[100vw] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2"
+              class="pointer-events-none absolute left-1/2 top-1/2 h-[100vh] w-[177.77vh] min-h-[56.25vw] min-w-[100vw] max-w-none -translate-x-1/2 -translate-y-1/2 lg:left-0 lg:top-0 lg:h-full lg:min-h-0 lg:w-full lg:min-w-0 lg:translate-x-0 lg:translate-y-0"
               src=""
               title="Background preview"
               allow="autoplay; encrypted-media"
@@ -110,8 +111,8 @@ const photoList = [
         </div>
 
         {/* MEDIA CONTROLS & THUMBNAILS */}
-        <div class="relative z-20 my-auto flex w-full items-center justify-center lg:absolute lg:bottom-[60px] lg:right-[60px] lg:my-0 lg:block lg:w-auto">
-          <div class="relative flex w-full items-center justify-between space-x-0 lg:w-auto lg:justify-center lg:space-x-6">
+        <div class="relative z-20 flex w-full items-center justify-center lg:absolute lg:bottom-[60px] lg:right-[60px] lg:block lg:w-auto">
+          <div class="relative flex w-full items-center justify-center gap-4 lg:w-auto lg:gap-6">
             
             {/* CARD PREV */}
             <div class="group relative hidden h-[124px] w-[220px] shrink-0 cursor-pointer overflow-hidden lg:block" id="card-prev">
@@ -130,7 +131,7 @@ const photoList = [
             </button>
 
             {/* CARD CURR (PLAYING) */}
-            <div class="relative z-20 mx-4 aspect-video w-full max-w-[280px] shrink-0 cursor-pointer overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.6)] lg:mx-0 lg:h-[190px] lg:w-[340px] lg:max-w-none bg-black/50" id="card-curr">
+            <div class="relative z-20 aspect-video w-full max-w-[280px] shrink cursor-pointer overflow-hidden bg-black/50 shadow-[0_10px_30px_rgba(0,0,0,0.6)] lg:h-[190px] lg:w-[340px] lg:max-w-none lg:shrink-0" id="card-curr">
               <img id="thumb-curr" src="" alt="" class="media-thumb h-full w-full object-cover" />
               <div class="absolute left-2 top-2 z-10 rounded bg-black/80 px-2 py-1 text-[10px] font-bold tracking-widest text-white backdrop-blur-sm lg:left-3 lg:top-3 lg:px-3 lg:py-1.5 lg:text-xs">
                 PLAYING
@@ -160,7 +161,7 @@ const photoList = [
         </div>
 
         {/* TEKS & KONTEN BAWAH */}
-        <div class="relative z-10 mt-auto flex w-full max-w-2xl flex-col items-start text-white lg:absolute lg:bottom-[100px] lg:left-[100px] lg:mt-0 lg:pb-0">
+        <div class="relative z-10 flex w-full max-w-2xl flex-col items-start text-white lg:absolute lg:bottom-[100px] lg:left-[100px] lg:pb-0">
           <div class="mb-2 flex items-center space-x-3 lg:mb-4">
             <span id="media-category" class="bg-white/20 px-2 py-1 text-[10px] font-bold uppercase tracking-widest lg:px-3 lg:text-sm">
               CATEGORY
@@ -179,8 +180,8 @@ const photoList = [
           </p>
 
           <div class="flex w-full space-x-3 lg:w-auto lg:space-x-4">
-            <button id="btn-play" type="button" class="eng-hover group flex h-12 w-16 shrink-0 items-center justify-center bg-[var(--color-2)] font-bold text-black shadow-[0_0_20px_rgba(255,120,115,0.35)] lg:h-14 lg:w-20 tracking-widest uppercase text-xs" data-hover-default="PLAY" data-hover-alt="▶ RUN" aria-label="Play video"></button>
-            <a href="/videos" class="eng-hover flex h-12 flex-1 items-center justify-center border border-white/30 bg-white/10 px-4 text-sm font-semibold text-white lg:h-14 lg:flex-none lg:px-8 lg:text-base tracking-widest uppercase" data-hover-default="More Videos" data-hover-alt="Open Archive"></a>
+            <button id="btn-play" type="button" class="eng-hover group flex h-12 w-16 shrink-0 items-center justify-center bg-[var(--color-2)] text-xs font-bold uppercase tracking-widest text-black shadow-[0_0_20px_rgba(255,120,115,0.35)] lg:h-14 lg:w-20" data-hover-default="PLAY" data-hover-alt="▶ RUN" aria-label="Play video"></button>
+            <a href="/videos" class="eng-hover flex h-12 flex-1 items-center justify-center border border-white/30 bg-white/10 px-4 text-sm font-semibold uppercase tracking-widest text-white lg:h-14 lg:flex-none lg:px-8 lg:text-base" data-hover-default="More Videos" data-hover-alt="Open Archive"></a>
           </div>
         </div>
 
@@ -263,7 +264,6 @@ const photoList = [
     <div class="content relative z-20 flex w-full max-w-5xl items-center justify-center p-4"></div>
   </div>
 </main>
-
 <script>
   import { initSimpleStageScale, gsap, initEngineHover } from "../Script/gsap-utils";
   import { Flip } from "gsap/Flip";
@@ -274,33 +274,36 @@ const photoList = [
     initEngineHover(document.querySelector("main") || document);
 
     // ==========================================
-    // DATA CAROUSEL MEDIA (Tanpa Local Thumb)
+    // DATA CAROUSEL MEDIA 
+    // (mediaId sekarang adalah ID YouTube untuk SEMUA item.
+    // originalUrl digunakan untuk redirect tombol Play)
     // ==========================================
-    const mediaList = [
-      { category: "Ucapan", date: "2026-08-25", title: "Happy Birthday SMKN 2 Bandung from RPL (Minecraft Edition)", desc: "Ucapan Ulang tahun dan juga open house SMKN 2 dari RPL", type: "youtube", mediaId: "WAAEZzLE-nQ" },
-      { category: "TikTok", date: "2025-10-22", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7563950930966727954" },
-      { category: "Instagram", date: "2025-07-02", title: "Instagram Post @naptuneeel", desc: "Postingan media Instagram dari akun @naptuneeel", type: "instagram", mediaId: "DLmxMGCPoMlaW5FDhyZtyMZCuN38vKJiEtp_nU0" },
-      { category: "TikTok", date: "2025-06-16", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7516563138003700999" },
-      { category: "TikTok", date: "2025-06-05", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7512389312193858834" },
-      { category: "Instagram", date: "2024-12-16", title: "Instagram Post @naptuneeel", desc: "Postingan media Instagram dari akun @naptuneeel", type: "instagram", mediaId: "DDq9QJjvaq_u7QgafFQUSa2fCT5ZBrwe9z5EaE0" },
-      { category: "TikTok", date: "2024-12-13", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7447688845388270866" },
-      { category: "TikTok", date: "2024-12-12", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7447363285629930759" },
-      { category: "TikTok", date: "2024-12-06", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7445337305654562066" },
-      { category: "TikTok", date: "2023-09-23", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7282004747773594886" },
-      { category: "TikTok", date: "2023-09-12", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7277770319064993029" },
-      { category: "Motion Graphics", date: "2023-09-07", title: "First Mograph #Shiroko", desc: "Eksperimen pertama membuat animasi motion graphics untuk karakter Shiroko.", type: "youtube", mediaId: "_6dhlWfs1gs" },
-      { category: "Minecraft", date: "2023-08-17", title: "AUGUST 17th IS THE DAY INDONESIAN INDEPENDEN 🔥", desc: "Merayakan Hari Kemerdekaan Indonesia dengan membangun Monas (Monumen Nasional) Jakarta di Minecraft.", type: "youtube", mediaId: "w5nbenCaAak" },
-      { category: "Gaming", date: "2023-07-01", title: "DIMAS SIGMA VS INTRUDERS @Greyzon Ch. :v", desc: "Gameplay seru dan kocak saat Dimas Sigma bermain game horor Roblox Intruders.", type: "youtube", mediaId: "jhlx7CK4IJQ" },
-      { category: "TikTok", date: "2023-05-27", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7237778359030271237" },
-      { category: "TikTok", date: "2023-05-14", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7233007196630437146" },
-      { category: "TikTok", date: "2023-05-12", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7232318285084216602" },
-      { category: "TikTok", date: "2023-05-06", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7229960977687530778" },
-      { category: "TikTok", date: "2023-04-23", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7225138172865383686" },
-      { category: "TikTok", date: "2023-04-20", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7224151841850821894" },
-      { category: "TikTok", date: "2023-04-17", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7222886262053539099" },
-      { category: "TikTok", date: "2023-04-13", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7221315111653231899" },
-      { category: "TikTok", date: "2023-04-10", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "7220386671345274139" }
-    ];
+const mediaList = [
+  { category: "Ucapan", date: "2026-08-25", title: "Happy Birthday SMKN 2 Bandung from RPL (Minecraft Edition)", desc: "Ucapan Ulang tahun dan juga open house SMKN 2 dari RPL", type: "youtube", mediaId: "WAAEZzLE-nQ", originalUrl: "https://youtu.be/WAAEZzLE-nQ" },
+  { category: "TikTok", date: "2025-10-22", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "_C6slFwjl0Q", originalUrl: "https://www.tiktok.com/@naptuneeel/video/7563950930966727954" },
+  { category: "Instagram", date: "2025-07-02", title: "Instagram Post @naptuneeel", desc: "Postingan media Instagram dari akun @naptuneeel", type: "instagram", mediaId: "ZtYpE11mJJE", originalUrl: "https://www.instagram.com/p/DLmxMGCPoMlaW5FDhyZtyMZCuN38vKJiEtp_nU0/" },
+  { category: "TikTok", date: "2025-06-16", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "GJN10IJBl8o", originalUrl: "https://www.tiktok.com/@naptuneeel/video/7516563138003700999" },
+  { category: "TikTok", date: "2025-06-05", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "JrdVlb49I4Q", originalUrl: "https://www.tiktok.com/@naptuneeel/video/7512389312193858834" },
+  { category: "Instagram", date: "2024-12-16", title: "Instagram Post @naptuneeel", desc: "Postingan media Instagram dari akun @naptuneeel", type: "instagram", mediaId: "SM7ux-EIkMI", originalUrl: "https://www.instagram.com/p/DDq9QJjvaq_u7QgafFQUSa2fCT5ZBrwe9z5EaE0/" },
+  { category: "TikTok", date: "2024-12-13", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "XZv6V-Ri460", originalUrl: "https://www.tiktok.com/@naptuneeel/video/7447688845388270866" }, // PERHATIAN: ID ini duplikat dengan 2023-04-10
+  { category: "TikTok", date: "2024-12-12", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "Ar0MLk3NNkY", originalUrl: "https://www.tiktok.com/@naptuneeel/video/7447363285629930759" }, // KOSONG: Membutuhkan mediaId yang benar
+  { category: "TikTok", date: "2024-12-06", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "rhF1J5NAyvw", originalUrl: "https://www.tiktok.com/@naptuneeel/video/7445337305654562066" },
+  { category: "TikTok", date: "2023-09-23", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "8liPEoDd2A8", originalUrl: "https://www.tiktok.com/@naptuneeel/video/7282004747773594886" },
+  { category: "TikTok", date: "2023-09-12", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "5_nL5o99sQU", originalUrl: "https://www.tiktok.com/@naptuneeel/video/7277770319064993029" },
+  { category: "Motion Graphics", date: "2023-09-07", title: "First Mograph #Shiroko", desc: "Eksperimen pertama membuat animasi motion graphics untuk karakter Shiroko.", type: "youtube", mediaId: "_6dhlWfs1gs", originalUrl: "https://youtu.be/_6dhlWfs1gs" },
+  { category: "Minecraft", date: "2023-08-17", title: "AUGUST 17th IS THE DAY INDONESIAN INDEPENDEN 🔥", desc: "Merayakan Hari Kemerdekaan Indonesia dengan membangun Monas (Monumen Nasional) Jakarta di Minecraft.", type: "youtube", mediaId: "w5nbenCaAak", originalUrl: "https://youtu.be/w5nbenCaAak" },
+  { category: "Gaming", date: "2023-07-01", title: "DIMAS SIGMA VS INTRUDERS @Greyzon Ch. :v", desc: "Gameplay seru dan kocak saat Dimas Sigma bermain game horor Roblox Intruders.", type: "youtube", mediaId: "jhlx7CK4IJQ", originalUrl: "https://youtu.be/jhlx7CK4IJQ" },
+  { category: "TikTok", date: "2023-05-27", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "kp5bvwod5NI", originalUrl: "https://www.tiktok.com/@naptuneeel/video/7237778359030271237" },
+  { category: "TikTok", date: "2023-05-14", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "mqmXPtB0hk0", originalUrl: "https://www.tiktok.com/@naptuneeel/video/7233007196630437146" },
+  { category: "TikTok", date: "2023-05-12", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "rhF1J5NAyvw", originalUrl: "https://www.tiktok.com/@naptuneeel/video/7232318285084216602" },
+  { category: "TikTok", date: "2023-05-06", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "26D0iZ226xk", originalUrl: "https://www.tiktok.com/@naptuneeel/video/7229960977687530778" },
+  { category: "TikTok", date: "2023-04-23", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "WM5h0HeSmjY", originalUrl: "https://www.tiktok.com/@naptuneeel/video/7225138172865383686" },
+  { category: "TikTok", date: "2023-04-20", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "dLlrXXEzaqQ", originalUrl: "https://www.tiktok.com/@naptuneeel/video/7224151841850821894" },
+  
+  { category: "TikTok", date: "2023-04-17", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "fFT-lFR1PRs", originalUrl: "https://www.tiktok.com/@naptuneeel/video/7222886262053539099" },
+  { category: "TikTok", date: "2023-04-13", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "Bvvxv5RLLVI", originalUrl: "https://www.tiktok.com/@naptuneeel/video/7221315111653231899" }, // DIPERBAIKI SESUAI TEMUAN
+  { category: "TikTok", date: "2023-04-10", title: "TikTok Video @naptuneeel", desc: "Konten video TikTok dari akun @naptuneeel", type: "tiktok", mediaId: "sTYlKYxhcAU", originalUrl: "https://www.tiktok.com/@naptuneeel/video/7220386671345274139" } // PERHATIAN: ID ini duplikat dengan 2024-12-13
+];
 
     mediaList.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
@@ -308,24 +311,14 @@ const photoList = [
     let switching = false;
     let isFirstLoad = true;
 
-    // Helper functions dinamis berdasarkan platform (Generated Online Placeholders)
+    // Thumbnail untuk "Next/Prev" Card, semua disamakan mengambil thumbnail HD YouTube
     const getThumbnail = (media: any) => {
-      if (media.type === "youtube") return `https://img.youtube.com/vi/${media.mediaId}/maxresdefault.jpg`;
-      if (media.type === "tiktok") return "https://placehold.co/400x600/111111/FFFFFF/png?text=TikTok+Preview";
-      if (media.type === "instagram") return "https://placehold.co/400x600/e1306c/FFFFFF/png?text=Instagram+Preview";
-      return "";
+      return `https://img.youtube.com/vi/${media.mediaId}/maxresdefault.jpg`;
     };
 
+    // Fungsi embed background (Hanya YouTube)
     const getBgEmbed = (media: any) => {
-      if (media.type === "youtube") return `https://www.youtube.com/embed/${media.mediaId}?autoplay=1&mute=1&loop=1&playlist=${media.mediaId}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3`;
-      return ""; // Dimatikan untuk TikTok/IG agar layar background tidak error/pecah
-    };
-
-    const getWatchEmbed = (media: any) => {
-      if (media.type === "youtube") return `https://www.youtube.com/embed/${media.mediaId}?autoplay=1&mute=0&rel=0&modestbranding=1`;
-      if (media.type === "tiktok") return `https://www.tiktok.com/embed/v2/${media.mediaId}`;
-      if (media.type === "instagram") return `https://www.instagram.com/p/${media.mediaId}/embed/`;
-      return "";
+      return `https://www.youtube.com/embed/${media.mediaId}?autoplay=1&mute=1&loop=1&playlist=${media.mediaId}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3`;
     };
 
     function setMediaContent(currentData: any, prevData: any, nextData: any) {
@@ -341,23 +334,14 @@ const photoList = [
       document.getElementById("media-desc")!.textContent = currentData.desc;
       document.getElementById("media-counter")!.textContent = (currentIndex + 1).toString();
 
-      // Penanganan khusus Iframe/Gambar Background agar IG/TikTok tidak pecah
+      // Set Background Iframe (Kini selalu aktif karena SEMUA media memiliki ID YouTube)
       const bgWrap = document.getElementById("main-bg-wrap")!;
       const bgIframe = document.getElementById("main-bg") as HTMLIFrameElement;
       
-      if (currentData.type === "youtube") {
-        bgIframe.style.display = "block";
-        bgIframe.src = getBgEmbed(currentData);
-        bgWrap.style.backgroundImage = "none";
-        bgWrap.style.filter = "none";
-      } else {
-        bgIframe.style.display = "none";
-        bgIframe.src = "";
-        // Gunakan efek gambar blur elegan sebagai ganti iframe vertical yang nyangkut di layout 16:9
-        bgWrap.style.backgroundImage = `url('${getThumbnail(currentData)}')`;
-        bgWrap.style.backgroundSize = "cover";
-        bgWrap.style.filter = "blur(15px) brightness(0.6)"; 
-      }
+      bgIframe.style.display = "block";
+      bgIframe.src = getBgEmbed(currentData);
+      bgWrap.style.backgroundImage = "none";
+      bgWrap.style.filter = "none";
 
       (document.getElementById("thumb-prev") as HTMLImageElement).src = getThumbnail(prevData);
       (document.getElementById("thumb-curr") as HTMLImageElement).src = getThumbnail(currentData);
@@ -404,41 +388,26 @@ const photoList = [
     const goPrev = () => { currentIndex = currentIndex === 0 ? mediaList.length - 1 : currentIndex - 1; updateMediaUI(-1); };
     const goNext = () => { currentIndex = currentIndex === mediaList.length - 1 ? 0 : currentIndex + 1; updateMediaUI(1); };
 
-    // VIDEO MODAL LOGIC (Layout Otomatis Berubah Tergantung Tipe Konten)
-    const modalVideo = document.getElementById("video-modal")!;
-    const modalWrapper = document.getElementById("modal-wrapper")!;
-    const modalIframe = document.getElementById("video-modal-iframe") as HTMLIFrameElement;
 
-    function openVideoModal() {
+    // ==========================================
+    // LOGIKA PLAY VIDEO (REDIRECT TAB BARU)
+    // Menggantikan modal iframe
+    // ==========================================
+    function openOriginalVideo() {
       if (mediaList.length === 0) return;
       const data = mediaList[currentIndex];
-      
-      modalIframe.src = getWatchEmbed(data);
-
-      // Ubah class wrapper Iframe, vertikal (IG/TikTok) vs horizontal (YT)
-      if (data.type === "youtube") {
-        modalWrapper.className = "w-full max-w-5xl px-4 aspect-video transition-all duration-300";
-      } else {
-        modalWrapper.className = "w-full max-w-[400px] h-[80vh] px-4 transition-all duration-300";
-      }
-
-      modalVideo.classList.remove("hidden");
-      modalVideo.classList.add("flex");
-      document.body.style.overflow = "hidden";
+      // Membuka originalUrl (TikTok/IG/YouTube utama) di tab baru
+      window.open(data.originalUrl, "_blank");
     }
 
-    function closeVideoModal() {
-      modalVideo.classList.add("hidden");
-      modalVideo.classList.remove("flex");
-      modalIframe.src = "";
-      document.body.style.overflow = "";
-    }
+    // Assign event listener (Hapus logic lama untuk openVideoModal)
+    document.getElementById("btn-play")?.addEventListener("click", openOriginalVideo);
+    document.getElementById("card-curr")?.addEventListener("click", openOriginalVideo);
 
-    document.getElementById("btn-play")?.addEventListener("click", openVideoModal);
-    document.getElementById("card-curr")?.addEventListener("click", openVideoModal);
-    document.getElementById("video-modal-close")?.addEventListener("click", closeVideoModal);
-    modalVideo.addEventListener("click", (e) => { if (e.target === modalVideo) closeVideoModal(); });
 
+    // ==========================================
+    // NAVIGASI CAROUSEL LISTENER
+    // ==========================================
     document.querySelectorAll(".btn-prev").forEach((btn) => btn.addEventListener("click", goPrev));
     document.querySelectorAll(".btn-next").forEach((btn) => btn.addEventListener("click", goNext));
     document.getElementById("card-prev")?.addEventListener("click", goPrev);
@@ -506,13 +475,12 @@ const photoList = [
     photoModalClose?.addEventListener("click", closePhotoModal);
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
-        if (!modalVideo.classList.contains("hidden")) closeVideoModal();
         if (boxIndex !== undefined) closePhotoModal();
       }
     });
 
     // ==========================================
-    // LOGIKA TOMBOL SELENGKAPNYA
+    // LOGIKA TOMBOL SELENGKAPNYA (PHOTOS)
     // ==========================================
     const btnMorePhotos = document.getElementById("btn-more-photos");
     const hiddenBoxes = document.querySelectorAll(".hidden-box");
